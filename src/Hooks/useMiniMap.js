@@ -6,6 +6,8 @@ import dotenv from 'dotenv';
 const useMiniMap = (id) => {
     dotenv.config();
     const [map, setMap] = useState(null);
+    //TODO: change this to coordinate: {lat:, lng:}
+    //& send full address for signup & profile update
     const [address, setAddress] = useState(null);
 
     //bounds of Montreal 

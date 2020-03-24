@@ -1,0 +1,26 @@
+.hi{
+    color:black;
+}
+
+.toggle-avatar-name{
+    font-size: 13px;
+    color:black;
+    font-family:monospace ;
+    margin-top:10px;
+    margin-bottom: 0;
+}
+
+.toggle-avatar-title{
+    font-size: 10px;
+    color:black;
+    font-family:monospace ;
+    margin-bottom: 0;
+    letter-spacing: 0;
+    word-wrap: break-word;
+}
+
+.dashboard-image{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}

@@ -9,7 +9,7 @@ import './login.css';
 const Signup = () => {
 
     //bring in map for location picking
-    const [map, address] = useMiniMap("mapbox")
+    const [map, address] = useMiniMap("map")
     console.log(address)
 
 
@@ -34,7 +34,7 @@ const Signup = () => {
 
     //submit signup form to backend
     function submit() {
-        const url = "http://87bd2f72.ngrok.io/signup"
+        const url = "http://localhost:5000/signup"
 
         //check values before submitting
         console.log(values);
@@ -123,7 +123,7 @@ const Signup = () => {
                     </div>
                     <div className="form-group">
                         <label>Address</label>
-                        <div id="mapbox">
+                        <div id="map">
                         </div>
 
                     </div>

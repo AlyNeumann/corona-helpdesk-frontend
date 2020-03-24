@@ -35,7 +35,7 @@ const useSignUp = (callback, validate) => {
     }
 
     const handleLocation = place => {
-        setValues({ ...values, Coords: place })
+        setValues({ ...values, coords: place })
     }
 
 

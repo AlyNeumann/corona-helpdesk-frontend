@@ -9,8 +9,8 @@ const useMap = (id) => {
     const [address, setAddress] = useState(null);
 
     //bounds of Montreal 
-    const bounds = [[-73.839278, 45.423700], [-73.302155, 45.733025]
-    ];
+    // const bounds = [[-73.839278, 45.423700], [-73.302155, 45.733025]
+    // ];
 
     useEffect(() => {
 
@@ -20,19 +20,19 @@ const useMap = (id) => {
 
         const map = new mapboxgl.Map({
             container: id,
-            // style: "mapbox://styles/alymarguerite/ck85zm1g60eyx1iplwnizdogf",
-            style: "mapbox://styles/alymarguerite/ck85xpaul0lm11iqe98gm0cgz",
+            style: "mapbox://styles/alymarguerite/ck85zm1g60eyx1iplwnizdogf",
+            // style: "mapbox://styles/alymarguerite/ck85xpaul0lm11iqe98gm0cgz",
             center: [-73.567253, 45.501690],
-            zoom: 17,
+            zoom: 15,
             bearing: -12,
             antialias: true,
-            pitch: 60
+            // pitch: 60
         });
 
         //load map bounds (Montreal)
-        map.fitBounds(
-            bounds
-        );
+        // map.fitBounds(
+        //     bounds
+        // );
 
         map.touchZoomRotate.enable({ around: 'center' });
         map.touchZoomRotate.enableRotation();
