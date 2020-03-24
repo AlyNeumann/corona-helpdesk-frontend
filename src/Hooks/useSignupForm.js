@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 
 const useSignUp = (callback, validate) => {
     const [values, setValues] = useState({
-        "Name": "",
-        "PhoneNumber": "",
-        "Address": "",
-        "Email": "",
-        "Password": "",
-        "HealthStatus": ""
+        "name": "",
+        "phoneNumber": "",
+        "coords": "",
+        "email": "",
+        "password": "",
+        "healthStatus": "",
+        "emergencyContacts": []
     });
 
     //state for errors
@@ -23,17 +24,20 @@ const useSignUp = (callback, validate) => {
         })
     }
 
-    // const handleCheck = () => {
-    //     setValues({ ...values, AgreedToTerms: !values.AgreedToTerms })
-    // }
     const handleSubmit = e => {
         e.preventDefault();
         //handle errors here 
         setErrors(validate(values));
+        console.log(values);
         setIsSubmitting(true);
 
         callback();
     }
+
+    const handleLocation = place => {
+        setValues({ ...values, Coords: place })
+    }
+
 
     //check to see if no errors, if none, call callback
     useEffect(() => {
@@ -46,6 +50,7 @@ const useSignUp = (callback, validate) => {
     return {
         handleChange,
         handleSubmit,
+        handleLocation,
         values,
         errors
     }

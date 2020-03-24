@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Profile = () => {
+const Analytics = () => {
     return (
         <div>
-            Profile
+            Analytics
         </div>
     )
 }
 
-export default Profile;
+export default Analytics;

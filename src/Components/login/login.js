@@ -1,6 +1,6 @@
 import React from 'react';
 import useForm from '../../Hooks/useForm';
-import validate from './signup';
+// import validate from './signup';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 //needs error handling & error messages displayed
@@ -9,7 +9,7 @@ const Login = () => {
     //hook to handle form values
     const { handleChange, handleSubmit, values, errors } = useForm(
         submit,
-        validate
+        // validate
     );
 
     //history to push to next page once submitted
@@ -26,7 +26,7 @@ const Login = () => {
             return error;
         }
 
-        const url = 'somestring'
+        const url = 'http://87bd2f72.ngrok.io/signin'
 
         fetch(url, {
             method: "POST",
@@ -59,7 +59,7 @@ const Login = () => {
                     <div className="form-group">
                         <label>Email address</label>
                         <input
-                            name="username"
+                            name="email"
                             type="email"
                             className={`${
                                 errors.username
@@ -67,7 +67,7 @@ const Login = () => {
                                     : "valid-email form-control"
                                 }`}
                             placeholder="Enter email"
-                            value={values.username}
+                            value={values.email}
                             onChange={handleChange}
                         />
                     </div>
