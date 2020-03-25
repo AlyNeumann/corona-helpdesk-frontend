@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 //pass input errors back to form
 
-const useForm = (callback) => {
+const useForm = (callback, validate) => {
 
     //add a RememberMe value when new BE is ready 
     const [values, setValues] = useState({
@@ -23,7 +23,7 @@ const useForm = (callback) => {
     const handleSubmit = e => {
         e.preventDefault();
         //handle errors here 
-        // setErrors(validate(values));
+        setErrors(validate(values));
         setIsSubmitting(true);
         callback();
     }

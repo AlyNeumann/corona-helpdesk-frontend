@@ -9,6 +9,10 @@ const useMiniMap = (id) => {
     //TODO: change this to coordinate: {lat:, lng:}
     //& send full address for signup & profile update
     const [address, setAddress] = useState(null);
+    const [coords, setCoords] = useState({
+        lat: '',
+        long: ''
+    });
 
     //bounds of Montreal 
     const bounds = [[-73.839278, 45.423700], [-73.302155, 45.733025]
@@ -44,16 +48,17 @@ const useMiniMap = (id) => {
         })
         map.addControl(geocoder);
 
-        //auto complete results
-        geocoder.on('results', function(results) {
-            console.log(results);
-         })
-         //address chosen for input result
-         geocoder.on('result', function(result) {
-            console.log(result);
-            console.log(result.result.center);
-            setAddress(result.result.center);
-         })
+        //address chosen for input result
+        geocoder.on('result', function (result) {
+            console.log(result.result.place_name)
+            console.log(result.result.geometry.coordinates[0] + " " + result.result.geometry.coordinates[1])
+            setAddress(result.result.place_name)
+            setCoords({ ...coords, 
+                lat: result.result.geometry.coordinates[0],
+                long: result.result.geometry.coordinates[1]
+            })
+            // setAddress(result.result);
+        })
 
         map.on("load", () => {
             setMap(map);
@@ -62,7 +67,7 @@ const useMiniMap = (id) => {
     }, []);
 
 
-    return [map, address];
+    return [map, address, coords];
 }
 
 export default useMiniMap;

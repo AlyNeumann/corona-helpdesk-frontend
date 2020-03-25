@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSignUp from '../../Hooks/useSignupForm';
 import useMiniMap from '../../Hooks/useMiniMap';
 import validate from './validate';
-import { useHistory } from 'react-router-dom';
+import EmailModal from './emailModal';
 import './login.css';
 //needs error handling & error messages displayed
 
 const Signup = () => {
 
-    //bring in map for location picking
-    const [map, address] = useMiniMap("map")
-    console.log(address)
+    //TODO: HELP! state is being so weird coming from miniMap, need help...
+    //coords is return address and address is being weird AF
 
+    //bring in map for location picking
+    const [map,address, coords] = useMiniMap("map")
+    // console.log(address)
+    console.log(address);
+    console.log(coords);
+
+    //open modal for email confirmation
+    const [modal, setModal] = useState(false)
 
     //hook for signup submit & validate 
     const {
@@ -29,8 +36,6 @@ const Signup = () => {
         }
     }, [address])
 
-    //bring in history to redirect to login after submit
-    let history = useHistory();
 
     //submit signup form to backend
     function submit() {
@@ -60,8 +65,8 @@ const Signup = () => {
             })
             .then(response => {
                 console.log(response);
-                //push to login here 
-                history.push('/')
+                setModal(true)
+                
             })
     }
 
@@ -135,17 +140,19 @@ const Signup = () => {
                             placeholder="Emergency Contact One"
                             onChange={handleChange}
                             value={values.emergencyContacts} />
-                            <input type="text"
+                        {/* <input type="text"
                             name="emergencyContacts"
                             className="form-control"
                             placeholder="Emergency Contact Two"
                             onChange={handleChange}
-                            value={values.emergencyContacts} />
+                            value={values.emergencyContacts} /> */}
                     </div>
 
                     <button type="submit"
                         className="btn btn-secondary btn-block"
                     >Sign Up</button>
+                    <div>{modal? <EmailModal email={values.email}/> : null}</div>
+                    
                 </form>
             </div>
         </div>)

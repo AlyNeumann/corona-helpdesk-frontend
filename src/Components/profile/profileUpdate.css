@@ -2,6 +2,7 @@
     flex-direction: row;
     text-align: center;
     height: 100%;
+    margin: 5px;
 }
 .profileupdate-inner{
     width: 900px;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useForm from '../../Hooks/useForm';
-// import validate from './signup';
+import validate from './validate';
+import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 //needs error handling & error messages displayed
@@ -9,7 +10,7 @@ const Login = () => {
     //hook to handle form values
     const { handleChange, handleSubmit, values, errors } = useForm(
         submit,
-        // validate
+        validate
     );
 
     //error messages from server
@@ -24,9 +25,12 @@ const Login = () => {
         console.log(values);
 
         //handle error messages
-        const handleErrors = (error) => {
-            console.log(error)
-            setErrorMessage(error.error)
+        const handleErrors = (response) => {
+            console.log(response)
+            if(response.error){
+            setErrorMessage(response.error)
+        }
+           else return response
         }
 
         const url = 'http://localhost:5000/signin'
@@ -38,7 +42,7 @@ const Login = () => {
                 "Content-Type": "application/json"
             }
         })
-            .then(res => res.json())
+            .then(res => res.json()) //response is
             .then(handleErrors)
             .catch(error => {
                 if (error) {
@@ -46,18 +50,23 @@ const Login = () => {
                 }
             })
             .then(response => {
-                console.log(response)
+                //console.log(response.token)
+
                 //go to next screen here => MAP!
-                // if (!errorMessage) {
-                //     history.push('/map')
-                // }
+                if (!errorMessage) {
+                    //store auth in cookies response.token
+                    console.log('cookie storage is next yo');
+                    console.log(response)
+                    Cookies.set("token", response.token,{expires:1});
+                    // history.push('/map')
+                }
 
             })
     }
 
     return (
         <div className="login-container">
-            <div>Please login to your account</div>
+            <h6>Please login to your account</h6>
             <div>
                 <h3>Login</h3>
                 <div className="login-inner">
@@ -96,7 +105,7 @@ const Login = () => {
                     </form>
                 </div>
                 <div className="error-message">
-                    {errorMessage && <div><p>{errorMessage}</p></div>}
+                    {errorMessage && <div className="error"><p>{errorMessage}</p></div>}
                 </div>
 
                 <div>

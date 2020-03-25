@@ -5,10 +5,11 @@ const useSignUp = (callback, validate) => {
         "name": "",
         "phoneNumber": "",
         "coords": "",
+        "address": "",
         "email": "",
         "password": "",
         "healthStatus": "",
-        "emergencyContacts": []
+        "emergencyContacts": ""
     });
 
     //state for errors
@@ -35,7 +36,12 @@ const useSignUp = (callback, validate) => {
     }
 
     const handleLocation = place => {
-        setValues({ ...values, coords: place })
+      //TODO: fix this once the values coming back from map work....
+      if(place.geometry){
+        console.log(place.place_name + ' ' + place.geometry.coordinates)
+      }
+    
+        // setValues({ ...values, coords: coords, address: address})
     }
 
 

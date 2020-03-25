@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import StyledDropzone from './photo-picker-simple'
 import useProfileUpdate from '../../Hooks/useProfileUpdate';
 import useMiniMap from '../../Hooks/useMiniMap';
@@ -30,6 +31,9 @@ const ProfileUpdate = (props) => {
         }
     }, [address])
 
+    //use history to push back to profile page on submit
+    let history = useHistory()
+
     function submit() {
         const url = "http://localhost:5000/updateprofile"
         console.log('submitting!')
@@ -60,6 +64,7 @@ const ProfileUpdate = (props) => {
             .then(response => {
                 console.log(response);
                 //push back to profile here
+                history.push('/profile');
             })
 
 
