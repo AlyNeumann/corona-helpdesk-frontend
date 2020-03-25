@@ -19,6 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import AssessmentIcon from '@material-ui/icons/Assessment';
+import ChatIcon from '@material-ui/icons/Chat';
 import { PowerSettingsNew, StoreMallDirectory, Place, LocalActivity, LocalHospital } from '@material-ui/icons'
 import { useHistory } from 'react-router-dom';
 import './nav.css'
@@ -162,6 +163,7 @@ function Navbar(props) {
                                 {(history.location.pathname === "/map") && "Map"}
                                 {(history.location.pathname === "/needsfeed") && "List of Needs"}
                                 {(history.location.pathname === "/analytics") && "Covid 19 Analytics"}
+                                {(history.location.pathname === "/chat") && "Chat"}
 
                             </Typography>
                             <IconButton color="inherit" style={{ marginLeft: "auto" }} onClick={handleLogout}>
@@ -210,6 +212,10 @@ function Navbar(props) {
                             <ListItem button key="analytics" onClick={() => { history.push("/analytics") }}>
                                 <ListItemIcon><AssessmentIcon /></ListItemIcon>
                                 <ListItemText primary={"Analytics"} />
+                            </ListItem>
+                            <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
+                                <ListItemIcon><ChatIcon /></ListItemIcon>
+                                <ListItemText primary={"Chat"} />
                             </ListItem>
                             <Divider />
                         </List>

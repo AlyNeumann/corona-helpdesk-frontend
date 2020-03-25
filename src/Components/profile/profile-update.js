@@ -2,11 +2,14 @@ import React, { useEffect } from 'react';
 import StyledDropzone from './photo-picker-simple'
 import useProfileUpdate from '../../Hooks/useProfileUpdate';
 import useMiniMap from '../../Hooks/useMiniMap';
-//TODO: place holders will be info from signup
 import './profileUpdate.css';
 
+//TODO:passing user through Link, not working yet
+const ProfileUpdate = (props) => {
 
-const ProfileUpdate = ({ user }) => {
+    console.log(props)
+    console.log(props.location)
+    const user = props.location.state.user;
 
     //bring in map for location picking
     const [address] = useMiniMap("map")

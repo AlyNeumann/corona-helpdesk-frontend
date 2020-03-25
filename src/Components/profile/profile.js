@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import ProfileUpdate from './profile-update';
 import Aly16smallest from '../../Assets/images/Aly16smallest.png'
 import './profile.css';
@@ -115,17 +115,18 @@ const Profile = () => {
         </List>
       </Collapse>
     </List>
-                {/* <h5>{user.name}</h5>
-                <div>Address: {user.location}</div>
-                <div>Health Status: {user.healthStatus}</div>
-                <div>Contact Info: {user.contactInfo}</div>
-                <div>Emergency Contact Info: {user.emergencyContact}</div> */}
-
+            <Link to={{
+                pathname: '/profileupdate',
+                state: {
+                    user
+                }
+            }}>
                 <button className="btn btn-secondary"
-                    onClick={handleUpdate}
+                    // onClick={handleUpdate}
                 >Update Profile
                     </button>
-                    {update && <ProfileUpdate user={user}/> }
+                    {/* {update && <ProfileUpdate user={user}/> } */}
+                    </Link>
             </div>
             <div>
                 Some options:
