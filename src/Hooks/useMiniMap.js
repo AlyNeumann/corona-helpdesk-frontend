@@ -26,7 +26,7 @@ const useMiniMap = (id) => {
 
         const map = new mapboxgl.Map({
             container: id,
-            style: "mapbox://styles/alymarguerite/ck85xpaul0lm11iqe98gm0cgz",
+            style: "mapbox://styles/alymarguerite/ck88s2fvx0hx21jlndc2ekfws",
             center: [-73.567253, 45.501690],
             zoom: 17,
             bearing: -12,
@@ -42,7 +42,7 @@ const useMiniMap = (id) => {
         const geocoder = new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl,
-            placeholder: 'Enter your address',
+            placeholder: '     Enter your address',
             countries: 'CA',
             marker: false
         })

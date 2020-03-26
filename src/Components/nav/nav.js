@@ -20,7 +20,8 @@ import MailIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import ChatIcon from '@material-ui/icons/Chat';
-import { PowerSettingsNew, StoreMallDirectory, Place, LocalActivity, LocalHospital } from '@material-ui/icons'
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import { PowerSettingsNew, Place } from '@material-ui/icons'
 import { useHistory } from 'react-router-dom';
 import './nav.css'
 import Login from '../login/login';
@@ -164,6 +165,7 @@ function Navbar(props) {
                                 {(history.location.pathname === "/needsfeed") && "List of Needs"}
                                 {(history.location.pathname === "/analytics") && "Covid 19 Analytics"}
                                 {(history.location.pathname === "/chat") && "Chat"}
+                                {(history.location.pathname === "/aboutus") && "About Us"}
 
                             </Typography>
                             <IconButton color="inherit" style={{ marginLeft: "auto" }} onClick={handleLogout}>
@@ -216,6 +218,10 @@ function Navbar(props) {
                             <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
                                 <ListItemIcon><ChatIcon /></ListItemIcon>
                                 <ListItemText primary={"Chat"} />
+                            </ListItem>
+                            <ListItem button key="aboutus" onClick={() => { history.push("/aboutus") }}>
+                                <ListItemIcon><SupervisorAccountIcon /></ListItemIcon>
+                                <ListItemText primary={"About Us"} />
                             </ListItem>
                             <Divider />
                         </List>

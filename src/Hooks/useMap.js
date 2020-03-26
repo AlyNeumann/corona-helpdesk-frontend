@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import mapboxgl from 'mapbox-gl';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import dotenv from 'dotenv';
-import Directions from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+
 
 const useMap = (id) => {
   dotenv.config();
@@ -21,8 +22,7 @@ const useMap = (id) => {
 
     const map = new mapboxgl.Map({
       container: id,
-      style: "mapbox://styles/alymarguerite/ck85zm1g60eyx1iplwnizdogf",
-      // style: "mapbox://styles/alymarguerite/ck85xpaul0lm11iqe98gm0cgz",
+      style: "mapbox://styles/alymarguerite/ck88s2fvx0hx21jlndc2ekfws",
       center: [-73.567253, 45.501690],
       zoom: 15,
       bearing: -12,
@@ -96,25 +96,25 @@ const useMap = (id) => {
 
 
     //geocoder
-    const geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl,
-      placeholder: 'Enter your address',
-      countries: 'CA',
-      marker: false
-    })
-    map.addControl(geocoder);
+    // const geocoder = new MapboxGeocoder({
+    //   accessToken: mapboxgl.accessToken,
+    //   mapboxgl: mapboxgl,
+    //   placeholder: '      Enter your destination',
+    //   countries: 'CA',
+    //   marker: false
+    // })
+    // map.addControl(geocoder, 'bottom-right');
 
-    //auto complete results
-    geocoder.on('results', function (results) {
-      console.log(results);
-    })
-    //address chosen for input result
-    geocoder.on('result', function (result) {
-      console.log(result);
-      console.log(result.result.center);
-      setAddress(result.result.center);
-    })
+    // //auto complete results
+    // geocoder.on('results', function (results) {
+    //   console.log(results);
+    // })
+    // //address chosen for input result
+    // geocoder.on('result', function (result) {
+    //   console.log(result);
+    //   console.log(result.result.center);
+    //   setAddress(result.result.center);
+    // })
 
 
 
@@ -132,27 +132,22 @@ const useMap = (id) => {
     });
     map.addControl(navcontrol, "bottom-right");
 
-       //mapbox directions 
-      const directions = new Directions({
-        accessToken:  mapboxgl.accessToken,
-        unit: 'metric',
-        profile: 'mapbox/cycling',
-        //add style sheet to customize the directions
-        // styles: style,
-        // interactive: false,
-        alternatives: true,
-        congestion: true,
-        // setOrigin: position,
-        //set to true when user wants directions
-        controls: {
-          inputs: false
-        },
-        // make start (user location) & end location (venue) into string
-        // placeholderOrigin: 'Hey hey hey'
-        // placeholderDestination: ''
-      });
-  
-      map.addControl(directions, 'bottom-left');
+    //mapbox directions 
+    // const MapboxDirections = require('../src/index');
+    const directions = new MapboxDirections({
+      accessToken: mapboxgl.accessToken,
+      unit: 'metric',
+      profile: 'mapbox/cycling',
+      alternatives: true,
+      congestion: true,
+      //add style sheet to customize the directions
+      // styles: style,
+      // placeholderOrigin: 'Hey hey hey'
+      // placeholderDestination: ''
+    });
+    // add to your mapboxgl map
+    map.addControl(directions, 'bottom-right');
+
 
   }, []);
 
