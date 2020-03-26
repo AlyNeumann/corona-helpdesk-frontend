@@ -25,56 +25,87 @@ const UpdateNeeds = (props) => {
     //useHistory to push back to profile after updates are submitted
     let history = useHistory()
 
- 
+
     //submit the ADD NEED to backend
+    //TODO: only need one call here, all will be PUT and it
+    //will be the full array user's needs
+    //Cookies.get('jwt') for authorization
     function submit() {
-        
+
         const url = "http://localhost:5000/signup";
 
-        if(props.location.state.functionType === "add"){
+        if (props.location.state.functionType === "add") {
             console.log(props)
             console.log('add')
             // implement POST REQUEST
-        }else{
+            //check values before submitting
+            console.log(values);
+            // handling error messages
+            const handleErrors = (error) => {
+                console.log('response from signup ' + error)
+                return error;
+            }
+
+            fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(values),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(res => res.json)
+                .then(handleErrors)
+                .catch(error => {
+                    if (error) {
+                        console.log(error);
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                    //push to login here 
+                    history.push('/profile')
+                })
+        } else {
             console.log(props)
             console.log('update')
             //IMPLEMENT PUT REQUEST
+            //check values before submitting
+            console.log(values);
+            // handling error messages
+            const handleErrors = (error) => {
+                console.log('response from signup ' + error)
+                return error;
+            }
+
+            fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(values),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+                .then(res => res.json)
+                .then(handleErrors)
+                .catch(error => {
+                    if (error) {
+                        console.log(error);
+                    }
+                })
+                .then(response => {
+                    console.log(response);
+                    //push to login here 
+                    history.push('/profile')
+                })
         }
 
-        // //check values before submitting
-        // console.log(values);
-        // // handling error messages
-        // const handleErrors = (error) => {
-        //     console.log('response from signup ' + error)
-        //     return error;
-        // }
 
-        // fetch(url, {
-        //     method: 'POST',
-        //     body: JSON.stringify(values),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     }
-        // })
-        //     .then(res => res.json)
-        //     .then(handleErrors)
-        //     .catch(error => {
-        //         if (error) {
-        //             console.log(error);
-        //         }
-        //     })
-        //     .then(response => {
-        //         console.log(response);
-        //         //push to login here 
-        //         history.push('/profile')
-        //     })
     }
 
     return (
         <div className="updateneed-container">
             <div className="updateneed-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="false">
-                <label>What do you need right now?</label>
+                    <label>What do you need right now?</label>
                     <input type="text"
                         name="need"
                         className="form-control"

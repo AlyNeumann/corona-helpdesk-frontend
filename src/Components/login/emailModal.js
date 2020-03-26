@@ -52,11 +52,14 @@ Fade.propTypes = {
 };
 
 
-export default function EmailModal() {
+export default function EmailModal(props) {
 
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
+    // if(props.show){
+    //     setOpen(true);
+    // }
     const handleOpen = () => {
         setOpen(true);
     };
@@ -71,8 +74,8 @@ export default function EmailModal() {
 
     return (
         <div>
-            <button type="button" onClick={handleOpen}>
-             email modal
+            <button type="button" className="modal-button" onClick={handleOpen}>
+             {props.text}
       </button>
             <Modal
                 aria-labelledby="spring-modal-title"
@@ -87,10 +90,15 @@ export default function EmailModal() {
                 }}
             >
                 <Fade in={open}>
-                    <div className={classes.paper}>
+                    {props.email? <div className={classes.paper}>
                         <h2 id="spring-modal-title">Thank you!</h2>
-                        <p id="spring-modal-description">An email has been sent to {}</p>
-                    </div>
+                        <p id="spring-modal-description">An email has been sent to {props.email}</p>
+                    </div> : 
+                    <div className={classes.paper}>
+                        <h2 id="spring-modal-title">Invalid</h2>
+                        <p id="spring-modal-description">Please enter a valid email</p>
+                    </div>}
+                    
                 </Fade>
             </Modal>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import EmailModal from './emailModal';
 import useForm from '../../Hooks/useForm';
 import validate from './validate';
 import Cookies from 'js-cookie';
@@ -109,7 +110,10 @@ const Login = () => {
                 </div>
 
                 <div>
-                    <Link to="/signup"> Click here to sign up</Link>
+                    <Link to="/signup"> Click here to sign up! </Link>
+                </div>
+                <div>
+                   <EmailModal email={values.email} text={'Forgot your password?'}/>
                 </div>
             </div>
 

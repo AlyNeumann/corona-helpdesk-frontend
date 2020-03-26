@@ -21,3 +21,9 @@ font-family: 'Nunito-Regular', sans-serif;
     border-radius: 15px;
     transition: all .3s;
 }
+#map {
+    position:relative;
+    display: inline-flex;
+    margin: auto;
+   
+}

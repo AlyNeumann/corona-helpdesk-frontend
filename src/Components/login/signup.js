@@ -25,6 +25,7 @@ const Signup = () => {
         handleChange,
         handleSubmit,
         handleLocation,
+        handleEmergency,
         values,
         errors
     } = useSignUp(submit, validate)
@@ -32,7 +33,7 @@ const Signup = () => {
     //when address exists, handle value
     useEffect(() => {
         if (address) {
-            handleLocation(address)
+            handleLocation(address, coords)
         }
     }, [address])
 
@@ -82,7 +83,25 @@ const Signup = () => {
                             className="form-control"
                             placeholder="Username"
                             onChange={handleChange}
-                            value={values.username} />
+                            value={values.name} />
+                    </div>
+                    <div className="form-group">
+                        <label>Email address</label>
+                        <input type="email"
+                            name="email"
+                            className="form-control"
+                            placeholder="Enter email"
+                            onChange={handleChange}
+                            value={values.email} />
+                    </div>
+                    <div className="form-group">
+                        <label>Password</label>
+                        <input type="password"
+                            name="password"
+                            className="form-control"
+                            placeholder="Enter password"
+                            onChange={handleChange}
+                            value={values.password} />
                     </div>
                     <div className="form-group">
                         <label>Phone Number</label>
@@ -93,26 +112,23 @@ const Signup = () => {
                             onChange={handleChange}
                             value={values.phoneNumber} />
                     </div>
+                    
                     <div className="form-group">
-                        <label>Email address</label>
-                        <input type="email"
-                            name="email"
+                        <label>Emergency Contact</label>
+                        <input type="text"
+                            name="emergencyContacts"
                             className="form-control"
-                            placeholder="Enter email"
-                            onChange={handleChange}
-                            value={values.email} />
-
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input type="password"
-                            name="password"
+                            placeholder="Emergency Contact One"
+                            onChange={handleEmergency}
+                            value={values.emergencyContacts[0] || ""} />
+                        <input type="text"
+                            name="emergencyContacts1"
                             className="form-control"
-                            placeholder="Enter password"
-                            onChange={handleChange}
-                            value={values.password} />
-
+                            placeholder="Emergency Contact Two"
+                            onChange={handleEmergency}
+                            value={values.emergencyContacts[1] || ""} />
                     </div>
+                   
                     <div>
                         <label>Health Status</label>
                         <select className="form-control"
@@ -126,32 +142,20 @@ const Signup = () => {
                             <option value="5">Unsure</option>
                         </select>
                     </div>
+                    
                     <div className="form-group">
                         <label>Address</label>
-                        <div id="map">
+                        <div id="map" className="mini-map">
                         </div>
 
                     </div>
-                    <div className="form-group">
-                        <label>Emergency Contact</label>
-                        <input type="text"
-                            name="emergencyContacts"
-                            className="form-control"
-                            placeholder="Emergency Contact One"
-                            onChange={handleChange}
-                            value={values.emergencyContacts} />
-                        {/* <input type="text"
-                            name="emergencyContacts"
-                            className="form-control"
-                            placeholder="Emergency Contact Two"
-                            onChange={handleChange}
-                            value={values.emergencyContacts} /> */}
-                    </div>
+                    
 
                     <button type="submit"
                         className="btn btn-secondary btn-block"
                     >Sign Up</button>
-                    <div>{modal? <EmailModal email={values.email}/> : null}</div>
+                    <div>{modal? <EmailModal email={values.email} show={true}/> : null}</div>
+                   <div> <EmailModal email={values.email} text={'modal test'}/></div>
                     
                 </form>
             </div>

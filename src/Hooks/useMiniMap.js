@@ -11,7 +11,7 @@ const useMiniMap = (id) => {
     const [address, setAddress] = useState(null);
     const [coords, setCoords] = useState({
         lat: '',
-        long: ''
+        lng: ''
     });
 
     //bounds of Montreal 

@@ -3,14 +3,14 @@ import { useState, useEffect } from 'react';
 const useSignUp = (callback, validate) => {
     const [values, setValues] = useState({
         "name": "",
-        "phoneNumber": "",
-        "coords": "",
-        "address": "",
         "email": "",
         "password": "",
+        "phoneNumber": "",
+        "emergencyContacts": [],
         "healthStatus": "",
-        "emergencyContacts": ""
+        "homeLocation": { "lat": "", "lgn": "" }
     });
+
 
     //state for errors
     const [errors, setErrors] = useState({});
@@ -25,6 +25,26 @@ const useSignUp = (callback, validate) => {
         })
     }
 
+    //push emergency contacts into array
+    const handleEmergency = e => {
+        const newEmergencyContact = values.emergencyContacts;
+
+        if (e.target.name === "emergencyContacts") {
+            newEmergencyContact[0] = e.target.value
+            setValues({ ...values, emergencyContacts: newEmergencyContact })
+        } else {
+            
+            
+                newEmergencyContact[1] = e.target.value
+            
+            setValues({ ...values, emergencyContacts: newEmergencyContact })
+
+        }
+        ;
+    }
+
+
+
     const handleSubmit = e => {
         e.preventDefault();
         //handle errors here 
@@ -35,14 +55,17 @@ const useSignUp = (callback, validate) => {
         callback();
     }
 
+    //lat and lng + address
     const handleLocation = place => {
-      //TODO: fix this once the values coming back from map work....
-      if(place.geometry){
-        console.log(place.place_name + ' ' + place.geometry.coordinates)
-      }
-    
-        // setValues({ ...values, coords: coords, address: address})
+        if (place.geometry) {
+            console.log(place.place_name + ' ' + place.geometry.coordinates)
+            setValues({
+                ...values,
+                "homeLocation": place.geometry.coordinates
+            })
+        }
     }
+
 
 
     //check to see if no errors, if none, call callback
@@ -57,6 +80,7 @@ const useSignUp = (callback, validate) => {
         handleChange,
         handleSubmit,
         handleLocation,
+        handleEmergency,
         values,
         errors
     }

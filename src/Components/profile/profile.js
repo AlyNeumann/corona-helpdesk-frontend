@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import Aly16smallest from '../../Assets/images/Aly16smallest.png'
+import Aly16smallest from '../../Assets/images/Aly16smallest.png';
+import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
 import './profile.css';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -75,7 +76,7 @@ const Profile = () => {
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
                     {/* find default photo to set here, onClick to change the photo */}
-                    <img className="profile-image" src={Aly16smallest} />
+                    {user.image? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
                 <List
                     component="nav"

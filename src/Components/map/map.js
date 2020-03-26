@@ -19,11 +19,11 @@ const Map = () => {
     const mockdataGreen = [
         {
             "user_id": "1234",
-            "needs": {
-                "need": "what i need",
-                "quantity": 10,
-                "exchange": "some mangoes"
-            },
+            "needs": [{
+              "need": "what i need",
+              "quantity": 10,
+              "exchange": "some mangoes"
+          }],
             "location": {
                 "coords": {
                     "lat": 45.519500, "lng": -73.556300
