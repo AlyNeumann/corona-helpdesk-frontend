@@ -23,7 +23,7 @@ const Login = () => {
     function submit() {
 
         //check values before submit
-        console.log(values);
+        // console.log(values);
 
         //handle error messages
         const handleErrors = (response) => {
@@ -58,8 +58,8 @@ const Login = () => {
                     //store auth in cookies response.token
                     console.log('cookie storage is next yo');
                     console.log(response)
-                    Cookies.set("token", response.token,{expires:1});
-                    // history.push('/map')
+                    Cookies.set("token", response.token);
+                    history.push('/profile')
                 }
 
             })

@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import './need.css';
 
 
-const Need = ({ need }) => {
+const Need = ({ need, needs }) => {
 
      //handles click of delete button
      const handleRemove = () => {
@@ -21,13 +21,13 @@ const Need = ({ need }) => {
                 <div className="need-text">{need.exchange}</div>
                 <div>Quantity: {need.quantity}</div>
                 <Link to={{
-                    pathname: '/updateneeds',
-                    state: {
-                        need,
-                        functionType:"update"
-                            
-                    }
-                }}>
+                        pathname: '/updateneeds',
+                        state: {
+                            "functionType":"update",
+                            need,
+                            needs
+                        }
+                    }} >
                     <button
                         className="btn-needs btn-secondary">
                         <EditIcon />

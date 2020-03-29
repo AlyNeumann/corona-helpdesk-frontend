@@ -16,9 +16,11 @@
     margin:2px;
 }
 .need-text {
-    width: 50%;
-    padding: 0;
-    margin:0;
+    width: 30%;
+    margin-top:0;
+    margin-bottom: 0;
+    margin-left: 5px;
+    margin-right: 5px;
     /* display: inline-flex; */
 }
 .btn-needs {

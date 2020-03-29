@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Aly16smallest from '../../Assets/images/Aly16smallest.png';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
@@ -34,27 +34,25 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const Profile = () => {
+const Profile = ({ user, needs }) => {
 
-
+    //hashmap for health statuses
+    const healthOptions = {
+        "1": "Healthy",
+        "2": "Sick",
+        "3": "Immune Compromised/Elderly",
+        "4": "Diagnosed/Quarantined",
+        "5": "Unsure"
+    }
+   
     //open profile update if true
     const [update, setUpdate] = useState(false)
 
     //for material UI
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    // console.log(user)
 
-
-    //makes a call to back end for user data in useEffect
-    //use Cookies.get("token")
-    //passes values to ProfileUpdate 
-    const user = {
-        name: "Aly Neumann",
-        address: "3035 rue Saint Antoine Ouest, Montreal, Canada",
-        healthStatus: "immune compromised/elderly",
-        contactInfo: "514-835-2341",
-        emergencyContact: "1112222333"
-    }
 
     //to update profile
     const handleUpdate = () => {
@@ -70,13 +68,19 @@ const Profile = () => {
 
     };
 
+    useEffect(() => {
+
+        user.healthStatus = healthOptions[user.healthStatus]
+
+    }, [user])
+
     return (
         <div className="profile-container">
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
                     {/* find default photo to set here, onClick to change the photo */}
-                    {user.image? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {user? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
                 <List
                     component="nav"
@@ -92,19 +96,20 @@ const Profile = () => {
                         <ListItemIcon>
                             <PlaceIcon />
                         </ListItemIcon>
-                        <ListItemText primary="User Address" />
+                        
+                        <ListItemText primary={user? `User Addres: No Address` : "User Address: Unknown"} />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <FavoriteBorderIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Health Status" />
+                        <ListItemText primary={user? `Health Status: ${user.healthStatus}`: "Health Status: Unknown"}/>
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
                             <ContactMailIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Contact Info" />
+                        <ListItemText primary={user? `Contact Info : ${user.email}`: "Contact Info: Unknown"} />
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -113,13 +118,13 @@ const Profile = () => {
                                 <ListItemIcon>
                                     <ContactPhoneIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Phone" />
+                                <ListItemText primary={user ? `Phone: ${user.phoneNumber}`: "Phone: Unknown"}/>
                             </ListItem>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <ContactPhoneIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Emergency Contact" />
+                                <ListItemText primary={user? `Emergency: ${user.emergencyContacts}`: "Emergency: Unknown"}/>
                             </ListItem>
                         </List>
                     </Collapse>

@@ -3,16 +3,33 @@ import mapboxgl from 'mapbox-gl';
 // import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import dotenv from 'dotenv';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+// import osrmTextInstructions from 'osrm-text-instructions';
 
 
 const useMap = (id) => {
   dotenv.config();
   const [map, setMap] = useState(null);
-  const [address, setAddress] = useState(null);
+  //if user denies eneabling location
+  const [geoDenied, setGeoDenied] = useState(false);
+
+  // const [address, setAddress] = useState(null);
+  const [coordinates, setCoordinates] = useState(null);
+
 
   //bounds of Montreal 
   // const bounds = [[-73.839278, 45.423700], [-73.302155, 45.733025]
   // ];
+
+  const getUserOrigin = (directions,coordinates) => {
+    console.log('in get origin')
+    if(coordinates){
+      let lat = coordinates.lat
+      let lgn = coordinates.lgn;
+      console.log('in the if statement')
+      console.log(coordinates)
+      directions.setOrigin([lgn, lat]);
+    }
+  }
 
   useEffect(() => {
 
@@ -33,6 +50,7 @@ const useMap = (id) => {
     //set map
     map.on("load", () => {
       setMap(map);
+      geolocate.trigger();
     });
 
     //load map bounds (Montreal)
@@ -95,35 +113,28 @@ const useMap = (id) => {
     });
 
 
-    //geocoder
-    // const geocoder = new MapboxGeocoder({
-    //   accessToken: mapboxgl.accessToken,
-    //   mapboxgl: mapboxgl,
-    //   placeholder: '      Enter your destination',
-    //   countries: 'CA',
-    //   marker: false
-    // })
-    // map.addControl(geocoder, 'bottom-right');
-
-    // //auto complete results
-    // geocoder.on('results', function (results) {
-    //   console.log(results);
-    // })
-    // //address chosen for input result
-    // geocoder.on('result', function (result) {
-    //   console.log(result);
-    //   console.log(result.result.center);
-    //   setAddress(result.result.center);
-    // })
-
-
-
     //Geolocate control
     const geolocate = new mapboxgl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true, timeout: true },
       trackUserLocation: true
     });
     map.addControl(geolocate, "bottom-right");
+       //error event on geolocate
+       geolocate.on("error", err => {
+        if (err.code === 1) setGeoDenied(true);
+      });
+  
+      //watch on geolocation position change
+      geolocate.on("geolocate", pos => {
+        console.log(pos)
+        console.log(pos.coords.latitude,pos.coords.longitude)
+        setCoordinates({
+          ...coordinates,
+          lat: pos.coords.latitude,
+          lng: pos.coords.longitude
+        })
+        return getUserOrigin(directions,coordinates)
+      })
 
     // Navigation control
     const navcontrol = new mapboxgl.NavigationControl({
@@ -140,19 +151,42 @@ const useMap = (id) => {
       profile: 'mapbox/cycling',
       alternatives: true,
       congestion: true,
+      interactive: true,
+      // compile: osrm(),
+      interactive: false,
+      placeholderOrigin: 'Enable your location',
+      placeholderDestination: 'Click on a desitation'
       //add style sheet to customize the directions
       // styles: style,
-      // placeholderOrigin: 'Hey hey hey'
-      // placeholderDestination: ''
     });
+
     // add to your mapboxgl map
-    map.addControl(directions, 'bottom-right');
+    map.addControl(directions, 'bottom-left');
+
+    // if(coordinates){
+    //   getUserOrigin(coordinates)
+    // }
+
+    //TODO: this isnt working
+    
+    
+    // getUserOrigin(directions,coordinates);
+    // setUserOrigin(coords)
+   
 
 
   }, []);
 
 
-  return [map, address];
+  // useEffect(() => {
+  //   if(coordinates){
+  //     getUserOrigin(coordinates)
+  //   }
+     
+
+  // }, [coordinates])
+
+  return [map, coordinates];
 }
 
 export default useMap;

@@ -1,6 +1,7 @@
 .profile-container {
     flex-direction: row;
     text-align: start;
+    flex-grow: 1;
     height: 100%;
     margin: 5px;
 }

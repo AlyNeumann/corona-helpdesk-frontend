@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -26,6 +26,9 @@ import { useHistory } from 'react-router-dom';
 import './nav.css'
 import Login from '../login/login';
 import Signup from '../login/signup';
+import Cookies from 'js-cookie';
+// import { UserContext } from '../user-context/userContext';
+import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -99,14 +102,12 @@ function Navbar(props) {
     const history = useHistory();
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = useState(false);
-    const [user, setUser] = useState({});
+    const [open, setOpen] = useState(false)
+    // const [user] = useContext(UserContext)
 
     //TODO: are we using local storage for this?
     const handleLogout = () => {
-        localStorage.removeItem('jwt')
-        localStorage.removeItem('cached_token')
-        setUser("")
+        Cookies.remove("token")
         history.push('/')
     }
     const handleDrawerOpen = () => {
@@ -117,21 +118,26 @@ function Navbar(props) {
         setOpen(false);
     };
 
-    //TODO:fecthe user photo and such if they are logged in
+    //TODO: make secure by pulling cookie
     //   useEffect(()=>{
-    //       if(localStorage.getItem('jwt') && localStorage.getItem('cached_token')){
-    //         let token = "Bearer " + localStorage.getItem('jwt').substring(1,localStorage.getItem('jwt').length - 1);
-    //         let id = localStorage.getItem('cached_token').substring(1,localStorage.getItem('cached_token').length - 1);
-    //         fetch(`https://api.lono.app/api/account/data/${id}`,{
+    //     //   if(Cookies.get("token")){
+    //         // let token = Cookies.get('token')
+    //         let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJMb25vIiwic3ViIjoiNWU3OTY2ZDMxMDM5NTYyNDZiMWNmZmM0IiwiaWF0IjoxNTg1MzI0ODQ1MDcwLCJleHAiOjE1ODU0MTEyNDUwNzB9.sBb6LxhJpuF8BdPGtHlugIfUdg8JCvJxNne2BBqVv2o"
+    //          let url = "http://localhost:5000/getUser"
+         
+    //         fetch(url,{
     //           method:'GET',
     //           headers:{
     //               'Authorization': token
     //           }
     //       }).then(res => {res.json().then(result => setUser(result))})
-    //       }else{
-    //           console.log('No Data')
-    //       }
-    //   },[localStorage.getItem('jwt')])
+    //     //   }else{
+    //     //       console.log('No Data')
+    //     //   }
+    // //   },[Cookies.get('token')])
+    // },[])
+     
+
 
 
     return (
@@ -188,10 +194,10 @@ function Navbar(props) {
                         }}
                     >
                         <div className={classes.toolbar}>
-                            <Avatar alt="Remy Sharp" src={user.photoUrl || "https://pngimage.net/wp-content/uploads/2018/05/avatar-images-png-9.png"} style={{ marginLeft: "10px" }} />
+                            <Avatar alt="Remy Sharp" src={props.user.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
                             <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
-                                <p className="toggle-avatar-name">{user.name || "Unknown"}</p>
-                                <p className="toggle-avatar-title">{user.position || "Unemployed"}</p>
+                                <p className="toggle-avatar-name">{props.user.name || "Unknown"}</p>
+                                <p className="toggle-avatar-title">{props.user.healthStatus || "Unknown"}</p>
                             </div>
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -228,7 +234,9 @@ function Navbar(props) {
                     </Drawer>
                     <main className={classes.content}>
                         <div className={classes.toolbar} />
+                        {/* <UserContextStore> */}
                         {(history.location.pathname !== "/" && history.location.pathname !== "/signup") && props.children}
+                        {/* </UserContextStore> */}
                     </main>
                 </div>
             </div>

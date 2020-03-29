@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 
 
 const useGeoJson = () => {
-    const [greenGeocodes, setGreenGeoCodes] = useState([]);
-    const [yellowGeocodes, setYellowGeoCodes] = useState([]);
-    const [redGeocodes, setRedGeoCodes] = useState([]);
+    const [geocodes, setGeocodes] = useState([]);
+ 
 
     const getGeoJson = async () => {
         await fetch("http://localhost:5000/geocodes")
@@ -15,13 +14,8 @@ const useGeoJson = () => {
                 //ternary here to seperate geocodes
                 //TODO: does the data need to be filtered before setting? 
                 console.log("data from geocodes hook " + JSON.stringify(data.healthStatus));
-                if(data.healthStatus === 1){
-                    setGreenGeoCodes(data)
-                }else if(data.healthStatus === 2){
-                    setRedGeoCodes(data)
-                }else{
-                    setYellowGeoCodes(data)
-                }
+                    setGeocodes(data)
+              
             });
     };
 
@@ -29,7 +23,7 @@ const useGeoJson = () => {
         getGeoJson();
     }, []);
 
-    return [ greenGeocodes, yellowGeocodes, redGeocodes ];
+    return [ geocodes ];
 }
 
 export default useGeoJson;

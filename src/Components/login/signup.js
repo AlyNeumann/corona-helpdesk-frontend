@@ -12,13 +12,14 @@ const Signup = () => {
     //coords is return address and address is being weird AF
 
     //bring in map for location picking
-    const [map,address, coords] = useMiniMap("map")
+    const [map, address, coords] = useMiniMap("map")
     // console.log(address)
     console.log(address);
     console.log(coords);
 
     //open modal for email confirmation
     const [modal, setModal] = useState(false)
+    const [errorMessage, setErrorMessage] = useState(null);
 
     //hook for signup submit & validate 
     const {
@@ -45,9 +46,11 @@ const Signup = () => {
         //check values before submitting
         console.log(values);
         // handling error messages
-        const handleErrors = (error) => {
-            console.log('response from signup ' + error)
-            return error;
+        const handleErrors = (response) => {
+            if(response.error){
+                setErrorMessage(response.error)
+            }
+            return response;
         }
 
         fetch(url, {
@@ -67,7 +70,7 @@ const Signup = () => {
             .then(response => {
                 console.log(response);
                 setModal(true)
-                
+
             })
     }
 
@@ -112,7 +115,7 @@ const Signup = () => {
                             onChange={handleChange}
                             value={values.phoneNumber} />
                     </div>
-                    
+
                     <div className="form-group">
                         <label>Emergency Contact</label>
                         <input type="text"
@@ -128,13 +131,14 @@ const Signup = () => {
                             onChange={handleEmergency}
                             value={values.emergencyContacts[1] || ""} />
                     </div>
-                   
+
                     <div>
                         <label>Health Status</label>
                         <select className="form-control"
                             name="healthStatus"
                             onChange={handleChange}
-                            value={values.healthStatus} >
+                            value={values.healthStatus} 
+                            defaultValue="1" >
                             <option value="1">Healthy</option>
                             <option value="2">Sick</option>
                             <option value="3">Immune Compromised/Elderly</option>
@@ -142,21 +146,21 @@ const Signup = () => {
                             <option value="5">Unsure</option>
                         </select>
                     </div>
-                    
+
                     <div className="form-group">
                         <label>Address</label>
                         <div id="map" className="mini-map">
                         </div>
 
                     </div>
-                    
+
 
                     <button type="submit"
                         className="btn btn-secondary btn-block"
                     >Sign Up</button>
-                    <div>{modal? <EmailModal email={values.email} show={true}/> : null}</div>
-                   <div> <EmailModal email={values.email} text={'modal test'}/></div>
-                    
+                    <div>{modal ? <EmailModal email={values.email} show={true} /> : null}</div>
+                    <div> <EmailModal email={values.email} text={'modal test'} /></div>
+                    {errorMessage ? <div>{errorMessage.error}</div> : null}
                 </form>
             </div>
         </div>)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './Components/nav/nav';
 import Map from './Components/map/map';
@@ -9,12 +9,19 @@ import NeedsFeed from './Components/needsfeed/needsfeed';
 import Analytics from './Components/analytics/analytics';
 import Chat from './Components/chat/chat';
 import AboutUs from './Components/about-us/aboutUs';
+import UserContextStore, { UserContext } from './Components/user-context/userContext';
 
 
 function App() {
+
+  //global state of User
+  //pass to nav for userinfo
+  const user = useContext(UserContext);
+
   return (
    <Router>
-     <Navbar>
+     <UserContextStore>
+     <Navbar user={user}>
      <Switch>
        <Route path="/map" exact component={Map}/>
        <Route path="/profile" component={ProfileHome}/>
@@ -26,6 +33,7 @@ function App() {
        <Route path="/aboutus" component={AboutUs}/>
      </Switch>
      </Navbar>
+     </UserContextStore>
    </Router>
   );
 }

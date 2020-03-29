@@ -1,33 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const useUpdateNeed = (callback) => {
+const useUpdateNeed = (callback, neededList,need) => {
 
 
-    const [values, setValues] = useState({
-        need: "",
-        quantity: "",
-        exchange: ""
-    });
- 
+    const [item, setItem] = useState(need);
 
+    const [values, setValues] = useState([])
+
+    const setArr = () => {
+        setValues({ neededList: [...neededList,item]
+        })
+    }
+
+    //TODO: if there is no new value, take from place holder
     const handleChange = e => {
+        //this is working fine
         const { name, value } = e.target
-        setValues({
-            ...values,
+        setItem({
+            ...item,
             [name]: value
         })
     }
 
     const handleSubmit = e => {
+        // console.log(values)
         e.preventDefault();
         callback();
     }
+
+    useEffect(() => {
+        setArr();
+    }, [item])
 
 
     return {
         handleChange,
         handleSubmit,
-        values
+        values,
+        item
     }
 }
 

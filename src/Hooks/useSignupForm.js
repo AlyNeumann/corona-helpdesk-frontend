@@ -8,7 +8,7 @@ const useSignUp = (callback, validate) => {
         "phoneNumber": "",
         "emergencyContacts": [],
         "healthStatus": "",
-        "homeLocation": { "lat": "", "lgn": "" }
+        "homeLocation": { "lat": "-73.457", "lgn": "45.3445" }
     });
 
 

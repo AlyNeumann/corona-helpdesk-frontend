@@ -1,0 +1,24 @@
+.marker-green {
+    display: block;
+    border: none;
+    background-image: url("../../Assets/images/Basic_green_dot.png");
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+  }
+  .marker-yellow {
+    display: block;
+    border: none;
+    background-image: url("../../Assets/images/Location_dot_yellow.svg.png");
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+  }
+  .marker-red {
+    display: block;
+    border: none;
+    background-image: url("../../Assets/images/Basic_red_dot.png");
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+  }
