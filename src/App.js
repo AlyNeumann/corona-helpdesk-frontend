@@ -9,6 +9,7 @@ import NeedsFeed from './Components/needsfeed/needsfeed';
 import Analytics from './Components/analytics/analytics';
 import Chat from './Components/chat/chat';
 import AboutUs from './Components/about-us/aboutUs';
+import Resources from './Components/resources/resources';
 import UserContextStore, { UserContext } from './Components/user-context/userContext';
 
 
@@ -32,6 +33,7 @@ function App() {
        <Route path="/analytics" component={Analytics}/>
        <Route path="/chat" component={Chat}/>
        <Route path="/aboutus" component={AboutUs}/>
+       <Route path="/resources" component={Resources}/>
      </Switch>
      </Navbar>
      </UserContextStore>

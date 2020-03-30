@@ -7,6 +7,7 @@ import useMap from '../../Hooks/useMap';
 import useGeoJson from '../../Hooks/useGeoJson';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import { UserContext } from '../user-context/userContext';
+import DirectionsIcon from '@material-ui/icons/Directions';
 import './map.css';
 //TODO: bring in user info for popup
 //TODO: create hashmap for health statuses to use here & on profile
@@ -19,8 +20,11 @@ const Map = () => {
   const [map, coordinates, accessToken] = useMap("mapbox")
   const [geocodes] = useGeoJson();
   const [healthType, setHealthType] = useState({ status: "no health status" })
+  const [directionsOpen, setDirectionsOpen] = useState(false);
+  const [textDirections, setTextDirections] = useState(true)
   const user = useContext(UserContext);
   const userInfo = user[0];
+
 
   //TODO: api call here for all user data
 
@@ -89,7 +93,7 @@ const Map = () => {
   ]
 
 
-console.log('map component re-rendering')
+  console.log('map component re-rendering')
 
 
   //hashmap for health statuses
@@ -171,30 +175,44 @@ console.log('map component re-rendering')
     alternatives: true,
     congestion: true,
     placeholderOrigin: 'Your location',
-    placeholderDestination: 'Click on you destination'
+    placeholderDestination: 'Click on you destination',
+    controls: { instructions: true }
     //add style sheet to customize the directions
     // styles: style,
-    
-    
+
+
   });
 
 
   useEffect(() => {
     console.log(coordinates)
-    if(coordinates && map){
+    if (coordinates && map) {
       let lng = coordinates.lng;
-      let lat =  coordinates.lat;
-      directions.setOrigin([lng,lat]);
+      let lat = coordinates.lat;
+      directions.setOrigin([lng, lat]);
       // map.addControl(directions, 'bottom-right');
     }
   }, [coordinates])
 
-  useEffect(() => {
-    if(directions && map && coordinates){
-      map.addControl(directions, 'bottom-right');
+  const handleDirections = () => {
+    if (directions && map && coordinates) {
+      map.addControl(directions, 'top-right');
+      setDirectionsOpen(true)
+      setTextDirections(true)
     }
-  
-  }, [coordinates])
+  }
+
+  //TODO: fix this, either clear destination or remove controls
+  const handleCloseDirections = () => {
+    if(textDirections){
+      setTextDirections(false)
+      directions.actions.clearDestination();
+    }else{
+      setTextDirections(true)
+    }
+
+  }
+
 
 
   //to add Markers based on health status
@@ -230,7 +248,27 @@ console.log('map component re-rendering')
 
   return (
     <div id="mapbox">
-      <button className="directions-btn btn-primary">DIRECTIONS</button>
+      {!directionsOpen ?   <div class="mapboxgl-ctrl-top-left">
+        <div class="mapboxgl-ctrl mapboxgl-ctrl-group">
+          <button class="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
+            aria-label="Toggle fullscreen"
+            type="button"
+            onClick={handleDirections}><DirectionsIcon /></button>
+        </div>
+      </div> : null}
+    
+      {directionsOpen ?
+        <div class="mapboxgl-ctrl-top-left">
+          <div class="mapboxgl-ctrl mapboxgl-ctrl-group">
+            <button class="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
+              aria-label="Toggle fullscreen"
+              type="button"
+              onClick={handleCloseDirections}><DirectionsIcon /></button>
+          </div>
+        </div>
+        : null}
+
+      {/* <button className="directions-btn btn-primary">DIRECTIONS</button> */}
     </div>
   )
 }

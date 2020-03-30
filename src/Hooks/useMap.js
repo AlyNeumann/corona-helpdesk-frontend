@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import mapboxgl from 'mapbox-gl';
-// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import dotenv from 'dotenv';
-import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 // import osrmTextInstructions from 'osrm-text-instructions';
 
 
@@ -123,11 +121,11 @@ const useMap = (id) => {
       })
 
     // Navigation control
-    const navcontrol = new mapboxgl.NavigationControl({
-      showZoom: true,
-      // visualizePitch: true
-    });
-    map.addControl(navcontrol, "bottom-right");
+    // const navcontrol = new mapboxgl.NavigationControl({
+    //   showZoom: true,
+    //   // visualizePitch: true
+    // });
+    // map.addControl(navcontrol, "bottom-right");
 
 
 

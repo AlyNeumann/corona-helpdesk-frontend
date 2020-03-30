@@ -5,6 +5,7 @@ import validate from './validate';
 import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
+import { RepeatOneSharp } from '@material-ui/icons';
 //needs error handling & error messages displayed
 
 const Login = () => {
@@ -16,9 +17,16 @@ const Login = () => {
 
     //error messages from server
     const [errorMessage, setErrorMessage] = useState(null)
+    //for forgot password modal
+    const [modal, setModal] = useState(false)
 
     //history to push to next page once submitted
     let history = useHistory()
+
+    //handle button click for forgot password
+    const handlePassword = () => {
+        setModal(true);
+    }
 
     function submit() {
 
@@ -44,23 +52,32 @@ const Login = () => {
             }
         })
             .then(res => res.json()) //response is
-            .then(handleErrors)
             .catch(error => {
                 if (error) {
-                    console.log(error)
+                    
+                    handleErrors(error)
                 }
             })
+            // .then(handleErrors())
             .then(response => {
-                //console.log(response.token)
-
-                //go to next screen here => MAP!
-                if (!errorMessage) {
-                    //store auth in cookies response.token
-                    console.log('cookie storage is next yo');
-                    console.log(response)
-                    Cookies.set("token", response.token);
-                    history.push('/profile')
+                console.log(response)
+                if(response.error){
+                    handleErrors(response)
+                }else{
+                      //store auth in cookies response.token
+                      console.log('cookie storage is next yo');
+                      console.log(response)
+                      Cookies.set("token", response.token);
+                      history.push('/profile')
                 }
+    
+                // if (response.token) {
+                //     //store auth in cookies response.token
+                //     console.log('cookie storage is next yo');
+                //     console.log(response)
+                //     Cookies.set("token", response.token);
+                //     history.push('/profile')
+                // }
 
             })
     }
@@ -113,7 +130,10 @@ const Login = () => {
                     <Link className="modal-button"to="/signup"> Click here to sign up! </Link>
                 </div>
                 <div>
-                   <EmailModal email={values.email} text={'Forgot your password?'}/>
+                    <button 
+                    className="modal-button"
+                    onClick={handlePassword}>Forgot your password?</button>
+                  {modal? <EmailModal email={values.email} text={'Forgot your password?'} changeProp={modal}/>: null}
                 </div>
             </div>
 

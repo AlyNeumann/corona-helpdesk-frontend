@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -54,35 +54,85 @@ Fade.propTypes = {
 
 export default function EmailModal(props) {
 
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
 
-    // if(props.show){
-    //     setOpen(true);
-    // }
-    const handleOpen = () => {
-        setOpen(true);
-    };
+
+    const classes = useStyles();
+    //open or close modal
+    const [open, setOpen] = React.useState(false);
+    //value for email for forgot password
+    const [values, setValues] = useState({
+        email: ""
+    });
+    //error messages
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [message, setMessage] = useState(null);
+
     //use history after modal close
     let history = useHistory();
 
-    const handleClose = () => {
+
+    //for email input 
+    const handleChange = (e) => {
+        setValues({
+            email: e.target.value
+        })
+    }
+    console.log(values)
+    //to close modal
+    const handleClick = () => {
         setOpen(false);
-        history.push('/')
-    };
+        history.push('/');
+    }
+    //call submit function from button
+    const handleSubmit = () => {
+        submit();
+    }
+
+    useEffect(() => {
+        setOpen(true)
+    }, [])
+    //submit email 
+    function submit(e) {
+        e.preventDefault();
+        const url = "http://localhost:5000/forgotPassword"
+
+        //handle errors
+        const handleErrors = (response) => {
+            if (response.error) {
+                setErrorMessage(response.error)
+            }
+            return response;
+        }
+
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify(values)
+        })
+            .then(res => res.json)
+            .then(handleErrors)
+            .catch(error => {
+                if (error) {
+                    console.log(error);
+                }
+            })
+            .then(response => {
+                console.log(response);
+                if (response.message) {
+                    setErrorMessage(response.message)
+                }
+
+            })
+    }
 
 
     return (
         <div>
-            <button type="button" className="modal-button" onClick={handleOpen}>
-             {props.text}
-      </button>
             <Modal
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
                 className={classes.modal}
                 open={open}
-                onClose={handleClose}
+                // onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
                 BackdropProps={{
@@ -90,15 +140,34 @@ export default function EmailModal(props) {
                 }}
             >
                 <Fade in={open}>
-                    {props.email? <div className={classes.paper}>
+                    {props.email ? <div className={classes.paper}>
                         <h2 id="spring-modal-title">Thank you!</h2>
                         <p id="spring-modal-description">An email has been sent to {props.email}</p>
-                    </div> : 
-                    <div className={classes.paper}>
-                        <h2 id="spring-modal-title">Invalid</h2>
-                        <p id="spring-modal-description">Please enter a valid email</p>
-                    </div>}
-                    
+                    </div> :
+                        <div className={classes.paper}>
+                            <h2 id="spring-modal-title">Password Retrieval</h2>
+                            <p id="spring-modal-description">Please enter a valid email</p>
+                            <form onSubmit={handleSubmit} noValidate>
+                                <div>
+                                    <input
+                                        className="form-control"
+                                        type="email"
+                                        name="email"
+                                        onChange={handleChange}
+                                        value={values.email} />
+                                </div>
+                                <button
+                                    type="submit"
+                                >Retrieve password</button>
+                            </form>
+                            {errorMessage ? <div>{errorMessage}</div> : null}
+                            {message ? <div>{message}
+                                <div>
+                                    <button onClick={handleClick}>Ok!</button>
+                                </div>
+                            </div> : null}
+                        </div>}
+
                 </Fade>
             </Modal>
         </div>

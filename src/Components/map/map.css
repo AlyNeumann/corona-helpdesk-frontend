@@ -1,11 +1,15 @@
 #mapbox{
     position:absolute;
-    top:50px;
-    left: 60px;
-    bottom: 0;
-    right: 0;
+    top:55px;
+    left: 55px;
+    bottom: 0px;
+    right:0;
     z-index: 0;
 }
+/* .mapboxgl-ctrl-top-right .mapboxgl-ctrl-fullscreen {
+  background-color: rgb(65, 65, 65);
+  color: white;
+} */
 .marker1 {
     background-image: url('../../Assets/images/Basic_green_dot.png');
     background-size: cover;

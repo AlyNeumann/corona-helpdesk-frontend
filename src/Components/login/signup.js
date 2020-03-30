@@ -61,15 +61,20 @@ const Signup = () => {
             }
         })
             .then(res => res.json)
-            .then(handleErrors)
             .catch(error => {
                 if (error) {
                     console.log(error);
                 }
             })
             .then(response => {
-                console.log(response);
-                setModal(true)
+                console.log(response)
+                if(response.error){
+                    handleErrors(response)
+                }else{
+                    console.log(response);
+                    setModal(true)
+                }
+                
 
             })
     }
@@ -158,8 +163,8 @@ const Signup = () => {
                     <button type="submit"
                         className="btn btn-secondary btn-block"
                     >Sign Up</button>
-                    <div>{modal ? <EmailModal email={values.email}/> : null}</div>
-                    {/* <div> <EmailModal email={values.email} text={'modal test'} /></div> */}
+                    <div>{modal ? <EmailModal email={values.email} changeProp={modal}/>  : null}</div>
+                    
                     {errorMessage ? <div>{errorMessage.error}</div> : null}
                 </form>
             </div>
