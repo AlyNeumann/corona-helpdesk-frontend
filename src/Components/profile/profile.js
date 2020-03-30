@@ -51,6 +51,8 @@ const Profile = ({ user, needs }) => {
     //for material UI
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    // const emergencyConract1 = user.emergencyContacts[0]
+    // const emergencyConract2 = user.emergencyContacts[1]
     // console.log(user)
 
 
@@ -80,7 +82,7 @@ const Profile = ({ user, needs }) => {
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
                     {/* find default photo to set here, onClick to change the photo */}
-                    {user? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {user.image? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
                 <List
                     component="nav"
@@ -124,7 +126,7 @@ const Profile = ({ user, needs }) => {
                                 <ListItemIcon>
                                     <ContactPhoneIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={user? `Emergency: ${user.emergencyContacts}`: "Emergency: Unknown"}/>
+                                <ListItemText primary={user? `Emergency Contact: ${user.emergencyContacts}`: "Emergency: Unknown"}/>
                             </ListItem>
                         </List>
                     </Collapse>

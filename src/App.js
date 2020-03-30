@@ -17,6 +17,7 @@ function App() {
   //global state of User
   //pass to nav for userinfo
   const user = useContext(UserContext);
+  console.log(user)
 
   return (
    <Router>

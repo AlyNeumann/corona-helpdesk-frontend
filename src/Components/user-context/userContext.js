@@ -1,7 +1,7 @@
 import React, { useState, createContext} from 'react';
 
-export const UserContext = createContext('user');
-export const NeedsContext = createContext('needs');
+export const UserContext = createContext({});
+export const NeedsContext = createContext({});
 
 const UserContextStore = ({ children }) => {
     const [user, setUser] = useState([]);

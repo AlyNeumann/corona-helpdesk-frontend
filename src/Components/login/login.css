@@ -21,9 +21,21 @@ font-family: 'Nunito-Regular', sans-serif;
     border-radius: 15px;
     transition: all .3s;
 }
+.modal-button{
+    border: none;
+    background-color: #ffffff00;
+    color: rgb(16, 91, 138);
+}
+.modal-button:hover {
+    color: rgb(29, 139, 179);
+    text-decoration: underline;
+  }
 #map {
-    position:relative;
-    display: inline-flex;
+   height: 200px;
+    position: relative;
+    width:auto;
+    /* display: inline-flex; */
     margin: auto;
+    overflow: visible;
    
 }

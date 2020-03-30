@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 
 const useSignUp = (callback, validate) => {
     const [values, setValues] = useState({
-        "name": "",
-        "email": "",
-        "password": "",
-        "phoneNumber": "",
-        "emergencyContacts": [],
-        "healthStatus": "",
-        "homeLocation": { "lat": "-73.457", "lgn": "45.3445" }
+        name: "",
+        email: "",
+        password: "",
+        phoneNumber: "",
+        emergencyContacts: [],
+        healthStatus: "",
+        homeLocation: {}
     });
 
 
@@ -56,14 +56,12 @@ const useSignUp = (callback, validate) => {
     }
 
     //lat and lng + address
-    const handleLocation = place => {
-        if (place.geometry) {
-            console.log(place.place_name + ' ' + place.geometry.coordinates)
+    const handleLocation = (address, coords) => {
+        console.log(address,coords)
             setValues({
                 ...values,
-                "homeLocation": place.geometry.coordinates
+                homeLocation: coords
             })
-        }
     }
 
 

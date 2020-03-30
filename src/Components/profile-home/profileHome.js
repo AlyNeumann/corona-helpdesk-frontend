@@ -16,6 +16,8 @@ const ProfileHome = () => {
 
     //setting global context for user
     const [user, setUser] = useContext(UserContext);
+    console.log('from profile')
+    console.log(user)
     //setting global context for user needs
     const [needs, setNeeds] = useContext(NeedsContext);
     //state for error messages

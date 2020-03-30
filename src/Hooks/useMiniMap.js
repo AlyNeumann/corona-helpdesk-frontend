@@ -54,8 +54,8 @@ const useMiniMap = (id) => {
             console.log(result.result.geometry.coordinates[0] + " " + result.result.geometry.coordinates[1])
             setAddress(result.result.place_name)
             setCoords({ ...coords, 
-                lat: result.result.geometry.coordinates[0],
-                long: result.result.geometry.coordinates[1]
+                lat: result.result.geometry.coordinates[1],
+                lng: result.result.geometry.coordinates[0]
             })
             // setAddress(result.result);
         })

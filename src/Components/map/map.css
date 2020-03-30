@@ -1,7 +1,7 @@
 #mapbox{
     position:absolute;
     top:50px;
-    left: 40px;
+    left: 60px;
     bottom: 0;
     right: 0;
     z-index: 0;
@@ -30,3 +30,16 @@
     border-radius: 50%;
     cursor: pointer;
   }
+
+  .mapboxgl-ctrl-geocoder {
+    min-width: 100%;
+    }
+    .directions-btn{
+      z-index: 1005;
+    color: rgb(215, 215, 215);
+    background-color: rgb(58, 45, 135) !important;
+    border-radius: 5px;
+    margin-left: 47px;
+    width: 42px;
+    height: 42px;
+    }

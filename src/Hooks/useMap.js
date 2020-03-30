@@ -16,25 +16,12 @@ const useMap = (id) => {
   const [coordinates, setCoordinates] = useState(null);
 
 
-  //bounds of Montreal 
-  // const bounds = [[-73.839278, 45.423700], [-73.302155, 45.733025]
-  // ];
-
-  const getUserOrigin = (directions,coordinates) => {
-    console.log('in get origin')
-    if(coordinates){
-      let lat = coordinates.lat
-      let lgn = coordinates.lgn;
-      console.log('in the if statement')
-      console.log(coordinates)
-      directions.setOrigin([lgn, lat]);
-    }
-  }
-
-  useEffect(() => {
-
     //mapbox map init pull token from .env file
     mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+    const accessToken = mapboxgl.accessToken;
+
+
+    useEffect(() => {
 
 
     const map = new mapboxgl.Map({
@@ -133,7 +120,6 @@ const useMap = (id) => {
           lat: pos.coords.latitude,
           lng: pos.coords.longitude
         })
-        return getUserOrigin(directions,coordinates)
       })
 
     // Navigation control
@@ -143,50 +129,13 @@ const useMap = (id) => {
     });
     map.addControl(navcontrol, "bottom-right");
 
-    //mapbox directions 
-    // const MapboxDirections = require('../src/index');
-    const directions = new MapboxDirections({
-      accessToken: mapboxgl.accessToken,
-      unit: 'metric',
-      profile: 'mapbox/cycling',
-      alternatives: true,
-      congestion: true,
-      interactive: true,
-      // compile: osrm(),
-      interactive: false,
-      placeholderOrigin: 'Enable your location',
-      placeholderDestination: 'Click on a desitation'
-      //add style sheet to customize the directions
-      // styles: style,
-    });
 
-    // add to your mapboxgl map
-    map.addControl(directions, 'bottom-left');
-
-    // if(coordinates){
-    //   getUserOrigin(coordinates)
-    // }
-
-    //TODO: this isnt working
-    
-    
-    // getUserOrigin(directions,coordinates);
-    // setUserOrigin(coords)
-   
 
 
   }, []);
 
 
-  // useEffect(() => {
-  //   if(coordinates){
-  //     getUserOrigin(coordinates)
-  //   }
-     
-
-  // }, [coordinates])
-
-  return [map, coordinates];
+  return [map, coordinates,accessToken];
 }
 
 export default useMap;

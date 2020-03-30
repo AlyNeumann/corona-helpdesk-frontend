@@ -33,10 +33,10 @@ const Signup = () => {
 
     //when address exists, handle value
     useEffect(() => {
-        if (address) {
+        if (coords ){
             handleLocation(address, coords)
         }
-    }, [address])
+    }, [coords])
 
 
     //submit signup form to backend
@@ -158,8 +158,8 @@ const Signup = () => {
                     <button type="submit"
                         className="btn btn-secondary btn-block"
                     >Sign Up</button>
-                    <div>{modal ? <EmailModal email={values.email} show={true} /> : null}</div>
-                    <div> <EmailModal email={values.email} text={'modal test'} /></div>
+                    <div>{modal ? <EmailModal email={values.email}/> : null}</div>
+                    {/* <div> <EmailModal email={values.email} text={'modal test'} /></div> */}
                     {errorMessage ? <div>{errorMessage.error}</div> : null}
                 </form>
             </div>

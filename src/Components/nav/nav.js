@@ -27,8 +27,8 @@ import './nav.css'
 import Login from '../login/login';
 import Signup from '../login/signup';
 import Cookies from 'js-cookie';
-// import { UserContext } from '../user-context/userContext';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
+import { UserContext } from '../../Components/user-context/userContext';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -98,12 +98,16 @@ const useStyles = makeStyles(theme => ({
 
 
 function Navbar(props) {
+   
 
     const history = useHistory();
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = useState(false)
-    // const [user] = useContext(UserContext)
+    const user = useContext(UserContext);
+    const userInfo = user[0];
+    // console.log('from nav bar')
+    // console.log(user[0])
 
     //TODO: are we using local storage for this?
     const handleLogout = () => {
@@ -194,10 +198,10 @@ function Navbar(props) {
                         }}
                     >
                         <div className={classes.toolbar}>
-                            <Avatar alt="Remy Sharp" src={props.user.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
+                            <Avatar alt="Remy Sharp" src={userInfo.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
                             <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
-                                <p className="toggle-avatar-name">{props.user.name || "Unknown"}</p>
-                                <p className="toggle-avatar-title">{props.user.healthStatus || "Unknown"}</p>
+                                <p className="toggle-avatar-name">{userInfo.name || "Unknown"}</p>
+                                <p className="toggle-avatar-title">{userInfo.healthStatus || "Unknown"}</p>
                             </div>
                             <IconButton onClick={handleDrawerClose}>
                                 {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
