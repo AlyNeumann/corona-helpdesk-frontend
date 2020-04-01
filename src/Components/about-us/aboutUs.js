@@ -1,18 +1,19 @@
 import React from 'react';
+import Vrush from './vrush';
+import Aly from './aly';
 import './aboutUs.css';
 
-//bring in Linkedin profiles, quick bio, and photo 
-
 const AboutUs = () => {
-    return (
-        <div className="aboutus-container">
-            <div className="aboutus-inner">
-                <div className="aboutus-image-container" >
-                    {/* <img className="aboutus-image" src={user.image} /> */}
-                </div>
-            </div>
+    return(
+        <div>
+            <Vrush />
+            <Aly />
         </div>
     )
+
 }
+
+
+
 
 export default AboutUs;
