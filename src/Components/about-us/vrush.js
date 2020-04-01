@@ -49,6 +49,12 @@ const Vrush = () => {
         }
 
     };
+    
+      //open linkedin profile
+      const handleLinkedIn = () => {
+        window.open('https://www.linkedin.com/in/vrushabh-gore-407a32124/');
+    }
+
 
 
     return (
@@ -106,8 +112,10 @@ const Vrush = () => {
                         </List>
                     </Collapse>
                 </List>
-                <button>LinkedIn Profile</button>
+                <button
+                onClick={handleLinkedIn}>LinkedIn Profile</button>
             </div>
+            
         </div>
     )
 }

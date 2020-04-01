@@ -50,6 +50,11 @@ const Aly = () => {
 
     };
 
+    //open linkedin profile
+    const handleLinkedIn = () => {
+        window.open('https://www.linkedin.com/in/alymargueriteneumann/');
+    }
+
 
     return (
         <div className="profile-container">
@@ -106,7 +111,8 @@ const Aly = () => {
                         </List>
                     </Collapse>
                 </List>
-                <button>LinkedIn Profile</button>
+                <button
+                onClick={handleLinkedIn}>LinkedIn Profile</button>
             </div>
         </div>
     )
