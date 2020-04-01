@@ -18,7 +18,7 @@ const Map = () => {
   //TODO: bring user in from Context 
 
   const [map, coordinates, accessToken] = useMap("mapbox")
-  const [geocodes] = useGeoJson();
+  // const [geocodes] = useGeoJson();
   const [healthType, setHealthType] = useState({ status: "no health status" })
   const [directionsOpen, setDirectionsOpen] = useState(false);
   const [textDirections, setTextDirections] = useState(true)
@@ -92,8 +92,6 @@ const Map = () => {
     }
   ]
 
-
-  console.log('map component re-rendering')
 
 
   //hashmap for health statuses
@@ -185,7 +183,6 @@ const Map = () => {
 
 
   useEffect(() => {
-    console.log(coordinates)
     if (coordinates && map) {
       let lng = coordinates.lng;
       let lat = coordinates.lat;
@@ -248,9 +245,9 @@ const Map = () => {
 
   return (
     <div id="mapbox">
-      {!directionsOpen ?   <div class="mapboxgl-ctrl-top-left">
-        <div class="mapboxgl-ctrl mapboxgl-ctrl-group">
-          <button class="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
+      {!directionsOpen ?   <div className="mapboxgl-ctrl-top-left">
+        <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
+          <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
             aria-label="Toggle fullscreen"
             type="button"
             onClick={handleDirections}><DirectionsIcon /></button>
@@ -258,9 +255,9 @@ const Map = () => {
       </div> : null}
     
       {directionsOpen ?
-        <div class="mapboxgl-ctrl-top-left">
-          <div class="mapboxgl-ctrl mapboxgl-ctrl-group">
-            <button class="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
+        <div className="mapboxgl-ctrl-top-left">
+          <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
+            <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
               aria-label="Toggle fullscreen"
               type="button"
               onClick={handleCloseDirections}><DirectionsIcon /></button>

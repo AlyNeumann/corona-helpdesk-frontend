@@ -22,6 +22,13 @@ const useUpdateNeed = (callback, neededList,need) => {
         })
     }
 
+    //handle image
+    const handleImage = (img) => {
+        console.log(img)
+        // setImg(img[0])
+    }
+
+
     const handleSubmit = e => {
         // console.log(values)
         e.preventDefault();
@@ -36,6 +43,7 @@ const useUpdateNeed = (callback, neededList,need) => {
     return {
         handleChange,
         handleSubmit,
+        handleImage,
         values,
         item
     }

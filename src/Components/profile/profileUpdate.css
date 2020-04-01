@@ -13,3 +13,7 @@
     border-radius: 15px;
     transition: all .3s;
 }
+.update-btn {
+    width: 20%;
+    margin: 2.5px;
+}

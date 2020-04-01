@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import NeedsList from './needslist';
 import Cookies from 'js-cookie';
 
 const NeedsFeed = () => {
@@ -11,10 +12,10 @@ const NeedsFeed = () => {
     const getNeedsFeed = () => {
         //TODO: pull this info from global user state
         const token = Cookies.get("token");
-        const lat = 48
-        const lng = 48
-        const status = 1
-        const url = `http://localhost:5000/needFeed/${lat}/${lng}/${status}`
+        const lat = 45.485271
+        const lng = -73.581421
+        const radius = 1000
+        const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages
         const handleErrors = (response) => {
@@ -41,7 +42,7 @@ const NeedsFeed = () => {
             .then(response => {
                 if (!errorMessage) {
                     console.log(response)
-                    setNeedsFeed(response.neededList);
+                    setNeedsFeed(response);
                 }
 
             })
@@ -55,7 +56,11 @@ const NeedsFeed = () => {
 
     return(
         <div>
-            Needs Feed
+            <h3>Needs Feed</h3>
+            {needsFeed? needsFeed.map(user => {
+                return <NeedsList user={user} />
+            }): 'No needs right now!'}
+        
         </div>
     )
 }

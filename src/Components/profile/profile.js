@@ -44,7 +44,7 @@ const Profile = ({ user, needs }) => {
         "4": "Diagnosed/Quarantined",
         "5": "Unsure"
     }
-   
+
     //open profile update if true
     const [update, setUpdate] = useState(false)
 
@@ -81,9 +81,9 @@ const Profile = ({ user, needs }) => {
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
-                    {/* find default photo to set here, onClick to change the photo */}
-                    {user.image? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {user.image ? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
+                <h4>{user.name}</h4>
                 <List
                     component="nav"
                     aria-labelledby="nested-list-subheader"
@@ -98,20 +98,20 @@ const Profile = ({ user, needs }) => {
                         <ListItemIcon>
                             <PlaceIcon />
                         </ListItemIcon>
-                        
-                        <ListItemText primary={user? `User Addres: No Address` : "User Address: Unknown"} />
+
+                        <ListItemText primary={user ? `User Address: ${user.houseLocation}` : "User Address: Unknown"} />
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
                             <FavoriteBorderIcon />
                         </ListItemIcon>
-                        <ListItemText primary={user? `Health Status: ${user.healthStatus}`: "Health Status: Unknown"}/>
+                        <ListItemText primary={user ? `Health Status: ${user.healthStatus}` : "Health Status: Unknown"} />
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
                             <ContactMailIcon />
                         </ListItemIcon>
-                        <ListItemText primary={user? `Contact Info : ${user.email}`: "Contact Info: Unknown"} />
+                        <ListItemText primary={user ? `Contact Info : ${user.email}` : "Contact Info: Unknown"} />
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -120,13 +120,13 @@ const Profile = ({ user, needs }) => {
                                 <ListItemIcon>
                                     <ContactPhoneIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={user ? `Phone: ${user.phoneNumber}`: "Phone: Unknown"}/>
+                                <ListItemText primary={user ? `Phone: ${user.phoneNumber}` : "Phone: Unknown"} />
                             </ListItem>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <ContactPhoneIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={user? `Emergency Contact: ${user.emergencyContacts}`: "Emergency: Unknown"}/>
+                                <ListItemText primary={user ? `Emergency Contact: ${user.emergencyContacts}` : "Emergency: Unknown"} />
                             </ListItem>
                         </List>
                     </Collapse>

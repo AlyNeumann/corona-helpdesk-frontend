@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
+//this will need to be form data for image 
 
 const useSignUp = (callback) => {
+    
     const [values, setValues] = useState({
         "name": "",
         "location": "",
         "healthStatus": "",
-        "contactInfo": "",
-        "emergencyContact": "",
+        "phoneNumber": "",
+        "emergencyContacts": "",
         "img": "",
         "coords": ""
     });
@@ -38,10 +40,6 @@ const useSignUp = (callback) => {
         setValues({ ...values, coords: place })
     }
 
-    const handleImage = (img) => {
-        setValues({...values, img: img})
-    }
-
 
     //check to see if no errors, if none, call callback
     useEffect(() => {
@@ -54,7 +52,6 @@ const useSignUp = (callback) => {
     return {
         handleChange,
         handleSubmit,
-        handleImage,
         handleLocation,
         values,
         errors

@@ -14,6 +14,9 @@ const UpdateNeeds = (props) => {
     //getting previous needs from props
     const neededList = props.location.state.needs;
     const need = props.location.state.need;
+    const _id = props.location.state.need._id
+    console.log(_id)
+
 
     const {
         handleChange,
@@ -26,17 +29,6 @@ const UpdateNeeds = (props) => {
 
     //useHistory to push back to profile after updates are submitted
     let history = useHistory()
-
-    //trying to extract value from placeholder
-    // const getPlaceholderValue= () => {
-    //     if(neededList){
-    //         document.getElementById("demo").defaultValue ={props.location.state.need.need};
-    //         const placeholder = document.getElementById("demo").getAttribute("placeholder");
-    //         console.log(placeholder);
-        
-    //     }
-    // }
-   
   
 
     //submit the ADD NEED to backend
@@ -45,6 +37,8 @@ const UpdateNeeds = (props) => {
     function submit() {
         console.log(values)
         const token = Cookies.get("token");
+
+        //TODO: add _id to the request body!! 
 
         const url = "http://localhost:5000/updateNeeds";
 

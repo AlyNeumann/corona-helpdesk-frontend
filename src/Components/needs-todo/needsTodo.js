@@ -9,31 +9,32 @@ import './needstodo.css';
 
 
 const NeedsTodo = ({ user, needs }) => {
-
+    // console.log('from needs todo')
+    // console.log(needs)
 
 
     return (
         <div className="needstodo-container">
             <div className="needstodo-inner">
-    <h3 className="needs-title">{user ?<div>Update Your Needs List {user.name}</div>: <div>Update your needs list!</div>}</h3>
-        <div className="needs-title">Item needed     |     Exchange offered     |     Quantity</div>
+                <h3 className="needs-title">{user ? <div>Update Your Needs List {user.name}</div> : <div>Update your needs list!</div>}</h3>
+                <div className="needs-title">Item needed     |     Exchange offered     |     Quantity</div>
                 <ul>
                     {needs.map(need => {
-                        return <Need need={need} key={need.quantity} needs={needs}/>
+                        return <Need need={need} key={need._id} needs={needs} />
                     })}
                 </ul>
                 <Link to={{
-                        pathname: '/updateneeds',
-                        state: {
-                            "functionType":"add",
-                            need:{need:""},
-                            needs
-                        }
-                    }} >
-                <button
-                    className="btn btn-secondary">
-                    <AddBoxIcon />
-                </button>
+                    pathname: '/updateneeds',
+                    state: {
+                        "functionType": "add",
+                        need: { need: "" },
+                        needs
+                    }
+                }} >
+                    <button
+                        className="btn btn-secondary">
+                        <AddBoxIcon />
+                    </button>
                 </Link>
             </div>
         </div>)

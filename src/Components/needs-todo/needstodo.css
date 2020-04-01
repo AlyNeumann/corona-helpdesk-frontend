@@ -3,6 +3,7 @@
     text-align: start;
     height: 100%;
     margin: 5px;
+    flex-grow: 0;
 }
 .needstodo-inner{
     width: 100%;

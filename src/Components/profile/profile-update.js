@@ -1,26 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import StyledDropzone from './photo-picker-simple'
 import useProfileUpdate from '../../Hooks/useProfileUpdate';
 import useMiniMap from '../../Hooks/useMiniMap';
 import './profileUpdate.css';
 
-//TODO:passing user through Link, not working yet
+//TODO:send this as form data to back end
 const ProfileUpdate = (props) => {
 
-    console.log(props)
-    console.log(props.location)
     const user = props.location.state.user;
 
     //bring in map for location picking
     const [address] = useMiniMap("map")
-    console.log(address)
+    //image file
+    const [img, setImg] = useState(null);
+    // console.log(address)
     //hook for signup submit & validate 
     const {
         handleChange,
         handleSubmit,
-        handleImage,
         handleLocation,
+        // handleImage, 
         values
     } = useProfileUpdate(submit)
 
@@ -34,15 +34,28 @@ const ProfileUpdate = (props) => {
     //use history to push back to profile page on submit
     let history = useHistory()
 
+    //close - cancel
+    const handleClose = () => {
+        history.push('/profile');
+    }
+    //handling image file - this can be in hook, if everything is form data there....
+    const handleImage = (img) => {
+        setImg(img[0])
+    }
+
+
     function submit() {
         const url = "http://localhost:5000/updateprofile"
-        console.log('submitting!')
-        let formData = new FormData(); // image needs form data format
+        // console.log(values)
 
-        for (let [key, value] of Object.entries(values)) {
-            console.log(key, value)
-            formData.append(key, value);
+        let formData = new FormData();
+        Object.keys(values).forEach(key => formData.append(key, values[key]));
+
+
+        if (img) {
+            formData.append("img", img, img.name)
         }
+        console.log(formData)
 
         // handling error messages
         const handleErrors = (error) => {
@@ -84,13 +97,13 @@ const ProfileUpdate = (props) => {
                             value={values.username} />
                     </div>
                     <div className="form-group">
-                        <label>User Address</label>
+                        <label>User Location</label>
                         <input type="text"
-                            name="address"
+                            placeholder="Which city and neighbourhood are you located in?"
+                            name="location"
                             className="form-control"
-                            placeholder={user.address}
                             onChange={handleChange}
-                            value={values.address} />
+                            value={values.location} />
                     </div>
                     <div>
                         <label>Health Status</label>
@@ -108,9 +121,9 @@ const ProfileUpdate = (props) => {
                     <div className="form-group">
                         <label>Contact Info</label>
                         <input type="text"
-                            name="name"
+                            name="phoneNumber"
                             className="form-control"
-                            placeholder={user.contactInfo}
+                            placeholder={user.phoneNumber}
                             onChange={handleChange}
                             value={values.contactInfo} />
                     </div>
@@ -119,14 +132,14 @@ const ProfileUpdate = (props) => {
                         <input type="text"
                             name="emergencyContacts"
                             className="form-control"
-                            placeholder={user.emergencyContact}
+                            placeholder={user.emergencyContacts}
                             onChange={handleChange}
                             value={values.emergencyContacts} />
                     </div>
                     <div className="form-group">
                         <label>Avatar Photo</label>
                         {/* handleImage needs to be used here */}
-                        <StyledDropzone handleIt={handleImage}/>
+                        <StyledDropzone handleIt={handleImage} />
                     </div>
                     <div className="form-group">
                         <label>Address</label>
@@ -135,11 +148,14 @@ const ProfileUpdate = (props) => {
 
                     </div>
                     <button type="submit"
-                        className="btn btn-secondary btn-block"
+                        className="btn btn-secondary update-btn"
                     >Update</button>
 
                 </form>
-
+                <button
+                    className="btn btn-secondary update-btn"
+                    onClick={handleClose}>
+                    Close</button>
             </div>
         </div>
     )

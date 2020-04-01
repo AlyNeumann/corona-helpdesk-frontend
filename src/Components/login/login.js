@@ -16,9 +16,11 @@ const Login = () => {
     );
 
     //error messages from server
-    const [errorMessage, setErrorMessage] = useState(null)
+    const [errorMessage, setErrorMessage] = useState(null);
+    //if server is not responding
+    const [serverError, setServerError] = useState(null);
     //for forgot password modal
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState(false);
 
     //history to push to next page once submitted
     let history = useHistory()
@@ -34,12 +36,13 @@ const Login = () => {
         // console.log(values);
 
         //handle error messages
-        const handleErrors = (response) => {
-            console.log(response)
-            if(response.error){
-            setErrorMessage(response.error)
-        }
-           else return response
+        const handleErrors = (error) => {
+            console.log(error)
+            if (error) {
+                setErrorMessage(error)
+            } else if (error instanceof TypeError) {
+                setServerError(true)
+            } else return error;
         }
 
         const url = 'http://localhost:5000/signin'
@@ -52,34 +55,30 @@ const Login = () => {
             }
         })
             .then(res => res.json()) //response is
-            .catch(error => {
-                if (error) {
-                    
-                    handleErrors(error)
-                }
-            })
-            // .then(handleErrors())
+          
             .then(response => {
                 console.log(response)
-                if(response.error){
+                if (response.error || response == undefined) {
                     handleErrors(response)
-                }else{
-                      //store auth in cookies response.token
-                      console.log('cookie storage is next yo');
-                      console.log(response)
-                      Cookies.set("token", response.token);
-                      history.push('/profile')
+                } else {
+                    //store auth in cookies response.token
+                    console.log('cookie storage is next yo');
+                    console.log(response)
+                    Cookies.set("token", response.token);
+                    history.push('/profile')
                 }
-    
-                // if (response.token) {
-                //     //store auth in cookies response.token
-                //     console.log('cookie storage is next yo');
-                //     console.log(response)
-                //     Cookies.set("token", response.token);
-                //     history.push('/profile')
-                // }
 
             })
+            .catch(error => {
+                if (error) {
+                    console.log(error)
+                    handleErrors(error)
+                } else if (error instanceof TypeError) {
+                    setServerError(true)
+                }
+            })
+
+
     }
 
     return (
@@ -124,16 +123,17 @@ const Login = () => {
                 </div>
                 <div className="error-message">
                     {errorMessage && <div className="error"><p>{errorMessage}</p></div>}
+                    {serverError && <div className="error"><p>The server is not responding...</p></div>}
                 </div>
 
                 <div>
-                    <Link className="modal-button"to="/signup"> Click here to sign up! </Link>
+                    <Link className="modal-button" to="/signup"> Click here to sign up! </Link>
                 </div>
                 <div>
-                    <button 
-                    className="modal-button"
-                    onClick={handlePassword}>Forgot your password?</button>
-                  {modal? <EmailModal email={values.email} text={'Forgot your password?'} changeProp={modal}/>: null}
+                    <button
+                        className="modal-button"
+                        onClick={handlePassword}>Forgot your password?</button>
+                    {modal ? <EmailModal email={values.email} text={'Forgot your password?'} changeProp={modal} /> : null}
                 </div>
             </div>
 

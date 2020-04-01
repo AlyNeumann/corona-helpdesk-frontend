@@ -152,7 +152,7 @@ function Navbar(props) {
                     <CssBaseline />
                     <AppBar
                         position="fixed"
-                        color="black"
+                        color="inherit"
                         className={clsx(classes.appBar, {
                             [classes.appBarShift]: open,
                         })}
@@ -219,7 +219,7 @@ function Navbar(props) {
                                 <ListItemIcon><Place /></ListItemIcon>
                                 <ListItemText primary={"Map"} />
                             </ListItem>
-                            <ListItem button key="venue" onClick={() => { history.push("/needsfeed") }}>
+                            <ListItem button key="needsfeed" onClick={() => { history.push("/needsfeed") }}>
                                 <ListItemIcon><ListIcon /></ListItemIcon>
                                 <ListItemText primary={"Needs Feed"} />
                             </ListItem>

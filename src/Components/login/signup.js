@@ -82,7 +82,7 @@ const Signup = () => {
     return (
         <div className="login-container">
             <div className="login-inner">
-                <form onSubmit={handleSubmit} noValidate autoComplete="true">
+                <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <h3>Sign Up</h3>
                     <div className="form-group">
                         <label>Username</label>

@@ -6,9 +6,10 @@ const UserNeed = ({ need }) => {
     return (
         <div className="userneed-container">
             <div className="userneed-inner">
-            <div className="userneed-text">{need ? ` ${need.need} ` : null}</div>
-            <div className="userneed-text">{need ? ` ${need.exchange} `: null}</div>
-            <div className="userneed-text">{need ? ` ${need.quantity} `: null}</div>
+            <div className="userneed-text">{need ? ` ${need.needType} ` : null}</div>
+            <div className="userneed-text">{need ? ` ${need.needDescription} `: null}</div>
+            <div className="userneed-text">{need ? ` ${need.exchangeType} `: null}</div>
+            <div className="userneed-text">{need ? ` ${need.exchangeDescription} `: null}</div>
             </div>
         </div>
     )

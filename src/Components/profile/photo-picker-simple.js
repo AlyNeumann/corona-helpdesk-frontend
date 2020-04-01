@@ -65,21 +65,11 @@ const img = {
 };
 
 const StyledDropzone = (props) => {
+    //store image file
     const [files, setFiles] = useState([]);
-
-    //TODO:
-        //handle photo upload, create url for preview
-        // const handleChange = (e) => {
-        //     if (e.target.files[0].name.match(/.(jpg|png)$/i)) {
-        //         console.log(e.target.files[0].name)
-        //         setPhoto({
-        //             preview: URL.createObjectURL(e.target.files[0]),
-        //             raw: e.target.files[0]
-        //         })
-        //     }
-        // }
+    
         
-    console.log(files);
+    console.log(props);
     const {
         getRootProps,
         getInputProps,
@@ -125,6 +115,7 @@ const StyledDropzone = (props) => {
         () => () => {
             // Make sure to revoke the data uris to avoid memory leaks
             files.forEach(file => URL.revokeObjectURL(file.preview));
+            props.handleIt(files);
         },
         [files]
     );

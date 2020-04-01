@@ -13,7 +13,7 @@ const UserNeedsList = ({ user, needs }) => {
             <div className="needs-title">Item needed     |     Exchange offered     |     Quantity</div>
                 <ul>
                 {needs.map(need => {
-                    return <UserNeed user={user} need={need} key={need.quantity}/>
+                    return <UserNeed user={user} need={need} key={need._id}/>
                 })}
                 </ul>
             </div>

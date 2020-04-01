@@ -12,12 +12,12 @@ import './profileHome.css';
 
 
 const ProfileHome = () => {
-    
+
 
     //setting global context for user
     const [user, setUser] = useContext(UserContext);
-    console.log('from profile')
-    console.log(user)
+    // console.log('from profile')
+    // console.log(user)
     //setting global context for user needs
     const [needs, setNeeds] = useContext(NeedsContext);
     //state for error messages
@@ -51,7 +51,7 @@ const ProfileHome = () => {
             })
             .then(response => {
                 if (!errorMessage) {
-                    console.log(response);
+                    // console.log(response);
                     setUser(response);
                     setNeeds(response.neededList);
                 }
@@ -70,8 +70,8 @@ const ProfileHome = () => {
             {user ?
                 <div className="profile-home-container">
                     <Profile user={user} />
-                    <NeedsTodo user={user} needs={needs} />
                     <UserNeedsList user={user} needs={needs} />
+                    <NeedsTodo user={user} needs={needs} />
                 </div> : <div>Loading...</div>}
         </div>
     )
