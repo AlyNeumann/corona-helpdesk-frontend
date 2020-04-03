@@ -4,6 +4,7 @@ import GlobalTimeLine from './globalTimeline';
 import CurrentCases from './currentCases';
 import PieChart from './pieChart';
 import ScoreBoard from './scoreBoard';
+import './analytics.css';
 
 
 //make data chart for all countries
@@ -16,15 +17,17 @@ const Analytics = () => {
 
 
     return (
-        <div>
+        <div className="anatylics-container">
             <div>
                 <h3>Analytics</h3>
             </div>
             <ScoreBoard/>
+            <div className="chart-container">
             <TimeLineAnalytics/>
             <GlobalTimeLine/>
             <CurrentCases/>
             <PieChart/>
+            </div>
         </div>
     )
 }

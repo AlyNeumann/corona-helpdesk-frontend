@@ -5,6 +5,12 @@ import echarts from 'echarts/lib/echarts';
 
 const TimeLineAnalytics = () => {
 
+    //window resizing attempt
+    const [viewport, setViewport] = useState({
+        width: window.innerWidth,
+        // height: window.innerHeight,
+    }) 
+
     const [data, setData] = useState(null);
     //data for deaths 
     const [deaths, setDeaths] = useState([]);
@@ -153,8 +159,23 @@ const TimeLineAnalytics = () => {
         getData();
     }, [])
 
+    //resize viewport 
+    useEffect(() => {
+        const handleResize= () => {
+         setViewport({
+           ...viewport,
+           width: window.innerWidth,
+           height: window.innerHeight,
+         })
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        }
+      })
+
     return (
-        <div>
+        <div className="chart-container">
             {/* <ReactEcharts
                 option={GL_OPTION}
             /> */}
@@ -162,6 +183,8 @@ const TimeLineAnalytics = () => {
                 <ReactEchartsCore
                     echarts={echarts}
                     option={option}
+                    className="chart"
+                    style={{width: viewport.width, maxHeight: "300px"}}
                 // notMerge={true}
                 // lazyUpdate={true}
                 // theme={"theme_name"}

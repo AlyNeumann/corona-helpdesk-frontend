@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import OutlinedCard from './card'
+import OutlinedCard from './card';
+import './analytics.css';
 
 const ScoreBoard = () => {
 
     const [data, setData] = useState([]);
     const [date, setDate] = useState('');
 
-   const getCurrentDate = (separator='') => {
+   const getCurrentDate = () => {
 
         let newDate = new Date()
         let date = newDate.getDate();

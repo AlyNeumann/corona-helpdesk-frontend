@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
+import './analytics.css';
 
 const GlobalTimeLine = () => {
+
+    //window resizing attempt
+    const [viewport, setViewport] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    }) 
 
     const [data, setData] = useState(null);
       //data for deaths 
@@ -153,12 +160,29 @@ const GlobalTimeLine = () => {
         getData()
     }, [])
 
+    //resize viewport 
+    useEffect(() => {
+        const handleResize= () => {
+         setViewport({
+           ...viewport,
+           width: window.innerWidth,
+           height: window.innerHeight,
+         })
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        }
+      })
+
     return(
-        <div>
+        <div className="chart-container">
               {data &&
                 <ReactEchartsCore
                     echarts={echarts}
                     option={option}
+                    className="chart"
+                    style={{width: viewport.width, maxHeight: "300px"}}
                 // notMerge={true}
                 // lazyUpdate={true}
                 // theme={"theme_name"}

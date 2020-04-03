@@ -103,7 +103,7 @@ const CurrentCases = () => {
     console.log(data)
     return (
         <div>
-            current cases
+            {/* current cases */}
             {/* <ReactEcharts
                 option={GL_OPTION}
             /> */}
