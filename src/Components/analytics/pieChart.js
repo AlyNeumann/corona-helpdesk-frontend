@@ -15,6 +15,9 @@ const PieChart = () => {
     const [data, setData] = useState([])
 
     const option = {
+        // title: {
+        //     text: 'Covid 19 Global Today'
+        // },
         tooltip: {
             trigger: 'item',
             formatter: '{a} <br/>{b}: {c} ({d}%)'

@@ -3,43 +3,36 @@
 //this will make the api call with the added need or the updated need
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import useUpdateNeed from '../../Hooks/useUpdateNeed';
+import useAddNeed from '../../Hooks/useAddNeed';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Cookies from 'js-cookie';
 import './updateNeeds.css'
 
-const UpdateNeeds = (props) => {
+const AddNeeds = () => {
     // console.log(props.location)
-    //getting previous needs from props
-    const need = props.location.state.need;
-    const _id = props.location.state.need._id
+
     const [errorMessage, setErrorMessage] = useState(null);
-    console.log(_id)
+
 
 
     const {
         handleChange,
         handleSubmit,
         values
-    } = useUpdateNeed(submit, need, _id);
+    } = useAddNeed(submit);
 
 
 
     //useHistory to push back to profile after updates are submitted
     let history = useHistory()
 
-
-    //submit the ADD NEED to backend
-    //TODO: only need one call here, all needs will be updated 
-    // Cookies.get('token') for authorization
     function submit() {
         console.log(values)
         const token = Cookies.get("token");
 
-        //TODO: add _id to the request body!! 
 
-        const url = "http://localhost:5000/updateNeed";
+        const url = "http://localhost:5000/addNeed";
 
         // implement POST REQUEST
 
@@ -51,7 +44,7 @@ const UpdateNeeds = (props) => {
         }
 
         fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             body: JSON.stringify(values),
             headers: {
                 'Content-Type': 'application/json',
@@ -81,8 +74,6 @@ const UpdateNeeds = (props) => {
                     <input type="text"
                         name="needType"
                         className="form-control"
-                        // placeholder={values.need}
-                        // {!props.location.state? 'Enter some text' : props.location.state.need.need}
                         onChange={handleChange}
                         value={values.needType}
                     />
@@ -90,8 +81,6 @@ const UpdateNeeds = (props) => {
                     <input type="text"
                         name="needDescription"
                         className="form-control"
-                        // placeholder={values.need}
-                        // {!props.location.state? 'Enter some text' : props.location.state.need.need}
                         onChange={handleChange}
                         value={values.needDescription}
                     />
@@ -99,7 +88,6 @@ const UpdateNeeds = (props) => {
                     <input type="text"
                         name="exchangeType"
                         className="form-control"
-                        // placeholder={!props.location.state? 'If you can exchange something, enter it here' : props.location.state.need.exchange}
                         onChange={handleChange}
                         value={values.exchangeType}
                     />
@@ -107,7 +95,6 @@ const UpdateNeeds = (props) => {
                     <input type="text"
                         name="exchangeDescription"
                         className="form-control"
-                        // placeholder={!props.location.state? 'Enter quantity' : props.location.state.need.quantity}
                         onChange={handleChange}
                         value={values.exchangeDescription}
                     />
@@ -133,4 +120,4 @@ const UpdateNeeds = (props) => {
     )
 }
 
-export default UpdateNeeds;
+export default AddNeeds;

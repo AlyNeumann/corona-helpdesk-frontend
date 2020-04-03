@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-const useUpdateNeed = (callback, need, _id) => {
+const useAddNeed = (callback) => {
 
 
     // const [item, setItem] = useState(need);
 
     const [values, setValues] = useState({
-        _id: _id,
-        needType: need.needType || "",
-        needDescription: need.needDescription || "",
-        exchangeType: need.exchangeType || "",
-        exchangeDescription: need.exchangeDescription || ""
+        needType: "",
+        needDescription: "",
+        exchangeType: "",
+        exchangeDescription: ""
     })
 
     //TODO: if there is no new value, take from place holder
@@ -38,4 +37,4 @@ const useUpdateNeed = (callback, need, _id) => {
     }
 }
 
-export default useUpdateNeed;
+export default useAddNeed;

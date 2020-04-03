@@ -24,7 +24,7 @@ const NeedsTodo = ({ user, needs }) => {
                     })}
                 </ul>
                 <Link to={{
-                    pathname: '/updateneeds',
+                    pathname: '/addneeds',
                     state: {
                         "functionType": "add",
                         need: { need: "" },

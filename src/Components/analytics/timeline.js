@@ -69,35 +69,35 @@ const TimeLineAnalytics = () => {
             {
                 name: 'Deaths',
                 type: 'line',
-                stack: '总量',
+                stack: 'Total',
                 areaStyle: {},
                 data: deaths
             },
             {
                 name: 'Confirmed',
                 type: 'line',
-                stack: '总量',
+                stack: 'Total',
                 areaStyle: {},
                 data: confirmed
             },
             {
                 name: 'Active',
                 type: 'line',
-                stack: '总量',
+                stack: 'Total',
                 areaStyle: {},
                 data: active
             },
             {
                 name: 'Recovered',
                 type: 'line',
-                stack: '总量',
+                stack: 'Total',
                 areaStyle: {},
                 data: recovered
             },
             {
                 name: 'New Confirmed',
                 type: 'line',
-                stack: '总量',
+                stack: 'Total',
                 label: {
                     normal: {
                         show: true,

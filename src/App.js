@@ -5,6 +5,7 @@ import Map from './Components/map/map';
 import ProfileHome from './Components/profile-home/profileHome';
 import ProfileUpdate from './Components/profile/profile-update';
 import UpdateNeeds from './Components/needs-todo/updateNeeds';
+import AddNeeds from './Components/needs-todo/addNeed';
 import NeedsFeed from './Components/needsfeed/needsfeed';
 import Analytics from './Components/analytics/analytics';
 import Chat from './Components/chat/chat';
@@ -29,6 +30,7 @@ function App() {
        <Route path="/profile" component={ProfileHome}/>
        <Route path="/profileupdate" component={ProfileUpdate}/>
        <Route path="/updateneeds" component={UpdateNeeds}/>
+       <Route path="/addneeds" component={AddNeeds}/>
        <Route path="/needsfeed" component={NeedsFeed}/>
        <Route path="/analytics" component={Analytics}/>
        <Route path="/chat" component={Chat}/>

@@ -28,11 +28,11 @@ const ProfileHome = () => {
         const url = "http://localhost:5000/getUser"
 
         //handle error messages
-        const handleErrors = (response) => {
-            if (response.error) {
-                setErrorMessage(response.error)
+        const handleErrors = (error) => {
+            if (error) {
+                setErrorMessage(error)
             }
-            else return response
+            else return error
         }
 
         fetch(url, {
@@ -43,19 +43,19 @@ const ProfileHome = () => {
             }
         })
             .then(res => res.json()) //response is
+            .then(response => {
+                if (!errorMessage) {
+                    console.log(response);
+                    setUser(response);
+                    setNeeds(response.neededList);
+                }
+
+            })
             .then(handleErrors)
             .catch(error => {
                 if (error) {
                     console.log(error)
                 }
-            })
-            .then(response => {
-                if (!errorMessage) {
-                    // console.log(response);
-                    setUser(response);
-                    setNeeds(response.neededList);
-                }
-
             })
 
     }
