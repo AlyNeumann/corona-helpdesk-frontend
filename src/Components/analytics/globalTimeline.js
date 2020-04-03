@@ -27,9 +27,9 @@ const GlobalTimeLine = () => {
   
       //options 
       const option = {
-          title: {
-              text: 'Covid 19 Global'
-          },
+        //   title: {
+        //       text: 'Covid 19 Global'
+        //   },
           tooltip: {
               trigger: 'axis',
               axisPointer: {
@@ -177,6 +177,7 @@ const GlobalTimeLine = () => {
 
     return(
         <div className="chart-container">
+            <h5>Covid 19 Global</h5>
               {data &&
                 <ReactEchartsCore
                     echarts={echarts}

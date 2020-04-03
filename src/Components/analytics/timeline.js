@@ -27,9 +27,9 @@ const TimeLineAnalytics = () => {
 
     //options 
     const option = {
-        title: {
-            text: 'Covid 19 Canada'
-        },
+        // title: {
+        //     text: 'Covid 19 Canada'
+        // },
         tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -176,6 +176,7 @@ const TimeLineAnalytics = () => {
 
     return (
         <div className="chart-container">
+            <h5>Covid 19 Canada</h5>
             {/* <ReactEcharts
                 option={GL_OPTION}
             /> */}

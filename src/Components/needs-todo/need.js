@@ -1,19 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
+import Cookies from 'js-cookie';
 import './need.css';
 
 
 const Need = ({ need, needs }) => {
 
-    // console.log('from need')
-    // console.log(need)
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    let history = useHistory();
 
     //handles click of delete button
     const handleRemove = () => {
-        //pass the id of the need here 
-        //make DELETE call to the API here - no hook needed, super simple eh
+        const id = {
+            _id: need._id
+        }
+        const url = "http://localhost:5000/deleteNeed";
+        const token = Cookies.get("token");
+
+        const handleErrors = (error) => {
+            if (error) {
+                setErrorMessage(error);
+            }
+            return error;
+        }
+
+
+        fetch(url, {
+            method: 'DELETE',
+            body: JSON.stringify(id),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
+        })
+            .then(res => res.json)
+            .then(response => {
+                console.log(response);
+                //push to login here 
+                history.push('/profile')
+            })
+            .then(handleErrors)
+            .catch(error => {
+                if (error) {
+                    console.log(error);
+                }
+            })
+
         // console.log('remove item')
     }
 
@@ -43,6 +78,7 @@ const Need = ({ need, needs }) => {
                     <DeleteForeverIcon />
                 </button>
             </div>
+            {errorMessage && <div>{errorMessage}</div>}
         </div>
     )
 }

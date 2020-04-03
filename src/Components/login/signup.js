@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useSignUp from '../../Hooks/useSignupForm';
 import useMiniMap from '../../Hooks/useMiniMap';
 import validate from './validate';
@@ -81,7 +82,7 @@ const Signup = () => {
 
     return (
         <div className="login-container">
-            <div className="login-inner">
+            <div className="signup-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <h3>Sign Up</h3>
                     <div className="form-group">
@@ -167,6 +168,9 @@ const Signup = () => {
                     
                     {errorMessage ? <div>{errorMessage.error}</div> : null}
                 </form>
+                <div>
+                <Link className="modal-button" to="/">Already have an account?</Link>
+                </div>
             </div>
         </div>)
 }

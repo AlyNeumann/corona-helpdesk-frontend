@@ -95,6 +95,7 @@ const PieChart = () => {
 
     return (
         <div  className="chart-container">
+            <h5>Covid 19 Global</h5>
             <ReactEchartsCore
                 echarts={echarts}
                 option={option}

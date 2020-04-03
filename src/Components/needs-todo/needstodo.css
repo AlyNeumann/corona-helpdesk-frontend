@@ -3,7 +3,8 @@
     text-align: start;
     /* height: 100%; */
     margin: 5px;
-    /* flex-grow: 0; */
+    flex-grow: 2;
+    /* width: 800px; */
 }
 .needstodo-inner{
     width: 100%;

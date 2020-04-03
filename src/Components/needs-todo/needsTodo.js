@@ -20,7 +20,7 @@ const NeedsTodo = ({ user, needs }) => {
                 <div className="needs-title">Item needed     |     Exchange offered     |     Quantity</div>
                 <ul>
                     {needs.map(need => {
-                        return <Need need={need} key={need._id} needs={needs} />
+                        return <Need need={need} key={need._id} needs={needs}/>
                     })}
                 </ul>
                 <Link to={{

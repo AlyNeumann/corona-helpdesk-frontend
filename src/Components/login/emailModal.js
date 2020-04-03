@@ -159,6 +159,9 @@ export default function EmailModal(props) {
                                 <button
                                     type="submit"
                                 >Retrieve password</button>
+                                <button
+                                    onClick={handleClick}
+                                >cancel</button>
                             </form>
                             {errorMessage ? <div>{errorMessage}</div> : null}
                             {message ? <div>{message}

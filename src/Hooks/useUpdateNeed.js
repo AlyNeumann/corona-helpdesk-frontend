@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const useUpdateNeed = (callback, need, _id) => {
 
@@ -13,7 +13,6 @@ const useUpdateNeed = (callback, need, _id) => {
         exchangeDescription: need.exchangeDescription || ""
     })
 
-    //TODO: if there is no new value, take from place holder
     const handleChange = e => {
         //this is working fine
         const { name, value } = e.target
