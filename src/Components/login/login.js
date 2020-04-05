@@ -41,7 +41,7 @@ const Login = () => {
         const handleErrors = (error) => {
             console.log(error)
             if (error) {
-                setErrorMessage(error)
+                setErrorMessage(error.error)
             } else if (error instanceof TypeError) {
                 setServerError(true)
             } else return error;

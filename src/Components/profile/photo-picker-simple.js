@@ -136,7 +136,6 @@ const StyledDropzone = (props) => {
         </button>
             </div>
             <aside>
-                <h4>Files</h4>
                 <ul>{filepath}</ul>
             </aside>
             <aside style={thumbsContainer}>{thumbs}</aside>

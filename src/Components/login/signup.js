@@ -4,19 +4,43 @@ import useSignUp from '../../Hooks/useSignupForm';
 import useMiniMap from '../../Hooks/useMiniMap';
 import validate from './validate';
 import EmailModal from './emailModal';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import './login.css';
+
+//material ui
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
+
 //needs error handling & error messages displayed
 
 const Signup = () => {
 
-    //TODO: HELP! state is being so weird coming from miniMap, need help...
-    //coords is return address and address is being weird AF
+    //material ui
+    const classes = useStyles();
+    // const [state, setState] = React.useState({
+    //     healthStatus: ''
+    // });
+
+    // const handleChange = (event) => {
+    //     const name = event.target.name;
+    //     setState({
+    //         ...state,
+    //         [name]: event.target.value,
+    //     });
+    // };
 
     //bring in map for location picking
     const [map, address, coords] = useMiniMap("map")
-    // console.log(address)
-    console.log(address);
-    console.log(coords);
+
 
     //open modal for email confirmation
     const [modal, setModal] = useState(false)
@@ -34,7 +58,7 @@ const Signup = () => {
 
     //when address exists, handle value
     useEffect(() => {
-        if (coords ){
+        if (coords) {
             handleLocation(address, coords)
         }
     }, [coords])
@@ -42,13 +66,14 @@ const Signup = () => {
 
     //submit signup form to backend
     function submit() {
+        console.log(values)
         const url = "http://localhost:5000/signup"
 
         //check values before submitting
         console.log(values);
         // handling error messages
         const handleErrors = (response) => {
-            if(response.error){
+            if (response.error) {
                 setErrorMessage(response.error)
             }
             return response;
@@ -69,13 +94,13 @@ const Signup = () => {
             })
             .then(response => {
                 console.log(response)
-                if(response.error){
+                if (response.error) {
                     handleErrors(response)
-                }else{
+                } else {
                     console.log(response);
                     setModal(true)
                 }
-                
+
 
             })
     }
@@ -84,7 +109,7 @@ const Signup = () => {
         <div className="login-container">
             <div className="signup-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
-                    <h3>Sign Up</h3>
+                    <h2>Sign Up</h2>
                     <div className="form-group">
                         <label>Username</label>
                         <input type="text"
@@ -138,19 +163,24 @@ const Signup = () => {
                             value={values.emergencyContacts[1] || ""} />
                     </div>
 
-                    <div>
-                        <label>Health Status</label>
-                        <select className="form-control"
+                    <div className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Health Status</InputLabel>
+                        <Select
+                            native
                             name="healthStatus"
                             onChange={handleChange}
                             value={values.healthStatus} 
-                            defaultValue="1" >
+                            label="Health Status"
+                            inputProps={{
+                                name: 'healthStatus',
+                                id: 'outlined-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="Healthy" value="Healthy" />
                             <option value="1">Healthy</option>
-                            <option value="2">Sick</option>
-                            <option value="3">Immune Compromised/Elderly</option>
-                            <option value="4">Diagnosed/Quarantined</option>
-                            <option value="5">Unsure</option>
-                        </select>
+                            <option value="2">Symptoms/Unsure</option>
+                            <option value="3">Sick</option>
+                        </Select>
                     </div>
 
                     <div className="form-group">
@@ -164,12 +194,12 @@ const Signup = () => {
                     <button type="submit"
                         className="btn btn-secondary btn-block btn-text"
                     >Sign Up</button>
-                    <div>{modal ? <EmailModal email={values.email} changeProp={modal}/>  : null}</div>
-                    
+                    <div>{modal ? <EmailModal email={values.email} changeProp={modal} /> : null}</div>
+
                     {errorMessage ? <div>{errorMessage.error}</div> : null}
                 </form>
                 <div>
-                <Link className="modal-button" to="/">Already have an account?</Link>
+                    <Link className="modal-button" to="/">Already have an account?</Link>
                 </div>
             </div>
         </div>)

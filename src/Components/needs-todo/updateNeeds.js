@@ -7,9 +7,26 @@ import useUpdateNeed from '../../Hooks/useUpdateNeed';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Cookies from 'js-cookie';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import './updateNeeds.css'
 
+//material ui
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
+
 const UpdateNeeds = (props) => {
+
+    //material ui
+    const classes = useStyles();
     // console.log(props.location)
     //getting previous needs from props
     const need = props.location.state.need;
@@ -77,15 +94,27 @@ const UpdateNeeds = (props) => {
         <div className="updateneed-container">
             <div className="updateneed-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="false">
-                    <label>What type of thing do you need right now?</label>
-                    <input type="text"
-                        name="needType"
-                        className="form-control"
-                        // placeholder={values.need}
-                        // {!props.location.state? 'Enter some text' : props.location.state.need.need}
-                        onChange={handleChange}
-                        value={values.needType}
-                    />
+                <div className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Need Type</InputLabel>
+                        <Select
+                            native
+                            name="needType"
+                            onChange={handleChange}
+                            value={values.needType}
+                            label="Need Type"
+                            inputProps={{
+                                name: 'needType',
+                                id: 'outlined-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="NeedType" value="" />
+                            <option value="1">Material Goods</option>
+                            <option value="2">Errand Help</option>
+                            <option value="3">Trade/Skilled Labour</option>
+                            <option value="4">No Need</option>
+                        </Select>
+                    </div>
+                    <div className="form-group">
                     <label>Please describe what you need below: </label>
                     <input type="text"
                         name="needDescription"
@@ -95,14 +124,28 @@ const UpdateNeeds = (props) => {
                         onChange={handleChange}
                         value={values.needDescription}
                     />
-                    <label>What type of thing can you exchange in return? No worries if this is left blank!</label>
-                    <input type="text"
-                        name="exchangeType"
-                        className="form-control"
-                        // placeholder={!props.location.state? 'If you can exchange something, enter it here' : props.location.state.need.exchange}
-                        onChange={handleChange}
-                        value={values.exchangeType}
-                    />
+                    </div>
+                    <div className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Exchange Type</InputLabel>
+                        <Select
+                            native
+                            name="exchangeType"
+                            onChange={handleChange}
+                            value={values.exchangeType}
+                            label="Exchange Type"
+                            inputProps={{
+                                name: 'exchangeType',
+                                id: 'outlined-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="ExchangeType" value="" />
+                            <option value="1">Cash</option>
+                            <option value="2">Money Transfer</option>
+                            <option value="3">Trade/Skilled Labour</option>
+                            <option value="4">No Exchange</option>
+                        </Select>
+                    </div>
+                    <div className="form-group">
                     <label>Please describe what you need below: </label>
                     <input type="text"
                         name="exchangeDescription"
@@ -111,6 +154,7 @@ const UpdateNeeds = (props) => {
                         onChange={handleChange}
                         value={values.exchangeDescription}
                     />
+                    </div>
                     <Link to={{
                         pathname: '/profile',
                     }}>

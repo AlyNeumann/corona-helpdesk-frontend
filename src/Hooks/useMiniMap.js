@@ -42,7 +42,7 @@ const useMiniMap = (id) => {
         const geocoder = new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl,
-            placeholder: '     Enter your address',
+            placeholder: 'Enter your address',
             countries: 'CA',
             marker: false
         })

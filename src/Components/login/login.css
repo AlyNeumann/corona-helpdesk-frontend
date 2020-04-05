@@ -56,6 +56,14 @@ font-family: 'Nunito-Regular', sans-serif;
 .mapbox-ctrl-geocoder {
     font: 'RobotoMonoL' !important;
 }
+.mapboxgl-ctrl-geocoder--icon-search .mapboxgl-ctrl-top-right .mapboxgl-ctrl{
+    right: 0 !important;
+    position: right !important;
+}
+.mapboxgl-ctrl-geocoder input[type='text'] {
+    margin-left: 20px;
+    font-family: 'RobotoMonoL';
+}
 .title {
     font-family: 'RobotoCondensedB';
     padding-bottom: 15px;
@@ -65,6 +73,7 @@ font-family: 'Nunito-Regular', sans-serif;
 }
 .form-control {
     font-family: 'RobotoMonoL';
+    user-select: all;  
 }
  label {
      font-family: 'RobotoMonoB';
@@ -74,5 +83,8 @@ font-family: 'Nunito-Regular', sans-serif;
  }
  .covid-title-image {
      padding: 5%;
-     width: 80%;
+     width: 90%;
+ }
+ .MuiInputBase-input {
+    font-family: 'RobotoMonoB';
  }

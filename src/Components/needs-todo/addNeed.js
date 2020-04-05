@@ -7,10 +7,27 @@ import useAddNeed from '../../Hooks/useAddNeed';
 import CancelPresentationIcon from '@material-ui/icons/CancelPresentation';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import Cookies from 'js-cookie';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import './updateNeeds.css'
+
+//material ui
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
 
 const AddNeeds = () => {
     // console.log(props.location)
+
+     //material ui
+     const classes = useStyles();
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -70,34 +87,80 @@ const AddNeeds = () => {
         <div className="updateneed-container">
             <div className="updateneed-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="false">
-                    <label>What type of thing do you need right now?</label>
+                <div className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Need Type</InputLabel>
+                        <Select
+                            native
+                            name="needType"
+                            onChange={handleChange}
+                            value={values.needType}
+                            label="Need Type"
+                            inputProps={{
+                                name: 'needType',
+                                id: 'outlined-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="NeedType" value="" />
+                            <option value="1">Material Goods</option>
+                            <option value="2">Errand Help</option>
+                            <option value="3">Trade/Skilled Labour</option>
+                            <option value="4">No Need</option>
+                        </Select>
+                    </div>
+                    {/* <label>What type of thing do you need right now?</label>
                     <input type="text"
                         name="needType"
                         className="form-control"
                         onChange={handleChange}
                         value={values.needType}
-                    />
-                    <label>Please describe what you need below: </label>
-                    <input type="text"
-                        name="needDescription"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={values.needDescription}
-                    />
-                    <label>What type of thing can you exchange in return? No worries if this is left blank!</label>
+                    /> */}
+                    <div className="form-group">
+                        <label>Please describe what you need below: </label>
+                        <input type="text"
+                            name="needDescription"
+                            className="form-control"
+                            onChange={handleChange}
+                            value={values.needDescription}
+                        />
+                    </div>
+                    <div className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Exchange Type</InputLabel>
+                        <Select
+                            native
+                            name="exchangeType"
+                            onChange={handleChange}
+                            value={values.exchangeType}
+                            label="Exchange Type"
+                            inputProps={{
+                                name: 'exchangeType',
+                                id: 'outlined-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="ExchangeType" value="" />
+                            <option value="1">Cash</option>
+                            <option value="2">Money Transfer</option>
+                            <option value="3">Trade/Skilled Labour</option>
+                            <option value="4">No Exchange</option>
+                        </Select>
+                    </div>
+
+                    {/* <label>What type of thing can you exchange in return? No worries if this is left blank!</label>
                     <input type="text"
                         name="exchangeType"
                         className="form-control"
                         onChange={handleChange}
                         value={values.exchangeType}
-                    />
-                    <label>Please describe what you can exchange below: </label>
-                    <input type="text"
-                        name="exchangeDescription"
-                        className="form-control"
-                        onChange={handleChange}
-                        value={values.exchangeDescription}
-                    />
+                    /> */}
+                    <div className="form-group">
+                        <label>Please describe what you can exchange below: </label>
+                        <input type="text"
+                            name="exchangeDescription"
+                            className="form-control"
+                            onChange={handleChange}
+                            value={values.exchangeDescription}
+                        />
+                    </div>
+
                     <Link to={{
                         pathname: '/profile',
                     }}>

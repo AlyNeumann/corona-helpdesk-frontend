@@ -3,10 +3,27 @@ import { useHistory } from 'react-router-dom';
 import StyledDropzone from './photo-picker-simple'
 import useProfileUpdate from '../../Hooks/useProfileUpdate';
 import useMiniMap from '../../Hooks/useMiniMap';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import './profileUpdate.css';
+
+//material ui
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
 
 //TODO:send this as form data to back end
 const ProfileUpdate = (props) => {
+
+    //material ui
+    const classes = useStyles();
 
     const user = props.location.state.user;
 
@@ -105,18 +122,24 @@ const ProfileUpdate = (props) => {
                             onChange={handleChange}
                             value={values.location} />
                     </div>
-                    <div>
-                        <label>Health Status</label>
-                        <select className="form-control"
+                    <div className={classes.formControl}>
+                        <InputLabel htmlFor="outlined-age-native-simple">Health Status</InputLabel>
+                        <Select
+                            native
                             name="healthStatus"
                             onChange={handleChange}
-                            value={values.healthStatus} >
+                            value={values.healthStatus}
+                            label="Health Status"
+                            inputProps={{
+                                name: 'healthStatus',
+                                id: 'outlined-age-native-simple',
+                            }}
+                        >
+                            <option aria-label="Healthy" value="Healthy" />
                             <option value="1">Healthy</option>
-                            <option value="2">Sick</option>
-                            <option value="3">Immune Compromised/Elderly</option>
-                            <option value="4">Diagnosed/Quarantined</option>
-                            <option value="5">Unsure</option>
-                        </select>
+                            <option value="2">Symptoms/Unsure</option>
+                            <option value="3">Sick</option>
+                        </Select>
                     </div>
                     <div className="form-group">
                         <label>Contact Info</label>

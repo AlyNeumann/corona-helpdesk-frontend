@@ -143,6 +143,9 @@ export default function EmailModal(props) {
                     {props.email ? <div className={classes.paper}>
                         <h2 id="spring-modal-title">Thank you!</h2>
                         <p id="spring-modal-description">An email has been sent to {props.email}</p>
+                        <div>
+                            <button onClick={handleClick}>Ok!</button>
+                        </div>
                     </div> :
                         <div className={classes.paper}>
                             <h2 id="spring-modal-title">Password Retrieval</h2>

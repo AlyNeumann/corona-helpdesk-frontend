@@ -22,7 +22,7 @@
 }
 @media only screen and (max-device-width: 480px) {
     .profile-container{
-     width: 300px;
+     width: 450px;
    }
    .profile-inner{
        width: 80%;
