@@ -162,7 +162,7 @@ const Signup = () => {
 
 
                     <button type="submit"
-                        className="btn btn-secondary btn-block"
+                        className="btn btn-secondary btn-block btn-text"
                     >Sign Up</button>
                     <div>{modal ? <EmailModal email={values.email} changeProp={modal}/>  : null}</div>
                     

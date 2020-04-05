@@ -137,7 +137,7 @@ const Profile = ({ user, needs }) => {
                         user
                     }
                 }}>
-                    <button className="btn btn-secondary"
+                    <button className="btn btn-secondary btn-text"
                     >Update Profile
                     </button>
                 </Link>

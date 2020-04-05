@@ -8,12 +8,24 @@
 }
 .needstodo-inner{
     width: 100%;
+    /* width: 100%; */
     background: #ffffff;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     padding: 40px 55px 45px 55px;
-    border-radius: 15px;
+    border-radius: 5px;
     transition: all .3s;
 }
 .needs-title {
     text-align: center;
+    padding-left: 0 !important;
+}
+.needs-ul {
+    margin: 0 !important;
+    padding-inline-start: 0 !important;
+}
+ul {
+    padding-inline-start: 0 !important;
+}
+.needs-label {
+    font-family: 'RobotoCondensedL' !important;
 }

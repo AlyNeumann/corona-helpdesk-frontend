@@ -127,7 +127,7 @@ const StyledDropzone = (props) => {
     ));
 
     return (
-        <div className="container">
+        <div className="container drag-drop">
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop some files here</p>

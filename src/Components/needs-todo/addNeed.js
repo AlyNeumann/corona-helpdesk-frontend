@@ -91,7 +91,7 @@ const AddNeeds = () => {
                         onChange={handleChange}
                         value={values.exchangeType}
                     />
-                    <label>Please describe what you need below: </label>
+                    <label>Please describe what you can exchange below: </label>
                     <input type="text"
                         name="exchangeDescription"
                         className="form-control"
@@ -108,7 +108,7 @@ const AddNeeds = () => {
                     </Link>
 
                     <button
-                        className="btn btn-secondary"
+                        className="btn btn-secondary btn-text"
                         type="submit">
                         <CheckBoxIcon />
                     </button>

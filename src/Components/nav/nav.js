@@ -170,7 +170,7 @@ function Navbar(props) {
                                 <MenuIcon />
                             </IconButton>
                             {/* <img src={Logo} alt="Lono logo" className="dashboard-image"/> */}
-                            <Typography variant="h6" noWrap>
+                            <Typography variant="h6" className="typography-title" noWrap>
                                 {(history.location.pathname === "/profile") && "User Profile"}
                                 {(history.location.pathname === "/map") && "Map"}
                                 {(history.location.pathname === "/needsfeed") && "List of Needs"}
@@ -213,7 +213,7 @@ function Navbar(props) {
                         <List>
                             <ListItem button key="home" onClick={() => { history.push("/profile") }}>
                                 <ListItemIcon><MailIcon /></ListItemIcon>
-                                <ListItemText primary={"Home"} />
+                                <ListItemText className="list-text" primary={"Home"} />
                             </ListItem>
                             <ListItem button key="event" onClick={() => { history.push("/map") }}>
                                 <ListItemIcon><Place /></ListItemIcon>

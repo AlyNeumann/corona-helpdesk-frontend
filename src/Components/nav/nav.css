@@ -5,7 +5,7 @@
 .toggle-avatar-name{
     font-size: 13px;
     color:black;
-    font-family:monospace ;
+    font-family: 'RobotoMonoL';
     margin-top:10px;
     margin-bottom: 0;
 }
@@ -13,7 +13,7 @@
 .toggle-avatar-title{
     font-size: 10px;
     color:black;
-    font-family:monospace ;
+    font-family:'RobotoMonoL';
     margin-bottom: 0;
     letter-spacing: 0;
     word-wrap: break-word;
@@ -23,4 +23,13 @@
     width: 40px;
     height: 40px;
     margin-right: 10px;
+}
+.typography-title {
+    font-family: 'RobotoCondensedB' !important;
+}
+/* .list-text {
+    font-family: 'RobotoCondensedB' !important;
+} */
+.MuiTypography-body1  {
+    font-family: 'RobotoCondensedR' !important;
 }

@@ -12,7 +12,7 @@
     background: #ffffff;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     padding: 40px 55px 45px 55px;
-    border-radius: 15px;
+    border-radius: 5px;
     transition: all .3s;
 }
 .userneed-container {
@@ -23,13 +23,14 @@
     height: 100%;
 }
 .userneed-inner {
-    width: 100%;
+    width: 90%;
     background: #ffffff;
     box-shadow: 0px 1px 6px rgba(34, 35, 58, 0.2);
     padding: 4px 5px 4px 5px;
     border-radius: 5px;
     transition: all .3s;
-    display: inline-flex;
+    display: flex;
+    /* flex-wrap: wrap; */
     margin:2px;
 }
 .userneed-text {
@@ -39,10 +40,21 @@
     margin-bottom: 0;
     margin-left: 5px;
     margin-right: 5px;
-    
-    /* display: inline-flex; */
+    font-family: 'RobotoCondensedR';
+  /* display: inline-flex; */
 }
 .needs-title {
     text-align: start;
     padding-left: 40px;
 }
+
+@media only screen and (max-device-width: 480px) {
+    .user-needs-list-container{
+     width: 300px;
+   }
+   .user-needs-list-inner{
+       width: 80%;
+       height: 540px;
+   }
+  
+ }

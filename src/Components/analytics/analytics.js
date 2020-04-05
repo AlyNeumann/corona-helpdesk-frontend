@@ -19,7 +19,7 @@ const Analytics = () => {
     return (
         <div className="anatylics-container">
             <div>
-                <h3>Analytics</h3>
+                <h2>Analytics</h2>
             </div>
             <ScoreBoard/>
             <div className="chart-container">

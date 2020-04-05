@@ -56,7 +56,7 @@ const NeedsFeed = () => {
 
     return(
         <div>
-            <h3>Needs Feed</h3>
+            <h2>Needs Feed</h2>
             {needsFeed? needsFeed.map(user => {
                 return <NeedsList user={user} />
             }): 'No needs right now!'}

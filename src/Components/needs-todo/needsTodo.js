@@ -16,9 +16,9 @@ const NeedsTodo = ({ user, needs }) => {
     return (
         <div className="needstodo-container">
             <div className="needstodo-inner">
-                <h3 className="needs-title">{user ? <div>Update Your Needs List {user.name}</div> : <div>Update your needs list!</div>}</h3>
-                <div className="needs-title">Item needed     |     Exchange offered     |     Quantity</div>
-                <ul>
+                <h3 className="needs-title">{user ? <h2>Update Your Needs List {user.name}</h2> : <h2>Update your needs list!</h2>}</h3>
+                <div className="needs-label">Item needed     |     Exchange offered     |     Quantity</div>
+                <ul className="needs-ul">
                     {needs.map(need => {
                         return <Need need={need} key={need._id} needs={needs}/>
                     })}
@@ -32,7 +32,7 @@ const NeedsTodo = ({ user, needs }) => {
                     }
                 }} >
                     <button
-                        className="btn btn-secondary">
+                        className="btn btn-secondary btn-text">
                         <AddBoxIcon />
                     </button>
                 </Link>

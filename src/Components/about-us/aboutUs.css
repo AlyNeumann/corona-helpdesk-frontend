@@ -1,8 +1,13 @@
-.aboutus-containter {
-    justify-content: space-between;
+.aboutus-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    text-align: center;
 }
-/* .aboutus-inner {
 
-} */
+h4 {
+    font-family: 'RobotoMonoB' !important;
+}
+.btn-text {
+    font-family: 'RobotoMonoB' !important;
+}

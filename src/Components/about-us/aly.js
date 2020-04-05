@@ -112,7 +112,9 @@ const Aly = () => {
                     </Collapse>
                 </List>
                 <button
-                onClick={handleLinkedIn}>LinkedIn Profile</button>
+                onClick={handleLinkedIn} 
+                className="btn btn-secondary btn-text"
+                >LinkedIn Profile</button>
             </div>
         </div>
     )

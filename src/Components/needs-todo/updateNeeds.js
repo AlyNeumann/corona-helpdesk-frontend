@@ -115,13 +115,13 @@ const UpdateNeeds = (props) => {
                         pathname: '/profile',
                     }}>
                         <button
-                            className="btn btn-secondary">
+                            className="btn btn-secondary btn-text">
                             <CancelPresentationIcon />
                         </button>
                     </Link>
 
                     <button
-                        className="btn btn-secondary"
+                        className="btn btn-secondary btn-text"
                         type="submit">
                         <CheckBoxIcon />
                     </button>

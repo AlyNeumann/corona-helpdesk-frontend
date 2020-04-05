@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './Fonts/RobotoCondensed-Bold.ttf';
+import './Fonts/RobotoCondensed-Light.ttf';
+import './Fonts/RobotoCondensed-Regular.ttf';
+import './Fonts/RobotoCondensed-LightItalic.ttf';
+import './Fonts/RobotoMono-Light.ttf';
+import './Fonts/RobotoMono-Bold.ttf';
 
 ReactDOM.render(
   <React.StrictMode>

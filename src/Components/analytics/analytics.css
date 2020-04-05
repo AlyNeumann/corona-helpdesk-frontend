@@ -20,3 +20,15 @@
     display: flex;
     justify-content: space-evenly;
 } */
+
+.MuiTypography-body2 {
+    font-family: 'RobotoMonoL' !important;
+}
+
+h5 {
+    font-family: 'RobotoCondensedR';
+    padding: 20px;
+}
+.echart-for-react.chart {
+    font-family: 'RobotoMonoL' !important;
+}

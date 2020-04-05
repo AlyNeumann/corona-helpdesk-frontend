@@ -5,9 +5,11 @@ import './aboutUs.css';
 
 const AboutUs = () => {
     return(
-        <div>
+        <div className="aboutus-container">
+            {/* <div className="aboutus-inner"> */}
             <Vrush />
             <Aly />
+            {/* </div> */}
         </div>
     )
 

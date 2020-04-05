@@ -19,8 +19,8 @@ font-family: 'Nunito-Regular', sans-serif;
     margin: auto;
     background: #ffffff;
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-    padding: 40px 55px 45px 55px;
-    border-radius: 15px;
+    padding: 15px 55px 45px 55px;
+    border-radius: 5px;
     transition: all .3s;
 }
 .signup-inner{
@@ -35,10 +35,11 @@ font-family: 'Nunito-Regular', sans-serif;
 .modal-button{
     border: none;
     background-color: #ffffff00;
-    color: rgb(16, 91, 138);
+    color: #4F7800;
+    font-family: 'RobotoCondensedB';
 }
 .modal-button:hover {
-    color: rgb(29, 139, 179);
+    color: #C9837D;
     text-decoration: underline;
   }
 #map {
@@ -49,5 +50,29 @@ font-family: 'Nunito-Regular', sans-serif;
     /* display: inline-flex; */
     margin: auto;
     overflow: hidden;
+    font-family: 'RobotoMonoL';
    
 }
+.mapbox-ctrl-geocoder {
+    font: 'RobotoMonoL' !important;
+}
+.title {
+    font-family: 'RobotoCondensedB';
+    padding-bottom: 15px;
+}
+.smaller-title {
+    font-family: 'RobotoCondensedL';
+}
+.form-control {
+    font-family: 'RobotoMonoL';
+}
+ label {
+     font-family: 'RobotoMonoB';
+ }
+ .btn-block {
+    font-family: 'RobotoCondensedB' !important;
+ }
+ .covid-title-image {
+     padding: 5%;
+     width: 80%;
+ }

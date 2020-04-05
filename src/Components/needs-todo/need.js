@@ -9,6 +9,7 @@ import './need.css';
 const Need = ({ need, needs }) => {
 
     const [errorMessage, setErrorMessage] = useState(null);
+    const [deleted, setDeleted] = useState(false);
 
     let history = useHistory();
 
@@ -39,8 +40,7 @@ const Need = ({ need, needs }) => {
             .then(res => res.json)
             .then(response => {
                 console.log(response);
-                //push to login here 
-                history.push('/profile')
+                setDeleted(true);
             })
             .then(handleErrors)
             .catch(error => {
@@ -68,12 +68,12 @@ const Need = ({ need, needs }) => {
                     }
                 }} >
                     <button
-                        className="btn-needs btn-secondary">
+                        className="btn-needs btn-secondary btn-text">
                         <EditIcon />
                     </button>
                 </Link>
                 <button
-                    className="btn-needs btn-secondary"
+                    className="btn-needs btn-secondary btn-text"
                     onClick={handleRemove}>
                     <DeleteForeverIcon />
                 </button>

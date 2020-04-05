@@ -6,6 +6,8 @@ import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 import { RepeatOneSharp } from '@material-ui/icons';
+import Covid_title from '../../Assets/images/Covid_title.png';
+import Covid_title2 from '../../Assets/images/Covid_title2.png';
 //needs error handling & error messages displayed
 
 const Login = () => {
@@ -83,11 +85,12 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            <h6>Please login to your account</h6>
+            <img className="covid-title-image"src={Covid_title}/>
+            {/* <h6 className="smaller-title">Please login to your account</h6> */}
             <div>
-                <h3>Login</h3>
                 <div className="login-inner">
                     <form onSubmit={handleSubmit} noValidate >
+                    <h3 className="title">Login</h3>
                         <div className="form-group">
                             <label>Email address</label>
                             <input
@@ -116,7 +119,7 @@ const Login = () => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <button type="submit" className="btn btn-secondary btn-block">
+                        <button type="submit" className="btn btn-secondary btn-block btn-text">
                             Submit
                     </button>
                     </form>

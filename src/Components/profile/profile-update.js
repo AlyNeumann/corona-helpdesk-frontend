@@ -148,12 +148,12 @@ const ProfileUpdate = (props) => {
 
                     </div>
                     <button type="submit"
-                        className="btn btn-secondary update-btn"
+                        className="btn btn-secondary update-btn btn-text"
                     >Update</button>
 
                 </form>
                 <button
-                    className="btn btn-secondary update-btn"
+                    className="btn btn-secondary update-btn btn-text"
                     onClick={handleClose}>
                     Close</button>
             </div>

@@ -20,7 +20,7 @@ const NeedsList = ({ user }) => {
                     // }
                 }} >
                     <button
-                        className="btn-needs btn-secondary">
+                        className="btn-needs btn-secondary btn-text">
                         <AccountCircleIcon />
                     </button>
                 </Link>

@@ -11,3 +11,32 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'RobotoCondensedB';
+  src: local('RobotoCondensedB'), url(./Fonts/RobotoCondensed-Bold.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoCondensedR';
+  src: local('RobotoCondensedR'), url(./Fonts/RobotoCondensed-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoCondensedL';
+  src: local('RobotoCondensedL'), url(./Fonts/RobotoCondensed-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoCondensedItalic';
+  src: local('RobotoCondensedItalic'), url(./Fonts/RobotoCondensed-LightItalic.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoMonoL';
+  src: local('RobotoMonoL'), url(./Fonts/RobotoMono-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoMonoB';
+  src: local('RobotoMonoB'), url(./Fonts/RobotoMono-Bold.ttf) format('truetype');
+}
+
+
