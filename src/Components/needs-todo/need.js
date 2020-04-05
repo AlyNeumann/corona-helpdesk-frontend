@@ -83,7 +83,7 @@ const Need = ({ need, needs }) => {
     }
 
     return (
-        <div className="need-container">
+        // <div className="need-container">
             <div className="need-inner">
                 <div className="paired-need-text">
                     <div className={classes.root}>
@@ -95,12 +95,12 @@ const Need = ({ need, needs }) => {
                             >
                                 <Typography className={classes.heading}>
                                     {/* <div className="need-text"> */}
-                                    Need Type: {need.needType}
+                                    Need: {need.needType}
                                     {/* </div> */}
                                 </Typography>
                                 <Typography className={classes.heading}>
                                     {/* <div className="need-text"> */}
-                                    Exchange Type: {need.exchangeType}
+                                    Exchange: {need.exchangeType}
                                     {/* </div> */}
                                 </Typography>
                                 <div className="paired-need-text">
@@ -127,12 +127,12 @@ const Need = ({ need, needs }) => {
                             <ExpansionPanelDetails>
                                 <div className="need-text">
                                     <Typography>
-                                        Need Description: {need.needDescription}
+                                        Description: {need.needDescription}
                                     </Typography>
                                 </div>
                                 <div className="need-text">
                                     <Typography>
-                                        Exchange Description: {need.exchangeDescription}
+                                        Description: {need.exchangeDescription}
                                     </Typography>
                                 </div>
                             </ExpansionPanelDetails>
@@ -166,9 +166,10 @@ const Need = ({ need, needs }) => {
                         <DeleteForeverIcon />
                     </button>
                 </div> */}
+                   {errorMessage && <div>{errorMessage}</div>}
             </div>
-            {errorMessage && <div>{errorMessage}</div>}
-        </div>
+         
+        // </div>
     )
 }
 

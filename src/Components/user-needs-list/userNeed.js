@@ -46,24 +46,24 @@ const UserNeed = ({ need }) => {
                     >
                         <Typography className={classes.heading}>
                             {/* <div className="need-text"> */}
-                            Need Type: {need.needType}
+                            Need: {need.needType}
                             {/* </div> */}
                         </Typography>
                         <Typography className={classes.heading}>
                             {/* <div className="need-text"> */}
-                            Exchange Type: {need.exchangeType}
+                            Exchange: {need.exchangeType}
                             {/* </div> */}
                         </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="need-text">
                             <Typography>
-                                Need Description: {need.needDescription}
+                                Description: {need.needDescription}
                             </Typography>
                         </div>
                         <div className="need-text">
                             <Typography>
-                                Exchange Description: {need.exchangeDescription}
+                                Description: {need.exchangeDescription}
                             </Typography>
                         </div>
                     </ExpansionPanelDetails>

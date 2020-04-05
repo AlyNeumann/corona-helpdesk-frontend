@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import useNeedsFeed from '../../Hooks/useNeedsFeed';
 import ReactDom from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import Marker from '../marker/marker';
@@ -8,6 +9,8 @@ import useGeoJson from '../../Hooks/useGeoJson';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
 import { UserContext } from '../user-context/userContext';
 import DirectionsIcon from '@material-ui/icons/Directions';
+import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './map.css';
 //TODO: bring in user info for popup
 //TODO: create hashmap for health statuses to use here & on profile
@@ -15,98 +18,34 @@ import './map.css';
 
 
 const Map = () => {
-  //TODO: bring user in from Context 
+
 
   const [map, coordinates, accessToken] = useMap("mapbox")
   // const [geocodes] = useGeoJson();
   const [healthType, setHealthType] = useState({ status: "no health status" })
   const [directionsOpen, setDirectionsOpen] = useState(false);
   const [textDirections, setTextDirections] = useState(true)
+    //bring user in from Context 
   const user = useContext(UserContext);
   const userInfo = user[0];
 
 
-  //TODO: api call here for all user data
-
-  //mock data to be removed 
-  const mockdata = [
-    {
-      "user_id": "1234",
-      "needs": [{
-        "need": "what i need",
-        "quantity": 10,
-        "exchange": "some mangoes"
-      }],
-      "location": {
-        "coords": {
-          "lat": -73.556300, "lng": 45.519500
-        },
-        "address": "145 rue st"
-      },
-      "healthStatus": 1
-    },
-    {
-      "user_id": "4321",
-      "needs": {
-        "need": "a thing i need",
-        "quantity": 4,
-        "exchange": "cash money"
-      },
-      "location": {
-        "coords": {
-          "lat": 45.520600, "lng": -73.560250
-        },
-        "address": "145 rue st"
-      },
-      "healthStatus": 1
-    },
-    {
-      "user_id": "5678",
-      "needs": {
-        "need": "what i need",
-        "quantity": 10,
-        "exchange": "some mangoes"
-      },
-      "location": {
-        "coords": {
-          "lat": 45.518590, "lng": -73.558300
-        },
-        "address": "145 rue st"
-      },
-      "healthStatus": 2
-    },
-    {
-      "user_id": "8765",
-      "needs": {
-        "need": "a thing i need",
-        "quantity": 4,
-        "exchange": "cash money"
-      },
-      "location": {
-        "coords": {
-          "lat": 45.530600, "lng": -73.550250
-        },
-        "address": "145 rue st"
-      },
-      "healthStatus": 2
-    }
-  ]
-
+  //api call here for all user data
+  const { needsFeed } = useNeedsFeed(userInfo)
+  console.log(needsFeed)
 
 
   //hashmap for health statuses
-  const addMarkers = (map, mockdata, type) => {
+  const addMarkers = (map, needsFeed, type) => {
     const healthOptions = {
       "1": "Healthy",
-      "2": "Sick",
-      "3": "Immune Compromised/Elderly",
-      "4": "Diagnosed/Quarantined",
-      "5": "Unsure"
+      "2": "Symptoms, Immune Compomised, or Elderly",
+      "3": "Diagnosed/Quarantined"
     }
     //add a marker for each user using lat & long & taking in colour type
-    mockdata.forEach(data => {
+    needsFeed.forEach(data => {
       data.healthStatus = healthOptions[data.healthStatus]
-      let coords = [data.location.coords.lng, data.location.coords.lat];
+      let coords = [data.houseLocation.coordinates[1], data.houseLocation.coordinates[0]];
       const marker_el = Marker(map, coords, type).getElement();
       //popup on each marker
 
@@ -121,14 +60,24 @@ const Map = () => {
     //html inside of popup with buttons for choosing direction method
     const html = (
       <div className="popup">
-        {/* <div
-              className="popupCover"
-              style={{ backgroundImage: "url(" + data.photoUrl + ")" }}
-            ></div> */}
-        <div className="title">{data.user_id}</div>
-        <div className="popup-description">Needs : {data.needs.need}</div>
-        <div className="popup-description">Location : {data.address}</div>
-        <div className="popup-description">HealthStatus: {data.healthStatus}</div>
+    <div className="popup-profile">
+        <div className="title">{data.name}</div>
+                      {/* TODO - link to profile of this user with this button*/}
+                    <button
+                        className="btn-needs btn-secondary btn-text mapboxpopup-btn">
+                        <AccountCircleIcon />
+                    </button>
+                    </div>
+
+        <div className="popup-description">
+          <div className="popuptitle">Needs : </div>
+          {data.neededList.map(need => {
+            return (<div>{need.needDescription}</div>)
+          })}</div>
+
+        <div className="popup-description">
+          <div className="popuptitle">HealthStatus:  </div>
+          {data.healthStatus}</div>
 
       </div>
     );
@@ -142,7 +91,7 @@ const Map = () => {
     popup
       .getPopup()
       .setDOMContent(renderedPopup)
-      .setLngLat([data.location.coords.lng, data.location.coords.lat])
+      .setLngLat([data.houseLocation.coordinates[1], data.houseLocation.coordinates[0]])
       .setMaxWidth("250px")
       .addTo(map);
 
@@ -201,10 +150,10 @@ const Map = () => {
 
   //TODO: fix this, either clear destination or remove controls
   const handleCloseDirections = () => {
-    if(textDirections){
+    if (textDirections) {
       setTextDirections(false)
       directions.actions.clearDestination();
-    }else{
+    } else {
       setTextDirections(true)
     }
 
@@ -215,37 +164,37 @@ const Map = () => {
   //to add Markers based on health status
   useEffect(() => {
     //filter through array and divide by health status
-    const greenArray = mockdata.filter(function (el) {
+    const greenArray = needsFeed.filter(function (el) {
       return el.healthStatus === 1
     });
-    const redArray = mockdata.filter(function (el) {
+    const redArray = needsFeed.filter(function (el) {
       return el.healthStatus === 2
     });
-    const yellowArray = mockdata.filter(function (el) {
-      return el.healthStatus === 3 || el.healthStatus === 4 || el.healthStatus === 5
+    const yellowArray = needsFeed.filter(function (el) {
+      return el.healthStatus === 3
     });
 
     //add markers based on filter
-    if (mockdata && map) {
+    if (needsFeed && map) {
       let type = "green"
       addMarkers(map, greenArray, type);
     }
-    if (mockdata && map) {
+    if (needsFeed && map) {
       let type = "red"
       addMarkers(map, redArray, type);
     }
-    if (mockdata && map) {
+    if (needsFeed && map) {
       let type = "yellow"
       addMarkers(map, yellowArray, type);
     }
 
-  }, [map, mockdata]);
+  }, [map, needsFeed]);
 
 
 
   return (
     <div id="mapbox">
-      {!directionsOpen ?   <div className="mapboxgl-ctrl-top-left">
+      {!directionsOpen ? <div className="mapboxgl-ctrl-top-left">
         <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
           <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
             aria-label="Toggle fullscreen"
@@ -253,7 +202,7 @@ const Map = () => {
             onClick={handleDirections}><DirectionsIcon /></button>
         </div>
       </div> : null}
-    
+
       {directionsOpen ?
         <div className="mapboxgl-ctrl-top-left">
           <div className="mapboxgl-ctrl mapboxgl-ctrl-group">

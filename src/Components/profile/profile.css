@@ -1,7 +1,5 @@
 .profile-container {
-    /* flex-direction: row; */
-    text-align: start;
-   
+    text-align: center;
     width: 400px;
     margin: 5px;
     flex-grow: 1;
@@ -25,8 +23,9 @@
      width: 450px;
    }
    .profile-inner{
-       width: 80%;
-       height: 540px;
+       width: 90%;
+       height: 570px;
+       padding: 30px 15px 45px 15px;
    }
    .profile-image {
        width: 60px;
@@ -42,3 +41,15 @@
  .drag-drop {
     font-family: 'RobotoCondensedR' !important;
  }
+
+ @media only screen and (max-device-width: 480px) {
+    .profile-container {
+        text-align: center;
+        width: 400px;
+        margin: 5px;
+        flex-grow: 1;
+        justify-content: space-around;
+    }
+    
+   
+  }

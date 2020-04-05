@@ -1,5 +1,5 @@
 import React from 'react';
-import SingleNeed from '../needs-todo/need';
+import SingleNeed from './singleneed';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
@@ -25,7 +25,7 @@ const NeedsList = ({ user }) => {
                     </button>
                 </Link>
                 <div className="need-text">Name: {user.name}</div>
-                <ul>
+                <ul className="needslist-container">
                     {needs.map(need => {
                         return <SingleNeed need={need} key={need._id}/>
                     })}

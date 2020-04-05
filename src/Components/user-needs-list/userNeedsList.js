@@ -10,7 +10,7 @@ const UserNeedsList = ({ user, needs }) => {
         <div className="user-needs-list-container">
             <div className="user-needs-list-inner">
             <h2 className="needs-title"> Your Needs List </h2>
-            <div className="needs-label">Item needed     |     Exchange offered     |     Quantity</div>
+            <div className="needs-label">What I need      |     What I can exchange</div>
                 <ul>
                 {needs.map(need => {
                     return <UserNeed user={user} need={need} key={need._id}/>

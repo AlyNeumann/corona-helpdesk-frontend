@@ -1,6 +1,6 @@
 .user-needs-list-container {
     flex-direction: row;
-    text-align: start;
+    text-align: center;
   
     margin: 5px;
     justify-content: flex-start;
@@ -44,18 +44,15 @@
     font-family: 'RobotoCondensedR';
   /* display: inline-flex; */
 }
-.needs-title {
-    text-align: start;
+/* .needs-title {
     padding-left: 40px;
-}
+} */
 
 @media only screen and (max-device-width: 480px) {
-    .user-needs-list-container{
-     width: 300px;
-   }
    .user-needs-list-inner{
-       width: 80%;
+        width: 90%;
        height: 540px;
+       padding: 30px 15px 15px 15px;
    }
   
  }

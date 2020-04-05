@@ -9,15 +9,14 @@ import './needstodo.css';
 
 
 const NeedsTodo = ({ user, needs }) => {
-    // console.log('from needs todo')
-    // console.log(needs)
+
 
 
     return (
         <div className="needstodo-container">
             <div className="needstodo-inner">
                 <div className="needs-title">{user ? <h2>Update Your Needs List {user.name}</h2> : <h2>Update your needs list!</h2>}</div>
-                <div className="needs-label">Item needed     |     Exchange offered     |     Quantity</div>
+                <div className="needs-label">What I need      |     What I can exchange</div>
                 <ul className="needs-ul">
                     {needs.map(need => {
                         return <Need need={need} key={need._id} needs={needs}/>
