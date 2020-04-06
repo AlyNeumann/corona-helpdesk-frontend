@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    text-align: start;
+    text-align: start !important;
     height: 100%;
 }
 .need-inner {
@@ -21,16 +21,7 @@
     margin:0;
     padding: 0;
 }
-@media only screen and (max-device-width: 480px) {
-    .paired-need-text{
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
-        margin:0;
-        padding: 0;
-        /* justify-content: flex-end; */
-    }
-  }
+
 .need-text {
     width: 40%;
     margin-top:0;
@@ -51,3 +42,31 @@
 .needslist-container {
     width: 100%;
 }
+.MuiExpansionPanelDetails-root {
+    padding: 8px 6px 14px !important;
+}
+.MuiExpansionPanelSummary-root {
+    padding: 8px 14px 0px !important;
+}
+.typetext {
+    padding-left: 9%;
+    width: 40%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+@media only screen and (max-device-width: 480px) {
+    .paired-need-text{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        margin:0;
+        padding: 0;
+        /* justify-content: flex-end; */
+    }
+    .typetext {
+        padding-left: 15%;
+        width: 40%;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+  }

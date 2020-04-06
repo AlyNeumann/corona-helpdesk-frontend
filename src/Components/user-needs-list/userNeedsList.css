@@ -1,7 +1,7 @@
 .user-needs-list-container {
     flex-direction: row;
     text-align: center;
-  
+    width: 400px;
     margin: 5px;
     justify-content: flex-start;
     flex-grow: 1;
@@ -42,15 +42,16 @@
     margin-left: 5px;
     margin-right: 5px;
     font-family: 'RobotoCondensedR';
+    flex-grow: 1;
   /* display: inline-flex; */
 }
-/* .needs-title {
-    padding-left: 40px;
-} */
+.needlist-title {
+    font-family: 'RobotoCondensedB';
+}
 
 @media only screen and (max-device-width: 480px) {
    .user-needs-list-inner{
-        width: 90%;
+        width: 100%;
        height: 540px;
        padding: 30px 15px 15px 15px;
    }

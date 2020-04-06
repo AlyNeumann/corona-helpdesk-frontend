@@ -15,7 +15,7 @@ const NeedsTodo = ({ user, needs }) => {
     return (
         <div className="needstodo-container">
             <div className="needstodo-inner">
-                <div className="needs-title">{user ? <h2>Update Your Needs List {user.name}</h2> : <h2>Update your needs list!</h2>}</div>
+                <div className="needs-title"><h2>Update Your Needs List</h2></div>
                 <div className="needs-label">What I need      |     What I can exchange</div>
                 <ul className="needs-ul">
                     {needs.map(need => {
@@ -32,7 +32,7 @@ const NeedsTodo = ({ user, needs }) => {
                 }} >
                     <button
                         className="btn btn-secondary btn-text">
-                        <AddBoxIcon />
+                        <AddBoxIcon className="buttonclass"/>
                     </button>
                 </Link>
             </div>

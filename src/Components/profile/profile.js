@@ -16,6 +16,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import PlaceIcon from '@material-ui/icons/Place';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import ChatIcon from '@material-ui/icons/Chat';
 
 
 //TODO: will need to make hashmap for health statuses 
@@ -47,6 +48,7 @@ const Profile = ({ user, needs }) => {
 
     //open profile update if true
     const [update, setUpdate] = useState(false)
+    const [profileId, setProfileId] = useState(null)
 
     //for material UI
     const classes = useStyles();
@@ -73,6 +75,7 @@ const Profile = ({ user, needs }) => {
     useEffect(() => {
 
         user.healthStatus = healthOptions[user.healthStatus]
+        setProfileId(user._id)
 
     }, [user])
 
@@ -87,29 +90,24 @@ const Profile = ({ user, needs }) => {
                 <List
                     component="nav"
                     aria-labelledby="nested-list-subheader"
-                    subheader={
-                        <ListSubheader component="div" id="nested-list-subheader">
-                            Profile Details
-                </ListSubheader>
-                    }
                     className={classes.root}
                 >
                     <ListItem button>
                         <ListItemIcon>
-                            <PlaceIcon />
+                            <ChatIcon className="iconclass"/>
                         </ListItemIcon>
 
-                        <ListItemText primary={user ? `User Address: ${user.houseLocation}` : "User Address: Unknown"} />
+                        <ListItemText primary="Chat"/>
                     </ListItem>
                     <ListItem button>
                         <ListItemIcon>
-                            <FavoriteBorderIcon />
+                            <FavoriteBorderIcon className="iconclass"/>
                         </ListItemIcon>
                         <ListItemText primary={user ? `Health Status: ${user.healthStatus}` : "Health Status: Unknown"} />
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
-                            <ContactMailIcon />
+                            <ContactMailIcon className="iconclass"/>
                         </ListItemIcon>
                         <ListItemText primary={user ? `Contact Info : ${user.email}` : "Contact Info: Unknown"} />
                         {open ? <ExpandLess /> : <ExpandMore />}
@@ -118,13 +116,13 @@ const Profile = ({ user, needs }) => {
                         <List component="div" disablePadding>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <ContactPhoneIcon />
+                                    <ContactPhoneIcon className="iconclass"/>
                                 </ListItemIcon>
                                 <ListItemText primary={user ? `Phone: ${user.phoneNumber}` : "Phone: Unknown"} />
                             </ListItem>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
-                                    <ContactPhoneIcon />
+                                    <ContactPhoneIcon className="iconclass"/>
                                 </ListItemIcon>
                                 <ListItemText primary={user ? `Emergency Contact: ${user.emergencyContacts}` : "Emergency: Unknown"} />
                             </ListItem>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import EditIcon from '@material-ui/icons/Edit';
@@ -33,13 +33,43 @@ const Need = ({ need, needs }) => {
     //material ui
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [needType, setNeedType] = useState(null);
+    const [exchangeType, setExchangeType] = useState(null);
+
+    const [errorMessage, setErrorMessage] = useState(null);
+    const [deleted, setDeleted] = useState(false);
+
+    //hashmap for need types
+    const needOptions = {
+        "1": "Item",
+        "2": "Errand",
+        "3": "Repair",
+        "4": "Service",
+        "5": "Nothing",
+      }
+
+      //hashmap for exchange types
+    const exchangeOptions = {
+        "1": "Cash",
+        "2": "Money Transfer",
+        "3": "Trade",
+        "4": "Skill",
+        "5": "Nothing"
+      }
+
+      const getTextOptions = (need) => {
+        setNeedType(needOptions[need.needType])
+        setExchangeType(exchangeOptions[need.exchangeType])
+      }
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
 
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [deleted, setDeleted] = useState(false);
+    useEffect(() => {
+        getTextOptions(need)
+    }, [need])
+
 
     let history = useHistory();
 
@@ -95,12 +125,12 @@ const Need = ({ need, needs }) => {
                             >
                                 <Typography className={classes.heading}>
                                     {/* <div className="need-text"> */}
-                                    Need: {need.needType}
+                                    <p className="needlist-title">Need: </p>{needType}
                                     {/* </div> */}
                                 </Typography>
-                                <Typography className={classes.heading}>
+                                <Typography className={`${classes.heading} typetext`}>
                                     {/* <div className="need-text"> */}
-                                    Exchange: {need.exchangeType}
+                                    <p className="needlist-title">Exchange: </p>{exchangeType}
                                     {/* </div> */}
                                 </Typography>
                                 <div className="paired-need-text">
@@ -114,25 +144,25 @@ const Need = ({ need, needs }) => {
                                     }} >
                                         <button
                                             className="btn-needs btn-secondary btn-text">
-                                            <EditIcon />
+                                            <EditIcon className="buttonclass"/>
                                         </button>
                                     </Link>
                                     <button
                                         className="btn-needs btn-secondary btn-text"
                                         onClick={handleRemove}>
-                                        <DeleteForeverIcon />
+                                        <DeleteForeverIcon className="buttonclass"/>
                                     </button>
                                 </div>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <div className="need-text">
                                     <Typography>
-                                        Description: {need.needDescription}
+                                       {need.needDescription}
                                     </Typography>
                                 </div>
                                 <div className="need-text">
                                     <Typography>
-                                        Description: {need.exchangeDescription}
+                                     {need.exchangeDescription}
                                     </Typography>
                                 </div>
                             </ExpansionPanelDetails>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import '../needs-todo/need.css';
 
 //material ui
 const useStyles = makeStyles((theme) => ({
@@ -14,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     heading: {
         fontSize: theme.typography.pxToRem(15),
         flexBasis: '33.33%',
-        flexShrink: 0,
+        flexShrink: 0
     },
     secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
@@ -25,21 +26,32 @@ const useStyles = makeStyles((theme) => ({
 
 const SingleNeed = ({ need }) => {
 
-    // //hashmap for need types
-    // const needOptions = {
-    //     "1": "Healthy",
-    //     "2": "Sick",
-    //     "3": "Immune Compromised/Elderly",
-    //     "4": "Diagnosed/Quarantined",
-    //   }
+    const [needType, setNeedType] = useState(null);
+    const [exchangeType, setExchangeType] = useState(null);
 
-    //   //hashmap for exchange types
-    // const exchangeOptions = {
-    //     "1": "Healthy",
-    //     "2": "Sick",
-    //     "3": "Immune Compromised/Elderly",
-    //     "4": "Diagnosed/Quarantined",
-    //   }
+    //hashmap for need types
+    const needOptions = {
+        "1": "Item",
+        "2": "Errand",
+        "3": "Repair",
+        "4": "Service",
+        "5": "Nothing",
+      }
+
+      //hashmap for exchange types
+    const exchangeOptions = {
+        "1": "Cash",
+        "2": "Money Transfer",
+        "3": "Trade",
+        "4": "Skill",
+        "5": "Nothing"
+      }
+
+      const getTextOptions = (need) => {
+        setNeedType(needOptions[need.needType])
+        setExchangeType(exchangeOptions[need.exchangeType])
+      }
+
 
     //material ui
     const classes = useStyles();
@@ -49,6 +61,9 @@ const SingleNeed = ({ need }) => {
         setExpanded(isExpanded ? panel : false);
     };
 
+    useEffect(() => {
+        getTextOptions(need)
+    }, [need])
 
     return (
         <div>
@@ -61,24 +76,24 @@ const SingleNeed = ({ need }) => {
                             >
                                 <Typography className={classes.heading}>
                                     {/* <div className="need-text"> */}
-                                    Need: {need.needType}
+                                    <p className="needlist-title">  Need: </p>{needType}
                                     {/* </div> */}
                                 </Typography>
-                                <Typography className={classes.heading}>
+                                <Typography className={`${classes.heading} typetext`}>
                                     {/* <div className="need-text"> */}
-                                    Exchange: {need.exchangeType}
+                                    <p className="needlist-title">Exchange: </p>{exchangeType}
                                     {/* </div> */}
                                 </Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
                                 <div className="need-text">
                                     <Typography>
-                                        Description: {need.needDescription}
+                                   {need.needDescription}
                                     </Typography>
                                 </div>
                                 <div className="need-text">
                                     <Typography>
-                                        Description: {need.exchangeDescription}
+                                       {need.exchangeDescription}
                                     </Typography>
                                 </div>
                             </ExpansionPanelDetails>

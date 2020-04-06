@@ -4,8 +4,14 @@ import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const NeedsList = ({ user }) => {
-    console.log(user)
-    const needs = user.neededList;
+    // console.log(user)
+    const needs = user.neededList; 
+    const id = user._id
+
+    const handleClick = () => {
+        //go to the page of that user they clicked on
+        console.log(id)
+    }
 
     return (
         <div >
@@ -20,8 +26,10 @@ const NeedsList = ({ user }) => {
                     // }
                 }} >
                     <button
-                        className="btn-needs btn-secondary btn-text">
-                        <AccountCircleIcon />
+                        className="btn-needs btn-secondary btn-text"
+                        // value={user._id}
+                        onClick={handleClick}>
+                        <AccountCircleIcon className="buttonclass"/>
                     </button>
                 </Link>
                 <div className="need-text">Name: {user.name}</div>

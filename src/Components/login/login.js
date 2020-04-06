@@ -66,7 +66,7 @@ const Login = () => {
                     //store auth in cookies response.token
                     console.log('cookie storage is next yo');
                     console.log(response)
-                    Cookies.set("token", response.token);
+                    Cookies.set("token", response.token, { expires: 1 });
                     history.push('/profile')
                 }
 

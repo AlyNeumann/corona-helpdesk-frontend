@@ -8,6 +8,7 @@ const NeedsFeed = () => {
     const [needsFeed, setNeedsFeed] = useState([])
     //state for error messages
     const [errorMessage, setErrorMessage] = useState(null);
+
    
     const getNeedsFeed = () => {
         //TODO: pull this info from global user state

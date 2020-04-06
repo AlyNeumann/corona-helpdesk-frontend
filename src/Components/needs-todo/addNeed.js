@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
 const AddNeeds = () => {
     // console.log(props.location)
 
-     //material ui
-     const classes = useStyles();
+    //material ui
+    const classes = useStyles();
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -87,7 +87,7 @@ const AddNeeds = () => {
         <div className="updateneed-container">
             <div className="updateneed-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="false">
-                <div className={classes.formControl}>
+                    <div className={classes.formControl}>
                         <InputLabel htmlFor="outlined-age-native-simple">Need Type</InputLabel>
                         <Select
                             native
@@ -101,10 +101,11 @@ const AddNeeds = () => {
                             }}
                         >
                             <option aria-label="NeedType" value="" />
-                            <option value="1">Material Goods</option>
-                            <option value="2">Errand Help</option>
-                            <option value="3">Trade/Skilled Labour</option>
-                            <option value="4">No Need</option>
+                            <option value="1">Item</option>
+                            <option value="2">Errand</option>
+                            <option value="3">Repair</option>
+                            <option value="4">Service</option>
+                            <option value="5">Nothing</option>
                         </Select>
                     </div>
                     {/* <label>What type of thing do you need right now?</label>
@@ -139,8 +140,9 @@ const AddNeeds = () => {
                             <option aria-label="ExchangeType" value="" />
                             <option value="1">Cash</option>
                             <option value="2">Money Transfer</option>
-                            <option value="3">Trade/Skilled Labour</option>
-                            <option value="4">No Exchange</option>
+                            <option value="3">Trade</option>
+                            <option value="4">Skill</option>
+                            <option value="5">Nothing</option>
                         </Select>
                     </div>
 
@@ -165,15 +167,15 @@ const AddNeeds = () => {
                         pathname: '/profile',
                     }}>
                         <button
-                            className="btn btn-secondary">
-                            <CancelPresentationIcon />
+                            className="btn btn-secondary btn-text">
+                            <CancelPresentationIcon className="buttonclass"/>
                         </button>
                     </Link>
 
                     <button
                         className="btn btn-secondary btn-text"
                         type="submit">
-                        <CheckBoxIcon />
+                        <CheckBoxIcon className="buttonclass"/>
                     </button>
                     {errorMessage && <div>{errorMessage}</div>}
 

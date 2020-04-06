@@ -21,11 +21,9 @@ const Map = () => {
 
 
   const [map, coordinates, accessToken] = useMap("mapbox")
-  // const [geocodes] = useGeoJson();
-  const [healthType, setHealthType] = useState({ status: "no health status" })
   const [directionsOpen, setDirectionsOpen] = useState(false);
   const [textDirections, setTextDirections] = useState(true)
-    //bring user in from Context 
+  //bring user in from Context 
   const user = useContext(UserContext);
   const userInfo = user[0];
 
@@ -33,6 +31,13 @@ const Map = () => {
   //api call here for all user data
   const { needsFeed } = useNeedsFeed(userInfo)
   console.log(needsFeed)
+
+  // //when button on popup is clicked, go to user's profile
+  // const handlePopupClick = (e) => {
+  //   //go to profile of this person
+  //   console.log(e)
+  //   console.log(e.target.value)
+  // }
 
 
   //hashmap for health statuses
@@ -56,18 +61,26 @@ const Map = () => {
   //add a popup to each marker, with directions options
   const addPopup = (map, marker_el, data) => {
 
+    //when button on popup is clicked, go to user's profile
+    const handlePopupClick = () => {
+      //go to profile of this person
+     console.log(data._id)
+    }
 
     //html inside of popup with buttons for choosing direction method
     const html = (
       <div className="popup">
-    <div className="popup-profile">
-        <div className="title">{data.name}</div>
-                      {/* TODO - link to profile of this user with this button*/}
-                    <button
-                        className="btn-needs btn-secondary btn-text mapboxpopup-btn">
-                        <AccountCircleIcon />
-                    </button>
-                    </div>
+        <div className="popup-profile">
+          <div className="title">{data.name}</div>
+          {/* TODO - link to profile of this user with this button*/}
+          <button
+            className="btn-needs btn-secondary btn-text mapboxpopup-btn"
+            // value={data._id}
+            //e => this.handleInput(e, "value")
+            onClick={handlePopupClick}>
+            <AccountCircleIcon />
+          </button>
+        </div>
 
         <div className="popup-description">
           <div className="popuptitle">Needs : </div>

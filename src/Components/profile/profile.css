@@ -18,19 +18,7 @@
     width:100px;
     border-radius: 30%;
 }
-@media only screen and (max-device-width: 480px) {
-    .profile-container{
-     width: 450px;
-   }
-   .profile-inner{
-       width: 90%;
-       height: 570px;
-       padding: 30px 15px 45px 15px;
-   }
-   .profile-image {
-       width: 60px;
-   }
- }
+
  h2 {
     font-family: 'RobotoCondensedB' !important;
     /* font-family: 'RobotoMonoB' !important; */
@@ -41,6 +29,15 @@
  .drag-drop {
     font-family: 'RobotoCondensedR' !important;
  }
+ .iconclass {
+     color: #718751;
+ }
+ /* - #9c2525
+    - #2e535c
+	- #699696
+    - #dbaf9a 
+    - #405226
+    - #718751*/
 
  @media only screen and (max-device-width: 480px) {
     .profile-container {

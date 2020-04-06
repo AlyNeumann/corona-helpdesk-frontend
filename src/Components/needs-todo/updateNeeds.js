@@ -94,7 +94,7 @@ const UpdateNeeds = (props) => {
         <div className="updateneed-container">
             <div className="updateneed-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="false">
-                <div className={classes.formControl}>
+                    <div className={classes.formControl}>
                         <InputLabel htmlFor="outlined-age-native-simple">Need Type</InputLabel>
                         <Select
                             native
@@ -108,22 +108,24 @@ const UpdateNeeds = (props) => {
                             }}
                         >
                             <option aria-label="NeedType" value="" />
-                            <option value="1">Material Goods</option>
-                            <option value="2">Errand Help</option>
-                            <option value="3">Trade/Skilled Labour</option>
-                            <option value="4">No Need</option>
+                            <option value="1">Item</option>
+                            <option value="2">Errand</option>
+                            <option value="3">Repair</option>
+                            <option value="4">Service</option>
+                            <option value="5">Nothing</option>
                         </Select>
                     </div>
                     <div className="form-group">
-                    <label>Please describe what you need below: </label>
-                    <input type="text"
-                        name="needDescription"
-                        className="form-control"
-                        // placeholder={values.need}
-                        // {!props.location.state? 'Enter some text' : props.location.state.need.need}
-                        onChange={handleChange}
-                        value={values.needDescription}
-                    />
+                        <label>Please describe what you need below: </label>
+                        <input type="text"
+                            name="needDescription"
+                            className="form-control"
+                            multiline rows="4"
+                            // placeholder={values.need}
+                            // {!props.location.state? 'Enter some text' : props.location.state.need.need}
+                            onChange={handleChange}
+                            value={values.needDescription}
+                        />
                     </div>
                     <div className={classes.formControl}>
                         <InputLabel htmlFor="outlined-age-native-simple">Exchange Type</InputLabel>
@@ -141,33 +143,35 @@ const UpdateNeeds = (props) => {
                             <option aria-label="ExchangeType" value="" />
                             <option value="1">Cash</option>
                             <option value="2">Money Transfer</option>
-                            <option value="3">Trade/Skilled Labour</option>
-                            <option value="4">No Exchange</option>
+                            <option value="3">Trade</option>
+                            <option value="4">Skill</option>
+                            <option value="5">Nothing</option>
                         </Select>
                     </div>
                     <div className="form-group">
-                    <label>Please describe what you need below: </label>
-                    <input type="text"
-                        name="exchangeDescription"
-                        className="form-control"
-                        // placeholder={!props.location.state? 'Enter quantity' : props.location.state.need.quantity}
-                        onChange={handleChange}
-                        value={values.exchangeDescription}
-                    />
+                        <label>Please describe what you need below: </label>
+                        <input type="text"
+                            multiline rows="4"
+                            name="exchangeDescription"
+                            className="form-control"
+                            // placeholder={!props.location.state? 'Enter quantity' : props.location.state.need.quantity}
+                            onChange={handleChange}
+                            value={values.exchangeDescription}
+                        />
                     </div>
                     <Link to={{
                         pathname: '/profile',
                     }}>
                         <button
                             className="btn btn-secondary btn-text">
-                            <CancelPresentationIcon />
+                            <CancelPresentationIcon className="buttonclass"/>
                         </button>
                     </Link>
 
                     <button
                         className="btn btn-secondary btn-text"
                         type="submit">
-                        <CheckBoxIcon />
+                        <CheckBoxIcon className="buttonclass"/>
                     </button>
                     {errorMessage && <div>{errorMessage}</div>}
 
