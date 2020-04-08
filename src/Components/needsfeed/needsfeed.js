@@ -50,7 +50,6 @@ const NeedsFeed = () => {
             })
             .then(response => {
                 if (!errorMessage) {
-                    console.log(response)
                     setNeedsFeed(response);
                 }
 
@@ -68,7 +67,7 @@ const NeedsFeed = () => {
             <h2>Needs Feed</h2>
             <animated.div style={props}>
             {needsFeed? needsFeed.map(user => {
-                return <NeedsList user={user} />
+                return <NeedsList user={user} key={user._id}/>
             }): 'No needs right now!'}
         </animated.div>
         </div>

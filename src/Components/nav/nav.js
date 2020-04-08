@@ -30,6 +30,8 @@ import Signup from '../login/signup';
 import Cookies from 'js-cookie';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
 import { UserContext } from '../../Components/user-context/userContext';
+import { ThemeContext } from '../../Components/user-context/userContext';
+
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -99,7 +101,10 @@ const useStyles = makeStyles(theme => ({
 
 
 function Navbar(props) {
-   
+
+    const currentTheme = useContext(ThemeContext);
+    // console.log(currentTheme)
+
 
     const history = useHistory();
     const classes = useStyles();
@@ -108,8 +113,7 @@ function Navbar(props) {
     const user = useContext(UserContext);
     const userInfo = user[0];
     const [tokenExists, setTokenExists] = useState(false)
-    // console.log('from nav bar')
-    // console.log(user[0])
+
 
     //TODO: are we using local storage for this?
     const handleLogout = () => {
@@ -125,18 +129,17 @@ function Navbar(props) {
     };
 
     //TODO: make secure by pulling cookie
-      useEffect(()=>{
-          if(Cookies.get("token")){
+    useEffect(() => {
+        if (Cookies.get("token")) {
             setTokenExists(true)
-          }
-         
-    },[user])
-     
+        }
 
+    }, [user])
 
 
     return (
         <React.Fragment>
+                   <div styles={currentTheme}>
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
                 <div className={classes.root}>
                     <CssBaseline />
@@ -202,33 +205,34 @@ function Navbar(props) {
                         <Divider />
                         <List>
                             <ListItem button key="home" onClick={() => { history.push("/profile") }}>
-                                <ListItemIcon><MailIcon className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><MailIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText className="list-text" primary={"Home"} />
                             </ListItem>
                             <ListItem button key="event" onClick={() => { history.push("/map") }}>
-                                <ListItemIcon><Place className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><Place className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"Map"} />
                             </ListItem>
                             <ListItem button key="needsfeed" onClick={() => { history.push("/needsfeed") }}>
-                                <ListItemIcon><ListIcon className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><ListIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"Needs Feed"} />
                             </ListItem>
                             <ListItem button key="analytics" onClick={() => { history.push("/analytics") }}>
-                                <ListItemIcon><AssessmentIcon className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><AssessmentIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"Analytics"} />
                             </ListItem>
                             <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
-                                <ListItemIcon><ChatIcon className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><ChatIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"Chat"} />
                             </ListItem>
                             <ListItem button key="aboutus" onClick={() => { history.push("/aboutus") }}>
-                                <ListItemIcon><SupervisorAccountIcon className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><SupervisorAccountIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"About Us"} />
                             </ListItem>
                             <ListItem button key="resources" onClick={() => { history.push("/resources") }}>
-                                <ListItemIcon><HelpIcon className="iconclass"/></ListItemIcon>
+                                <ListItemIcon><HelpIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"Resources"} />
                             </ListItem>
+                      
                             <Divider />
                         </List>
                     </Drawer>
@@ -240,6 +244,7 @@ function Navbar(props) {
             </div>
             {(history.location.pathname === "/") && <Login />}
             {(history.location.pathname === "/signup") && <Signup />}
+            </div>
         </React.Fragment>
     );
 }

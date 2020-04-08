@@ -112,8 +112,8 @@ const useMap = (id) => {
   
       //watch on geolocation position change
       geolocate.on("geolocate", pos => {
-        console.log(pos)
-        console.log(pos.coords.latitude,pos.coords.longitude)
+        // console.log(pos)
+        // console.log(pos.coords.latitude,pos.coords.longitude)
         setCoordinates({
           ...coordinates,
           lat: pos.coords.latitude,

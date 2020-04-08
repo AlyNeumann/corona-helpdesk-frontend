@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        flexBasis: '33.33%',
+        flexBasis: '10%',
         flexShrink: 0,
     },
     secondaryHeading: {
@@ -46,21 +46,21 @@ const Need = ({ need, needs }) => {
         "3": "Repair",
         "4": "Service",
         "5": "Nothing",
-      }
+    }
 
-      //hashmap for exchange types
+    //hashmap for exchange types
     const exchangeOptions = {
         "1": "Cash",
         "2": "Money Transfer",
         "3": "Trade",
         "4": "Skill",
         "5": "Nothing"
-      }
+    }
 
-      const getTextOptions = (need) => {
+    const getTextOptions = (need) => {
         setNeedType(needOptions[need.needType])
         setExchangeType(exchangeOptions[need.exchangeType])
-      }
+    }
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
@@ -114,69 +114,71 @@ const Need = ({ need, needs }) => {
 
     return (
         // <div className="need-container">
-            <div className="need-inner">
-                <div className="paired-need-text">
-                    <div className={classes.root}>
-                        <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                            <ExpansionPanelSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1bh-content"
-                                id="panel1bh-header"
-                            >
-                                <Typography className={classes.heading}>
-                                    {/* <div className="need-text"> */}
-                                    <p className="needlist-title">Need: </p>{needType}
-                                    {/* </div> */}
-                                </Typography>
-                                <Typography className={`${classes.heading} typetext`}>
-                                    {/* <div className="need-text"> */}
-                                    <p className="needlist-title">Exchange: </p>{exchangeType}
-                                    {/* </div> */}
-                                </Typography>
-                                <div className="paired-need-text">
-                                    <Link to={{
-                                        pathname: '/updateneeds',
-                                        state: {
-                                            "functionType": "update",
-                                            need,
-                                            needs
-                                        }
-                                    }} >
-                                        <button
-                                            className="btn-needs btn-secondary btn-text">
-                                            <EditIcon className="buttonclass"/>
-                                        </button>
-                                    </Link>
+        <div className="need-inner">
+            <div className="paired-need-text">
+                <div className={classes.root}>
+                    <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                        <ExpansionPanelSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1bh-content"
+                            id="panel1bh-header"
+                        >
+                            <Typography className={classes.heading}>
+                                Need:
+                            </Typography>
+                            <Typography className={classes.secondaryHeading}>
+                                {needType}
+                            </Typography>
+                            <Typography className={`${classes.heading} typetext`}>
+                                Exchange:
+                            </Typography>
+                            <Typography className={classes.secondaryHeading}>
+                                {exchangeType}
+                            </Typography>
+                            <div className="paired-need-text">
+                                <Link to={{
+                                    pathname: '/updateneeds',
+                                    state: {
+                                        "functionType": "update",
+                                        need,
+                                        needs
+                                    }
+                                }} >
                                     <button
-                                        className="btn-needs btn-secondary btn-text"
-                                        onClick={handleRemove}>
-                                        <DeleteForeverIcon className="buttonclass"/>
+                                        className="btn-needs btn-secondary btn-text">
+                                        <EditIcon className="buttonclass" />
                                     </button>
-                                </div>
-                            </ExpansionPanelSummary>
-                            <ExpansionPanelDetails>
-                                <div className="need-text">
-                                    <Typography>
-                                       {need.needDescription}
-                                    </Typography>
-                                </div>
-                                <div className="need-text">
-                                    <Typography>
-                                     {need.exchangeDescription}
-                                    </Typography>
-                                </div>
-                            </ExpansionPanelDetails>
+                                </Link>
+                                <button
+                                    className="btn-needs btn-secondary btn-text"
+                                    onClick={handleRemove}>
+                                    <DeleteForeverIcon className="buttonclass" />
+                                </button>
+                            </div>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <div className="need-text">
+                                <Typography>
+                                    {need.needDescription}
+                                </Typography>
+                            </div>
+                            <div className="need-text">
+                                <Typography>
+                                    {need.exchangeDescription}
+                                </Typography>
+                            </div>
+                        </ExpansionPanelDetails>
 
-                        </ExpansionPanel>
-                    </div>
-
-
+                    </ExpansionPanel>
                 </div>
-                {/* <div className="paired-need-text">
+
+
+            </div>
+            {/* <div className="paired-need-text">
                     <div className="need-text">Exchange Type: {need.exchangeType}</div>
                     <div className="need-text">Exchange Description: {need.exchangeDescription}</div>
                 </div> */}
-                {/* <div className="paired-need-text">
+            {/* <div className="paired-need-text">
                     <Link to={{
                         pathname: '/updateneeds',
                         state: {
@@ -196,9 +198,9 @@ const Need = ({ need, needs }) => {
                         <DeleteForeverIcon />
                     </button>
                 </div> */}
-                   {errorMessage && <div>{errorMessage}</div>}
-            </div>
-         
+            {errorMessage && <div>{errorMessage}</div>}
+        </div>
+
         // </div>
     )
 }

@@ -48,8 +48,14 @@
 .MuiExpansionPanelSummary-root {
     padding: 8px 14px 0px !important;
 }
+.makeStyles-heading {
+    flex-basis: 10% !important;
+}
+/* .makeStyles-heading-186 {
+    flex-basis: 10% !important;
+} */
 .typetext {
-    padding-left: 9%;
+    padding-left: 3%;
     width: 40%;
     margin-left: 5px;
     margin-right: 5px;
@@ -64,7 +70,7 @@
         /* justify-content: flex-end; */
     }
     .typetext {
-        padding-left: 15%;
+        padding-left: 5%;
         width: 40%;
         margin-left: 5px;
         margin-right: 5px;

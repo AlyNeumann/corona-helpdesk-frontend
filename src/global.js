@@ -7,8 +7,8 @@ export const Button = styled.button`
   background: transparent;
   font-size: 16px;
   font-family: 'RobotoCondensedB'
-  border-radius: 3px;
-  color: #718751;
+  border-radius: 5px;
+  color: black;
   color: ${props => (props.primary ? '#718751' : '#405226')};
   border: ${props =>
     props.primary ? '2px solid #dbaf9a' : '2px solid #699696'};
@@ -18,12 +18,12 @@ export const Button = styled.button`
   &:hover {
     color: white;
     background-color: ${props =>
-      props.primary ? '#718751'  : '#405226'};
+      props.primary ? '#9ba896'  : '#414240'};
   }
 `;
 
 //TODO: make sick button
-export const GlobalButton = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
   *,
   *::after,
   *::before {

@@ -9,20 +9,20 @@ export const ThemeContext = createContext({});
 const UserContextStore = ({ children }) => {
     const [user, setUser] = useState([]);
     const [needs, setNeeds] = useState([]);
-    const [theme, setTheme] = useState(lightTheme);
+    const [currentTheme, setCurrentTheme] = useState(lightTheme);
 
     //check browser for theme preference
     //not working....yet
     useEffect(() => {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !theme) {
-            setTheme(darkTheme)
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !currentTheme) {
+            setCurrentTheme(darkTheme)
         }
     }, [])
 
     return (
         <UserContext.Provider value={[user, setUser]}>
             <NeedsContext.Provider value={[needs, setNeeds]}>
-                <ThemeContext.Provider value={[theme, setTheme]}>
+                <ThemeContext.Provider value={[currentTheme, setCurrentTheme]}>
                     {children}
                 </ThemeContext.Provider>
             </NeedsContext.Provider>

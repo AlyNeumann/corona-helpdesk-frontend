@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import useNeedsFeed from '../../Hooks/useNeedsFeed';
 import ReactDom from 'react-dom';
 import mapboxgl from 'mapbox-gl';
@@ -30,14 +31,11 @@ const Map = () => {
 
   //api call here for all user data
   const { needsFeed } = useNeedsFeed(userInfo)
-  console.log(needsFeed)
 
-  // //when button on popup is clicked, go to user's profile
-  // const handlePopupClick = (e) => {
-  //   //go to profile of this person
-  //   console.log(e)
-  //   console.log(e.target.value)
-  // }
+  //to link to user's profile view from popup
+  const handlePopupClick = (e) => {
+    console.log(e.target)
+  }
 
 
   //hashmap for health statuses
@@ -61,11 +59,19 @@ const Map = () => {
   //add a popup to each marker, with directions options
   const addPopup = (map, marker_el, data) => {
 
-    //when button on popup is clicked, go to user's profile
-    const handlePopupClick = () => {
-      //go to profile of this person
-     console.log(data._id)
-    }
+    //TODO: this is not working, tried with Link as well...help
+    // //import history
+    // let history = useHistory()
+
+    // //when button on popup is clicked, go to user's profile
+    // const handlePopupClick = () => {
+    //   //go to profile of this person
+    //   console.log(data._id)
+    //   history.push({
+    //     pathname: '/profileview',
+    //     state: { user: data}
+    //   })
+    // }
 
     //html inside of popup with buttons for choosing direction method
     const html = (
@@ -73,22 +79,23 @@ const Map = () => {
         <div className="popup-profile">
           <div className="title">{data.name}</div>
           {/* TODO - link to profile of this user with this button*/}
+          {/* <Link to={{
+            // link to profile of user!
+            pathname: '/profileview',
+            state: {
+              user
+            }
+          }} > */}
           <button
             className="btn-needs btn-secondary btn-text mapboxpopup-btn"
-            // value={data._id}
-            //e => this.handleInput(e, "value")
-            onClick={handlePopupClick}>
-            <AccountCircleIcon />
+            onClick={handlePopupClick}
+            value={data}
+          >
+            <img className="button-img" src={user.photoUrl ? user.photoUrl : PortraitPlaceholder} />
+
           </button>
+          {/* </Link> */}
         </div>
-        {/* {!directionsOpen ? <div className="mapboxgl-ctrl-top-left">
-        <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
-          <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
-            aria-label="Toggle fullscreen"
-            type="button"
-            onClick={handleDirections}><DirectionsIcon /></button>
-        </div>
-      </div> : null} */}
         <div className="popup-description">
           <div className="popuptitle">Needs : </div>
           {data.neededList.map(need => {

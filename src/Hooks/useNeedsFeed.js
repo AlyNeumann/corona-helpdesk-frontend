@@ -40,7 +40,6 @@ const useNeedsFeed = () => {
             })
             .then(response => {
                 if (!errorMessage) {
-                    console.log(response)
                     setNeedsFeed(response);
                 }
 

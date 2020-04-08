@@ -75,14 +75,11 @@ const SingleNeed = ({ need }) => {
                                 id="panel1bh-header"
                             >
                                 <Typography className={classes.heading}>
-                                    {/* <div className="need-text"> */}
-                                    <p className="needlist-title">  Need: </p>{needType}
-                                    {/* </div> */}
+                                    Need: {needType}
+
                                 </Typography>
                                 <Typography className={`${classes.heading} typetext`}>
-                                    {/* <div className="need-text"> */}
-                                    <p className="needlist-title">Exchange: </p>{exchangeType}
-                                    {/* </div> */}
+                                    Exchange: {exchangeType}
                                 </Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>

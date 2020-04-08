@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        flexBasis: '33.33%',
+        flexBasis: '10%',
         flexShrink: 0,
     },
     secondaryHeading: {
@@ -76,15 +76,17 @@ const UserNeed = ({ need }) => {
                         id="panel1bh-header"
                     >
                         <Typography className={classes.heading}>
-                            {/* <div className="need-text"> */}
-                            <p className="needlist-title">Need: </p>{needType}
-                            {/* </div> */}
+                           Need:
                         </Typography>
+                        <Typography className={classes.secondaryHeading}>
+                           {needType}
+                           </Typography>
                         <Typography className={`${classes.heading} typetext`}>
-                            {/* <div className="need-text"> */}
-                            <p className="needlist-title">Exchange: </p>{exchangeType}
-                            {/* </div> */}
+                           Exchange: 
                         </Typography>
+                        <Typography className={classes.secondaryHeading}>
+                            {exchangeType}
+                               </Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <div className="need-text">

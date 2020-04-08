@@ -13,6 +13,8 @@ import AboutUs from './Components/about-us/aboutUs';
 import Resources from './Components/resources/resources';
 import ProfileView from './Components/profile-view/profileView';
 import UserContextStore, { UserContext } from './Components/user-context/userContext';
+import { ThemeContext } from './Components/user-context/userContext';
+// import { lightTheme, darkTheme } from '../../theme';
 
 
 function App() {
@@ -20,12 +22,14 @@ function App() {
   //global state of User
   //pass to nav for userinfo
   const user = useContext(UserContext);
-  console.log(user)
+    //theme
+    const currentTheme = useContext(ThemeContext);
+    console.log(currentTheme)
 
 
   return (
     <Router>
-      <UserContextStore>
+      <UserContextStore>Î
         <Navbar user={user}>
           <Switch>
             <Route path="/map" exact component={Map} />

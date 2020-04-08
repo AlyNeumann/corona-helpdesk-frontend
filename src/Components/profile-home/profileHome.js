@@ -26,34 +26,33 @@ const ProfileHome = () => {
     const props2= useSpring({
         opacity: 1, 
         from: {opacity: 0},
-        delay: 1000
+        delay: 750
     })
     const props3 = useSpring({
         opacity: 1, 
         from: {opacity: 0},
-        delay: 2000
+        delay: 1250
     })
 
     //theme
-    const [theme, setTheme] = useContext(ThemeContext);
+    const [currentTheme, setCurrentTheme] = useContext(ThemeContext);
 
     //setting global context for user
     const [user, setUser] = useContext(UserContext);
-    // console.log('from profile')
-    // console.log(user)
+
     //setting global context for user needs
     const [needs, setNeeds] = useContext(NeedsContext);
     //state for error messages
     const [errorMessage, setErrorMessage] = useState(null);
-    //TODO: GET needs list 
-    console.log(theme)
+
+
 
     //for theme
     const handleClick = () => {
-        if (theme === lightTheme) {
-            setTheme(darkTheme)
+        if (currentTheme === lightTheme) {
+            setCurrentTheme(darkTheme)
         } else {
-            setTheme(lightTheme)
+            setCurrentTheme(lightTheme)
         }
     }
     const getUserAndNeeds = () => {
@@ -100,7 +99,7 @@ const ProfileHome = () => {
 
     return (
    
-        <div style={theme}>
+        <div>
             {user ?
                 <div className="profile-home-container">
                      <animated.div style={props}>

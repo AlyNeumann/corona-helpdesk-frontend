@@ -1,7 +1,9 @@
 import React from 'react';
 import SingleNeed from './singleneed';
 import { Link } from 'react-router-dom';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
+import './needslist.css'
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const NeedsList = ({ user }) => {
     // console.log(user)
@@ -24,13 +26,14 @@ const NeedsList = ({ user }) => {
                     }
                 }} >
                     <button
-                        className="btn-needs btn-secondary btn-text"
+                        // className="btn-needs btn-secondary btn-text"
                         // value={user._id}
                         onClick={handleClick}>
-                        <AccountCircleIcon className="buttonclass"/>
+                            <img className="button-img" src={user.photoUrl? user.photoUrl : PortraitPlaceholder}/>
+                        {/* <AccountCircleIcon className="buttonclass"/> */}
                     </button>
                 </Link>
-                <div className="need-text">Name: {user.name}</div>
+                <div className="need-text">{user.name}</div>
                 <ul className="needslist-container">
                     {needs.map(need => {
                         return <SingleNeed need={need} key={need._id}/>

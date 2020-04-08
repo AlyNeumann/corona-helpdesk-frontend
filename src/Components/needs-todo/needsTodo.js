@@ -15,7 +15,7 @@ const NeedsTodo = ({ user, needs }) => {
     return (
         <div className="needstodo-container">
             <div className="needstodo-inner">
-                <div className="needs-title"><h2>Update Your Needs List</h2></div>
+                <div className="needs-title"><h2>Update Your Needs</h2></div>
                 <div className="needs-label">What I need      |     What I can exchange</div>
                 <ul className="needs-ul">
                     {needs.map(need => {
