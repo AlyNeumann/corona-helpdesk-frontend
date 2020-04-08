@@ -26,14 +26,14 @@ const NeedsList = ({ user }) => {
                     }
                 }} >
                     <button
-                        // className="btn-needs btn-secondary btn-text"
+                        className="btn-img"
                         // value={user._id}
                         onClick={handleClick}>
                             <img className="button-img" src={user.photoUrl? user.photoUrl : PortraitPlaceholder}/>
                         {/* <AccountCircleIcon className="buttonclass"/> */}
                     </button>
                 </Link>
-                <div className="need-text">{user.name}</div>
+                <h5 className="need-text title-name">{user.name}</h5>
                 <ul className="needslist-container">
                     {needs.map(need => {
                         return <SingleNeed need={need} key={need._id}/>

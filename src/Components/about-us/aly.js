@@ -63,7 +63,7 @@ const Aly = () => {
                 <div className="profile-image-container" >
                     Image Here
                 </div>
-                <h4>Aly Marguerite Neumann</h4>
+                <h4>Aly Neumann</h4>
                 <List
                     component="nav"
                     aria-labelledby="nested-list-subheader"

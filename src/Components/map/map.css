@@ -72,7 +72,8 @@
 
   .popup {
   width: 160px;
-  background-color: rgb(32, 46, 9) !important;
+  background-image: linear-gradient(to bottom, rgba(80, 80, 1, 0.598), rgb(46, 48, 0));
+  /* background-color: rgb(32, 46, 9) !important; */
   color: #fff;
   text-align: left;
   padding:10px;
@@ -98,7 +99,7 @@
 .title {
   padding-top: 14px;
   padding-bottom: 0 !important;
-  font-size: x-large;
+  font-size: large;
 }
 /* .mapboxpopup-btn {
   top: 0;
@@ -121,4 +122,14 @@
   from {opacity: 0;}
   to {opacity:1 ;}
 }
-
+.mapboxgl-user-location-accuracy-circle {
+  background-color: rgba(109, 136, 121, 0.571) ;
+}
+.mapboxgl-user-location-dot, .mapboxgl-user-location-dot:before {
+  background-color: rgb(70, 150, 125);
+}
+.button-image-profile {
+  border: none;
+  background-color: rgb(130, 130, 130);
+  border-radius: 50%;
+}

@@ -87,7 +87,7 @@ const Map = () => {
             }
           }} > */}
           <button
-            className="btn-needs btn-secondary btn-text mapboxpopup-btn"
+            className="button-image-profile"
             onClick={handlePopupClick}
             value={data}
           >

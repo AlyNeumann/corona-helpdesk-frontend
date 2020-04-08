@@ -11,8 +11,8 @@ const Marker = (map, coord, type) => {
   }else{
     el.className = "marker-red"
   }
-  el.style.width = "25px";
-  el.style.height = "25px";
+  el.style.width = "35px";
+  el.style.height = "35px";
   el.style.backgroundSize = "100% 100%";
 
   var marker = new mapboxgl.Marker(el).setLngLat(coord).addTo(map);
