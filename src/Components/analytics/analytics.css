@@ -4,6 +4,18 @@
     justify-content: space-evenly;
     flex-flow: column wrap;
 } */
+@media only screen and (max-device-width: 480px) {
+    .anatylics-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
+    }
+    .chart {
+        max-width: 400px !important;
+    }
+  }
+
 .scoreboard-inner {
     margin: 5px 2px;
     padding: 0;
@@ -13,12 +25,14 @@
     padding-bottom: 50px;
 }
 .chart {
-    width: 100%;
-    /* margin:auto; */
+    max-width: 80%;
 }
 /* .chart-container {
+    padding-right:50px;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+    width: 80%;
 } */
 
 .MuiTypography-body2 {
@@ -29,6 +43,6 @@ h5 {
     font-family: 'RobotoCondensedR';
     padding: 20px;
 }
-.echart-for-react.chart {
+.echart-for-react .chart {
     font-family: 'RobotoMonoL' !important;
 }

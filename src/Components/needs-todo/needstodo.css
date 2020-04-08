@@ -3,6 +3,8 @@
     width: 400px;
     margin: 5px;
     flex-grow: 1;
+    border: 2.5px solid black;
+    border-radius: 5px;
 
 }
 .needstodo-inner{

@@ -4,6 +4,8 @@
     /* height: 100%; */
     justify-content: center;
     width: 100%;
+    border: 2.5px solid black;
+    border-radius: 5px;
 }
 .updateneed-inner {
     /* width: 100%; */

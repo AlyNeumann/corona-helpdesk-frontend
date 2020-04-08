@@ -95,12 +95,12 @@ const PieChart = () => {
 
     return (
         <div  className="chart-container">
-            <h5>Covid 19 Global</h5>
+            <h5>Covid 19 Canada</h5>
             <ReactEchartsCore
                 echarts={echarts}
                 option={option}
                 className="chart"
-                style={{width: viewport.width, maxHeight: "300px"}}
+                style={{width: viewport.width, maxHeight: "900px", paddingRight: "15%"}}
             // notMerge={true}
             // lazyUpdate={true}
             // theme={"theme_name"}

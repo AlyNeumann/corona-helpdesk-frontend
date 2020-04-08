@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import NeedsList from './needslist';
 import Cookies from 'js-cookie';
+import { useSpring, animated } from 'react-spring';
 
 const NeedsFeed = () => {
+    //react spring
+    const props = useSpring({
+        opacity: 1,
+        from: {opacity: 0},
+        marginTop: 1,
+        from: {marginTop: 500},
+      });
  
     //state for needs 
     const [needsFeed, setNeedsFeed] = useState([])
@@ -58,10 +66,11 @@ const NeedsFeed = () => {
     return(
         <div>
             <h2>Needs Feed</h2>
+            <animated.div style={props}>
             {needsFeed? needsFeed.map(user => {
                 return <NeedsList user={user} />
             }): 'No needs right now!'}
-        
+        </animated.div>
         </div>
     )
 }

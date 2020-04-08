@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import useSignUp from '../../Hooks/useSignupForm';
 import useMiniMap from '../../Hooks/useMiniMap';
 import validate from './validate';
@@ -7,6 +7,7 @@ import EmailModal from './emailModal';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import { useSpring, animated } from 'react-spring';
 import './login.css';
 
 //material ui
@@ -23,20 +24,14 @@ const useStyles = makeStyles((theme) => ({
 //needs error handling & error messages displayed
 
 const Signup = () => {
+     // react spring styles
+     const props2 = useSpring({
+        opacity: 1, 
+        from: {opacity: 0}
+    })
 
     //material ui
     const classes = useStyles();
-    // const [state, setState] = React.useState({
-    //     healthStatus: ''
-    // });
-
-    // const handleChange = (event) => {
-    //     const name = event.target.name;
-    //     setState({
-    //         ...state,
-    //         [name]: event.target.value,
-    //     });
-    // };
 
     //bring in map for location picking
     const [map, address, coords] = useMiniMap("map")
@@ -44,6 +39,8 @@ const Signup = () => {
 
     //open modal for email confirmation
     const [modal, setModal] = useState(false)
+    //open or close modal
+    const [open, setOpen] = React.useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
     //hook for signup submit & validate 
@@ -55,6 +52,16 @@ const Signup = () => {
         values,
         errors
     } = useSignUp(submit, validate)
+
+        //history to push to next page once submitted
+        let history = useHistory()
+
+    //to close modal
+    const handleClick = () => {
+        setOpen(false);
+        history.push('/');
+    }
+
 
     //when address exists, handle value
     useEffect(() => {
@@ -108,6 +115,7 @@ const Signup = () => {
     return (
         <div className="login-container">
             <div className="signup-inner">
+            <animated.div style={props2}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <h2>Sign Up</h2>
                     <div className="form-group">
@@ -169,7 +177,7 @@ const Signup = () => {
                             native
                             name="healthStatus"
                             onChange={handleChange}
-                            value={values.healthStatus} 
+                            value={values.healthStatus}
                             label="Health Status"
                             inputProps={{
                                 name: 'healthStatus',
@@ -194,13 +202,14 @@ const Signup = () => {
                     <button type="submit"
                         className="btn btn-secondary btn-block btn-text"
                     >Sign Up</button>
-                    <div>{modal ? <EmailModal email={values.email} changeProp={modal} /> : null}</div>
+                    <div>{modal ? <EmailModal email={values.email} handleClick={handleClick} open={[open, setOpen]}/> : null}</div>
 
                     {errorMessage ? <div>{errorMessage.error}</div> : null}
                 </form>
                 <div>
                     <Link className="modal-button" to="/">Already have an account?</Link>
                 </div>
+                </animated.div>
             </div>
         </div>)
 }

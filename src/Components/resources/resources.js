@@ -5,6 +5,8 @@ import './resources.css'
 //self assement tool, financial resources, health and safety guide
 //https://ca.thrive.health/covid19/en
 
+//TODO: bring in chain animation from react spring
+
 const Resources = () => {
 
     const handleUrl = (e) => {

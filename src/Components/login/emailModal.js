@@ -57,8 +57,8 @@ export default function EmailModal(props) {
 
 
     const classes = useStyles();
-    //open or close modal
-    const [open, setOpen] = React.useState(false);
+    // //open or close modal
+    // const [open, setOpen] = React.useState(false);
     //value for email for forgot password
     const [values, setValues] = useState({
         email: ""
@@ -78,19 +78,19 @@ export default function EmailModal(props) {
         })
     }
     console.log(values)
-    //to close modal
-    const handleClick = () => {
-        setOpen(false);
-        history.push('/');
-    }
+    // //to close modal
+    // const handleClick = () => {
+    //     setOpen(false);
+    //     history.push('/');
+    // }
     //call submit function from button
     const handleSubmit = () => {
         submit();
     }
 
-    useEffect(() => {
-        setOpen(true)
-    }, [])
+    // useEffect(() => {
+    //     props.setOpen(true)
+    // }, [])
     //submit email 
     function submit(e) {
         e.preventDefault();
@@ -131,7 +131,7 @@ export default function EmailModal(props) {
                 aria-labelledby="spring-modal-title"
                 aria-describedby="spring-modal-description"
                 className={classes.modal}
-                open={open}
+                open={props.open}
                 // onClose={handleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
@@ -139,12 +139,12 @@ export default function EmailModal(props) {
                     timeout: 500,
                 }}
             >
-                <Fade in={open}>
+                <Fade in={props.open}>
                     {props.email ? <div className={classes.paper}>
                         <h2 id="spring-modal-title">Thank you!</h2>
                         <p id="spring-modal-description">An email has been sent to {props.email}</p>
                         <div>
-                            <button onClick={handleClick}>Ok!</button>
+                            <button onClick={props.handleClick}>Ok!</button>
                         </div>
                     </div> :
                         <div className={classes.paper}>
@@ -163,13 +163,13 @@ export default function EmailModal(props) {
                                     type="submit"
                                 >Retrieve password</button>
                                 <button
-                                    onClick={handleClick}
+                                    onClick={props.handleClick}
                                 >cancel</button>
                             </form>
                             {errorMessage ? <div>{errorMessage}</div> : null}
                             {message ? <div>{message}
                                 <div>
-                                    <button onClick={handleClick}>Ok!</button>
+                                    <button onClick={props.handleClick}>Ok!</button>
                                 </div>
                             </div> : null}
                         </div>}

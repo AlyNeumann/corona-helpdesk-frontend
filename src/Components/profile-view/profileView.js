@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import Aly16smallest from '../../Assets/images/Aly16smallest.png';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
-import './profile.css';
+import './profileView.css';
 import { makeStyles } from '@material-ui/core/styles';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -36,11 +34,8 @@ const useStyles = makeStyles(theme => ({
 
 
 
-const Profile = ({ user, needs }) => {
-    //react spring
-    // const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1]
-    // const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
-    // const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 50, friction: 100 } }))
+const ProfileView = (props) => {
+    const user = props.location.state.user;
 
     //hashmap for health statuses
     const healthOptions = {
@@ -52,21 +47,18 @@ const Profile = ({ user, needs }) => {
     }
 
     //open profile update if true
-    const [update, setUpdate] = useState(false)
+    // const [update, setUpdate] = useState(false)
     const [profileId, setProfileId] = useState(null)
 
     //for material UI
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    // const emergencyConract1 = user.emergencyContacts[0]
-    // const emergencyConract2 = user.emergencyContacts[1]
-    // console.log(user)
 
 
-    //to update profile
-    const handleUpdate = () => {
-        setUpdate(true)
-    }
+    // //to update profile
+    // const handleUpdate = () => {
+    //     setUpdate(true)
+    // }
     //to open contact details
     const handleClick = () => {
         if (!open) {
@@ -85,15 +77,10 @@ const Profile = ({ user, needs }) => {
     }, [user])
 
     return (
-    //     <animated.div
-    //     className="card"
-    //     onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-    //     onMouseLeave={() => set({ xys: [0, 0, 1] })}
-    //     style={{ transform: props.xys.interpolate(trans) }}
-    //   >
+
         <div className="profile-container">
             <div className="profile-inner">
-                <h2>Your Profile</h2>
+                <h2>User Profile</h2>
                 <div className="profile-image-container" >
                     {user.image ? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
@@ -141,19 +128,18 @@ const Profile = ({ user, needs }) => {
                     </Collapse>
                 </List>
                 <Link to={{
-                    pathname: '/profileupdate',
+                    pathname: '/chat',
                     state: {
                         user
                     }
                 }}>
                     <button className="btn btn-secondary btn-text"
-                    >Update Profile
+                    >Chat
                     </button>
                 </Link>
             </div>
         </div>
-    //    </animated.div>
     )
 }
 
-export default Profile;
+export default ProfileView;

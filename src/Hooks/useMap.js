@@ -24,7 +24,8 @@ const useMap = (id) => {
 
     const map = new mapboxgl.Map({
       container: id,
-      style: "mapbox://styles/alymarguerite/ck88s2fvx0hx21jlndc2ekfws",
+      style: "mapbox://styles/alymarguerite/ck8qb354p01z01iqvhdqg9b5l",
+      // style: "mapbox://styles/alymarguerite/ck88s2fvx0hx21jlndc2ekfws",
       center: [-73.567253, 45.501690],
       zoom: 15,
       bearing: -12,

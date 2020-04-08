@@ -24,9 +24,10 @@ const Analytics = () => {
             <ScoreBoard/>
             <div className="chart-container">
             <TimeLineAnalytics/>
+            <PieChart/>
             <GlobalTimeLine/>
             <CurrentCases/>
-            <PieChart/>
+         
             </div>
         </div>
     )

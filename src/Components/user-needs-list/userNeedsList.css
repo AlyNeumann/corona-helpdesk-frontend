@@ -5,6 +5,8 @@
     margin: 5px;
     justify-content: flex-start;
     flex-grow: 1;
+    border: 2.5px solid black;
+    border-radius: 5px;
 }
 .user-needs-list-inner{
     height: 570px;

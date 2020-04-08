@@ -17,13 +17,11 @@ const NeedsList = ({ user }) => {
         <div >
             <div className="need-inner">
             <Link to={{
-                    //link to profile of user!
-                    // pathname: '/updateneeds',
-                    // state: {
-                    //     "functionType": "update",
-                    //     need,
-                    //     needs
-                    // }
+                    // link to profile of user!
+                    pathname: '/profileview',
+                    state: {
+                        user
+                    }
                 }} >
                     <button
                         className="btn-needs btn-secondary btn-text"

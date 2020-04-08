@@ -183,7 +183,7 @@ const GlobalTimeLine = () => {
                     echarts={echarts}
                     option={option}
                     className="chart"
-                    style={{width: viewport.width, maxHeight: "300px"}}
+                    style={{width: viewport.width, maxHeight: "300px", paddingRight: "15%"}}
                 // notMerge={true}
                 // lazyUpdate={true}
                 // theme={"theme_name"}

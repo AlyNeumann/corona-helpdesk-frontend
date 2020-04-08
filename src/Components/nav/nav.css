@@ -33,3 +33,6 @@
 .MuiTypography-body1  {
     font-family: 'RobotoCondensedR' !important;
 }
+.MuiToolbar-regular {
+    background-color: rgb(26, 28, 3);;
+}

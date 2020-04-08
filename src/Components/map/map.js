@@ -81,7 +81,14 @@ const Map = () => {
             <AccountCircleIcon />
           </button>
         </div>
-
+        {/* {!directionsOpen ? <div className="mapboxgl-ctrl-top-left">
+        <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
+          <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
+            aria-label="Toggle fullscreen"
+            type="button"
+            onClick={handleDirections}><DirectionsIcon /></button>
+        </div>
+      </div> : null} */}
         <div className="popup-description">
           <div className="popuptitle">Needs : </div>
           {data.neededList.map(need => {
@@ -154,6 +161,7 @@ const Map = () => {
   }, [coordinates])
 
   const handleDirections = () => {
+    console.log('i am being called')
     if (directions && map && coordinates) {
       map.addControl(directions, 'top-right');
       setDirectionsOpen(true)

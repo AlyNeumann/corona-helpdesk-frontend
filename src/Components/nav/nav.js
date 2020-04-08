@@ -137,108 +137,6 @@ function Navbar(props) {
 
     return (
         <React.Fragment>
-            {/* {(history.location.pathname === "/" && tokenExists) && 
-            <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
-            <div className={classes.root}>
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    color="inherit"
-                    className={clsx(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}
-                >
-                    <Toolbar>
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            onClick={handleDrawerOpen}
-                            edge="start"
-                            className={clsx(classes.menuButton, {
-                                [classes.hide]: open,
-                            })}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography variant="h6" className="typography-title" noWrap>
-                            {(history.location.pathname === "/profile") && "User Profile"}
-                            {(history.location.pathname === "/map") && "Map"}
-                            {(history.location.pathname === "/needsfeed") && "List of Needs"}
-                            {(history.location.pathname === "/analytics") && "Covid 19 Analytics"}
-                            {(history.location.pathname === "/chat") && "Chat"}
-                            {(history.location.pathname === "/aboutus") && "About Us"}
-                            {(history.location.pathname === "/resources") && "Resources"}
-
-                        </Typography>
-                        <IconButton color="inherit" style={{ marginLeft: "auto" }} onClick={handleLogout}>
-                            <PowerSettingsNew />
-                        </IconButton>
-
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant="permanent"
-                    className={clsx(classes.drawer, {
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
-                    })}
-                    classes={{
-                        paper: clsx({
-                            [classes.drawerOpen]: open,
-                            [classes.drawerClose]: !open,
-                        }),
-                    }}
-                >
-                    <div className={classes.toolbar}>
-                        <Avatar alt="Remy Sharp" src={userInfo.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
-                        <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
-                            <p className="toggle-avatar-name">{userInfo.name || "Unknown"}</p>
-                            <p className="toggle-avatar-title">{userInfo.healthStatus || "Unknown"}</p>
-                        </div>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        <ListItem button key="home" onClick={() => { history.push("/profile") }}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText className="list-text" primary={"Home"} />
-                        </ListItem>
-                        <ListItem button key="event" onClick={() => { history.push("/map") }}>
-                            <ListItemIcon><Place /></ListItemIcon>
-                            <ListItemText primary={"Map"} />
-                        </ListItem>
-                        <ListItem button key="needsfeed" onClick={() => { history.push("/needsfeed") }}>
-                            <ListItemIcon><ListIcon /></ListItemIcon>
-                            <ListItemText primary={"Needs Feed"} />
-                        </ListItem>
-                        <ListItem button key="analytics" onClick={() => { history.push("/analytics") }}>
-                            <ListItemIcon><AssessmentIcon /></ListItemIcon>
-                            <ListItemText primary={"Analytics"} />
-                        </ListItem>
-                        <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
-                            <ListItemIcon><ChatIcon /></ListItemIcon>
-                            <ListItemText primary={"Chat"} />
-                        </ListItem>
-                        <ListItem button key="aboutus" onClick={() => { history.push("/aboutus") }}>
-                            <ListItemIcon><SupervisorAccountIcon /></ListItemIcon>
-                            <ListItemText primary={"About Us"} />
-                        </ListItem>
-                        <ListItem button key="resources" onClick={() => { history.push("/resources") }}>
-                            <ListItemIcon><HelpIcon /></ListItemIcon>
-                            <ListItemText primary={"Resources"} />
-                        </ListItem>
-                        <Divider />
-                    </List>
-                </Drawer>
-                <main className={classes.content}>
-                    <div className={classes.toolbar} />
-                    {(history.location.pathname !== "/" && history.location.pathname !== "/signup") && props.children}
-                </main>
-            </div>
-        </div>
-            } */}
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
                 <div className={classes.root}>
                     <CssBaseline />
@@ -269,6 +167,7 @@ function Navbar(props) {
                                 {(history.location.pathname === "/chat") && "Chat"}
                                 {(history.location.pathname === "/aboutus") && "About Us"}
                                 {(history.location.pathname === "/resources") && "Resources"}
+                                {/* {(history.location.pathname === "profileview") && "Profile View"} */}
 
                             </Typography>
                             <IconButton color="inherit" style={{ marginLeft: "auto" }} onClick={handleLogout}>

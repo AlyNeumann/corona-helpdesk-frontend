@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactEcharts from 'echarts-for-react';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
+import './analytics.css';
 
 const TimeLineAnalytics = () => {
 
@@ -185,7 +186,7 @@ const TimeLineAnalytics = () => {
                     echarts={echarts}
                     option={option}
                     className="chart"
-                    style={{width: viewport.width, maxHeight: "300px"}}
+                    style={{width: viewport.width, maxHeight: "300px", paddingRight: "15%"}}
                 // notMerge={true}
                 // lazyUpdate={true}
                 // theme={"theme_name"}
