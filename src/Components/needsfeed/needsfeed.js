@@ -63,7 +63,7 @@ const NeedsFeed = () => {
     }, [])
 
     return(
-        <div>
+        <div className="needslist-container">
             <h2>Needs Feed</h2>
             <animated.div style={props}>
             {needsFeed? needsFeed.map(user => {

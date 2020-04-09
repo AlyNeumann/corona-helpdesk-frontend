@@ -24,10 +24,10 @@ const Analytics = () => {
     const props2 = useSpring({
         opacity: 1,
         from: { opacity: 0 },
-        delay: 2000,
+        delay: 1500,
         marginTop: 1,
         from: { marginTop: 1000 },
-        delay: 2000
+        delay: 1500
     });
 
 

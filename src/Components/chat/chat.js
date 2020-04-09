@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useChat from '../../Hooks/useChat';
 import MessageBox from './messageBox';
@@ -20,10 +20,10 @@ import './chat.css';
 //TODO: for web - show profile of person you are talking to on right, for mobile just chat
 const Chat = (props) => {
     //get the user they clicked on to chat with
-    // console.log(props.location.state.user)
+    const [viewedUser, setViewedUser] = useState(null)
     //get user from context
     const [user, setUser] = useContext(UserContext);
-    console.log(user)
+    console.log(user, viewedUser);
 
     //TODO: replace hardcoded messages with these ones
     //    const { messages, sendMessage } = useChat();
@@ -32,6 +32,13 @@ const Chat = (props) => {
         console.log({ message })
         // sendMessage({message})
     }
+
+    useEffect(() => {
+        if(props.location.state){
+            setViewedUser(props.location.state.viewedUser)
+        }
+    }, [props])
+
     return (
         <div className="chat-container">
             {props.location.state ?

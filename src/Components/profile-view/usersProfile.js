@@ -35,7 +35,8 @@ const useStyles = makeStyles(theme => ({
 
 
 const UsersProfile = (props) => {
-    const user = props.user;
+    const viewedUser = props.user;
+    // console.log(props.user)
 
     //hashmap for health statuses
     const healthOptions = {
@@ -55,10 +56,6 @@ const UsersProfile = (props) => {
     const [open, setOpen] = useState(false);
 
 
-    // //to update profile
-    // const handleUpdate = () => {
-    //     setUpdate(true)
-    // }
     //to open contact details
     const handleClick = () => {
         if (!open) {
@@ -71,10 +68,10 @@ const UsersProfile = (props) => {
 
     useEffect(() => {
 
-        user.healthStatus = healthOptions[user.healthStatus]
-        setProfileId(user._id)
+        viewedUser.healthStatus = healthOptions[viewedUser.healthStatus]
+        setProfileId(viewedUser._id)
 
-    }, [user])
+    }, [viewedUser])
 
     return (
 
@@ -82,9 +79,9 @@ const UsersProfile = (props) => {
             <div className="profile-inner">
                 <h2>User Profile</h2>
                 <div className="profile-image-container" >
-                    {user.image ? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {viewedUser.image ? <img className="profile-image" src={viewedUser.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
-                <h4>{user.name}</h4>
+                <h4>{viewedUser.name}</h4>
                 <List
                     component="nav"
                     aria-labelledby="nested-list-subheader"
@@ -101,13 +98,13 @@ const UsersProfile = (props) => {
                         <ListItemIcon>
                             <FavoriteBorderIcon className="iconclass" />
                         </ListItemIcon>
-                        <ListItemText primary={user ? `Health Status: ${user.healthStatus}` : "Health Status: Unknown"} />
+                        <ListItemText primary={viewedUser ? `Health Status: ${viewedUser.healthStatus}` : "Health Status: Unknown"} />
                     </ListItem>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
                             <ContactMailIcon className="iconclass" />
                         </ListItemIcon>
-                        <ListItemText primary={user ? `Contact Info : ${user.email}` : "Contact Info: Unknown"} />
+                        <ListItemText primary={viewedUser ? `Contact Info : ${viewedUser.email}` : "Contact Info: Unknown"} />
                         {open ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
@@ -116,13 +113,13 @@ const UsersProfile = (props) => {
                                 <ListItemIcon>
                                     <ContactPhoneIcon className="iconclass" />
                                 </ListItemIcon>
-                                <ListItemText primary={user ? `Phone: ${user.phoneNumber}` : "Phone: Unknown"} />
+                                <ListItemText primary={viewedUser ? `Phone: ${viewedUser.phoneNumber}` : "Phone: Unknown"} />
                             </ListItem>
                             <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <ContactPhoneIcon className="iconclass" />
                                 </ListItemIcon>
-                                <ListItemText primary={user ? `Emergency Contact: ${user.emergencyContacts}` : "Emergency: Unknown"} />
+                                <ListItemText primary={viewedUser ? `Emergency Contact: ${viewedUser.emergencyContacts}` : "Emergency: Unknown"} />
                             </ListItem>
                         </List>
                     </Collapse>
@@ -130,7 +127,7 @@ const UsersProfile = (props) => {
                 <Link to={{
                     pathname: '/chat',
                     state: {
-                        user
+                        viewedUser
                     }
                 }}>
                     <button className="btn btn-secondary btn-text"

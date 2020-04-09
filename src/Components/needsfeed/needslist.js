@@ -10,14 +10,14 @@ const NeedsList = ({ user }) => {
     const needs = user.neededList; 
     const id = user._id
 
-    const handleClick = () => {
-        //go to the page of that user they clicked on
-        console.log(id)
-    }
+    // const handleClick = () => {
+    //     //go to the page of that user they clicked on
+    //     // console.log(id)
+    // }
 
     return (
         <div >
-            <div className="need-inner">
+            <div className="needslist-inner">
             <Link to={{
                     // link to profile of user!
                     pathname: '/profileview',
@@ -28,13 +28,14 @@ const NeedsList = ({ user }) => {
                     <button
                         className="btn-img"
                         // value={user._id}
-                        onClick={handleClick}>
+                        // onClick={handleClick}
+                        >
                             <img className="button-img" src={user.photoUrl? user.photoUrl : PortraitPlaceholder}/>
                         {/* <AccountCircleIcon className="buttonclass"/> */}
                     </button>
                 </Link>
-                <h5 className="need-text title-name">{user.name}</h5>
-                <ul className="needslist-container">
+                <h5 className="title-name">{user.name}</h5>
+                <ul className="needsfeedlist-container">
                     {needs.map(need => {
                         return <SingleNeed need={need} key={need._id}/>
                     })}

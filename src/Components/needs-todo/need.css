@@ -76,3 +76,8 @@
         margin-right: 5px;
     }
   }
+
+  .paired-button-text {
+      margin: 0;
+      padding: 0;
+  }

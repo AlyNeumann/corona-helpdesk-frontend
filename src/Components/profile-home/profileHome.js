@@ -26,12 +26,12 @@ const ProfileHome = () => {
     const props2= useSpring({
         opacity: 1, 
         from: {opacity: 0},
-        delay: 750
+        delay: 500
     })
     const props3 = useSpring({
         opacity: 1, 
         from: {opacity: 0},
-        delay: 1250
+        delay: 1000
     })
 
     //theme
@@ -77,7 +77,7 @@ const ProfileHome = () => {
             .then(res => res.json()) //response is
             .then(response => {
                 if (!errorMessage) {
-                    console.log(response);
+                    // console.log(response);
                     setUser(response);
                     setNeeds(response.neededList);
                 }

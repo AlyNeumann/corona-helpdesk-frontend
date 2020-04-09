@@ -116,7 +116,7 @@ const Signup = () => {
         <div className="login-container">
             <div className="signup-inner">
             <animated.div style={props2}>
-                <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                <form onSubmit={handleSubmit} noValidate autoComplete="off" className="signup-form-body">
                     <h2>Sign Up</h2>
                     <div className="form-group">
                         <label>Username</label>

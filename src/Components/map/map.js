@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import useNeedsFeed from '../../Hooks/useNeedsFeed';
 import ReactDom from 'react-dom';
 import mapboxgl from 'mapbox-gl';
@@ -18,7 +18,7 @@ import './map.css';
 
 
 
-const Map = () => {
+const Map = (props) => {
 
 
   const [map, coordinates, accessToken] = useMap("mapbox")
@@ -64,14 +64,18 @@ const Map = () => {
     // let history = useHistory()
 
     // //when button on popup is clicked, go to user's profile
-    // const handlePopupClick = () => {
-    //   //go to profile of this person
-    //   console.log(data._id)
-    //   history.push({
-    //     pathname: '/profileview',
-    //     state: { user: data}
-    //   })
-    // }
+    const handlePopupClick = () => {
+      //go to profile of this person
+      props.history.push({
+          pathname: '/profileview',
+          state: { user: data}
+        })
+      // console.log(data._id)
+      // history.push({
+      //   pathname: '/profileview',
+      //   state: { user: data}
+      // })
+    }
 
     //html inside of popup with buttons for choosing direction method
     const html = (
@@ -83,7 +87,7 @@ const Map = () => {
             // link to profile of user!
             pathname: '/profileview',
             state: {
-              user
+              data
             }
           }} > */}
           <button
@@ -99,7 +103,7 @@ const Map = () => {
         <div className="popup-description">
           <div className="popuptitle">Needs : </div>
           {data.neededList.map(need => {
-            return (<div>{need.needDescription}</div>)
+            return (<div key={need._id}>{need.needDescription}</div>)
           })}</div>
 
         <div className="popup-description">

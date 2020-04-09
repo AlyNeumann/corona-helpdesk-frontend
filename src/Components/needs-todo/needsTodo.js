@@ -31,7 +31,7 @@ const NeedsTodo = ({ user, needs }) => {
                     }
                 }} >
                     <button
-                        className="btn btn-secondary btn-text">
+                        className="btn btn-secondary btn-text add-btn">
                         <AddBoxIcon className="buttonclass"/>
                     </button>
                 </Link>

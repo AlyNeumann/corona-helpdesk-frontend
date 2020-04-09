@@ -139,7 +139,7 @@ function Navbar(props) {
 
     return (
         <React.Fragment>
-                   <div styles={currentTheme}>
+                   
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
                 <div className={classes.root}>
                     <CssBaseline />
@@ -236,15 +236,18 @@ function Navbar(props) {
                             <Divider />
                         </List>
                     </Drawer>
+                    <div styles={currentTheme}>
                     <main className={classes.content}>
+
                         <div className={classes.toolbar} />
                         {(history.location.pathname !== "/" || history.location.pathname !== "/signup") && props.children}
                     </main>
+                    </div>
                 </div>
             </div>
             {(history.location.pathname === "/") && <Login />}
             {(history.location.pathname === "/signup") && <Signup />}
-            </div>
+    
         </React.Fragment>
     );
 }

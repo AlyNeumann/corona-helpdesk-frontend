@@ -135,7 +135,7 @@ const Need = ({ need, needs }) => {
                             <Typography className={classes.secondaryHeading}>
                                 {exchangeType}
                             </Typography>
-                            <div className="paired-need-text">
+                            <div className="paired-button-text">
                                 <Link to={{
                                     pathname: '/updateneeds',
                                     state: {
