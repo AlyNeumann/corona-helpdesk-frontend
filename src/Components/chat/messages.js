@@ -20,13 +20,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Messages = ({ messages }) => {
+const Messages = ({ messages, user, viewedUser }) => {
     const classes = useStyles();
 
     //TODO: replace index with message _id 
     return (
         <List className={classes.root}>
+          
             {messages.flatMap((message, index) => {
+                //   console.log(messages)
                 return [(
                 <ListItem alignItems="flex-start" key={index}>
                     <ListItemAvatar>
@@ -35,9 +37,16 @@ const Messages = ({ messages }) => {
                         src={PortraitPlaceholder} />
                     </ListItemAvatar>
                     <ListItemText
-                        primary={message}
+                        primary={message.username}
                     />
-                </ListItem>),
+                     <ListItemText
+                        primary={message.text}
+                    />
+                      <ListItemText
+                        primary={message.time}
+                    />
+                </ListItem>)
+                ,
                   <Divider variant="inset" component="li" key={'divider-'+ index}/> ]}).slice(0, -1)}
           
         </List>

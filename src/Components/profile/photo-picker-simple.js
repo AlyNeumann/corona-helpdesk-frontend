@@ -2,8 +2,7 @@ import React, { useMemo, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
 
-//TODO: set up function to handle file 
-//TODO: bring in handleImage from props
+//TODO: add size limit for photo (content length or input type)
 
 const baseStyle = {
     flex: 1,

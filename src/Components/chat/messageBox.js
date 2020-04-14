@@ -23,14 +23,13 @@ const MessageBox = ({ onSendMessage }) => {
 
     const handleChange = (e) => {
         const msg = e.target.value
-        console.log(msg)
         setMessage(msg)
     }
 
     const handleKeyDown = (e) => {
         if(e.key === 'Enter') {
             e.preventDefault();
-            onSendMessage(message);
+            onSendMessage({message});
             setMessage('');
         }
     }

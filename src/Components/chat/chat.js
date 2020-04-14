@@ -6,7 +6,7 @@ import Messages from './messages';
 import { UserContext } from '../user-context/userContext';
 import { Button } from '../../global';
 // import { useSpring, animated } from 'react-spring'
-import { useTrail, animated } from 'react-spring'
+// import { useTrail, animated } from 'react-spring'
 import './chat.css';
 
 //TODO: to use for message scrolling
@@ -16,25 +16,25 @@ import './chat.css';
 
 
 
-//TODO: change messages to a map
 //TODO: for web - show profile of person you are talking to on right, for mobile just chat
 const Chat = (props) => {
     //get the user they clicked on to chat with
     const [viewedUser, setViewedUser] = useState(null)
     //get user from context
     const [user, setUser] = useContext(UserContext);
-    console.log(user, viewedUser);
+    // console.log(user, viewedUser);
 
-    //TODO: replace hardcoded messages with these ones
-    //    const { messages, sendMessage } = useChat();
 
+    const { messages, sendMessage } = useChat({ user, viewedUser });
+
+    //this works too
     const handleSendMessage = ({ message }) => {
-        console.log({ message })
-        // sendMessage({message})
+        console.log(message, user)
+        sendMessage({ message, user })
     }
 
     useEffect(() => {
-        if(props.location.state){
+        if (props.location.state) {
             setViewedUser(props.location.state.viewedUser)
         }
     }, [props])
@@ -43,12 +43,7 @@ const Chat = (props) => {
         <div className="chat-container">
             {props.location.state ?
                 <div>
-                    <Messages messages={[
-                        "message 1",
-                        "message 2",
-                        "message 3",
-                        "message 4"
-                    ]} />
+                    <Messages messages={messages} user={user} viewedUser={viewedUser} />
                     <MessageBox onSendMessage={handleSendMessage} />
                 </div>
                 :
