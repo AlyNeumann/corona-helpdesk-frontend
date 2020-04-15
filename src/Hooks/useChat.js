@@ -33,25 +33,29 @@ const useChat = ({ user, viewedUser }) => {
 
     useEffect(() => {
 
-            //this url takes the room ID - not necessary, the name space can have many rooms
-            socketRef.current = socketIOClient(`http://localhost:3000/`);
-            console.log(roomId)
-            console.log(socketRef.current)
+        //this url takes the room ID - not necessary, the name space can have many rooms
+        socketRef.current = socketIOClient(`http://localhost:3000/`);
+        console.log(roomId)
+        console.log(socketRef.current)
 
 
-            //join room
-            // console.log(roomId)
-            socketRef.current.emit('joinRoom', { username, roomId })
+        //join room
+        // console.log(roomId)
+        socketRef.current.emit('joinRoom', { username, roomId })
 
 
-            socketRef.current.on('chatmessage', (message) => {
-                console.log(message)
-                setMessages(messages => [...messages, message])
-            });
-            
-            return () => {
-                socketRef.current.disconnect();
-            }
+        socketRef.current.on('chatmessage', (message) => {
+            console.log(message)
+            setMessages(messages => [...messages, message])
+        });
+
+        socketRef.current.on('success', ({ messagesArr }) => {
+            console.log(messagesArr)
+        })
+
+        return () => {
+            socketRef.current.disconnect();
+        }
 
     }, [roomId]);
 
