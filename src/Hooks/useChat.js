@@ -16,49 +16,46 @@ const useChat = ({ user, viewedUser }) => {
         time: ''
     }]);
     const [username, setUserName] = useState('')
-    const [roomId, setRoomId] = useState('')
+    const [roomId, setRoomId] = useState()
     // console.log(user, viewedUser)
     const socketRef = useRef();
 
-
     useEffect(() => {
-        socketRef.current = socketIOClient('http://localhost:3000/');
-
-        // //TODO: test not working either....
-        // socketRef.current.on('chatmessage', ( message ) => {
-        //     console.log(message)
-        // })
-        socketRef.current.on('chatmessage', ( message ) => {
-            console.log(message)
-            setMessages(messages => [...messages, message])
-        });
 
         if (viewedUser && user) {
             setUserName(user.name)
             //get both users ids for room id
-            setRoomId(user.id + viewedUser.id)
+            setRoomId(user._id + viewedUser._id)
 
-            //check if room exists already 
-            // const roomIdUser = user + viewedUser
-            // const roomIdReversed = viewedUser + user
-            // const n = existingRooms.includes(roomIdUser || roomIdReversed);
-            // console.log(n, roomId)
+        }
+    }, [viewedUser, user])
+
+
+    useEffect(() => {
+
+            //this url takes the room ID
+            socketRef.current = socketIOClient(`http://localhost:3000/${roomId}`);
+            console.log(roomId)
+            console.log(socketRef.current)
+
 
             //join room
             // console.log(roomId)
-            // socketRef.current.emit('joinRoom', { username, roomId })
-            //TODO: this is never being triggered
-            // socketRef.current.on('chatmessage', ( message ) => {
-            //     console.log(message)
-            //     setMessages(messages => [...messages, message])
-            // });
-        }
+            socketRef.current.emit('joinRoom', { username, roomId })
 
 
-        return () => {
-            socketRef.current.disconnect();
-        }
-    }, [username, roomId]);
+            socketRef.current.on('chatmessage', (message) => {
+                console.log(message)
+                setMessages(messages => [...messages, message])
+            });
+            
+            return () => {
+                socketRef.current.disconnect();
+            }
+
+    }, [roomId]);
+    console.log('outside useeffect')
+    console.log(roomId)
 
     //if there are more than messages, destructure here
     const sendMessage = ({ message, user }) => {
@@ -70,45 +67,3 @@ const useChat = ({ user, viewedUser }) => {
 }
 
 export default useChat;
-
- // useEffect(() => {
-    //     if (viewedUser && user) {
-    //         setUserName(user.name)
-    //         //get both users ids for room id
-    //         setRoomId(user.id + viewedUser.id)
-
-    //         //fetch all rooms
-    //         // const token = Cookies.get('token')
-    //         const url = "http://localhost:3000/allchats"
-
-    //         //handle error messages
-    //         const handleErrors = (error) => {
-    //             if (error) {
-    //                 setErrorMessage(error)
-    //             }
-    //             else return error
-    //         }
-
-    //         fetch(url, {
-    //             method: "GET"
-    //         })
-    //             .then(res => res.json())
-    //             .then(response => {
-
-    //                 if (!errorMessage) {
-    //                     let y = response.map(res => res.id);
-    //                     setExistingRooms([...existingRooms, ...y])
-
-    //                 }
-
-    //             })
-    //             .then(handleErrors)
-    //             .catch(error => {
-    //                 if (error) {
-    //                     // console.log(error)
-    //                 }
-    //             })
-
-    //     }
-
-    // }, [user, viewedUser])

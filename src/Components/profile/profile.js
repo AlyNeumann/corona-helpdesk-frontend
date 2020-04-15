@@ -58,9 +58,9 @@ const Profile = ({ user, needs }) => {
     //for material UI
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    // const emergencyConract1 = user.emergencyContacts[0]
-    // const emergencyConract2 = user.emergencyContacts[1]
-    // console.log(user)
+ 
+    //history to push to chat
+    let history = useHistory();
 
 
     //to update profile
@@ -76,6 +76,10 @@ const Profile = ({ user, needs }) => {
         }
 
     };
+    //sends user to chat page
+    const handleChat = () => {
+        history.push('/chat');
+    }
 
     useEffect(() => {
 
@@ -85,12 +89,12 @@ const Profile = ({ user, needs }) => {
     }, [user])
 
     return (
-    //     <animated.div
-    //     className="card"
-    //     onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
-    //     onMouseLeave={() => set({ xys: [0, 0, 1] })}
-    //     style={{ transform: props.xys.interpolate(trans) }}
-    //   >
+        //     <animated.div
+        //     className="card"
+        //     onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+        //     onMouseLeave={() => set({ xys: [0, 0, 1] })}
+        //     style={{ transform: props.xys.interpolate(trans) }}
+        //   >
         <div className="profile-container">
             <div className="profile-inner">
                 <h2>Your Profile</h2>
@@ -103,7 +107,7 @@ const Profile = ({ user, needs }) => {
                     aria-labelledby="nested-list-subheader"
                     className={classes.root}
                 >
-                    <ListItem button>
+                    <ListItem button onClick={handleChat}>
                         <ListItemIcon>
                             <ChatIcon className="iconclass" />
                         </ListItemIcon>
@@ -152,7 +156,7 @@ const Profile = ({ user, needs }) => {
                 </Link>
             </div>
         </div>
-    //    </animated.div>
+        //    </animated.div>
     )
 }
 
