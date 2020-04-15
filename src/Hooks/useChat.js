@@ -33,8 +33,8 @@ const useChat = ({ user, viewedUser }) => {
 
     useEffect(() => {
 
-            //this url takes the room ID
-            socketRef.current = socketIOClient(`http://localhost:3000/${roomId}`);
+            //this url takes the room ID - not necessary, the name space can have many rooms
+            socketRef.current = socketIOClient(`http://localhost:3000/`);
             console.log(roomId)
             console.log(socketRef.current)
 
@@ -54,13 +54,11 @@ const useChat = ({ user, viewedUser }) => {
             }
 
     }, [roomId]);
-    console.log('outside useeffect')
-    console.log(roomId)
 
     //if there are more than messages, destructure here
     const sendMessage = ({ message, user }) => {
         // console.log(message)
-        socketRef.current.emit('chatmessage', { message, user })
+        socketRef.current.emit('chatmessage', { message, user, viewedUser })
     }
     // console.log(messages)
     return { messages, sendMessage };
