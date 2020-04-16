@@ -26,6 +26,7 @@ const ProfileUpdate = (props) => {
     const classes = useStyles();
 
     const user = props.location.state.user;
+    const userId = user._id
 
     //bring in map for location picking
     const [address] = useMiniMap("map")
@@ -37,9 +38,9 @@ const ProfileUpdate = (props) => {
         handleChange,
         handleSubmit,
         handleLocation,
-        // handleImage, 
+        handleEmergency, 
         values
-    } = useProfileUpdate(submit)
+    } = useProfileUpdate(submit, userId)
 
     //when address exists, handle value
     useEffect(() => {
@@ -62,7 +63,7 @@ const ProfileUpdate = (props) => {
 
 
     function submit() {
-        const url = "http://localhost:5000/updateprofile"
+        const url = "http://localhost:5000/updateProfile"
         // console.log(values)
 
         let formData = new FormData();
@@ -156,7 +157,7 @@ const ProfileUpdate = (props) => {
                             name="emergencyContacts"
                             className="form-control"
                             placeholder={user.emergencyContacts}
-                            onChange={handleChange}
+                            onChange={handleEmergency}
                             value={values.emergencyContacts} />
                     </div>
                     <div className="form-group">

@@ -37,10 +37,16 @@ const useStyles = makeStyles(theme => ({
 
 
 const Profile = ({ user, needs }) => {
-    //react spring
-    // const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1]
-    // const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
-    // const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 50, friction: 100 } }))
+
+    console.log(user.img)
+
+    // const [convertedImg, setConvertedImg] = useState(null);
+
+    // const imageConvert = (img) => {
+    //     const Example = ({ img }) => <img src={`data:image/jpeg;base64,${data}`} />
+    // }
+
+    const data = user.img;
 
     //hashmap for health statuses
     const healthOptions = {
@@ -58,7 +64,7 @@ const Profile = ({ user, needs }) => {
     //for material UI
     const classes = useStyles();
     const [open, setOpen] = useState(false);
- 
+
     //history to push to chat
     let history = useHistory();
 
@@ -85,6 +91,8 @@ const Profile = ({ user, needs }) => {
 
         user.healthStatus = healthOptions[user.healthStatus]
         setProfileId(user._id)
+        // const img = user.img
+        // imageConvert(img)
 
     }, [user])
 
@@ -99,7 +107,7 @@ const Profile = ({ user, needs }) => {
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
-                    {user.image ? <img className="profile-image" src={user.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {user ? <img className="profile-image" src={`data:image/jpeg;base64,${data}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
                 <h4>{user.name}</h4>
                 <List

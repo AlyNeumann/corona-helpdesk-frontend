@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 //this will need to be form data for image 
 
-const useSignUp = (callback) => {
+const useSignUp = (callback, userId) => {
+
+    //TODO: are the coords right for house location? look at how this is being sent...
     
     const [values, setValues] = useState({
-        "name": "",
-        "location": "",
-        "healthStatus": "",
-        "phoneNumber": "",
-        "emergencyContacts": "",
-        "img": "",
-        "coords": ""
+        id: userId,
+        name: "",
+        location: "",
+        healthStatus: "",
+        phoneNumber: "",
+        emergencyContacts: [],
+        img: "",
+        coords: ""
     });
 
     // //state for errors
@@ -39,6 +42,24 @@ const useSignUp = (callback) => {
     const handleLocation = place => {
         setValues({ ...values, coords: place })
     }
+       //push emergency contacts into array
+       const handleEmergency = e => {
+        const newEmergencyContact = values.emergencyContacts;
+
+        if (e.target.name === "emergencyContacts") {
+            newEmergencyContact[0] = e.target.value
+            setValues({ ...values, emergencyContacts: newEmergencyContact })
+        } else {
+            
+            
+                newEmergencyContact[1] = e.target.value
+            
+            setValues({ ...values, emergencyContacts: newEmergencyContact })
+
+        }
+        ;
+    }
+
 
 
     //check to see if no errors, if none, call callback
@@ -53,6 +74,7 @@ const useSignUp = (callback) => {
         handleChange,
         handleSubmit,
         handleLocation,
+        handleEmergency,
         values,
         errors
     }

@@ -69,3 +69,4 @@ const useChat = ({ user, viewedUser }) => {
 }
 
 export default useChat;
+
