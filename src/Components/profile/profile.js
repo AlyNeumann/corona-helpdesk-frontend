@@ -38,14 +38,6 @@ const useStyles = makeStyles(theme => ({
 
 const Profile = ({ user, needs }) => {
 
-    console.log(user.img)
-
-    // const [convertedImg, setConvertedImg] = useState(null);
-
-    // const imageConvert = (img) => {
-    //     const Example = ({ img }) => <img src={`data:image/jpeg;base64,${data}`} />
-    // }
-
     const data = user.img;
 
     //hashmap for health statuses
@@ -91,8 +83,6 @@ const Profile = ({ user, needs }) => {
 
         user.healthStatus = healthOptions[user.healthStatus]
         setProfileId(user._id)
-        // const img = user.img
-        // imageConvert(img)
 
     }, [user])
 
@@ -107,7 +97,7 @@ const Profile = ({ user, needs }) => {
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
-                    {user ? <img className="profile-image" src={`data:image/jpeg;base64,${data}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {data ? <img className="profile-image" src={`data:image/jpeg;base64,${data}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
                 <h4>{user.name}</h4>
                 <List

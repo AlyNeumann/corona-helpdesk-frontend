@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 const useSignUp = (callback, userId) => {
 
     //TODO: are the coords right for house location? look at how this is being sent...
-    
+
     const [values, setValues] = useState({
         id: userId,
         name: "",
@@ -31,34 +31,35 @@ const useSignUp = (callback, userId) => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        //handle errors here 
-        // setErrors(validate(values));
-        console.log(values);
+        // console.log(values);
         setIsSubmitting(true);
 
         callback();
     }
-
+    //location chosen from mini map
     const handleLocation = place => {
         setValues({ ...values, coords: place })
     }
-       //push emergency contacts into array
-       const handleEmergency = e => {
+    //push emergency contacts into array
+    const handleEmergency = e => {
         const newEmergencyContact = values.emergencyContacts;
 
         if (e.target.name === "emergencyContacts") {
             newEmergencyContact[0] = e.target.value
             setValues({ ...values, emergencyContacts: newEmergencyContact })
         } else {
-            
-            
-                newEmergencyContact[1] = e.target.value
-            
+
+            newEmergencyContact[1] = e.target.value
             setValues({ ...values, emergencyContacts: newEmergencyContact })
 
         }
         ;
     }
+    //uploaded image from photo picker
+    const handleImage = (img) => {
+        setValues({ ...values, img })
+    }
+
 
 
 
@@ -75,6 +76,7 @@ const useSignUp = (callback, userId) => {
         handleSubmit,
         handleLocation,
         handleEmergency,
+        handleImage,
         values,
         errors
     }

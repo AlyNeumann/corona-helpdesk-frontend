@@ -59,10 +59,6 @@ const Map = (props) => {
   //add a popup to each marker, with directions options
   const addPopup = (map, marker_el, data) => {
 
-    //TODO: this is not working, tried with Link as well...help
-    // //import history
-    // let history = useHistory()
-
     // //when button on popup is clicked, go to user's profile
     const handlePopupClick = () => {
       //go to profile of this person
@@ -70,11 +66,6 @@ const Map = (props) => {
           pathname: '/profileview',
           state: { user: data}
         })
-      // console.log(data._id)
-      // history.push({
-      //   pathname: '/profileview',
-      //   state: { user: data}
-      // })
     }
 
     //html inside of popup with buttons for choosing direction method

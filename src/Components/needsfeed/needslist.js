@@ -3,21 +3,20 @@ import SingleNeed from './singleneed';
 import { Link } from 'react-router-dom';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
 import './needslist.css'
-// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const NeedsList = ({ user }) => {
     // console.log(user)
     const needs = user.neededList; 
     const id = user._id
+    // const data = user.img;
 
-    // const handleClick = () => {
-    //     //go to the page of that user they clicked on
-    //     // console.log(id)
-    // }
+//TODO: add photo to each user
 
     return (
         <div >
             <div className="needslist-inner">
+                <div className="needslist-avatar">
             <Link to={{
                     // link to profile of user!
                     pathname: '/profileview',
@@ -30,11 +29,13 @@ const NeedsList = ({ user }) => {
                         // value={user._id}
                         // onClick={handleClick}
                         >
-                            <img className="button-img" src={user.photoUrl? user.photoUrl : PortraitPlaceholder}/>
-                        {/* <AccountCircleIcon className="buttonclass"/> */}
+                            
+                            {/* {user ?  <img className="btn-img" src={`data:image/jpeg;base64,${data}`} /> : <img className="btn-img" src={PortraitPlaceholder} />} */}
+                        <AccountCircleIcon className="buttonclass"/>
                     </button>
                 </Link>
                 <h5 className="title-name">{user.name}</h5>
+                </div>
                 <ul className="needsfeedlist-container">
                     {needs.map(need => {
                         return <SingleNeed need={need} key={need._id}/>

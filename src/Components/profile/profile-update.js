@@ -6,6 +6,7 @@ import useMiniMap from '../../Hooks/useMiniMap';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import Cookies from 'js-cookie';
 import './profileUpdate.css';
 
 //material ui
@@ -29,25 +30,25 @@ const ProfileUpdate = (props) => {
     const userId = user._id
 
     //bring in map for location picking
-    const [address] = useMiniMap("map")
+    const [map, address, coords] = useMiniMap("map")
     //image file
     const [img, setImg] = useState(null);
-    // console.log(address)
     //hook for signup submit & validate 
     const {
         handleChange,
         handleSubmit,
         handleLocation,
-        handleEmergency, 
+        handleEmergency,
+        handleImage,
         values
     } = useProfileUpdate(submit, userId)
 
     //when address exists, handle value
     useEffect(() => {
-        if (address) {
-            handleLocation(address)
+        if (coords) {
+            handleLocation(coords)
         }
-    }, [address])
+    }, [coords])
 
     //use history to push back to profile page on submit
     let history = useHistory()
@@ -57,22 +58,23 @@ const ProfileUpdate = (props) => {
         history.push('/profile');
     }
     //handling image file - this can be in hook, if everything is form data there....
-    const handleImage = (img) => {
-        setImg(img[0])
-    }
+    // const handleImage = (img) => {
+    //     console.log(img)
+    // }
 
-
+//TODO: help me!!! formdata not working
     function submit() {
         const url = "http://localhost:5000/updateProfile"
-        // console.log(values)
+        console.log(values)
+        let token = Cookies.get("token")
 
         let formData = new FormData();
-        Object.keys(values).forEach(key => formData.append(key, values[key]));
 
-
-        if (img) {
-            formData.append("img", img, img.name)
+        for (let key in values) {
+            formData.append(key, values[key]);
         }
+        // Object.keys(values).forEach(key => formData.append(key, values[key]));
+
         console.log(formData)
 
         // handling error messages
@@ -82,8 +84,12 @@ const ProfileUpdate = (props) => {
         }
 
         fetch(url, {
-            method: 'POST',
-            body: formData
+            method: 'PUT',
+            body: formData,
+            headers: {
+                "Authorization": token,
+                "Content-Type": 'multipart/form-data'
+            }
         })
             .then(res => res.json)
             .then(handleErrors)
@@ -102,6 +108,7 @@ const ProfileUpdate = (props) => {
     }
 
     return (
+        <div className="profile-update">
         <div className="profileupdate-container">
             <div className="profileupdate-inner">
                 <form onSubmit={handleSubmit} noValidate autoComplete="true">
@@ -156,9 +163,15 @@ const ProfileUpdate = (props) => {
                         <input type="text"
                             name="emergencyContacts"
                             className="form-control"
-                            placeholder={user.emergencyContacts}
+                            placeholder={user.emergencyContacts[0] || ""}
                             onChange={handleEmergency}
-                            value={values.emergencyContacts} />
+                            value={values.emergencyContacts[0] || ""} />
+                        <input type="text"
+                            name="emergencyContacts1"
+                            className="form-control"
+                            placeholder={user.emergencyContacts[1] || ""}
+                            onChange={handleEmergency}
+                            value={values.emergencyContacts[1] || ""} />
                     </div>
                     <div className="form-group">
                         <label>Avatar Photo</label>
@@ -181,6 +194,7 @@ const ProfileUpdate = (props) => {
                     onClick={handleClose}>
                     Close</button>
             </div>
+        </div>
         </div>
     )
 }

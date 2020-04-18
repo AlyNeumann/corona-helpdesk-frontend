@@ -3,6 +3,8 @@ import NeedsList from './needslist';
 import Cookies from 'js-cookie';
 import { useSpring, animated } from 'react-spring';
 
+//TODO: make a radius slide for user to choose their radius!
+
 const NeedsFeed = () => {
     //react spring
     const props = useSpring({
@@ -23,7 +25,7 @@ const NeedsFeed = () => {
         const token = Cookies.get("token");
         const lat = 45.485271
         const lng = -73.581421
-        const radius = 1000
+        const radius = 1000000
         const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages

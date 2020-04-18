@@ -5,3 +5,92 @@
 .MuiListSubheader-root {
     font-family: 'RobotoCondensedB' !important;
 }
+
+.makeStyles-root-154 {
+    max-width: 100% !important;
+}
+
+.chat-outerContainer {
+    width: 90vw;
+    display: flex;
+    justify-content: center !important;
+    align-items: center;
+    height: 100vh;
+    background-color: #1A1A1D;
+    border-radius: 8px;
+  }
+  
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #FFFFFF;
+    border-radius: 8px;
+    height: 99.5%;
+    width: 99.5%;
+  }
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+   
+    .chat-container {
+      height: 99.7%;
+      flex-direction: row;
+    }
+  }
+
+  .form {
+    display: flex;
+    border-top: 2px solid #D3D3D3;
+  }
+  
+  .input {
+    border: none;
+    width:100vw;
+    border-radius: 0;
+    padding: 1%;
+    width: 90%;
+    font-size: 1.2em;
+    height: 10%;
+    -ms-grid-row:auto ;
+    resize: none;
+  }
+  
+  input:focus, textarea:focus, select:focus{
+    outline: none;
+  }
+  
+  .messages {
+    padding: 5% 0;
+    overflow: auto;
+    flex: auto;
+  }
+  .messageText {
+    width: 100%;
+    letter-spacing: 0;
+    font-size: 1.1em;
+    word-wrap: break-word;
+    padding:0 20px 0 20px;
+    width: 60%;
+  }
+  .chat-name {
+      width: 20%;
+  }
+  .chat-time {
+    width: 20%;
+  }
+  .chat-messages-container {
+    overflow-x:hidden;
+    overflow-y:auto;
+    max-height: 98vh;
+  }
+
+  .fixed-input {
+    position: absolute;
+    /* bottom: -15%; */
+    width:89vw;
+  }
+  .scroll-container {
+      height: 80vh;
+  }
+  
+  

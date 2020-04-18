@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import './chat.css';
 
 //material ui styles
 const useStyles = makeStyles((theme) => ({
@@ -35,27 +36,37 @@ const MessageBox = ({ onSendMessage }) => {
     }
 
     return (
-        <div>
-            <div className={classes.margin}>
-                <Grid container spacing={1} alignItems="flex-end">
-                    <Grid item>
-                        <AccountCircle />
-                    </Grid>
-                    <Grid item>
-                        <TextField 
-                        id="input-with-icon-grid" 
-                        margin="normal" 
-                        label="type your message here" 
-                        multiline rows="4"
-                        fullWidth
-                        value={message}
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                        />
-                    </Grid>
-                </Grid>
-            </div>
-        </div>
+        <form className="form">
+            <textarea rows="3"
+            className="input"
+            type="text"
+            placeholder="Type a message..."
+            value={message}
+            onChange={handleChange}
+            onKeyPress={handleKeyDown}>
+        </textarea>
+      </form>
+        // <div>
+        //     <div className={classes.margin}>
+        //         <Grid container spacing={1} alignItems="flex-end">
+        //             <Grid item>
+        //                 <AccountCircle />
+        //             </Grid>
+        //             <Grid item>
+        //                 <TextField 
+        //                 id="input-with-icon-grid" 
+        //                 margin="normal" 
+        //                 label="type your message here" 
+        //                 multiline rows="4"
+        //                 fullWidth
+        //                 value={message}
+        //                 onChange={handleChange}
+        //                 onKeyDown={handleKeyDown}
+        //                 />
+        //             </Grid>
+        //         </Grid>
+        //     </div>
+        // </div>
     )
 }
 export default MessageBox;

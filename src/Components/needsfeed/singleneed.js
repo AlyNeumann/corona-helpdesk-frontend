@@ -14,8 +14,9 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        flexBasis: '33.33%',
-        flexShrink: 0
+        // flexBasis: '33.33%',
+        // flexShrink: 0,
+        // paddingBottom: '100px'
     },
     secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
@@ -74,25 +75,27 @@ const SingleNeed = ({ need }) => {
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
-                                <Typography className={classes.heading}>
-                                    Need: {needType}
+                                <Typography className={`${classes.heading} needtitletext`}>
+                                 Need: {needType}
 
                                 </Typography>
-                                <Typography className={`${classes.heading} typetext`}>
-                                    Exchange: {exchangeType}
+                                <Typography className={`${classes.heading} exchangetitletext`}>
+                                     Exchange: {exchangeType}
+                                </Typography>
+                                <Typography className={`${classes.heading} exchangetitletext`}>
+                                   
                                 </Typography>
                             </ExpansionPanelSummary>
                             <ExpansionPanelDetails>
-                                <div className="need-text">
-                                    <Typography>
+                                    <Typography className={`${classes.heading} needtitletext`}>
                                    {need.needDescription}
                                     </Typography>
-                                </div>
-                                <div className="need-text">
-                                    <Typography>
-                                       {need.exchangeDescription}
+                                    <Typography className={`${classes.heading} needtitletext`}>
+                                      {need.exchangeDescription}
                                     </Typography>
-                                </div>
+                                    <Typography> 
+
+                                    </Typography>
                             </ExpansionPanelDetails>
 
                         </ExpansionPanel>

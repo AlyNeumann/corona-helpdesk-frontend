@@ -1,6 +1,9 @@
 import React, { useMemo, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
+// import * as Doka from './doka.esm.min';
+// import './doka.min.css';
+// import { DokaOverlay } from './react-doka';
 
 //TODO: add size limit for photo (content length or input type)
 
@@ -48,27 +51,29 @@ const thumb = {
     width: "auto",
     height: 200,
     padding: 4,
-    boxSizing: "border-box"
+    boxSizing: "border-box",
 };
 
 const thumbInner = {
     display: "flex",
     minWidth: 0,
+    maxWidth: "200px",
     overflow: "hidden"
 };
 
 const img = {
     display: "block",
     width: "auto",
-    height: "100%"
+    height: "100%",
+    borderRadius: "15%"
 };
 
 const StyledDropzone = (props) => {
     //store image file
     const [files, setFiles] = useState([]);
-    
-        
-    console.log(props);
+    const [image, setImage] = useState(null);
+
+
     const {
         getRootProps,
         getInputProps,
@@ -78,9 +83,11 @@ const StyledDropzone = (props) => {
         acceptedFiles,
         open
     } = useDropzone({
-        accept: "image/*",
+        accept: 'image/jpeg, image/png',
         noClick: true,
         noKeyboard: true,
+        minSize: 0,
+        maxSize: 1000000,
         onDrop: acceptedFiles => {
             setFiles(
                 acceptedFiles.map(file =>
@@ -89,6 +96,7 @@ const StyledDropzone = (props) => {
                     })
                 )
             );
+            // setImage(acceptedFiles)
         }
     });
 
@@ -110,13 +118,15 @@ const StyledDropzone = (props) => {
         </div>
     ));
 
-    useEffect(
-        () => () => {
+    useEffect(() => {
             // Make sure to revoke the data uris to avoid memory leaks
-            files.forEach(file => URL.revokeObjectURL(file.preview));
-            props.handleIt(files);
+            files.forEach(file => {
+                URL.revokeObjectURL(file.preview)
+                props.handleIt(file);
+            });
+        
         },
-        [files]
+        [files, image]
     );
 
     const filepath = acceptedFiles.map(file => (
@@ -129,7 +139,8 @@ const StyledDropzone = (props) => {
         <div className="container drag-drop">
             <div {...getRootProps({ style })}>
                 <input {...getInputProps()} />
-                <p>Drag 'n' drop some files here</p>
+                <p>Drag 'n' drop your avatar photo here</p>
+                <p>If image preview does not appear below, file is too large!</p>
                 <button type="button" onClick={open}>
                     Open File Dialog
         </button>

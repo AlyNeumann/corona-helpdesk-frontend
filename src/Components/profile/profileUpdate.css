@@ -1,10 +1,21 @@
+.profile-update {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+
 .profileupdate-container {
     flex-direction: row;
-    text-align: left;
+    justify-content: center;
     /* height: 100%; */
+    border: 2.5px solid black;
+    border-radius: 15px;
     margin: 5px;
 }
 .profileupdate-inner{
+    text-align: left;
     width: 570px;
     margin: auto;
     background: #ffffff;
