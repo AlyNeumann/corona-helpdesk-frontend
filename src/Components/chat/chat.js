@@ -4,18 +4,12 @@ import { Link } from 'react-router-dom';
 import useChat from '../../Hooks/useChat';
 import MessageBox from './messageBox';
 import Messages from './messages';
-// import PastMessages from './pastMessages';
+import PastMessages from './pastMessages';
 import { UserContext } from '../user-context/userContext';
 import { Button } from '../../global';
 import ScrollToBottom from 'react-scroll-to-bottom';
-// import ScrollToBottom from 'react-scroll-to-bottom';
-import { useSpring, animated } from 'react-spring'
-// import { useTrail, animated } from 'react-spring'
 import './chat.css';
 
-//TODO: to use for message scrolling
-// const props = useSpring({ scroll: 100, from: { scroll: 0 } })
-// return <animated.div scrollTop={props.scroll} />
 
 
 
@@ -26,7 +20,7 @@ const Chat = (props) => {
     const [viewedUser, setViewedUser] = useState(null)
     //get user from context
     const [user, setUser] = useContext(UserContext);
-    const propsAnimate = useSpring({ scroll: 100, from: { scroll: 0 } })
+    
 
 
     const { messages, sendMessage, pastMessages } = useChat({ user, viewedUser });
@@ -51,13 +45,11 @@ const Chat = (props) => {
            
                     {props.location.state ?
                         <div className="chat-messages-container">
-                        
+                        <PastMessages pastMessages={pastMessages}user={user} viewedUser={viewedUser} />
                         <ScrollToBottom className="scroll-container">
-                            {/* this is firing too soon */}
-                            {/* <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser}/> */}
-                            {/* <animated.div scrollTop={props.scroll} className="scroll-container"> */}
+                          
                             <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
-                            {/* </animated.div> */}
+                
                             </ScrollToBottom>
                             <div className="fixed-input">
                             <MessageBox onSendMessage={handleSendMessage} />

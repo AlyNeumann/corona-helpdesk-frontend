@@ -101,7 +101,8 @@ const useChat = ({ user, viewedUser }) => {
                      
                         //TODO: set past messages to state
                         setPastMessages(response)
-
+                        console.log('past messages')
+                        console.log(response)
                     }
 
                 })

@@ -23,20 +23,28 @@ const useStyles = makeStyles((theme) => ({
 
 const PastMessages = ({ pastMessages, user, viewedUser }) => {
 
-    console.log(pastMessages[0])
-    const msgArr = pastMessages[0]
-    const messages = msgArr.messages
-    console.log(messages)
-    //TODO: render two forms of messages based on this 'to' & 'from'
-    let sentByCurrentUser = false;
+    const [messages,setmessages] = useState(pastMessages[0].messages || undefined)
 
-    useEffect(() => {
-        //if messages.from === user.name
-    if (messages.from === user.name) {
-        sentByCurrentUser = true;
-    }
-    }, [pastMessages])
-    
+    console.log(pastMessages[0])
+
+    //TODO: render two forms of messages based on this 'to' & 'from'
+    // let sentByCurrentUser = false;
+    // let messages = []
+    //console.log(pastMessages)
+    const msgArr = pastMessages[0]
+    console.log('message aray!')
+    console.log(msgArr)
+    //const messages = msgArr.messages
+    //console.log(messages)
+
+    // useEffect(() => {
+    //     //if messages.from === user.name
+    //     // if (messages.from === user.name) {
+    //     //     sentByCurrentUser = true;
+    //     // }
+       
+    // }, [pastMessages])
+
 
 
     const classes = useStyles();
@@ -44,7 +52,7 @@ const PastMessages = ({ pastMessages, user, viewedUser }) => {
     return (
 
         <div>
-            {pastMessages ?
+            {messages ?
                 <List className={classes.root}>
                     {messages.flatMap((message, index) => {
                         //convert time with moment
@@ -52,10 +60,10 @@ const PastMessages = ({ pastMessages, user, viewedUser }) => {
                         console.log(time)
                         return [(
                             <ListItem alignItems="flex-start" key={index}>
-                                
-                                {/* <ListItemText
+
+                                <ListItemText
                                     primary={message.to}
-                                /> */}
+                                />
                                 <ListItemText
                                     primary={message.text}
                                 />

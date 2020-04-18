@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 //this will need to be form data for image 
 
-const useSignUp = (callback, userId) => {
+const useSignUp = (callback, user) => {
 
     //TODO: are the coords right for house location? look at how this is being sent...
 
     const [values, setValues] = useState({
-        id: userId,
-        name: "",
-        location: "",
-        healthStatus: "",
-        phoneNumber: "",
+        id: user._id || '',
+        name: user.name || '',
+        location: user.location || '',
+        healthStatus: user.healthStatus || '',
+        phoneNumber: user.phoneNumber || '',
         emergencyContacts: [],
         img: "",
-        coords: ""
+        coords: user.coords || ''
     });
 
     // //state for errors

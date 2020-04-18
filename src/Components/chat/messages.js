@@ -14,21 +14,14 @@ import './chat.css';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // width: '100%',
-        // maxWidth: '100%',
-        // backgroundColor: theme.palette.background.paper,
-        // background: '#F3F3F3',
-        // borderRadius: '20px',
-        // padding: '5px 20px',
-        // color: 'white',
         minWidth: '100px',
     }
-  
 }));
 
 const Messages = ({ messages, user, viewedUser }) => {
 
     const classes = useStyles();
+    const data = user.img;
 
     //TODO: replace index with message _id 
     //TODO: render two forms of messages based on user or viewed user name
@@ -38,9 +31,13 @@ const Messages = ({ messages, user, viewedUser }) => {
                 return [(
                 <ListItem alignItems="flex-start" key={index}>
                     <ListItemAvatar>
+                        {data? 
                         <Avatar 
                         alt="Remy Sharp" 
-                        src={PortraitPlaceholder} />
+                        src={`data:image/jpeg;base64,${data}`}/> :
+                        <Avatar 
+                        alt="Remy Sharp" 
+                        src={PortraitPlaceholder} />}
                     </ListItemAvatar>
                     {/* <ListItemText
                         primary={message.username}

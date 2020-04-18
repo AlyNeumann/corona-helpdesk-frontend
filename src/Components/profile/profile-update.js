@@ -27,7 +27,7 @@ const ProfileUpdate = (props) => {
     const classes = useStyles();
 
     const user = props.location.state.user;
-    const userId = user._id
+    // const userId = user._id
 
     //bring in map for location picking
     const [map, address, coords] = useMiniMap("map")
@@ -41,7 +41,7 @@ const ProfileUpdate = (props) => {
         handleEmergency,
         handleImage,
         values
-    } = useProfileUpdate(submit, userId)
+    } = useProfileUpdate(submit, user)
 
     //when address exists, handle value
     useEffect(() => {
@@ -71,11 +71,12 @@ const ProfileUpdate = (props) => {
         let formData = new FormData();
 
         for (let key in values) {
+            console.log(key)
             formData.append(key, values[key]);
+            console.log(formData.get(key))
         }
         // Object.keys(values).forEach(key => formData.append(key, values[key]));
-
-        console.log(formData)
+        console.log(Array.from(formData.values()))
 
         // handling error messages
         const handleErrors = (error) => {
@@ -87,8 +88,7 @@ const ProfileUpdate = (props) => {
             method: 'PUT',
             body: formData,
             headers: {
-                "Authorization": token,
-                "Content-Type": 'multipart/form-data'
+                "Authorization": token
             }
         })
             .then(res => res.json)
