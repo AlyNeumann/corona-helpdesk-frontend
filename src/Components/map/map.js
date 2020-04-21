@@ -17,7 +17,6 @@ import './map.css';
 //TODO: create hashmap for health statuses to use here & on profile
 
 
-
 const Map = (props) => {
 
 
@@ -27,6 +26,7 @@ const Map = (props) => {
   //bring user in from Context 
   const user = useContext(UserContext);
   const userInfo = user[0];
+
 
 
   //api call here for all user data
@@ -73,20 +73,12 @@ const Map = (props) => {
       <div className="popup">
         <div className="popup-profile">
           <div className="title">{data.name}</div>
-          {/* TODO - link to profile of this user with this button*/}
-          {/* <Link to={{
-            // link to profile of user!
-            pathname: '/profileview',
-            state: {
-              data
-            }
-          }} > */}
           <button
             className="button-image-profile"
             onClick={handlePopupClick}
             value={data}
           >
-            <img className="button-img" src={user.photoUrl ? user.photoUrl : PortraitPlaceholder} />
+            {data.img? <img className="button-img" src={`data:image/jpeg;base64,${data.img}`} /> : <img className="button-img" src={PortraitPlaceholder} /> }
 
           </button>
           {/* </Link> */}
@@ -191,10 +183,10 @@ const Map = (props) => {
       return el.healthStatus === 1
     });
     const redArray = needsFeed.filter(function (el) {
-      return el.healthStatus === 2
+      return el.healthStatus === 3
     });
     const yellowArray = needsFeed.filter(function (el) {
-      return el.healthStatus === 3
+      return el.healthStatus === 2
     });
 
     //add markers based on filter

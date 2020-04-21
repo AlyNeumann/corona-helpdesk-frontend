@@ -6,6 +6,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import '../needs-todo/need.css';
+import './needslist.css';
 
 //material ui
 const useStyles = makeStyles((theme) => ({
@@ -14,9 +15,8 @@ const useStyles = makeStyles((theme) => ({
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
-        // flexBasis: '33.33%',
-        // flexShrink: 0,
-        // paddingBottom: '100px'
+        flexBasis: '33.33%',
+        flexShrink: 0,
     },
     secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
@@ -75,7 +75,7 @@ const SingleNeed = ({ need }) => {
                                 aria-controls="panel1bh-content"
                                 id="panel1bh-header"
                             >
-                                <Typography className={`${classes.heading} needtitletext`}>
+                                <Typography className={`${classes.heading} exchangetitletext`}>
                                  Need: {needType}
 
                                 </Typography>

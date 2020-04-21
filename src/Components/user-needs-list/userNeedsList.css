@@ -5,7 +5,7 @@
     margin: 5px;
     justify-content: flex-start;
     flex-grow: 1;
-    border: 2.5px solid black;
+    /* border: 2.5px solid black; */
     border-radius: 5px;
 }
 .user-needs-list-inner{
@@ -55,8 +55,11 @@
    .user-needs-list-inner{
         width: 100%;
        height: 540px;
-       padding: 30px 15px 15px 15px;
+       padding: 30px 5px 15px 5px;
    }
+   .user-needs-list-container {
+    width: 350px;
+}
   
  }
  .MuiExpansionPanelSummary-content {

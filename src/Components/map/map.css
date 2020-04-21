@@ -97,7 +97,7 @@
   padding-bottom: 0 !important;
 }
 .title {
-  padding-top: 14px;
+  /* padding-top: 14px; */
   padding-bottom: 0 !important;
   font-size: large;
 }
@@ -130,6 +130,14 @@
 }
 .button-image-profile {
   border: none;
-  background-color: rgb(130, 130, 130);
+  background-color: rgba(255, 255, 255, 0);
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.button-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
 }

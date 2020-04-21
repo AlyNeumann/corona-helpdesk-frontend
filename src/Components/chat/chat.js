@@ -9,6 +9,7 @@ import PastMessages from './pastMessages';
 import { UserContext } from '../user-context/userContext';
 import { Button } from '../../global';
 import ScrollToBottom from 'react-scroll-to-bottom';
+// import { Button } from '../../global';
 import './chat.css';
 
 
@@ -52,24 +53,26 @@ const Chat = (props) => {
     return (
         <div className="chat-outerContainer">
             <div className="chat-container">
-
+            {viewedUser && <h6>You are chatting with {viewedUser.name}</h6>}
+           
                 {props.location.state ?
-                    <div className="chat-messages-container">
+                //className="chat-messages-container"
+                    <div>
 
                         <ScrollToBottom className="scroll-container">
 
-                            <button onClick={handlePagination}>click to see more...</button>
+                            <Button onClick={handlePagination}>click to see more...</Button>
 
                             <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
 
 
                             <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
 
-                        </ScrollToBottom>
+                        
                         <div className="fixed-input">
                             <MessageBox onSendMessage={handleSendMessage} />
                         </div>
-
+                        </ScrollToBottom>
                     </div>
                     :
                     <div>

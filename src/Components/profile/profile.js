@@ -17,7 +17,7 @@ import PlaceIcon from '@material-ui/icons/Place';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import ChatIcon from '@material-ui/icons/Chat';
-// import { useSpring, animated } from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 
 
 //TODO: will need to make hashmap for health statuses 
@@ -37,6 +37,18 @@ const useStyles = makeStyles(theme => ({
 
 
 const Profile = ({ user, needs }) => {
+
+    //react spring
+    const props1 = useSpring({
+        opacity: 1, 
+        from: {opacity: 0},
+        delay: 100
+    }) 
+    const props2 = useSpring({
+        opacity: 1, 
+        from: {opacity: 0},
+        delay: 1750
+    }) 
 
     const data = user.img;
 
@@ -96,9 +108,12 @@ const Profile = ({ user, needs }) => {
         <div className="profile-container">
             <div className="profile-inner">
                 <h2>Your Profile</h2>
+                <animated.div style={props2}>
                 <div className="profile-image-container" >
                     {data ? <img className="profile-image" src={`data:image/jpeg;base64,${data}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
+               </animated.div>
+               <animated.div style={props1}>
                 <h4>{user.name}</h4>
                 <List
                     component="nav"
@@ -152,6 +167,7 @@ const Profile = ({ user, needs }) => {
                     >Update Profile
                     </button>
                 </Link>
+                </animated.div>
             </div>
         </div>
         //    </animated.div>

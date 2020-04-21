@@ -31,7 +31,7 @@ const NeedsList = ({ user }) => {
                         // onClick={handleClick}
                         >
                             
-                            {userImg ?  <img className="btn-img" src={`data:image/jpeg;base64,${userImg}`}  /> : <img className="btn-img" src={PortraitPlaceholder} />}
+                            {userImg ?  <img className="btn-image" src={`data:image/jpeg;base64,${userImg}`}  /> : <img className="btn-image" src={PortraitPlaceholder} />}
                     </button>
                 </Link>
                 <h5 className="title-name">{user.name}</h5>

@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react';
 
 const useProfileUpdate = (callback, user) => {
 
-    console.log(user.coords)
-
     //TODO: are the coords right for house location? look at how this is being sent...
 
     const [values, setValues] = useState({

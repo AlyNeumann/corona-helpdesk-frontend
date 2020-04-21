@@ -70,9 +70,8 @@ const PastMessages = ({ pastMessages, user, viewedUser }) => {
                                 ,
                             <Divider variant="inset" component="li" key={'divider-' + index} />]
                         } else
-                        // if(message.text !== '' && (message.from === viewedUser.name))
                         {
-                            if (message.text !== '')
+                            if (message.text !== '' && (message.to === user.name))
                             return [(
                                 <ListItem alignItems="flex-start" key={index}>
                                     <ListItemAvatar>

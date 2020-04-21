@@ -1,6 +1,8 @@
 import React, { useMemo, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
+import { ReactCrop } from 'react-image-cropper';
+// import 'react-image-crop/dist/ReactCrop.css';
 // import * as Doka from './doka.esm.min';
 // import './doka.min.css';
 // import { DokaOverlay } from './react-doka';
@@ -63,15 +65,18 @@ const thumbInner = {
 
 const img = {
     display: "block",
-    width: "auto",
+    width: "100%",
     height: "100%",
-    borderRadius: "15%"
+    borderRadius: "50%"
 };
 
 const StyledDropzone = (props) => {
     //store image file
     const [files, setFiles] = useState([]);
     const [image, setImage] = useState(null);
+    const [crop, setCrop] = useState({
+        aspect: 1/1
+    })
 
 
     const {
@@ -96,10 +101,9 @@ const StyledDropzone = (props) => {
                     })
                 )
             );
-            // setImage(acceptedFiles)
         }
     });
-
+    //style changes when photo is dragged on top, or if error
     const style = useMemo(
         () => ({
             ...baseStyle,
@@ -109,16 +113,18 @@ const StyledDropzone = (props) => {
         }),
         [isDragActive, isDragReject]
     );
-
+//preview of image 
     const thumbs = files.map(file => (
         <div style={thumb} key={file.name}>
             <div style={thumbInner}>
                 <img src={file.preview} style={img} />
+                {/* <ReactCrop src={file.preview} crop={crop}/> */}
             </div>
         </div>
     ));
 
     useEffect(() => {
+        console.log(files)
             // Make sure to revoke the data uris to avoid memory leaks
             files.forEach(file => {
                 URL.revokeObjectURL(file.preview)

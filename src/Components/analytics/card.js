@@ -8,7 +8,7 @@ import './analytics.css';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    border: '2px solid black'
+    border: '0.5px solid black'
   },
   bullet: {
     display: 'inline-block',

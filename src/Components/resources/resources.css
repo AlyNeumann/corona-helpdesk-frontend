@@ -5,12 +5,12 @@
     justify-content: space-around;
     flex-wrap: wrap;
     text-align: center;
-    width: 100%;
+    width: 180%;
 }
 .resources-inner {
     justify-content: center;
 }
-/* .resource {
+.resource {
     width: 45%;
     height: 15%;
     background: #ffffff;
@@ -21,7 +21,7 @@
     display: inline-flex;
     margin:2px;
     justify-content: center;
-} */
+}
 @media only screen and (max-device-width: 480px) {
     .resource {
         width: 65%;

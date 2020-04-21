@@ -1,7 +1,11 @@
+
+
 export const lightTheme = {
-    backgroundColor:'#E2E2E2',
-    textColor: '#363537',
-    transition: 'all 0.25s linear'
+    color: 'white',
+    backGround: 'black'
+    // backgroundColor:'#E2E2E2',
+    // textColor: '#363537',
+    // transition: 'all 0.25s linear'
 
     // body: '#E2E2E2',
     // text: '#363537',
@@ -10,9 +14,11 @@ export const lightTheme = {
   }
   
   export const darkTheme = {
-    backgroundColor:'#363537',
-    textColor: '#FAFAFA',
-    transition: 'all 0.25s linear'
+    color: 'black',
+    backGround: 'white'
+    // backgroundColor:'#363537',
+    // textColor: '#FAFAFA',
+    // transition: 'all 0.25s linear'
     // body: '#363537',
     // text: '#FAFAFA',
     // toggleBorder: '#6B8096',

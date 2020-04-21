@@ -93,7 +93,7 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         flexGrow: 1,
-        padding: theme.spacing(3),
+        padding: theme.spacing(3)
     },
 }));
 
@@ -103,7 +103,8 @@ const useStyles = makeStyles(theme => ({
 function Navbar(props) {
 
     const currentTheme = useContext(ThemeContext);
-    // console.log(currentTheme)
+    console.log(currentTheme)
+    console.log(currentTheme[0])
 
 
     const history = useHistory();
@@ -236,7 +237,7 @@ function Navbar(props) {
                             <Divider />
                         </List>
                     </Drawer>
-                    <div styles={currentTheme}>
+                    <div styles={currentTheme[0]}>
                     <main className={classes.content}>
 
                         <div className={classes.toolbar} />

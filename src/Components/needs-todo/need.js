@@ -123,18 +123,22 @@ const Need = ({ need, needs }) => {
                             aria-controls="panel1bh-content"
                             id="panel1bh-header"
                         >
+                            <div>
                             <Typography className={classes.heading}>
                                 Need:
                             </Typography>
                             <Typography className={classes.secondaryHeading}>
                                 {needType}
                             </Typography>
+                            </div>
+                            <div className="need-phoneview">
                             <Typography className={`${classes.heading} typetext`}>
                                 Exchange:
                             </Typography>
                             <Typography className={classes.secondaryHeading}>
                                 {exchangeType}
                             </Typography>
+                            </div>
                             <div className="paired-button-text">
                                 <Link to={{
                                     pathname: '/updateneeds',
