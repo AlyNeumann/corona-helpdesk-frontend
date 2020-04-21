@@ -36,7 +36,7 @@ const MessageBox = ({ onSendMessage }) => {
     }
 
     return (
-        <form className="form">
+        <form className="form chat-form">
             <textarea rows="3"
             className="input"
             type="text"
@@ -46,27 +46,6 @@ const MessageBox = ({ onSendMessage }) => {
             onKeyPress={handleKeyDown}>
         </textarea>
       </form>
-        // <div>
-        //     <div className={classes.margin}>
-        //         <Grid container spacing={1} alignItems="flex-end">
-        //             <Grid item>
-        //                 <AccountCircle />
-        //             </Grid>
-        //             <Grid item>
-        //                 <TextField 
-        //                 id="input-with-icon-grid" 
-        //                 margin="normal" 
-        //                 label="type your message here" 
-        //                 multiline rows="4"
-        //                 fullWidth
-        //                 value={message}
-        //                 onChange={handleChange}
-        //                 onKeyDown={handleKeyDown}
-        //                 />
-        //             </Grid>
-        //         </Grid>
-        //     </div>
-        // </div>
     )
 }
 export default MessageBox;

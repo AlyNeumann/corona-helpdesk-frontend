@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 //this will need to be form data for image 
 
-const useSignUp = (callback, user) => {
+const useProfileUpdate = (callback, user) => {
+
+    console.log(user.coords)
 
     //TODO: are the coords right for house location? look at how this is being sent...
 
@@ -9,7 +11,7 @@ const useSignUp = (callback, user) => {
         id: user._id || '',
         name: user.name || '',
         location: user.location || '',
-        healthStatus: user.healthStatus || '',
+        healthStatus: 1,
         phoneNumber: user.phoneNumber || '',
         emergencyContacts: [],
         img: "",
@@ -38,6 +40,7 @@ const useSignUp = (callback, user) => {
     }
     //location chosen from mini map
     const handleLocation = place => {
+        console.log(place)
         setValues({ ...values, coords: place })
     }
     //push emergency contacts into array
@@ -83,4 +86,4 @@ const useSignUp = (callback, user) => {
 
 }
 
-export default useSignUp;
+export default useProfileUpdate;

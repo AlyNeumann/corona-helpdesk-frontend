@@ -9,6 +9,7 @@ const NeedsList = ({ user }) => {
     // console.log(user)
     const needs = user.neededList; 
     const id = user._id
+    const userImg = user.img;
     // const data = user.img;
 
 //TODO: add photo to each user
@@ -30,8 +31,7 @@ const NeedsList = ({ user }) => {
                         // onClick={handleClick}
                         >
                             
-                            {/* {user ?  <img className="btn-img" src={`data:image/jpeg;base64,${data}`} /> : <img className="btn-img" src={PortraitPlaceholder} />} */}
-                        <AccountCircleIcon className="buttonclass"/>
+                            {userImg ?  <img className="btn-img" src={`data:image/jpeg;base64,${userImg}`}  /> : <img className="btn-img" src={PortraitPlaceholder} />}
                     </button>
                 </Link>
                 <h5 className="title-name">{user.name}</h5>

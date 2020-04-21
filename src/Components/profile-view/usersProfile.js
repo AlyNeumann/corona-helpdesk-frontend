@@ -37,6 +37,7 @@ const useStyles = makeStyles(theme => ({
 const UsersProfile = (props) => {
     const viewedUser = props.user;
     // console.log(props.user)
+    const userImg = viewedUser.img
 
     //hashmap for health statuses
     const healthOptions = {
@@ -79,7 +80,7 @@ const UsersProfile = (props) => {
             <div className="profile-inner">
                 <h2>User Profile</h2>
                 <div className="profile-image-container" >
-                    {viewedUser.image ? <img className="profile-image" src={viewedUser.image} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                    {userImg ? <img className="profile-image" src={`data:image/jpeg;base64,${userImg}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
                 </div>
                 <h4>{viewedUser.name}</h4>
                 <List

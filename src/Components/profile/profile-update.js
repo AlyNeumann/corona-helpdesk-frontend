@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+// import * as Doka from './doka.esm.min';
+// import './doka.min.css';
+// import { Doka } from './react-doka';
 import { useHistory } from 'react-router-dom';
 import StyledDropzone from './photo-picker-simple'
 import useProfileUpdate from '../../Hooks/useProfileUpdate';
@@ -62,9 +65,10 @@ const ProfileUpdate = (props) => {
     //     console.log(img)
     // }
 
-//TODO: help me!!! formdata not working
+    //TODO: help me!!! formdata not working
     function submit() {
         const url = "http://localhost:5000/updateProfile"
+        console.log('values before form')
         console.log(values)
         let token = Cookies.get("token")
 
@@ -72,7 +76,12 @@ const ProfileUpdate = (props) => {
 
         for (let key in values) {
             console.log(key)
-            formData.append(key, values[key]);
+            if (key === 'coords') {
+                formData.append(key, JSON.stringify(values[key]))
+            } else {
+                formData.append(key, values[key]);
+
+            }
             console.log(formData.get(key))
         }
         // Object.keys(values).forEach(key => formData.append(key, values[key]));
@@ -109,92 +118,92 @@ const ProfileUpdate = (props) => {
 
     return (
         <div className="profile-update">
-        <div className="profileupdate-container">
-            <div className="profileupdate-inner">
-                <form onSubmit={handleSubmit} noValidate autoComplete="true">
-                    <div className="form-group">
-                        <label>Username</label>
-                        <input type="text"
-                            name="name"
-                            className="form-control"
-                            placeholder={user.name}
-                            onChange={handleChange}
-                            value={values.username} />
-                    </div>
-                    <div className="form-group">
-                        <label>User Location</label>
-                        <input type="text"
-                            placeholder="Which city and neighbourhood are you located in?"
-                            name="location"
-                            className="form-control"
-                            onChange={handleChange}
-                            value={values.location} />
-                    </div>
-                    <div className={classes.formControl}>
-                        <InputLabel htmlFor="outlined-age-native-simple">Health Status</InputLabel>
-                        <Select
-                            native
-                            name="healthStatus"
-                            onChange={handleChange}
-                            value={values.healthStatus}
-                            label="Health Status"
-                            inputProps={{
-                                name: 'healthStatus',
-                                id: 'outlined-age-native-simple',
-                            }}
-                        >
-                            <option aria-label="Healthy" value="Healthy" />
-                            <option value="1">Healthy</option>
-                            <option value="2">Symptoms/Unsure</option>
-                            <option value="3">Sick</option>
-                        </Select>
-                    </div>
-                    <div className="form-group">
-                        <label>Contact Info</label>
-                        <input type="text"
-                            name="phoneNumber"
-                            className="form-control"
-                            placeholder={user.phoneNumber}
-                            onChange={handleChange}
-                            value={values.contactInfo} />
-                    </div>
-                    <div className="form-group">
-                        <label>Emergency Contact</label>
-                        <input type="text"
-                            name="emergencyContacts"
-                            className="form-control"
-                            placeholder={user.emergencyContacts[0] || ""}
-                            onChange={handleEmergency}
-                            value={values.emergencyContacts[0] || ""} />
-                        <input type="text"
-                            name="emergencyContacts1"
-                            className="form-control"
-                            placeholder={user.emergencyContacts[1] || ""}
-                            onChange={handleEmergency}
-                            value={values.emergencyContacts[1] || ""} />
-                    </div>
-                    <div className="form-group">
-                        <label>Avatar Photo</label>
-                        {/* handleImage needs to be used here */}
-                        <StyledDropzone handleIt={handleImage} />
-                    </div>
-                    <div className="form-group">
-                        <label>Address</label>
-                        <div id="map">
+            <div className="profileupdate-container">
+                <div className="profileupdate-inner">
+                    <form onSubmit={handleSubmit} noValidate autoComplete="true">
+                        <div className="form-group">
+                            <label>Username</label>
+                            <input type="text"
+                                name="name"
+                                className="form-control"
+                                placeholder={user.name}
+                                onChange={handleChange}
+                                value={values.username} />
                         </div>
+                        <div className="form-group">
+                            <label>User Location</label>
+                            <input type="text"
+                                placeholder="Which city and neighbourhood are you located in?"
+                                name="location"
+                                className="form-control"
+                                onChange={handleChange}
+                                value={values.location} />
+                        </div>
+                        <div className={classes.formControl}>
+                            <InputLabel htmlFor="outlined-age-native-simple">Health Status</InputLabel>
+                            <Select
+                                native
+                                name="healthStatus"
+                                onChange={handleChange}
+                                value={values.healthStatus}
+                                label="Health Status"
+                                inputProps={{
+                                    name: 'healthStatus',
+                                    id: 'outlined-age-native-simple',
+                                }}
+                            >
+                                <option aria-label="Healthy" value="1" />
+                                <option value="1">Healthy</option>
+                                <option value="2">Symptoms/Unsure</option>
+                                <option value="3">Sick</option>
+                            </Select>
+                        </div>
+                        <div className="form-group">
+                            <label>Contact Info</label>
+                            <input type="text"
+                                name="phoneNumber"
+                                className="form-control"
+                                placeholder={user.phoneNumber}
+                                onChange={handleChange}
+                                value={values.contactInfo} />
+                        </div>
+                        <div className="form-group">
+                            <label>Emergency Contact</label>
+                            <input type="text"
+                                name="emergencyContacts"
+                                className="form-control"
+                                placeholder={user.emergencyContacts[0] || ""}
+                                onChange={handleEmergency}
+                                value={values.emergencyContacts[0] || ""} />
+                            <input type="text"
+                                name="emergencyContacts1"
+                                className="form-control"
+                                placeholder={user.emergencyContacts[1] || ""}
+                                onChange={handleEmergency}
+                                value={values.emergencyContacts[1] || ""} />
+                        </div>
+                        <div className="form-group">
+                            <label>Avatar Photo</label>
+                            {/* handleImage needs to be used here */}
+                            <StyledDropzone handleIt={handleImage} />
+                        </div>
+                        <div className="form-group">
+                            <label>Address</label>
+                            <div id="map">
+                            </div>
 
-                    </div>
-                    <button type="submit"
+                        </div>
+                        <button type="submit"
+                            className="btn btn-secondary update-btn btn-text"
+                        >Update</button>
+
+                    </form>
+                    <button
                         className="btn btn-secondary update-btn btn-text"
-                    >Update</button>
-
-                </form>
-                <button
-                    className="btn btn-secondary update-btn btn-text"
-                    onClick={handleClose}>
-                    Close</button>
+                        onClick={handleClose}>
+                        Close</button>
+                </div>
             </div>
-        </div>
         </div>
     )
 }

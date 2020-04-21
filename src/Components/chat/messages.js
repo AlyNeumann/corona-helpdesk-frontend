@@ -21,43 +21,83 @@ const useStyles = makeStyles((theme) => ({
 const Messages = ({ messages, user, viewedUser }) => {
 
     const classes = useStyles();
-    const data = user.img;
+    let userImg = ''
+    let viewedImg = ''
+
+    if (user && viewedUser) {
+        userImg = user.img
+        viewedImg = viewedUser.img
+    }
+
 
     //TODO: replace index with message _id 
     //TODO: render two forms of messages based on user or viewed user name
     return (
         <List className={classes.root}>
             {messages.flatMap((message, index) => {
-                return [(
-                <ListItem alignItems="flex-start" key={index}>
-                    <ListItemAvatar>
-                        {data? 
-                        <Avatar 
-                        alt="Remy Sharp" 
-                        src={`data:image/jpeg;base64,${data}`}/> :
-                        <Avatar 
-                        alt="Remy Sharp" 
-                        src={PortraitPlaceholder} />}
-                    </ListItemAvatar>
-                    {/* <ListItemText
-                        primary={message.username}
-                        className="chat-name"
-                    /> */}
-                     <ListItemText
-                     className="messageText"
-                        primary={ReactEmoji.emojify(message.text)}
-                    />
-                      <ListItemText
-                      className="chat-time"
-                        primary={message.time}
-                    />
-                </ListItem>)
-                ,
-                  <Divider variant="inset" component="li" key={'divider-'+ index}/> ]}).slice(0, -1)}
-                  {/* </ScrollToBottom> */}
-          
+                if (message.text !== '')
+                    if (message.text !== '' && (message.username === user.name)) {
+                        return [(
+                            <ListItem alignItems="flex-start" key={index}>
+
+
+                                <ListItemText
+                                    className="chat-time"
+                                    primary={message.time}
+                                />
+                                <ListItemText
+                                    className="messageText"
+                                    primary={ReactEmoji.emojify(message.text)}
+                                />
+                                <ListItemAvatar>
+                                    {messages ?
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={`data:image/jpeg;base64,${userImg}`} /> :
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={PortraitPlaceholder} />}
+                                </ListItemAvatar>
+                            </ListItem>)
+                            ,
+                        <Divider variant="inset" component="li" key={'divider-' + index} />]
+                    } else
+                    // if(message.text !== '' && (message.from === viewedUser.name))
+                    {
+                        if (message.text !== '')
+                        return [(
+                            <ListItem alignItems="flex-start" key={index}>
+                                <ListItemAvatar>
+                                    {userImg ?
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={`data:image/jpeg;base64,${viewedImg}`} /> :
+                                        <Avatar
+                                            alt="Remy Sharp"
+                                            src={PortraitPlaceholder} />}
+
+                                </ListItemAvatar>
+                                <ListItemText
+                                    className="messageText"
+                                    primary={message.text}
+                                />
+                                <ListItemText
+                                    className="chat-time"
+                                    primary={message.time}
+                                />
+
+
+
+                            </ListItem>)
+
+                            ,
+                        <Divider variant="inset" component="li" key={'divider-' + index} />]
+                    }
+            }).slice(0, -1)}
+
+
         </List>
-        // {/* </ScrollToBottom> */}
+       
     );
 }
 
