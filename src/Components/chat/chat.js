@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import ReactDom from 'react-dom';
 import { Link } from 'react-router-dom';
 import useChat from '../../Hooks/useChat';
@@ -29,8 +29,17 @@ const Chat = (props) => {
 
     const { messages, sendMessage, pastMessages, roomId } = useChat({ user, viewedUser, page });
 
-    //bring user more past messages on button click
-    // usePagination({ page, roomId })
+    //scroll to bottom of chat
+    const messagesEndRef = useRef(null)
+    console.log(messagesEndRef)
+
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }
+    //call scroll to bottom when message updates 
+    useEffect(scrollToBottom, [messages]);
 
     //function to send message to socket io
     const handleSendMessage = ({ message }) => {
@@ -52,27 +61,28 @@ const Chat = (props) => {
 
     return (
         <div className="chat-outerContainer">
+            {viewedUser && <h6 className="chat-title">You are chatting with {viewedUser.name}</h6>}
             <div className="chat-container">
-            {viewedUser && <h6>You are chatting with {viewedUser.name}</h6>}
-           
+                {/* {viewedUser && <h6>You are chatting with {viewedUser.name}</h6>} */}
+
                 {props.location.state ?
-                //className="chat-messages-container"
-                    <div>
+                    //className="chat-messages-container"
+                    <div className="all-messages">
 
-                        <ScrollToBottom className="scroll-container">
+                        <Button onClick={handlePagination}>click to see more...</Button>
 
-                            <Button onClick={handlePagination}>click to see more...</Button>
-
+                        <div>
                             <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
 
-
+                            {/* <ScrollToBottom className="scroll-container"> */}
                             <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
-
-                        
+                            <div ref={messagesEndRef} />
+                            {/* </ScrollToBottom> */}
+                        </div>
                         <div className="fixed-input">
                             <MessageBox onSendMessage={handleSendMessage} />
                         </div>
-                        </ScrollToBottom>
+
                     </div>
                     :
                     <div>

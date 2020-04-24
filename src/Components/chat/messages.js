@@ -33,7 +33,7 @@ const Messages = ({ messages, user, viewedUser }) => {
     //TODO: replace index with message _id 
     //TODO: render two forms of messages based on user or viewed user name
     return (
-        <div className="all-messages">
+        <div>
         <List className={classes.root}>
             {messages.flatMap((message, index) => {
                 if (message.text !== '')

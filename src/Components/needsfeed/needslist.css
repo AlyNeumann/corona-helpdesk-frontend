@@ -36,11 +36,10 @@
     /* justify-content: space-evenly; */
 }
 .needslist-container {
-    width: 180%;
+    width: 100%;
     margin: 5px;
     flex-grow: 1;
     border-radius: 5px;
-     padding-left: 10%;
     padding-right: 0;
 }
 

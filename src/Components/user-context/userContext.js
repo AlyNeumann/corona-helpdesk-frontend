@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect } from 'react';
 // import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '../../theme';
+// import { lightTheme, darkTheme } from '../../theme';
 
 export const UserContext = createContext({});
 export const NeedsContext = createContext({});
@@ -9,13 +9,13 @@ export const ThemeContext = createContext({});
 const UserContextStore = ({ children }) => {
     const [user, setUser] = useState([]);
     const [needs, setNeeds] = useState([]);
-    const [currentTheme, setCurrentTheme] = useState(lightTheme);
+    const [currentTheme, setCurrentTheme] = useState('light');
 
     //check browser for theme preference
     //not working....yet
     useEffect(() => {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !currentTheme) {
-            setCurrentTheme(darkTheme)
+            setCurrentTheme('dark')
         }
     }, [])
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -33,83 +34,89 @@ import { UserContext } from '../../Components/user-context/userContext';
 import { ThemeContext } from '../../Components/user-context/userContext';
 
 
-const drawerWidth = 240;
-const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        background: "#000",
-        color: "#fff"
-    },
-    appBarShift: {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: 36,
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-        whiteSpace: 'nowrap',
-    },
-    drawerOpen: {
-        width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    drawerClose: {
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        overflowX: 'hidden',
-        width: theme.spacing(7) + 1,
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9) + 1,
-        },
-    },
-    toolbar: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar,
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3)
-    },
-}));
+
 
 
 
 
 function Navbar(props) {
 
-    const currentTheme = useContext(ThemeContext);
-    console.log(currentTheme)
-    console.log(currentTheme[0])
 
+    const drawerWidth = 240;
+    const useStyles = makeStyles((theme) => ({
+        root: {
+            display: 'flex',
+        },
+        appBar: {
+            zIndex: theme.zIndex.drawer + 1,
+            transition: theme.transitions.create(['width', 'margin'], {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+            }),
+            background: "#000",
+            color: "#fff" 
+        },
+        appBarShift: {
+            marginLeft: drawerWidth,
+            width: `calc(100% - ${drawerWidth}px)`,
+            transition: theme.transitions.create(['width', 'margin'], {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+        },
+        menuButton: {
+            marginRight: 36,
+        },
+        hide: {
+            display: 'none',
+        },
+        drawer: {
+            width: drawerWidth,
+            flexShrink: 0,
+            whiteSpace: 'nowrap',
+        },
+        drawerOpen: {
+            width: drawerWidth,
+            transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+        },
+        drawerClose: {
+            transition: theme.transitions.create('width', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+            }),
+            overflowX: 'hidden',
+            width: theme.spacing(7) + 1,
+            [theme.breakpoints.up('sm')]: {
+                width: theme.spacing(9) + 1,
+            },
+        },
+        toolbar: {
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            padding: theme.spacing(0, 1),
+            ...theme.mixins.toolbar,
+        },
+        content: {
+            // color: props => {
+            //         props.light ? '#fff' : '#000'
+            //     },
+                flexGrow: 1,
+        }
+
+    }));
+
+    //toggle the light and dark mode
+
+    const currentTheme = useContext(ThemeContext);
+    console.log(currentTheme[0])
 
     const history = useHistory();
     const classes = useStyles();
-    const theme = useTheme();
+    const theme = useTheme(currentTheme[0]);
     const [open, setOpen] = useState(false)
     const user = useContext(UserContext);
     const userInfo = user[0];
@@ -137,10 +144,20 @@ function Navbar(props) {
 
     }, [user])
 
+    //change styles
+    // useEffect(() => {
+    //     if(currentTheme){
+    //         console.log(currentTheme[0])
+    //         const themedBG = currentTheme[0]
+    //         console.log(themedBG.content)
+    //         // classes.content = themedBG.content
+    //     }
+    // }, [currentTheme])
+
 
     return (
         <React.Fragment>
-                   
+
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
                 <div className={classes.root}>
                     <CssBaseline />
@@ -233,22 +250,22 @@ function Navbar(props) {
                                 <ListItemIcon><HelpIcon className="iconclass" /></ListItemIcon>
                                 <ListItemText primary={"Resources"} />
                             </ListItem>
-                      
+
                             <Divider />
                         </List>
                     </Drawer>
-                    <div styles={currentTheme[0]}>
-                    <main className={classes.content}>
+                    <ThemeProvider theme={theme}>
+                        <main className={classes.content}>
 
-                        <div className={classes.toolbar} />
-                        {(history.location.pathname !== "/" || history.location.pathname !== "/signup") && props.children}
-                    </main>
-                    </div>
+                            <div className={classes.toolbar} />
+                            {(history.location.pathname !== "/" || history.location.pathname !== "/signup") && props.children}
+                        </main>
+                        </ThemeProvider>
                 </div>
             </div>
             {(history.location.pathname === "/") && <Login />}
             {(history.location.pathname === "/signup") && <Signup />}
-    
+
         </React.Fragment>
     );
 }

@@ -29,7 +29,7 @@ function App() {
 
   return (
     <Router>
-      <UserContextStore>Î
+      <UserContextStore>
         <Navbar user={user}>
           <Switch>
             <Route path="/map" exact component={Map} />

@@ -33,7 +33,7 @@ const PastMessages = ({ pastMessages, user, viewedUser }) => {
 
     return (
 
-        <div className="all-messages-container">
+        <div>
             {pastMessages ?
                 <List className={classes.root}>
                     {pastMessages.flatMap((message, index) => {

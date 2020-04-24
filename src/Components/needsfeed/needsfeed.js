@@ -12,7 +12,8 @@ const NeedsFeed = () => {
     // console.log(user[0]);
     const userObj = user[0];
     const userLocation = userObj.houseLocation.coordinates
-    const [radius, setRadius] = useState(10)
+    console.log(userLocation)
+    const [radius, setRadius] = useState(100)
 
     //react spring
     const props = useSpring({

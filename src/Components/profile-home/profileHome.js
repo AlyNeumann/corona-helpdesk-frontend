@@ -49,10 +49,10 @@ const ProfileHome = () => {
 
     //for theme
     const handleClick = () => {
-        if (currentTheme === lightTheme) {
-            setCurrentTheme(darkTheme)
+        if (currentTheme === 'light') {
+            setCurrentTheme('dark')
         } else {
-            setCurrentTheme(lightTheme)
+            setCurrentTheme('light')
         }
     }
     const getUserAndNeeds = () => {
