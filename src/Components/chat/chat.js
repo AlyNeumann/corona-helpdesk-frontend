@@ -1,15 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
-import ReactDom from 'react-dom';
 import { Link } from 'react-router-dom';
 import useChat from '../../Hooks/useChat';
-// import usePagination from '../../Hooks/usePagination';
 import MessageBox from './messageBox';
 import Messages from './messages';
 import PastMessages from './pastMessages';
+import PastChats from './pastChats';
 import { UserContext } from '../user-context/userContext';
 import { Button } from '../../global';
-import ScrollToBottom from 'react-scroll-to-bottom';
-// import { Button } from '../../global';
 import './chat.css';
 
 
@@ -24,14 +21,16 @@ const Chat = (props) => {
     const [user, setUser] = useContext(UserContext);
     //pagination number is set on click 
     const [page, setPage] = useState(1);
+    // //switch chat if user clicks on another user on the side of the page
+    // const [newChat, setNewChat] = useState(null);
+    
 
 
 
-    const { messages, sendMessage, pastMessages, roomId } = useChat({ user, viewedUser, page });
-
+    const { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat  } = useChat({ user, viewedUser, page});
     //scroll to bottom of chat
     const messagesEndRef = useRef(null)
-    console.log(messagesEndRef)
+    // console.log(messagesEndRef)
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
@@ -51,13 +50,14 @@ const Chat = (props) => {
         setPage(page + 1)
     }
 
+
     useEffect(() => {
-        console.log(pastMessages)
+        // console.log(pastMessages)
         if (props.location.state && pastMessages) {
             setViewedUser(props.location.state.viewedUser)
         }
     }, [pastMessages])
-    console.log(page)
+    // console.log(page)
 
     return (
         <div className="chat-outerContainer">
@@ -74,22 +74,19 @@ const Chat = (props) => {
                         <div>
                             <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
 
-                            {/* <ScrollToBottom className="scroll-container"> */}
-                            <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
+                            <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChat={newChat}/>
                             <div ref={messagesEndRef} />
-                            {/* </ScrollToBottom> */}
-                        </div>
-                        <div className="fixed-input">
+                            <div className="fixed-input">
                             <MessageBox onSendMessage={handleSendMessage} />
                         </div>
-
+                        </div>
+                            
                     </div>
                     :
                     <div>
                         <div>
                             Check the map or needsfeed to find users to chat with!
                     </div>
-
                         <Link to={{
                             pathname: '/needsfeed',
                         }}>
@@ -104,9 +101,9 @@ const Chat = (props) => {
                     </div>
 
                 }
-
-
+                    
             </div>
+            {allChats && <PastChats pastChats={allChats} user={user} handleChatSwitch={handleChatSwitch}/>}
         </div>)
 }
 

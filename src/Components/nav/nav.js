@@ -112,7 +112,7 @@ function Navbar(props) {
     //toggle the light and dark mode
 
     const currentTheme = useContext(ThemeContext);
-    console.log(currentTheme[0])
+    // console.log(currentTheme[0])
 
     const history = useHistory();
     const classes = useStyles();

@@ -22,7 +22,7 @@ const PastMessages = ({ pastMessages, user, viewedUser }) => {
     let userImg = ''
     let viewedImg = ''
 
-    console.log(pastMessages)
+    // console.log(pastMessages)
     if (user && viewedUser) {
         userImg = user.img
         viewedImg = viewedUser.img
@@ -69,39 +69,38 @@ const PastMessages = ({ pastMessages, user, viewedUser }) => {
 
                                 ,
                             <Divider variant="inset" component="li" key={'divider-' + index} />]
-                        } else
-                        {
+                        } else {
                             if (message.text !== '' && (message.to === user.name))
-                            return [(
-                                <ListItem alignItems="flex-start" key={index}>
-                                    <ListItemAvatar>
-                                        {userImg ?
-                                            <Avatar
-                                                alt="Remy Sharp"
-                                                src={`data:image/jpeg;base64,${viewedImg}`} /> :
-                                            <Avatar
-                                                alt="Remy Sharp"
-                                                src={PortraitPlaceholder} />}
+                                return [(
+                                    <ListItem alignItems="flex-start" key={index}>
+                                        <ListItemAvatar>
+                                            {userImg ?
+                                                <Avatar
+                                                    alt="Remy Sharp"
+                                                    src={`data:image/jpeg;base64,${viewedImg}`} /> :
+                                                <Avatar
+                                                    alt="Remy Sharp"
+                                                    src={PortraitPlaceholder} />}
 
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        className="messageText"
-                                        primary={ReactEmoji.emojify(message.text)}
-                                    />
-                                    <ListItemText
-                                        className="chat-time"
-                                        primary={time}
-                                    />
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            className="messageText"
+                                            primary={ReactEmoji.emojify(message.text)}
+                                        />
+                                        <ListItemText
+                                            className="chat-time"
+                                            primary={time}
+                                        />
 
 
 
-                                </ListItem>)
+                                    </ListItem>)
 
-                                ,
-                            <Divider variant="inset" component="li" key={'divider-' + index} />]
+                                    ,
+                                <Divider variant="inset" component="li" key={'divider-' + index} />]
                         }
                     }).slice(0, -1)}
-
+                    <Divider variant="inset" component="li" key={'divider-last'} />
                 </List>
                 :
                 <div>No chat history</div>

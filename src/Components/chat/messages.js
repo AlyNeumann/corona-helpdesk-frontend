@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Messages = ({ messages, user, viewedUser }) => {
+const Messages = ({ messages, user, viewedUser, newChat }) => {
 
     const classes = useStyles();
     let userImg = ''
@@ -29,76 +29,83 @@ const Messages = ({ messages, user, viewedUser }) => {
         viewedImg = viewedUser.img
     }
 
+    //if new chat, clear messages
+    useEffect(() => {
+        if (newChat) {
+            console.log('newchat from messages')
+        }
+    }, [newChat])
+
 
     //TODO: replace index with message _id 
     //TODO: render two forms of messages based on user or viewed user name
     return (
         <div>
-        <List className={classes.root}>
-            {messages.flatMap((message, index) => {
-                if (message.text !== '')
-                    if (message.text !== '' && (message.username === user.name)) {
-                        return [(
-                            <ListItem alignItems="flex-start" key={index}>
+            <List className={classes.root}>
+                {messages.flatMap((message, index) => {
+                    if (message.text !== '')
+                        if (message.text !== '' && (message.username === user.name)) {
+                            return [(
+                                <ListItem alignItems="flex-start" key={index}>
 
 
-                                <ListItemText
-                                    className="chat-time"
-                                    primary={message.time}
-                                />
-                                <ListItemText
-                                    className="messageText"
-                                    primary={ReactEmoji.emojify(message.text)}
-                                />
-                                <ListItemAvatar>
-                                    {messages ?
-                                        <Avatar
-                                            alt="Remy Sharp"
-                                            src={`data:image/jpeg;base64,${userImg}`} /> :
-                                        <Avatar
-                                            alt="Remy Sharp"
-                                            src={PortraitPlaceholder} />}
-                                </ListItemAvatar>
-                            </ListItem>)
-                            ,
-                        <Divider variant="inset" component="li" key={'divider-' + index} />]
-                    } else
-                    // if(message.text !== '' && (message.from === viewedUser.name))
-                    {
-                        if (message.text !== '' && !message.time)
-                        return [(
-                            <ListItem alignItems="flex-start" key={index}>
-                                <ListItemAvatar>
-                                    {userImg ?
-                                        <Avatar
-                                            alt="Remy Sharp"
-                                            src={`data:image/jpeg;base64,${viewedImg}`} /> :
-                                        <Avatar
-                                            alt="Remy Sharp"
-                                            src={PortraitPlaceholder} />}
+                                    <ListItemText
+                                        className="chat-time"
+                                        primary={message.time}
+                                    />
+                                    <ListItemText
+                                        className="messageText"
+                                        primary={ReactEmoji.emojify(message.text)}
+                                    />
+                                    <ListItemAvatar>
+                                        {messages ?
+                                            <Avatar
+                                                alt="Remy Sharp"
+                                                src={`data:image/jpeg;base64,${userImg}`} /> :
+                                            <Avatar
+                                                alt="Remy Sharp"
+                                                src={PortraitPlaceholder} />}
+                                    </ListItemAvatar>
+                                </ListItem>)
+                                ,
+                            <Divider variant="inset" component="li" key={'divider-' + index} />]
+                        } else
+                        // if(message.text !== '' && (message.from === viewedUser.name))
+                        {
+                            if (message.text !== '' && !message.time)
+                                return [(
+                                    <ListItem alignItems="flex-start" key={index}>
+                                        <ListItemAvatar>
+                                            {userImg ?
+                                                <Avatar
+                                                    alt="Remy Sharp"
+                                                    src={`data:image/jpeg;base64,${viewedImg}`} /> :
+                                                <Avatar
+                                                    alt="Remy Sharp"
+                                                    src={PortraitPlaceholder} />}
 
-                                </ListItemAvatar>
-                                <ListItemText
-                                    className="messageText"
-                                    primary={message.text}
-                                />
-                                <ListItemText
-                                    className="chat-time"
-                                    primary={message.time}
-                                />
-
-
-
-                            </ListItem>)
-
-                            ,
-                        <Divider variant="inset" component="li" key={'divider-' + index} />]
-                    }
-            }).slice(0, -1)}
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            className="messageText"
+                                            primary={message.text}
+                                        />
+                                        <ListItemText
+                                            className="chat-time"
+                                            primary={message.time}
+                                        />
 
 
-        </List>
-       </div>
+
+                                    </ListItem>)
+
+                                    ,
+                                <Divider variant="inset" component="li" key={'divider-' + index} />]
+                        }
+                }).slice(0, -1)}
+
+
+            </List>
+        </div>
     );
 }
 

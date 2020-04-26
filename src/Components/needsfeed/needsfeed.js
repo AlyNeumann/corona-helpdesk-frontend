@@ -12,7 +12,7 @@ const NeedsFeed = () => {
     // console.log(user[0]);
     const userObj = user[0];
     const userLocation = userObj.houseLocation.coordinates
-    console.log(userLocation)
+    // console.log(userLocation)
     const [radius, setRadius] = useState(100)
 
     //react spring
@@ -54,7 +54,7 @@ const NeedsFeed = () => {
         const token = Cookies.get("token");
         const lat = userLocation[0];
         const lng = userLocation[1];
-        console.log(radius)
+        // console.log(radius)
         const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages
