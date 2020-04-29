@@ -27,7 +27,7 @@ const Chat = (props) => {
 
 
 
-    const { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat  } = useChat({ user, viewedUser, page});
+    const { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat, newChatUser  } = useChat({ user, viewedUser, page});
     //scroll to bottom of chat
     const messagesEndRef = useRef(null)
     // console.log(messagesEndRef)
@@ -57,7 +57,7 @@ const Chat = (props) => {
             setViewedUser(props.location.state.viewedUser)
         }
     }, [pastMessages])
-    // console.log(page)
+
 
     return (
         <div className="chat-outerContainer">
@@ -65,16 +65,16 @@ const Chat = (props) => {
             <div className="chat-container">
                 {/* {viewedUser && <h6>You are chatting with {viewedUser.name}</h6>} */}
 
-                {props.location.state ?
+                {(props.location.state || newChat)?
                     //className="chat-messages-container"
                     <div className="all-messages">
 
                         <Button onClick={handlePagination}>click to see more...</Button>
 
                         <div>
-                            <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} />
+                            <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChatUser={newChatUser}/>
 
-                            <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChat={newChat}/>
+                            <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChat={newChat} newChatUser={newChatUser}/>
                             <div ref={messagesEndRef} />
                             <div className="fixed-input">
                             <MessageBox onSendMessage={handleSendMessage} />

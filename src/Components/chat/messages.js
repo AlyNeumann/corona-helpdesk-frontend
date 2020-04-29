@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Messages = ({ messages, user, viewedUser, newChat }) => {
+const Messages = ({ messages, user, viewedUser, newChat, newChatUser }) => {
 
     const classes = useStyles();
     let userImg = ''
@@ -27,6 +27,9 @@ const Messages = ({ messages, user, viewedUser, newChat }) => {
     if (user && viewedUser) {
         userImg = user.img
         viewedImg = viewedUser.img
+    }else{
+        userImg = user.img
+        viewedImg = newChatUser.img
     }
 
     //if new chat, clear messages

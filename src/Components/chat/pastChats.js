@@ -3,95 +3,68 @@ import { Button } from '../../global';
 import Cookies from 'js-cookie';
 import './chat.css'
 
+
+//chat contains the name of both users so check if name same, or different
+//then use that for the chat button with that user
+
 const PastChats = (props) => {
-    console.log(props)
-    //store user profiles from past chat
-    const [users, setUsers] = useState([]);
-    const [serverErorr, setServerError] = useState(null);
-    const [errorMesssage, setErrorMessage] = useState(null);
-    const userId = props.user._id
+
+
+    const username = props.user.name
     const chats = props.pastChats
+    const [names, setNames] = useState(null)
+    // console.log(chats)
+    // console.log(username)
 
     //fetch chat the user clicks on
     const handleClick = (e) => {
         //use chat id to call that chat
-        // console.log(e.target.value)
+        console.log(e.target.value)
         const newChat = e.target.value
         props.handleChatSwitch(newChat);
 
     }
-    //TODO: take chat id, minus user id, use for fetch 
-    //here we do fetch for each users profile, then store them & represent them by buttons
-    const getUsers = (props) => {
 
-        //loop through then fetch each
+    //TODO: fucking state trouble again bro, you suck at ARRAYS in LOOPS
+    const filterChats = (chats) => {
+        let viewedNames = []
+        // let viewedName = ''
         chats.map(chat => {
-            const chatuserId = chat.chatIds.filter(id => {
-                return id !== userId
+            let allnames = chat.names;
+            let id = chat.id
+            // console.log(allnames)
+             const namesArr = allnames.filter(name => {
+               return name !== username
             })
-            //fetch user profiles
-            const token = Cookies.get('token')
-            const url = "http://localhost:5000/getUsers"
-            
-             //handle error messages
-             const handleErrors = (error) => {
-                // console.log(error)
-                if (error) {
-                    setErrorMessage(error.error)
-                } else if (error instanceof TypeError) {
-                    setServerError(true)
-                } else return error;
-            }
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify({chatuserId}),
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token
-                }
-            }).then(res => res.json())
-            .then(response => {
-              console.log('this is jibber', response)
-                if (response.error || response == undefined) {
-                    handleErrors(response)
-
-                }else{
-                    console.log('hudofusdinsd',response, users)
-                    setUsers([...users, response])
-                }
-
-            })
-            .catch(error => {
-                if (error) {
-                    console.log(error)
-                    handleErrors(error)
-                } else if (error instanceof TypeError) {
-                    setServerError(true)
-                }
-            })
+            // console.log(namesArr, id)
+           viewedNames.push({name: namesArr, id: id})
         })
+        setNames(viewedNames)
     }
 
-    //if past chats exist, call getUsers
     useEffect(() => {
-        getUsers(props)
-    }, [userId, chats])
-    console.log(users)
-    //show user avatar as button with name
+        filterChats(chats)
+    }, [chats])
+    // console.log(names)
     return (
         <div className="pastchats-container">
             <h6 className="pastchats-title">Chat History</h6>
             <div className="pastchat-btn">
-                {/* {users && users.map(user => {
-                    return (<div key={user._id}> */}
-                        <Button
-                            className="pastchats-btn"
-                            // value={user}
-                            onClick={handleClick}>
-                            {/* {user.name} */}
-                        </Button>
-                    {/* </div>)
-                })} */}
+                {names ? names.map(name => {
+                    return (
+                        <div key={name.id}>
+                            <Button
+                                className="pastchats-btn"
+                                value={name.id}
+                                onClick={handleClick}>
+                                {name.name[0]}
+                            </Button>
+                        </div>
+                    )
+
+                })
+
+                    : (<div> No chat history</div>)}
             </div>
         </div>
     )

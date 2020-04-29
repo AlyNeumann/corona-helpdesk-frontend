@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Cookies from 'js-cookie';
 import socketIOClient from 'socket.io-client';
 
 
@@ -10,6 +11,7 @@ const useChat = ({ user, viewedUser, page }) => {
         text: '',
         time: ''
     }]);
+    const [viewedUserId, setViewedUserId] = useState('')
 
     const [pastMessages, setPastMessages] = useState([{
 
@@ -17,6 +19,8 @@ const useChat = ({ user, viewedUser, page }) => {
     const [chatIds, setChatids] = useState([]);
     const [to, setTo] = useState(null);
     const [allChats, setAllChats] = useState([]);
+    const [names, setNames] = useState([])
+    const [newChatUser, setNewChatUser] = useState({});
 
     const [username, setUserName] = useState('')
     const [roomId, setRoomId] = useState()
@@ -31,6 +35,7 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (viewedUser && user) {
             setUserName(user.name)
+            setNames([user.name, viewedUser.name])
             //get both users ids for room id
             const id1 = user._id
             const id2 = viewedUser._id
@@ -49,11 +54,11 @@ const useChat = ({ user, viewedUser, page }) => {
 
         //this url takes the room ID - not necessary, the name space can have many rooms
         socketRef.current = socketIOClient(`http://localhost:3000/`);
-
+        console.log(names)
 
         //join room
-        socketRef.current.emit('joinRoom', { username, roomId, chatIds }, ({ error }) => {
-            console.log(to)
+        socketRef.current.emit('joinRoom', { username, roomId, chatIds, names }, ({ error }) => {
+
             alert(error);
         })
 
@@ -120,57 +125,56 @@ const useChat = ({ user, viewedUser, page }) => {
 
     }, [roomId, page])
 
-        //fetch past messages from database when user changes
-        useEffect(() => {
+    //fetch past messages from database when user changes
+    useEffect(() => {
 
-            if (roomId) {
-                // console.log(user, viewedUser)
-                const url = 'http://localhost:3000/pastChat'
-                console.log('roomId inside fetch')
-                console.log(roomId)
-                console.log(to)
-    
-                //handle error messages
-                const handleErrors = (error) => {
-                    console.log(error)
+        if (roomId) {
+            // console.log(user, viewedUser)
+            const url = 'http://localhost:3000/pastChat'
+            console.log('roomId inside fetch')
+            console.log(roomId)
+
+            //handle error messages
+            const handleErrors = (error) => {
+                console.log(error)
+                if (error) {
+                    setErrorMessage(error.error)
+                } else if (error instanceof TypeError) {
+                    setServerError(true)
+                } else return error;
+            }
+            //fetch past chat
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({ id: roomId, page }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+                .then(res => res.json())
+                .then(response => {
+                    if (response.error || response == undefined) {
+                        handleErrors(response)
+                    }
+                    else if (page === 1) {
+                        setPastMessages(response)
+                    }
+                    else {
+                        setPastMessages([...response, ...pastMessages])
+                    }
+
+                })
+                .catch(error => {
                     if (error) {
-                        setErrorMessage(error.error)
+                        console.log(error)
+                        handleErrors(error)
                     } else if (error instanceof TypeError) {
                         setServerError(true)
-                    } else return error;
-                }
-                //fetch past chat
-                fetch(url, {
-                    method: 'POST',
-                    body: JSON.stringify({ id: roomId, page }),
-                    headers: {
-                        "Content-Type": "application/json"
                     }
                 })
-                    .then(res => res.json())
-                    .then(response => {
-                        if (response.error || response == undefined) {
-                            handleErrors(response)
-                        } 
-                        else if(page === 1){
-                            setPastMessages(response)
-                        }
-                        else{
-                            setPastMessages([...response, ...pastMessages])
-                        }
-    
-                    })
-                    .catch(error => {
-                        if (error) {
-                            console.log(error)
-                            handleErrors(error)
-                        } else if (error instanceof TypeError) {
-                            setServerError(true)
-                        }
-                    })
-            }
-    
-        }, [roomId, page])
+        }
+
+    }, [roomId, page])
 
     //fetch all users current chats - why is this running 3 times?
     useEffect(() => {
@@ -221,16 +225,75 @@ const useChat = ({ user, viewedUser, page }) => {
         }
 
     }, [user])
+
     //if user switches chat
     const handleChatSwitch = (chat) => {
+        // console.log(chat)
         //use chat id to call that chat
-        console.log(chat)
-        const chatStr = chat.split(',')
-        setRoomId(chatStr[0]);
-        setTo(chatStr[1])
+        setRoomId(chat)
         setNewChat(true)
+        //get viewed user id (-user id) then set new viewed user id to state
+        //setViewedUserId()
+        let halfwayThrough = Math.floor(chat.length / 2)
+        let firstId = chat.slice(0, halfwayThrough);
+        let secondId = chat.slice(halfwayThrough, chat.length);
+        if (firstId === user._id) {
+            setViewedUserId(secondId)
+        } else {
+            setViewedUserId(firstId)
+        }
 
     }
+    console.log(viewedUserId)
+
+    //fetch the user when the chat switches
+    useEffect(() => {
+
+        if (viewedUserId) {
+            const token = Cookies.get('token')
+            const url = "http://localhost:5000/getUsers"
+            //handle error messages
+            const handleErrors = (error) => {
+                if (error) {
+                    setErrorMessage(error)
+                }
+                else return error
+            }
+
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify({chatuserId: viewedUserId}),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                }
+            })
+                .then(res => res.json()) //response is
+                .then(response => {
+                    if (response.error || response == undefined) {
+                        handleErrors(response)
+                    } else {
+                        console.log(response);
+                        setNewChatUser(response)
+                        setTo(response.name)
+                        setMessages([{
+                            username: '',
+                            text: '',
+                            time: ''
+                        }])
+                    }
+
+                })
+                .then(handleErrors)
+                .catch(error => {
+                    if (error) {
+                        console.log(error)
+                    }
+                })
+
+        }
+
+    }, [viewedUserId])
 
     //if there are more than messages, destructure here
     const sendMessage = ({ message, user }) => {
@@ -238,7 +301,7 @@ const useChat = ({ user, viewedUser, page }) => {
         socketRef.current.emit('chatmessage', { message, user, roomId, to })
     }
     // console.log(messages)
-    return { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat };
+    return { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat, newChatUser };
 }
 
 export default useChat;
