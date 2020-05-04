@@ -19,11 +19,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PastMessages = ({ pastMessages, user, viewedUser, newChatUser }) => {
+
+
     let userImg = ''
     let viewedImg = ''
-    console.log('new chat user from past messages')
-    console.log(newChatUser)
-    // console.log(pastMessages)
+    //TODO: the viewedUser image is not setting with this new ternary below
+ 
     if (user && viewedUser) {
         userImg = user.img
         viewedImg = viewedUser.img

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import Aly16smallest from '../../Assets/images/Aly16smallest.png';
+import vrush from '../../Assets/images/vrush.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -62,7 +62,7 @@ const Vrush = () => {
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
-                    Image Here
+                <img className="profile-image" src={vrush} />
                 </div>
                 <h4>Vrushabh Gore</h4>
                 <List

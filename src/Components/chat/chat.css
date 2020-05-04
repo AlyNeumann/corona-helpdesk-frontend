@@ -99,6 +99,7 @@
     text-align: center;
     font-family: 'RobotoCondensedB';
     flex-grow: 1;
+    padding-top:10px;
   }
 
 .MuiDivider-inset {
@@ -115,22 +116,26 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  padding-left: 50%;
+  text-align: center;
+  padding-top:10px;
 } 
 .pastchat-btn {
-  padding: 5.3%;
+
+  padding: 20px;
   align-self: center;
 }
 .pastchats-title {
 font-family: 'RobotoCondensedB';
 text-align: center;
-padding-top: 100px;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
   .chat-outerContainer {
     width: 100%;
     flex-direction: column;
+    justify-content: center;
   }
 
   .chat-container {
@@ -145,13 +150,16 @@ padding-top: 100px;
    padding-bottom: 45px;
  }
  .pastchats-container {
-   padding-top: 20px;
+  padding-top: 20px;
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
+  padding-left: 20px;
 } 
 }
 
-/* @media (min-width: 480px) and (max-width: 1200px) {
- 
-} */
+@media (min-width: 480px) and (max-width: 1200px) {
+  .pastchats-container {
+    padding-left: 50%;
+  } 
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
-import Aly16smallest from '../../Assets/images/Aly16smallest.png';
+import Alypic from '../../Assets/images/aly.jpg';
 import { makeStyles } from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
@@ -61,7 +61,7 @@ const Aly = () => {
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <div className="profile-image-container" >
-                    Image Here
+                <img className="profile-image" src={Alypic} />
                 </div>
                 <h4>Aly Neumann</h4>
                 <List

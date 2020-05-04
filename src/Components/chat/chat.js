@@ -7,6 +7,7 @@ import PastMessages from './pastMessages';
 import PastChats from './pastChats';
 import { UserContext } from '../user-context/userContext';
 import { Button } from '../../global';
+
 import './chat.css';
 
 
@@ -15,6 +16,9 @@ import './chat.css';
 
 //TODO: for web - show profile of person you are talking to on right, for mobile just chat
 const Chat = (props) => {
+
+
+
     //get the user they clicked on to chat with
     const [viewedUser, setViewedUser] = useState(null)
     //get user from context
@@ -23,11 +27,11 @@ const Chat = (props) => {
     const [page, setPage] = useState(1);
     // //switch chat if user clicks on another user on the side of the page
     // const [newChat, setNewChat] = useState(null);
-    
 
 
 
-    const { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat, newChatUser  } = useChat({ user, viewedUser, page});
+
+    const { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat, newChatUser } = useChat({ user, viewedUser, page });
     //scroll to bottom of chat
     const messagesEndRef = useRef(null)
     // console.log(messagesEndRef)
@@ -52,38 +56,45 @@ const Chat = (props) => {
 
 
     useEffect(() => {
+        if (Object.keys(newChatUser).length !== 0) {
+            setViewedUser(newChatUser)
+        }
         // console.log(pastMessages)
-        if (props.location.state && pastMessages) {
+        else if (props.location.state && pastMessages) {
+            setViewedUser(props.location.state.viewedUser)
+        } else if (props.location.state && pastMessages && !newChatUser) {
             setViewedUser(props.location.state.viewedUser)
         }
-    }, [pastMessages])
+    }, [pastMessages, newChatUser])
 
 
     return (
         <div className="chat-outerContainer">
-            {viewedUser && <h6 className="chat-title">You are chatting with {viewedUser.name}</h6>}
+            {viewedUser ? <h6 className="chat-title">You are chatting with {viewedUser.name}</h6>
+                : null}
+
             <div className="chat-container">
                 {/* {viewedUser && <h6>You are chatting with {viewedUser.name}</h6>} */}
 
-                {(props.location.state || newChat)?
+                {(props.location.state || newChat) ?
                     //className="chat-messages-container"
                     <div className="all-messages">
 
                         <Button onClick={handlePagination}>click to see more...</Button>
 
                         <div>
-                            <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChatUser={newChatUser}/>
+                            <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChatUser={newChatUser} />
 
-                            <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChat={newChat} newChatUser={newChatUser}/>
+                            <Messages messages={messages} pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChat={newChat} newChatUser={newChatUser} />
                             <div ref={messagesEndRef} />
                             <div className="fixed-input">
-                            <MessageBox onSendMessage={handleSendMessage} />
+                                <MessageBox onSendMessage={handleSendMessage} />
+                            </div>
                         </div>
-                        </div>
-                            
+
                     </div>
                     :
-                    <div>
+                    <div className="all-messages">
                         <div>
                             Check the map or needsfeed to find users to chat with!
                     </div>
@@ -101,9 +112,9 @@ const Chat = (props) => {
                     </div>
 
                 }
-                    
+
             </div>
-            {allChats && <PastChats pastChats={allChats} user={user} handleChatSwitch={handleChatSwitch}/>}
+            {allChats && <PastChats pastChats={allChats} user={user} handleChatSwitch={handleChatSwitch} />}
         </div>)
 }
 

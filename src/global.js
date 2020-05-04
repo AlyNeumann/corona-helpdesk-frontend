@@ -15,6 +15,7 @@ export const Button = styled.button`
   margin: 0 1em;
   padding: 0.25em 1em;
   transition: 0.5s all ease-out;
+  box-shadow: 10px 14px 80px rgba(34, 35, 58, 0.2);
   &:hover {
     color: white;
     background-color: ${props =>

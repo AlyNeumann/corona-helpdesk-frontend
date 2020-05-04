@@ -86,9 +86,26 @@ const Resources = () => {
                         onClick={handleUrl}>
                         Find my MP Canada</Button>
                 </div>
+                <h5>Wait times at grocery stores & Montreal resources</h5>
+                <div className="resource">
+                    <Button
+                        className="btn btn-seconday btn-text"
+                        value="https://docs.google.com/document/d/1PgbUR1gT1PKIDPJFuWXhqieFLY7TAxxl4r_9dsaB05w/edit?fbclid=IwAR3ijjj41EAJz6Fa_T6BD04CKKlyF480fmn8twTW8T5LPMyxQP2yVYJH5uM"
+                        onClick={handleUrl}>
+                        Montreal Resources</Button>
+                </div>
+                <div className="resource">
+                    <Button
+                        className="btn btn-seconday btn-text"
+                        value="https://covid19-waiting-time.thejoin.tech/"
+                        onClick={handleUrl}>
+                        Grocery store wait times</Button>
+                </div>
             </div>
         </div>
         </animated.div>)
 }
 
 export default Resources;
+
+

@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
-import { ReactCrop } from 'react-image-cropper';
+// import { ReactCrop } from 'react-image-cropper';
 // import 'react-image-crop/dist/ReactCrop.css';
 // import * as Doka from './doka.esm.min';
 // import './doka.min.css';

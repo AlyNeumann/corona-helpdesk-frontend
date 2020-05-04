@@ -88,6 +88,10 @@ const Need = ({ need, needs }) => {
             return error;
         }
 
+        const refreshPage = () => {
+            window.location.reload(false);
+        }
+
 
         fetch(url, {
             method: 'DELETE',
@@ -101,6 +105,7 @@ const Need = ({ need, needs }) => {
             .then(response => {
                 console.log(response);
                 setDeleted(true);
+                refreshPage();
             })
             .then(handleErrors)
             .catch(error => {

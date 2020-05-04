@@ -20,7 +20,7 @@ const NeedsTodo = ({ user, needs }) => {
         delay: 2000
     })
 
-
+    // console.log(needs.length)
     return (
         <div className="needstodo-container">
             <div className="needstodo-inner">
@@ -34,7 +34,8 @@ const NeedsTodo = ({ user, needs }) => {
                         return <Need need={need} key={need._id} needs={needs} />
                     })}
                 </ul>
-                <Link to={{
+                {(needs.length !== 6)  ? 
+                   <Link to={{
                     pathname: '/addneeds',
                     state: {
                         "functionType": "add",
@@ -46,7 +47,20 @@ const NeedsTodo = ({ user, needs }) => {
                         className="btn btn-secondary btn-text add-btn">
                         <AddBoxIcon className="buttonclass" />
                     </button>
-                </Link>
+                </Link> : "Please delete a need to add another!"}
+                {/* <Link to={{
+                    pathname: '/addneeds',
+                    state: {
+                        "functionType": "add",
+                        need: { need: "" },
+                        needs
+                    }
+                }} >
+                    <button
+                        className="btn btn-secondary btn-text add-btn">
+                        <AddBoxIcon className="buttonclass" />
+                    </button>
+                </Link> */}
                 </animated.div>
             </div>
         </div>)

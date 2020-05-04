@@ -32,6 +32,7 @@ import Cookies from 'js-cookie';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
 import { UserContext } from '../../Components/user-context/userContext';
 import { ThemeContext } from '../../Components/user-context/userContext';
+import { Button } from '../../global';
 
 
 
@@ -54,7 +55,7 @@ function Navbar(props) {
                 duration: theme.transitions.duration.leavingScreen,
             }),
             background: "#000",
-            color: "#fff" 
+            color: "#fff"
         },
         appBarShift: {
             marginLeft: drawerWidth,
@@ -104,7 +105,7 @@ function Navbar(props) {
             // color: props => {
             //         props.light ? '#fff' : '#000'
             //     },
-                flexGrow: 1,
+            flexGrow: 1,
         }
 
     }));
@@ -127,6 +128,7 @@ function Navbar(props) {
     const handleLogout = () => {
         Cookies.remove("token")
         history.push('/')
+        // setUser("")
     }
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -142,126 +144,126 @@ function Navbar(props) {
             setTokenExists(true)
         }
 
-    }, [user])
+    }, [userInfo])
 
-    //change styles
-    // useEffect(() => {
-    //     if(currentTheme){
-    //         console.log(currentTheme[0])
-    //         const themedBG = currentTheme[0]
-    //         console.log(themedBG.content)
-    //         // classes.content = themedBG.content
-    //     }
-    // }, [currentTheme])
+
+    const handleRedirect = () => {
+        history.push('/')
+    }
 
 
     return (
         <React.Fragment>
 
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
-                <div className={classes.root}>
-                    <CssBaseline />
-                    <AppBar
-                        position="fixed"
-                        color="inherit"
-                        className={clsx(classes.appBar, {
-                            [classes.appBarShift]: open,
-                        })}
-                    >
-                        <Toolbar>
-                            <IconButton
-                                color="inherit"
-                                aria-label="open drawer"
-                                onClick={handleDrawerOpen}
-                                edge="start"
-                                className={clsx(classes.menuButton, {
-                                    [classes.hide]: open,
-                                })}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" className="typography-title" noWrap>
-                                {(history.location.pathname === "/profile") && "User Profile"}
-                                {(history.location.pathname === "/map") && "Map"}
-                                {(history.location.pathname === "/needsfeed") && "List of Needs"}
-                                {(history.location.pathname === "/analytics") && "Covid 19 Analytics"}
-                                {(history.location.pathname === "/chat") && "Chat"}
-                                {(history.location.pathname === "/aboutus") && "About Us"}
-                                {(history.location.pathname === "/resources") && "Resources"}
-                                {/* {(history.location.pathname === "profileview") && "Profile View"} */}
+                {tokenExists ?
+                    <div className={classes.root}>
+                        <CssBaseline />
+                        <AppBar
+                            position="fixed"
+                            color="inherit"
+                            className={clsx(classes.appBar, {
+                                [classes.appBarShift]: open,
+                            })}
+                        >
+                            <Toolbar>
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    onClick={handleDrawerOpen}
+                                    edge="start"
+                                    className={clsx(classes.menuButton, {
+                                        [classes.hide]: open,
+                                    })}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                                <Typography variant="h6" className="typography-title" noWrap>
+                                    {(history.location.pathname === "/profile") && "User Profile"}
+                                    {(history.location.pathname === "/map") && "Map"}
+                                    {(history.location.pathname === "/needsfeed") && "List of Needs"}
+                                    {(history.location.pathname === "/analytics") && "Covid 19 Analytics"}
+                                    {(history.location.pathname === "/chat") && "Chat"}
+                                    {(history.location.pathname === "/aboutus") && "About Us"}
+                                    {(history.location.pathname === "/resources") && "Resources"}
+                                    {/* {(history.location.pathname === "profileview") && "Profile View"} */}
 
-                            </Typography>
-                            <IconButton color="inherit" style={{ marginLeft: "auto" }} onClick={handleLogout}>
-                                <PowerSettingsNew />
-                            </IconButton>
+                                </Typography>
+                                <IconButton color="inherit" style={{ marginLeft: "auto" }} onClick={handleLogout}>
+                                    <PowerSettingsNew />
+                                </IconButton>
 
-                        </Toolbar>
-                    </AppBar>
-                    <Drawer
-                        variant="permanent"
-                        className={clsx(classes.drawer, {
-                            [classes.drawerOpen]: open,
-                            [classes.drawerClose]: !open,
-                        })}
-                        classes={{
-                            paper: clsx({
+                            </Toolbar>
+                        </AppBar>
+                        <Drawer
+                            variant="permanent"
+                            className={clsx(classes.drawer, {
                                 [classes.drawerOpen]: open,
                                 [classes.drawerClose]: !open,
-                            }),
-                        }}
-                    >
-                        <div className={classes.toolbar}>
-                            <Avatar alt="Remy Sharp" src={userInfo.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
-                            <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
-                                <p className="toggle-avatar-name">{userInfo.name || "Unknown"}</p>
-                                <p className="toggle-avatar-title">{userInfo.healthStatus || "Unknown"}</p>
+                            })}
+                            classes={{
+                                paper: clsx({
+                                    [classes.drawerOpen]: open,
+                                    [classes.drawerClose]: !open,
+                                }),
+                            }}
+                        >
+                            <div className={classes.toolbar}>
+                                <Avatar alt="Remy Sharp" src={userInfo.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
+                                <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
+                                    <p className="toggle-avatar-name">{userInfo.name || "Unknown"}</p>
+                                    <p className="toggle-avatar-title">{userInfo.healthStatus || "Unknown"}</p>
+                                </div>
+                                <IconButton onClick={handleDrawerClose}>
+                                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                                </IconButton>
                             </div>
-                            <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                            </IconButton>
-                        </div>
-                        <Divider />
-                        <List>
-                            <ListItem button key="home" onClick={() => { history.push("/profile") }}>
-                                <ListItemIcon><MailIcon className="iconclass" /></ListItemIcon>
-                                <ListItemText className="list-text" primary={"Home"} />
-                            </ListItem>
-                            <ListItem button key="event" onClick={() => { history.push("/map") }}>
-                                <ListItemIcon><Place className="iconclass" /></ListItemIcon>
-                                <ListItemText primary={"Map"} />
-                            </ListItem>
-                            <ListItem button key="needsfeed" onClick={() => { history.push("/needsfeed") }}>
-                                <ListItemIcon><ListIcon className="iconclass" /></ListItemIcon>
-                                <ListItemText primary={"Needs Feed"} />
-                            </ListItem>
-                            <ListItem button key="analytics" onClick={() => { history.push("/analytics") }}>
-                                <ListItemIcon><AssessmentIcon className="iconclass" /></ListItemIcon>
-                                <ListItemText primary={"Analytics"} />
-                            </ListItem>
-                            <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
-                                <ListItemIcon><ChatIcon className="iconclass" /></ListItemIcon>
-                                <ListItemText primary={"Chat"} />
-                            </ListItem>
-                            <ListItem button key="aboutus" onClick={() => { history.push("/aboutus") }}>
-                                <ListItemIcon><SupervisorAccountIcon className="iconclass" /></ListItemIcon>
-                                <ListItemText primary={"About Us"} />
-                            </ListItem>
-                            <ListItem button key="resources" onClick={() => { history.push("/resources") }}>
-                                <ListItemIcon><HelpIcon className="iconclass" /></ListItemIcon>
-                                <ListItemText primary={"Resources"} />
-                            </ListItem>
-
                             <Divider />
-                        </List>
-                    </Drawer>
-                    <ThemeProvider theme={theme}>
-                        <main className={classes.content}>
+                            <List>
+                                <ListItem button key="home" onClick={() => { history.push("/profile") }}>
+                                    <ListItemIcon><MailIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemText className="list-text" primary={"Home"} />
+                                </ListItem>
+                                <ListItem button key="event" onClick={() => { history.push("/map") }}>
+                                    <ListItemIcon><Place className="iconclass" /></ListItemIcon>
+                                    <ListItemText primary={"Map"} />
+                                </ListItem>
+                                <ListItem button key="needsfeed" onClick={() => { history.push("/needsfeed") }}>
+                                    <ListItemIcon><ListIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemText primary={"Needs Feed"} />
+                                </ListItem>
+                                <ListItem button key="analytics" onClick={() => { history.push("/analytics") }}>
+                                    <ListItemIcon><AssessmentIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemText primary={"Analytics"} />
+                                </ListItem>
+                                <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
+                                    <ListItemIcon><ChatIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemText primary={"Chat"} />
+                                </ListItem>
+                                <ListItem button key="aboutus" onClick={() => { history.push("/aboutus") }}>
+                                    <ListItemIcon><SupervisorAccountIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemText primary={"About Us"} />
+                                </ListItem>
+                                <ListItem button key="resources" onClick={() => { history.push("/resources") }}>
+                                    <ListItemIcon><HelpIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemText primary={"Resources"} />
+                                </ListItem>
 
-                            <div className={classes.toolbar} />
-                            {(history.location.pathname !== "/" || history.location.pathname !== "/signup") && props.children}
-                        </main>
+                                <Divider />
+                            </List>
+                        </Drawer>
+                        <ThemeProvider theme={theme}>
+                            <main className={classes.content}>
+
+                                <div className={classes.toolbar} />
+                                {(history.location.pathname !== "/" || history.location.pathname !== "/signup") && props.children}
+
+
+                          </main>
                         </ThemeProvider>
-                </div>
+                    </div> : <Button onClick={handleRedirect}>Please Login to view content</Button>
+                }
+
             </div>
             {(history.location.pathname === "/") && <Login />}
             {(history.location.pathname === "/signup") && <Signup />}

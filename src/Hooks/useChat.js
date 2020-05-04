@@ -232,6 +232,12 @@ const useChat = ({ user, viewedUser, page }) => {
         //use chat id to call that chat
         setRoomId(chat)
         setNewChat(true)
+        setMessages([{
+            username: '',
+            text: '',
+            time: ''
+        }])
+        setPastMessages([{}])
         //get viewed user id (-user id) then set new viewed user id to state
         //setViewedUserId()
         let halfwayThrough = Math.floor(chat.length / 2)
@@ -244,7 +250,6 @@ const useChat = ({ user, viewedUser, page }) => {
         }
 
     }
-    console.log(viewedUserId)
 
     //fetch the user when the chat switches
     useEffect(() => {

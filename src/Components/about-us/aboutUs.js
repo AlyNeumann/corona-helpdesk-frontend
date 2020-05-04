@@ -18,7 +18,7 @@ const AboutUs = () => {
                 onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 style={{ transform: props.xys.interpolate(trans) }}
             >
-                <Vrush />
+                <Aly />
             </animated.div>
             <animated.div
                 className="card"
@@ -26,7 +26,7 @@ const AboutUs = () => {
                 onMouseLeave={() => set({ xys: [0, 0, 1] })}
                 style={{ transform: props.xys.interpolate(trans) }}
             >
-                <Aly />
+                <Vrush />
             </animated.div>
             {/* </div> */}
         </div>

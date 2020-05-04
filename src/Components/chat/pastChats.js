@@ -13,8 +13,7 @@ const PastChats = (props) => {
     const username = props.user.name
     const chats = props.pastChats
     const [names, setNames] = useState(null)
-    // console.log(chats)
-    // console.log(username)
+
 
     //fetch chat the user clicks on
     const handleClick = (e) => {
@@ -28,7 +27,6 @@ const PastChats = (props) => {
     //TODO: fucking state trouble again bro, you suck at ARRAYS in LOOPS
     const filterChats = (chats) => {
         let viewedNames = []
-        // let viewedName = ''
         chats.map(chat => {
             let allnames = chat.names;
             let id = chat.id
@@ -36,7 +34,6 @@ const PastChats = (props) => {
              const namesArr = allnames.filter(name => {
                return name !== username
             })
-            // console.log(namesArr, id)
            viewedNames.push({name: namesArr, id: id})
         })
         setNames(viewedNames)
@@ -45,7 +42,7 @@ const PastChats = (props) => {
     useEffect(() => {
         filterChats(chats)
     }, [chats])
-    // console.log(names)
+console.log(names)
     return (
         <div className="pastchats-container">
             <h6 className="pastchats-title">Chat History</h6>
