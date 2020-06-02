@@ -9,10 +9,11 @@ import { UserContext } from '../../Components/user-context/userContext';
 const NeedsFeed = () => {
     //bring in user for their position
     const user = useContext(UserContext);
-    // console.log(user[0]);
+    // console.log(user);
     const userObj = user[0];
+    // console.log(userObj);
     const userLocation = userObj.houseLocation.coordinates
-    // console.log(userLocation)
+    console.log(userLocation)
     const [radius, setRadius] = useState(100)
 
     //react spring
@@ -54,8 +55,11 @@ const NeedsFeed = () => {
         const token = Cookies.get("token");
         const lat = userLocation[0];
         const lng = userLocation[1];
+        // const lat = 45.34
+        // const lng = -75.90
         // console.log(radius)
-        const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
+        const url = `/api/needFeed/${lat}/${lng}/${radius}`
+        // const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages
         const handleErrors = (response) => {

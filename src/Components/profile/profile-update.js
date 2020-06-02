@@ -67,7 +67,7 @@ const ProfileUpdate = (props) => {
 
     //TODO: help me!!! formdata not working
     function submit() {
-        const url = "http://localhost:5000/updateProfile"
+        const url = "/api/updateProfile"
         console.log('values before form')
         console.log(values)
         let token = Cookies.get("token")
@@ -186,6 +186,7 @@ const ProfileUpdate = (props) => {
                             <label>Avatar Photo</label>
                             {/* handleImage needs to be used here */}
                             <StyledDropzone handleIt={handleImage} />
+                            <p>(If you do not see a preview, choose a smaller photo)</p>
                         </div>
                         <div className="form-group">
                             <label>Address</label>

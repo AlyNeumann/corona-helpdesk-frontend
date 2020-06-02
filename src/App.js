@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Switch, useLocation} from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import Navbar from './Components/nav/nav';
 import Map from './Components/map/map';
 import ProfileHome from './Components/profile-home/profileHome';
@@ -14,6 +14,7 @@ import Resources from './Components/resources/resources';
 import ProfileView from './Components/profile-view/profileView';
 import UserContextStore, { UserContext } from './Components/user-context/userContext';
 import { ThemeContext } from './Components/user-context/userContext';
+
 // import { lightTheme, darkTheme } from '../../theme';
 
 
@@ -22,12 +23,12 @@ function App() {
   //global state of User
   //pass to nav for userinfo
   const user = useContext(UserContext);
-    //theme
-    const currentTheme = useContext(ThemeContext);
-    console.log(currentTheme)
-
+  //theme
+  const currentTheme = useContext(ThemeContext);
+  console.log(currentTheme);
 
   return (
+    // <div>Ho</div>
     <Router>
       <UserContextStore>
         <Navbar user={user}>

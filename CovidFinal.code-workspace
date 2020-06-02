@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../Corona-HelpDesk"
+		},
+		{
+			"path": "../covid-chat"
+		},
+		{
+			"path": "../nginx"
+		}
+	],
+	"settings": {}
+}

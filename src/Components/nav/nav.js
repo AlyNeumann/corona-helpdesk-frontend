@@ -23,14 +23,14 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import ChatIcon from '@material-ui/icons/Chat';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import HelpIcon from '@material-ui/icons/Help';
-import { PowerSettingsNew, Place } from '@material-ui/icons'
+import { PowerSettingsNew, Place, SettingsSystemDaydreamTwoTone } from '@material-ui/icons'
 import { useHistory } from 'react-router-dom';
 import './nav.css'
 import Login from '../login/login';
 import Signup from '../login/signup';
 import Cookies from 'js-cookie';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
-import { UserContext } from '../../Components/user-context/userContext';
+// import { UserContext } from '../../Components/user-context/userContext';
 import { ThemeContext } from '../../Components/user-context/userContext';
 import { Button } from '../../global';
 
@@ -54,7 +54,7 @@ function Navbar(props) {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
-            background: "#000",
+            background: "#424242",
             color: "#fff"
         },
         appBarShift: {
@@ -119,10 +119,16 @@ function Navbar(props) {
     const classes = useStyles();
     const theme = useTheme(currentTheme[0]);
     const [open, setOpen] = useState(false)
-    const user = useContext(UserContext);
-    const userInfo = user[0];
-    const [tokenExists, setTokenExists] = useState(false)
+    const [errorMessage, setErrorMessage] = useState()
+    // const user = useContext(UserContext);
+    const [user, setUser] = useState("")
+    // const [userInfo, setUserInfo] = useState({name: 'h'})
 
+    console.log(user)
+    const [tokenExists, setTokenExists] = useState(false)
+  
+
+   
 
     //TODO: are we using local storage for this?
     const handleLogout = () => {
@@ -137,18 +143,61 @@ function Navbar(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    //for when user logs in 
+    // useEffect(() => {
+    //     if(user){
+    //         setUserInfo(user[0])
+    //     }
+    // }, [user])
 
     //TODO: make secure by pulling cookie
     useEffect(() => {
         if (Cookies.get("token")) {
             setTokenExists(true)
+            getUser();
         }
 
-    }, [userInfo])
+    }, [tokenExists])
 
 
     const handleRedirect = () => {
         history.push('/')
+    }
+    const getUser = () => {
+        const token = Cookies.get('token')
+        const url = "/api/getUser"
+        // const url = "http://localhost:5000/getUser"
+
+        //handle error messages
+        const handleErrors = (error) => {
+            if (error) {
+                setErrorMessage(error)
+            }
+            else return error
+        }
+
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }
+        })
+            .then(res => res.json()) //response is
+            .then(response => {
+                if (!errorMessage) {
+                    // console.log(response);
+                    setUser(response);
+                }
+
+            })
+            .then(handleErrors)
+            .catch(error => {
+                if (error) {
+                    console.log(error)
+                }
+            })
+
     }
 
 
@@ -156,7 +205,7 @@ function Navbar(props) {
         <React.Fragment>
 
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
-                {tokenExists ?
+                {user ?
                     <div className={classes.root}>
                         <CssBaseline />
                         <AppBar
@@ -209,10 +258,10 @@ function Navbar(props) {
                             }}
                         >
                             <div className={classes.toolbar}>
-                                <Avatar alt="Remy Sharp" src={userInfo.photoUrl || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
+                                <Avatar alt="Remy Sharp" src={`data:image/jpeg;base64,${user.img}` || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
                                 <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
-                                    <p className="toggle-avatar-name">{userInfo.name || "Unknown"}</p>
-                                    <p className="toggle-avatar-title">{userInfo.healthStatus || "Unknown"}</p>
+                                    <p className="toggle-avatar-name">{user.name || "Unknown"}</p>
+                                    <p className="toggle-avatar-title">{user.healthStatus || "Unknown"}</p>
                                 </div>
                                 <IconButton onClick={handleDrawerClose}>
                                     {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}

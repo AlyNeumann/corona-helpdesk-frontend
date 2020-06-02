@@ -17,7 +17,7 @@ const usePagination = ({ page, roomId }) => {
 
         if (roomId) {
             // console.log(user, viewedUser)
-            const url = 'http://localhost:3000/pastChat'
+            const url = '/chatapi/pastChat'
 
             //handle error messages
             const handleErrors = (error) => {

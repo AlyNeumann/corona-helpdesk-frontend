@@ -74,7 +74,7 @@ const Signup = () => {
     //submit signup form to backend
     function submit() {
         console.log(values)
-        const url = "http://localhost:5000/signup"
+        const url = "/api/signup"
 
         //check values before submitting
         console.log(values);

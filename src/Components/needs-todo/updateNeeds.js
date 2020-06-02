@@ -56,7 +56,7 @@ const UpdateNeeds = (props) => {
 
         //TODO: add _id to the request body!! 
 
-        const url = "http://localhost:5000/updateNeed";
+        const url = "/api/updateNeed";
 
         // implement POST REQUEST
 

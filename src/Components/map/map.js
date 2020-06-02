@@ -25,6 +25,7 @@ const Map = (props) => {
   const [textDirections, setTextDirections] = useState(true)
   //bring user in from Context 
   const user = useContext(UserContext);
+  console.log(user)
   const userInfo = user[0];
 
 

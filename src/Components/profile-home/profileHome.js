@@ -57,7 +57,8 @@ const ProfileHome = () => {
     }
     const getUserAndNeeds = () => {
         const token = Cookies.get('token')
-        const url = "http://localhost:5000/getUser"
+        const url = "/api/getUser"
+        // const url = "http://localhost:5000/getUser"
 
         //handle error messages
         const handleErrors = (error) => {
@@ -111,9 +112,9 @@ const ProfileHome = () => {
                     <animated.div style={props3}>
                     <NeedsTodo user={user} needs={needs} />
                     </animated.div>
-                    <Button
+                    {/* <Button
                         onClick={handleClick}
-                    >Change Theme</Button>
+                    >Change Theme</Button> */}
                 </div> : <div>Loading...</div>}
         </div>
 

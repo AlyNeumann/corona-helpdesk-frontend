@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import EmailModal from './emailModal';
+import Terms from '../terms-about/terms'
 import useForm from '../../Hooks/useForm';
 import validate from './validate';
 import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 import { useSpring, animated } from 'react-spring';
-import { RepeatOneSharp } from '@material-ui/icons';
 import Covid_title from '../../Assets/images/Covid_title.png';
 //needs error handling & error messages displayed
 
@@ -14,17 +14,17 @@ const Login = () => {
 
     //react spring styles
     const props2 = useSpring({
-        opacity: 1, 
-        from: {opacity: 0}
+        opacity: 1,
+        from: { opacity: 0 }
     })
     const props = useSpring({
-        opacity: 1, 
-        from: {opacity: 0},
+        opacity: 1,
+        from: { opacity: 0 },
         delay: 1000
     })
     const props3 = useSpring({
-        opacity: 1, 
-        from: {opacity: 0},
+        opacity: 1,
+        from: { opacity: 0 },
         delay: 1500
     })
     //hook to handle form values
@@ -70,7 +70,8 @@ const Login = () => {
             } else return error;
         }
 
-        const url = 'http://localhost:5000/signin'
+        const url = '/api/signin'
+        // const url = 'http://localhost:5000/signin'
 
         fetch(url, {
             method: "POST",
@@ -107,71 +108,74 @@ const Login = () => {
     }
 
     return (
-    
-       
+
+
         <div className="login-container">
             <animated.div style={props2}>
-            <img className="covid-title-image" src={Covid_title} />
+                <img className="covid-title-image" src={Covid_title} />
             </animated.div>
-           
+
             {/* <h6 className="smaller-title">Please login to your account</h6> */}
             <div>
-            <animated.div style={props}>
-                <div className="login-inner">
-                    <form onSubmit={handleSubmit} noValidate >
-                        <h3 className="title">Login</h3>
-                        <div className="form-group">
-                            <label>Email address</label>
-                            <input
-                                name="email"
-                                type="email"
-                                className={`${
-                                    errors.username
-                                        ? "inputError form-control"
-                                        : "valid-email form-control"
-                                    }`}
-                                placeholder="Enter email"
-                                value={values.email}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input
-                                name="password"
-                                type="password"
-                                className={`${
-                                    errors.password ? "inputError form-control" : "form-control"
-                                    }`}
-                                placeholder="Enter password"
-                                value={values.password}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <button type="submit" className="btn btn-secondary btn-block btn-text">
-                            Submit
+                <animated.div style={props}>
+                    <div className="login-inner">
+                        <form onSubmit={handleSubmit} noValidate >
+                            <h3 className="title">Login</h3>
+                            <div className="form-group">
+                                <label>Email address</label>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    className={`${
+                                        errors.username
+                                            ? "inputError form-control"
+                                            : "valid-email form-control"
+                                        }`}
+                                    placeholder="enter shit"
+                                    value={values.email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label>Password</label>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    className={`${
+                                        errors.password ? "inputError form-control" : "form-control"
+                                        }`}
+                                    placeholder="Enter password"
+                                    value={values.password}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <button type="submit" className="btn btn-secondary btn-block btn-text">
+                                Submit
                     </button>
-                    </form>
-                </div>
-                <div className="error-message">
-                    {errorMessage && <div className="error"><p>{errorMessage}</p></div>}
-                    {serverError && <div className="error"><p>The server is not responding...</p></div>}
-                </div>
-                </animated.div> 
+                        </form>
+                    </div>
+                    <div className="error-message">
+                        {errorMessage && <div className="error"><p>{errorMessage}</p></div>}
+                        {serverError && <div className="error"><p>The server is not responding...</p></div>}
+                    </div>
+                </animated.div>
                 <animated.div style={props3}>
 
-                <div>
-                    <Link className="modal-button" to="/signup"> Click here to sign up! </Link>
-                </div>
-                <div>
-                    <button
-                        className="modal-button"
-                        onClick={handlePassword}>Forgot your password?</button>
-                    {modal ? <EmailModal email={values.email} text={'Forgot your password?'}  open={[open,setOpen]} handleClick={handleClick} /> : null}
-                </div>
+                    <div>
+                        <Link className="modal-button" to="/signup"> Click here to sign up! </Link>
+                    </div>
+                    <div>
+                        <button
+                            className="modal-button"
+                            onClick={handlePassword}>Forgot your password?</button>
+                        {modal ? <EmailModal email={values.email} text={'Forgot your password?'} open={[open, setOpen]} handleClick={handleClick} /> : null}
+                    </div>
+                </animated.div>
+                <animated.div style={props3}>
+                    <Terms />
                 </animated.div>
             </div>
-           
+
         </div>
     )
 }

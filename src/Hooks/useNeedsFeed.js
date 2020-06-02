@@ -1,7 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../Components/user-context/userContext';
 import Cookies from 'js-cookie';
 
 const useNeedsFeed = () => {
+
+    //user state
+    const user = useContext(UserContext);
+    console.log(user)
+    const userInfo = user[0];
+    console.log(userInfo)
 
     //state for needs 
     const [needsFeed, setNeedsFeed] = useState([])
@@ -9,12 +16,13 @@ const useNeedsFeed = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const getNeedsFeed = () => {
-        //TODO: pull this info from global user state
+        //TODO: test this!
         const token = Cookies.get("token");
-        const lat = 45.485271
-        const lng = -73.581421
-        const radius = 1000
-        const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
+        const lat = userInfo.houseLocation.coordinates[0]
+        const lng = userInfo.houseLocation.coordinates[1]
+        const radius = 100
+        const url = `/api/needFeed/${lat}/${lng}/${radius}`
+        // const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages
         const handleErrors = (response) => {

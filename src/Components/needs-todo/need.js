@@ -78,7 +78,7 @@ const Need = ({ need, needs }) => {
         const id = {
             _id: need._id
         }
-        const url = "http://localhost:5000/deleteNeed";
+        const url = "/api/deleteNeed";
         const token = Cookies.get("token");
 
         const handleErrors = (error) => {

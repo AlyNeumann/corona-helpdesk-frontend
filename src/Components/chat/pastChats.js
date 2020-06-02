@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../../global';
-import Cookies from 'js-cookie';
 import './chat.css'
 
 

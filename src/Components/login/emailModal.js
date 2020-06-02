@@ -78,23 +78,16 @@ export default function EmailModal(props) {
         })
     }
     console.log(values)
-    // //to close modal
-    // const handleClick = () => {
-    //     setOpen(false);
-    //     history.push('/');
-    // }
+
     //call submit function from button
     const handleSubmit = () => {
         submit();
     }
 
-    // useEffect(() => {
-    //     props.setOpen(true)
-    // }, [])
     //submit email 
     function submit(e) {
         e.preventDefault();
-        const url = "http://localhost:5000/forgotPassword"
+        const url = "/api/forgotPassword"
 
         //handle errors
         const handleErrors = (response) => {

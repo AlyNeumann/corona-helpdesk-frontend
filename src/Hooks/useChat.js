@@ -53,7 +53,8 @@ const useChat = ({ user, viewedUser, page }) => {
     useEffect(() => {
 
         //this url takes the room ID - not necessary, the name space can have many rooms
-        socketRef.current = socketIOClient(`http://localhost:3000/`);
+        // socketRef.current = socketIOClient(`http://localhost:3000/`);
+        socketRef.current = socketIOClient(`/chatapi/`);
         console.log(names)
 
         //join room
@@ -82,7 +83,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (roomId) {
             // console.log(user, viewedUser)
-            const url = 'http://localhost:3000/pastChat'
+            // const url = 'http://localhost:3000/pastChat'
+            const url = '/chatapi/pastChat'
             console.log('roomId inside fetch')
             console.log(roomId)
 
@@ -130,7 +132,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (roomId) {
             // console.log(user, viewedUser)
-            const url = 'http://localhost:3000/pastChat'
+            // const url = 'http://localhost:3000/pastChat'
+            const url = '/chatapi/pastChat'
             console.log('roomId inside fetch')
             console.log(roomId)
 
@@ -181,7 +184,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (user) {
             // console.log(user, viewedUser)
-            const url = 'http://localhost:3000/userChats'
+            // const url = 'http://localhost:3000/userChats'
+            const url = '/chatapi/userChats'
             const userId = user._id
             console.log(userId)
 
@@ -256,7 +260,7 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (viewedUserId) {
             const token = Cookies.get('token')
-            const url = "http://localhost:5000/getUsers"
+            const url = "/api/getUsers"
             //handle error messages
             const handleErrors = (error) => {
                 if (error) {

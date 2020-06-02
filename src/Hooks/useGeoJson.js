@@ -6,7 +6,7 @@ const useGeoJson = () => {
  
 
     const getGeoJson = async () => {
-        await fetch("http://localhost:5000/geocodes")
+        await fetch("/api/geocodes")
             .then(res => {
                 return res.json();
             })
