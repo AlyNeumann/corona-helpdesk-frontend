@@ -3,6 +3,7 @@ import NeedsList from './needslist';
 import Cookies from 'js-cookie';
 import { useSpring, animated } from 'react-spring';
 import { UserContext } from '../../Components/user-context/userContext';
+import { Button } from '../../global';
 
 //TODO: make a radius slide for user to choose their radius!
 
@@ -13,7 +14,7 @@ const NeedsFeed = () => {
     const userObj = user[0];
     // console.log(userObj);
     const userLocation = userObj.houseLocation.coordinates
-    console.log(userLocation)
+    // console.log(userLocation)
     const [radius, setRadius] = useState(100)
 
     //react spring
@@ -86,6 +87,7 @@ const NeedsFeed = () => {
             .then(response => {
                 if (!errorMessage) {
                     setNeedsFeed(response);
+                    console.log(response)
                 }
 
             })
@@ -95,7 +97,7 @@ const NeedsFeed = () => {
     //fetch User's needs
     useEffect(() => {
         getNeedsFeed();
-    }, [radius])
+    }, [user, radius])
 
     return(
         <div className="needslist-container">
@@ -106,13 +108,13 @@ const NeedsFeed = () => {
             <h6 className="needsfeed-subtitle">Here are the users nearest to you who need stuff!</h6>
             </animated.div>
             <animated.div style={props3}>
-            <div className="needsfeed-text">Click on their icon to see their profile & start a chat.</div>
+            <div className="needsfeed-text">Click on their icon to see their profile & start a chat, or scroll down and click the button at the bottom to expand your search area!</div>
             </animated.div>
             <animated.div style={props}>
             {needsFeed? needsFeed.map(user => {
                 return <NeedsList user={user} key={user._id}/>
             }): 'No needs right now!'}
-              <button onClick={handleClick}>Click here to expand your search area</button>
+              <Button onClick={handleClick}>Click here to expand your search area</Button>
         </animated.div>
       
         </div>

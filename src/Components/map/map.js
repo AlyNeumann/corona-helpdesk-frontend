@@ -13,8 +13,7 @@ import DirectionsIcon from '@material-ui/icons/Directions';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import './map.css';
-//TODO: bring in user info for popup
-//TODO: create hashmap for health statuses to use here & on profile
+
 
 
 const Map = (props) => {
@@ -137,7 +136,7 @@ const Map = (props) => {
     alternatives: true,
     congestion: true,
     placeholderOrigin: 'Your location',
-    placeholderDestination: 'Click on you destination',
+    placeholderDestination: 'Click on or enter your destination',
     controls: { instructions: true }
     //add style sheet to customize the directions
     // styles: style,

@@ -6,7 +6,7 @@ const useNeedsFeed = () => {
 
     //user state
     const user = useContext(UserContext);
-    console.log(user)
+    // console.log(user)
     const userInfo = user[0];
     console.log(userInfo)
 
@@ -48,6 +48,7 @@ const useNeedsFeed = () => {
             })
             .then(response => {
                 if (!errorMessage) {
+                    console.log(response)
                     setNeedsFeed(response);
                 }
 
@@ -58,7 +59,7 @@ const useNeedsFeed = () => {
     //fetch User's needs
     useEffect(() => {
         getNeedsFeed();
-    }, [])
+    }, [user])
 
     return { needsFeed };
 }

@@ -59,7 +59,7 @@ const Aly = () => {
     return (
         <div className="profile-container">
             <div className="profile-inner">
-                <h2>Your Profile</h2>
+                <h2>Creator</h2>
                 <div className="profile-image-container" >
                 <img className="profile-image" src={Alypic} />
                 </div>

@@ -29,7 +29,7 @@ const PieChart = () => {
         },
         series: [
             {
-                name: 'Current Global Cases Pie Chart',
+                name: 'Current Canadian Cases Pie Chart',
                 type: 'pie',
                 radius: ['50%', '70%'],
                 avoidLabelOverlap: false,

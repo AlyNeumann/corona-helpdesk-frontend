@@ -60,7 +60,7 @@ const Vrush = () => {
     return (
         <div className="profile-container">
             <div className="profile-inner">
-                <h2>Your Profile</h2>
+                <h2>My Dashing Sidekick</h2>
                 <div className="profile-image-container" >
                 <img className="profile-image" src={vrush} />
                 </div>

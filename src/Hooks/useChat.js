@@ -54,6 +54,7 @@ const useChat = ({ user, viewedUser, page }) => {
 
         //this url takes the room ID - not necessary, the name space can have many rooms
         // socketRef.current = socketIOClient(`http://localhost:3000/`);
+        // socketRef.current = socketIOClient(`/chatapi/`, {transports: ['websocket']});
         socketRef.current = socketIOClient(`/chatapi/`);
         console.log(names)
 

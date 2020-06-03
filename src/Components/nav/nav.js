@@ -124,7 +124,7 @@ function Navbar(props) {
     const [user, setUser] = useState("")
     // const [userInfo, setUserInfo] = useState({name: 'h'})
 
-    console.log(user)
+    // console.log(user)
     const [tokenExists, setTokenExists] = useState(false)
   
 
@@ -261,7 +261,7 @@ function Navbar(props) {
                                 <Avatar alt="Remy Sharp" src={`data:image/jpeg;base64,${user.img}` || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
                                 <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
                                     <p className="toggle-avatar-name">{user.name || "Unknown"}</p>
-                                    <p className="toggle-avatar-title">{user.healthStatus || "Unknown"}</p>
+                                    <p className="toggle-avatar-title"></p>
                                 </div>
                                 <IconButton onClick={handleDrawerClose}>
                                     {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}

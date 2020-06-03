@@ -4,8 +4,8 @@ import './marker.css';
 
 const Marker = (map, coord, type) => {
   var el = document.createElement("div");
-  console.log(el);
-  console.log(type)
+  // console.log(el);
+  // console.log(type)
   if(type === "green"){
     el.className = "marker-green";
   }else if(type === "yellow"){
