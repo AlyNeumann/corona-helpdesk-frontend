@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import socketIOClient from 'socket.io-client';
 
+//TODO: rebuild & test
 
 const useChat = ({ user, viewedUser, page }) => {
 
@@ -52,19 +53,20 @@ const useChat = ({ user, viewedUser, page }) => {
 
     useEffect(() => {
 
-        //this url takes the room ID - not necessary, the name space can have many rooms
-        // socketRef.current = socketIOClient(`http://localhost:3000/`);
-        // socketRef.current = socketIOClient(`/chatapi/`, {transports: ['websocket']});
-        socketRef.current = socketIOClient(`/chatapi/`);
-        console.log(names)
+
+        //TODO: this is not working, this url I think
+
+        socketRef.current = socketIOClient('/');
+          // console.log(socketRef.current)
 
         //join room
         socketRef.current.emit('joinRoom', { username, roomId, chatIds, names }, ({ error }) => {
-
+            console.log('room join attempt')
             alert(error);
         })
 
         socketRef.current.on('chatmessage', (message) => {
+            console.log('where do we get time here 'message)
             setMessages(messages => [...messages, message])
         });
 
@@ -74,6 +76,7 @@ const useChat = ({ user, viewedUser, page }) => {
         // })
 
         return () => {
+            console.log("disconneting now")
             socketRef.current.disconnect();
         }
 
@@ -307,7 +310,7 @@ const useChat = ({ user, viewedUser, page }) => {
 
     //if there are more than messages, destructure here
     const sendMessage = ({ message, user }) => {
-
+        console.log('message sending now' message)
         socketRef.current.emit('chatmessage', { message, user, roomId, to })
     }
     // console.log(messages)

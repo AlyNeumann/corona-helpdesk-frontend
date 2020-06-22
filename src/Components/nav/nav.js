@@ -155,6 +155,7 @@ function Navbar(props) {
         if (Cookies.get("token")) {
             setTokenExists(true)
             getUser();
+            console.log('getUserBeingCalled')
         }
 
     }, [tokenExists])
@@ -310,7 +311,8 @@ function Navbar(props) {
 
                           </main>
                         </ThemeProvider>
-                    </div> : <Button onClick={handleRedirect}>Please Login to view content</Button>
+                    </div> : tokenExists  && !user ? <Button onClick={handleRedirect}>Please Login to view content</Button> :
+                    <p>Loading...</p>
                 }
 
             </div>

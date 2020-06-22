@@ -5,6 +5,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 import { useHistory } from 'react-router-dom'
+import { Button } from '../../global';
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -152,17 +153,17 @@ export default function EmailModal(props) {
                                         onChange={handleChange}
                                         value={values.email} />
                                 </div>
-                                <button
+                                <Button
                                     type="submit"
-                                >Retrieve password</button>
-                                <button
+                                >Retrieve password</Button>
+                                <Button
                                     onClick={props.handleClick}
-                                >cancel</button>
+                                >cancel</Button>
                             </form>
                             {errorMessage ? <div>{errorMessage}</div> : null}
                             {message ? <div>{message}
                                 <div>
-                                    <button onClick={props.handleClick}>Ok!</button>
+                                    <Button onClick={props.handleClick}>Ok!</Button>
                                 </div>
                             </div> : null}
                         </div>}

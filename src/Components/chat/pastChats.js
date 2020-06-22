@@ -17,7 +17,7 @@ const PastChats = (props) => {
     //fetch chat the user clicks on
     const handleClick = (e) => {
         //use chat id to call that chat
-        console.log(e.target.value)
+        // console.log(e.target.value)
         const newChat = e.target.value
         props.handleChatSwitch(newChat);
 
@@ -41,7 +41,7 @@ const PastChats = (props) => {
     useEffect(() => {
         filterChats(chats)
     }, [chats])
-console.log(names)
+// console.log(names)
     return (
         <div className="pastchats-container">
             <h6 className="pastchats-title">Chat History</h6>

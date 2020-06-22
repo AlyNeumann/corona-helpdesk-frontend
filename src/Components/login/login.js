@@ -131,7 +131,7 @@ const Login = () => {
                                             ? "inputError form-control"
                                             : "valid-email form-control"
                                         }`}
-                                    placeholder="enter shit"
+                                    placeholder="enter shit please"
                                     value={values.email}
                                     onChange={handleChange}
                                 />
