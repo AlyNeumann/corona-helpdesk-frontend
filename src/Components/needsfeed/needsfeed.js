@@ -59,7 +59,7 @@ const NeedsFeed = () => {
         // const lat = 45.34
         // const lng = -75.90
         // console.log(radius)
-        const url = `/api/needFeed/${lat}/${lng}/${radius}`
+        const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
         // const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages

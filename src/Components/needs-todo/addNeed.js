@@ -49,7 +49,7 @@ const AddNeeds = () => {
         const token = Cookies.get("token");
 
 
-        const url = "/api/addNeed";
+        const url = "http://localhost:5000/addNeed";
 
         // implement POST REQUEST
 

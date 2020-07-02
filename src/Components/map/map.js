@@ -209,22 +209,26 @@ const Map = (props) => {
 
   return (
     <div id="mapbox">
-      {!directionsOpen ? <div className="mapboxgl-ctrl-top-left">
+      {!directionsOpen ? <div className="mapboxgl-ctrl-bottom-left">
         <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
+          <div className="direction-button-container">
           <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
             aria-label="Toggle fullscreen"
             type="button"
             onClick={handleDirections}><DirectionsIcon /></button>
+            </div>
         </div>
       </div> : null}
 
       {directionsOpen ?
-        <div className="mapboxgl-ctrl-top-left">
+        <div className="mapboxgl-ctrl-bottom-left">
           <div className="mapboxgl-ctrl mapboxgl-ctrl-group">
+          <div className="direction-button-container">
             <button className="mapboxgl-ctrl-icon mapboxgl-ctrl-fullscreen"
               aria-label="Toggle fullscreen"
               type="button"
               onClick={handleCloseDirections}><DirectionsIcon /></button>
+              </div>
           </div>
         </div>
         : null}

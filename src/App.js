@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
 import Navbar from './Components/nav/nav';
 import Map from './Components/map/map';
@@ -12,26 +12,80 @@ import Chat from './Components/chat/chat';
 import AboutUs from './Components/about-us/aboutUs';
 import Resources from './Components/resources/resources';
 import ProfileView from './Components/profile-view/profileView';
-import UserContextStore, { UserContext } from './Components/user-context/userContext';
-import { ThemeContext } from './Components/user-context/userContext';
+import UserContextStore, { UserContext,NeedsContext } from './Components/user-context/userContext';
+// import Cookies from 'js-cookie';
+// import { ThemeContext } from './Components/user-context/userContext';
+
 
 // import { lightTheme, darkTheme } from '../../theme';
 
 
 function App() {
+  //setting global context for user
+  // const [user, setUser] = useContext(UserContext);
 
-  //global state of User
-  //pass to nav for userinfo
-  const user = useContext(UserContext);
-  //theme
-  const currentTheme = useContext(ThemeContext);
-  console.log(currentTheme);
+  // //setting global context for user needs
+  // const [needs, setNeeds] = useContext(NeedsContext);
+
+  // //handle errors
+  // const [errorMessage, setErrorMessage] = useState(null)
+
+  // console.log('from app.js')
+  // console.log(user, needs)
+
+    // const getUserAndNeeds = () => {
+    //     const token = Cookies.get('token')
+    //     const url = "http://localhost:5000/getUser"
+    //     // const url = "http://localhost:5000/getUser"
+
+    //     //handle error messages
+    //     const handleErrors = (error) => {
+    //         if (error) {
+    //           // console.log(error)
+    //             setErrorMessage(error)
+    //         }
+    //         else return error
+    //     }
+
+    //     fetch(url, {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": token
+    //         }
+    //     })
+    //         .then(res => res.json()) //response is
+    //         .then(response => {
+    //             if (!errorMessage) {
+    //                 // console.log(response);
+    //                 setUser(response);
+    //                 setNeeds(response.neededList);
+    //             }
+
+    //         })
+    //         .then(handleErrors)
+    //         .catch(error => {
+    //             if (error) {
+    //                 console.log(error)
+    //             }
+    //         })
+
+    // }
+
+    //fetch User's needs
+  //   useEffect(() => {
+  //     if (Cookies.get("token")) {
+  //       // setTokenExists(true)
+  //       getUserAndNeeds();
+  //       console.log('getUserBeingCalled')
+  //   }
+     
+  // }, [])
 
   return (
-    // <div>Ho</div>
     <Router>
       <UserContextStore>
-        <Navbar user={user}>
+        <Navbar>
           <Switch>
             <Route path="/map" exact component={Map} />
             <Route path="/profile" component={ProfileHome} />

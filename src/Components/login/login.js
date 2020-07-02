@@ -70,8 +70,8 @@ const Login = () => {
             } else return error;
         }
 
-        const url = '/api/signin'
-        // const url = 'http://localhost:5000/signin'
+        // const url = '/api/signin'
+        const url = 'http://localhost:5000/signin'
 
         fetch(url, {
             method: "POST",
@@ -131,7 +131,7 @@ const Login = () => {
                                             ? "inputError form-control"
                                             : "valid-email form-control"
                                         }`}
-                                    placeholder="enter shit please"
+                                    placeholder="Enter email"
                                     value={values.email}
                                     onChange={handleChange}
                                 />

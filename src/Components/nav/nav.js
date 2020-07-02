@@ -30,7 +30,7 @@ import Login from '../login/login';
 import Signup from '../login/signup';
 import Cookies from 'js-cookie';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
-// import { UserContext } from '../../Components/user-context/userContext';
+import { UserContext } from '../../Components/user-context/userContext';
 import { ThemeContext } from '../../Components/user-context/userContext';
 import { Button } from '../../global';
 
@@ -42,11 +42,14 @@ import { Button } from '../../global';
 
 function Navbar(props) {
 
+ 
+
 
     const drawerWidth = 240;
     const useStyles = makeStyles((theme) => ({
         root: {
-            display: 'flex',
+            display: 'flex'
+           
         },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
@@ -54,7 +57,7 @@ function Navbar(props) {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.leavingScreen,
             }),
-            background: "#424242",
+            background: "#3f3f37",
             color: "#fff"
         },
         appBarShift: {
@@ -75,6 +78,7 @@ function Navbar(props) {
             width: drawerWidth,
             flexShrink: 0,
             whiteSpace: 'nowrap',
+           
         },
         drawerOpen: {
             width: drawerWidth,
@@ -100,11 +104,13 @@ function Navbar(props) {
             justifyContent: 'flex-end',
             padding: theme.spacing(0, 1),
             ...theme.mixins.toolbar,
+            backgroundColor: "#ebede1"
         },
         content: {
             // color: props => {
             //         props.light ? '#fff' : '#000'
             //     },
+            backgroundColor: "#ebede1",
             flexGrow: 1,
         }
 
@@ -121,8 +127,12 @@ function Navbar(props) {
     const [open, setOpen] = useState(false)
     const [errorMessage, setErrorMessage] = useState()
     // const user = useContext(UserContext);
-    const [user, setUser] = useState("")
-    // const [userInfo, setUserInfo] = useState({name: 'h'})
+    // const [user, setUser] = useState("")
+    const userInfo = useContext(UserContext)
+    const user = userInfo[0]
+    console.log('from nav')
+    console.log(props)
+    console.log(user)
 
     // console.log(user)
     const [tokenExists, setTokenExists] = useState(false)
@@ -154,7 +164,7 @@ function Navbar(props) {
     useEffect(() => {
         if (Cookies.get("token")) {
             setTokenExists(true)
-            getUser();
+            // getUser();
             console.log('getUserBeingCalled')
         }
 
@@ -164,42 +174,42 @@ function Navbar(props) {
     const handleRedirect = () => {
         history.push('/')
     }
-    const getUser = () => {
-        const token = Cookies.get('token')
-        const url = "/api/getUser"
-        // const url = "http://localhost:5000/getUser"
+    // const getUser = () => {
+    //     const token = Cookies.get('token')
+    //     // const url = "/api/getUser"
+    //     const url = "http://localhost:5000/getUser"
 
-        //handle error messages
-        const handleErrors = (error) => {
-            if (error) {
-                setErrorMessage(error)
-            }
-            else return error
-        }
+    //     //handle error messages
+    //     const handleErrors = (error) => {
+    //         if (error) {
+    //             setErrorMessage(error)
+    //         }
+    //         else return error
+    //     }
 
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            }
-        })
-            .then(res => res.json()) //response is
-            .then(response => {
-                if (!errorMessage) {
-                    // console.log(response);
-                    setUser(response);
-                }
+    //     fetch(url, {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": token
+    //         }
+    //     })
+    //         .then(res => res.json()) //response is
+    //         .then(response => {
+    //             if (!errorMessage) {
+    //                 // console.log(response);
+    //                 setUser(response);
+    //             }
 
-            })
-            .then(handleErrors)
-            .catch(error => {
-                if (error) {
-                    console.log(error)
-                }
-            })
+    //         })
+    //         .then(handleErrors)
+    //         .catch(error => {
+    //             if (error) {
+    //                 console.log(error)
+    //             }
+    //         })
 
-    }
+    // }
 
 
     return (
@@ -259,7 +269,7 @@ function Navbar(props) {
                             }}
                         >
                             <div className={classes.toolbar}>
-                                <Avatar alt="Remy Sharp" src={`data:image/jpeg;base64,${user.img}` || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
+                                <Avatar className="profile-pic-small" alt="Remy Sharp" src={`data:image/jpeg;base64,${user.img}` || PortraitPlaceholder} style={{ marginLeft: "10px" }} />
                                 <div style={{ display: "block", marginRight: "auto", marginLeft: "15px", width: "40%" }}>
                                     <p className="toggle-avatar-name">{user.name || "Unknown"}</p>
                                     <p className="toggle-avatar-title"></p>
@@ -311,8 +321,9 @@ function Navbar(props) {
 
                           </main>
                         </ThemeProvider>
-                    </div> : tokenExists  && !user ? <Button onClick={handleRedirect}>Please Login to view content</Button> :
-                    <p>Loading...</p>
+                    </div> :  <Button onClick={handleRedirect}>Please Login to view content</Button> 
+                    // :
+                    // <p>Loading...If this doesn't stop after like 5 seconds, please refresh the page! It happens sometimes...:)</p>
                 }
 
             </div>

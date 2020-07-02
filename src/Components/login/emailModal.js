@@ -88,7 +88,7 @@ export default function EmailModal(props) {
     //submit email 
     function submit(e) {
         e.preventDefault();
-        const url = "/api/forgotPassword"
+        const url = "http://localhost:5000/forgotPassword"
 
         //handle errors
         const handleErrors = (response) => {
@@ -136,7 +136,7 @@ export default function EmailModal(props) {
                 <Fade in={props.open}>
                     {props.email ? <div className={classes.paper}>
                         <h2 id="spring-modal-title">Thank you!</h2>
-                        <p id="spring-modal-description">An email has been sent to {props.email}</p>
+                        <p id="spring-modal-description">An email has been sent to {props.email}. Please check your spam folders, we are not fancy yet! </p>
                         <div>
                             <button onClick={props.handleClick}>Ok!</button>
                         </div>

@@ -39,8 +39,7 @@ const Messages = ({ messages, user, viewedUser, newChat, newChatUser }) => {
     }, [newChat])
 
 
-    //TODO: replace index with message _id 
-    //TODO: render two forms of messages based on user or viewed user name
+    //render two forms of messages based on user or viewed user name
     return (
         <div>
             <List className={classes.root}>
@@ -63,10 +62,12 @@ const Messages = ({ messages, user, viewedUser, newChat, newChatUser }) => {
                                         {messages ?
                                             <Avatar
                                                 alt="Remy Sharp"
-                                                src={`data:image/jpeg;base64,${userImg}`} /> :
+                                                src={`data:image/jpeg;base64,${userImg}`} 
+                                                className="chat-pic"/> :
                                             <Avatar
                                                 alt="Remy Sharp"
-                                                src={PortraitPlaceholder} />}
+                                                src={PortraitPlaceholder}
+                                                className="chat-pic" />}
                                     </ListItemAvatar>
                                 </ListItem>)
                                 ,
@@ -81,10 +82,12 @@ const Messages = ({ messages, user, viewedUser, newChat, newChatUser }) => {
                                             {userImg ?
                                                 <Avatar
                                                     alt="Remy Sharp"
-                                                    src={`data:image/jpeg;base64,${viewedImg}`} /> :
+                                                    src={`data:image/jpeg;base64,${viewedImg}`} 
+                                                    className="chat-pic"/> :
                                                 <Avatar
                                                     alt="Remy Sharp"
-                                                    src={PortraitPlaceholder} />}
+                                                    src={PortraitPlaceholder} 
+                                                    className="chat-pic"/>}
 
                                         </ListItemAvatar>
                                         <ListItemText

@@ -54,9 +54,10 @@ const useChat = ({ user, viewedUser, page }) => {
     useEffect(() => {
 
 
+
         //TODO: this is not working, this url I think
 
-        socketRef.current = socketIOClient('/');
+        socketRef.current = socketIOClient('http://localhost:3001');
           // console.log(socketRef.current)
 
         //join room
@@ -66,7 +67,7 @@ const useChat = ({ user, viewedUser, page }) => {
         })
 
         socketRef.current.on('chatmessage', (message) => {
-            console.log('where do we get time here 'message)
+            console.log(message)
             setMessages(messages => [...messages, message])
         });
 
@@ -87,8 +88,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (roomId) {
             // console.log(user, viewedUser)
-            // const url = 'http://localhost:3000/pastChat'
-            const url = '/chatapi/pastChat'
+            const url = 'http://localhost:3001/pastChat'
+            // const url = '/chatapi/pastChat'
             console.log('roomId inside fetch')
             console.log(roomId)
 
@@ -136,8 +137,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (roomId) {
             // console.log(user, viewedUser)
-            // const url = 'http://localhost:3000/pastChat'
-            const url = '/chatapi/pastChat'
+            const url = 'http://localhost:3001/pastChat'
+            // const url = '/chatapi/pastChat'
             console.log('roomId inside fetch')
             console.log(roomId)
 
@@ -188,8 +189,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (user) {
             // console.log(user, viewedUser)
-            // const url = 'http://localhost:3000/userChats'
-            const url = '/chatapi/userChats'
+            const url = 'http://localhost:3001/userChats'
+            // const url = '/chatapi/userChats'
             const userId = user._id
             console.log(userId)
 
@@ -264,7 +265,8 @@ const useChat = ({ user, viewedUser, page }) => {
 
         if (viewedUserId) {
             const token = Cookies.get('token')
-            const url = "/api/getUsers"
+            // const url = "/api/getUsers"
+            const url = "http://localhost:5000/getUsers"
             //handle error messages
             const handleErrors = (error) => {
                 if (error) {
@@ -310,7 +312,7 @@ const useChat = ({ user, viewedUser, page }) => {
 
     //if there are more than messages, destructure here
     const sendMessage = ({ message, user }) => {
-        console.log('message sending now' message)
+        console.log('message sending now')
         socketRef.current.emit('chatmessage', { message, user, roomId, to })
     }
     // console.log(messages)

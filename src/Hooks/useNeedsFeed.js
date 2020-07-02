@@ -21,8 +21,8 @@ const useNeedsFeed = () => {
         const lat = userInfo.houseLocation.coordinates[0]
         const lng = userInfo.houseLocation.coordinates[1]
         const radius = 100
-        const url = `/api/needFeed/${lat}/${lng}/${radius}`
-        // const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
+        // const url = `/api/needFeed/${lat}/${lng}/${radius}`
+        const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
 
         //handle error messages
         const handleErrors = (response) => {

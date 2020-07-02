@@ -64,10 +64,13 @@ const PastMessages = ({ pastMessages, user, viewedUser, newChatUser }) => {
                                         {userImg ?
                                             <Avatar
                                                 alt="Remy Sharp"
-                                                src={`data:image/jpeg;base64,${userImg}`} /> :
+                                                src={`data:image/jpeg;base64,${userImg}`} 
+                                                className="chat-pic"/>
+                                                 :
                                             <Avatar
                                                 alt="Remy Sharp"
-                                                src={PortraitPlaceholder} />}
+                                                src={PortraitPlaceholder}
+                                                className="chat-pic" />}
 
                                     </ListItemAvatar>
                                 </ListItem>)
@@ -82,10 +85,12 @@ const PastMessages = ({ pastMessages, user, viewedUser, newChatUser }) => {
                                             {userImg ?
                                                 <Avatar
                                                     alt="Remy Sharp"
-                                                    src={`data:image/jpeg;base64,${viewedImg}`} /> :
+                                                    src={`data:image/jpeg;base64,${viewedImg}`}
+                                                    className="chat-pic" /> :
                                                 <Avatar
                                                     alt="Remy Sharp"
-                                                    src={PortraitPlaceholder} />}
+                                                    src={PortraitPlaceholder} 
+                                                    className="chat-pic"/>}
 
                                         </ListItemAvatar>
                                         <ListItemText

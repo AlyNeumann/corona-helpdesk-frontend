@@ -6,9 +6,12 @@
 }
 
 h4 {
-    font-family: 'RobotoMonoB' !important;
+    font-family: 'RobotoCondensedR' !important;
+    /* font-family: 'RobotoMonoB' !important; */
+    color: #494331;
 }
 .btn-text {
     font-family: 'RobotoMonoB' !important;
-    color: #eebea8;
+    color: #ae9d9d;
+    background-color: #652020c8;
 }

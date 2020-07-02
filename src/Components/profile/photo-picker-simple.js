@@ -1,6 +1,7 @@
 import React, { useMemo, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { useDropzone } from "react-dropzone";
+import { Button } from '../../global'
 // import { ReactCrop } from 'react-image-cropper';
 // import 'react-image-crop/dist/ReactCrop.css';
 // import * as Doka from './doka.esm.min';
@@ -147,9 +148,9 @@ const StyledDropzone = (props) => {
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop your avatar photo here</p>
                 <p>If image preview does not appear below, file is too large!</p>
-                <button type="button" onClick={open}>
+                <Button type="button" onClick={open}>
                     Open File Dialog
-        </button>
+        </Button>
             </div>
             <aside>
                 <ul>{filepath}</ul>

@@ -9,7 +9,7 @@ export const Button = styled.button`
   font-family: 'RobotoMonoB'
   border-radius: 5px;
   color: black;
-  color: ${props => (props.primary ? '#718751' : '#405226')};
+  color: ${props => (props.primary ? '#718751' : '#783b37')};
   border: ${props =>
     props.primary ? '2px solid #dbaf9a' : '2px solid #699696'};
   margin: 0 1em;
@@ -19,7 +19,7 @@ export const Button = styled.button`
   &:hover {
     color: white;
     background-color: ${props =>
-      props.primary ? '#9ba896'  : '#414240'};
+      props.primary ? '#9ba896'  : '#699696'};
   }
 `;
 

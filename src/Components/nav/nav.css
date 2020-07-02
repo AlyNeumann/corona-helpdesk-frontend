@@ -1,10 +1,10 @@
 .hi{
-    color:black;
+    color:rgb(39, 37, 37);
 }
 
 .toggle-avatar-name{
     font-size: 13px;
-    color:black;
+    color:rgb(63, 26, 26);
     font-family: 'RobotoMonoL';
     margin-top:10px;
     margin-bottom: 0;
@@ -12,7 +12,7 @@
 
 .toggle-avatar-title{
     font-size: 10px;
-    color:black;
+    color:rgb(89, 31, 31);
     font-family:'RobotoMonoL';
     margin-bottom: 0;
     letter-spacing: 0;
@@ -23,6 +23,7 @@
     width: 40px;
     height: 40px;
     margin-right: 10px;
+    filter: sepia(60%);
 }
 .typography-title {
     font-family: 'RobotoCondensedB' !important;
@@ -32,7 +33,15 @@
 } */
 .MuiTypography-body1  {
     font-family: 'RobotoCondensedR' !important;
+    color:rgb(89, 31, 31);
 }
 /* .MuiToolbar-regular {
     background-color: rgb(26, 28, 3);;
 } */
+.MuiTypography-h6 {
+    font-family: 'RobotoMonoB' !important;
+    color:rgb(205, 173, 173);
+}
+.profile-pic-small {
+    filter: sepia(30%);
+}

@@ -116,12 +116,12 @@ const UsersProfile = (props) => {
                                 </ListItemIcon>
                                 <ListItemText primary={viewedUser ? `Phone: ${viewedUser.phoneNumber}` : "Phone: Unknown"} />
                             </ListItem>
-                            <ListItem button className={classes.nested}>
+                            {/* <ListItem button className={classes.nested}>
                                 <ListItemIcon>
                                     <ContactPhoneIcon className="iconclass" />
                                 </ListItemIcon>
                                 <ListItemText primary={viewedUser ? `Emergency Contact: ${viewedUser.emergencyContacts}` : "Emergency: Unknown"} />
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </Collapse>
                 </List>

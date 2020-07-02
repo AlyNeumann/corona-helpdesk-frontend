@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
+import useGetUser from '../../Hooks/useGetUser';
 import Profile from '../profile/profile';
 import NeedsTodo from '../needs-todo/needsTodo';
 import UserNeedsList from '../user-needs-list/userNeedsList';
 import { UserContext, NeedsContext } from '../user-context/userContext';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import './profileHome.css';
 import { ThemeContext } from '../user-context/userContext';
-import { lightTheme, darkTheme } from '../../theme';
-import { Button } from '../../global'
+// import { lightTheme, darkTheme } from '../../theme';
+// import { Button } from '../../global'
 import { useSpring, animated } from 'react-spring';
 // import { useSpring, animated } from 'react-spring';
 
@@ -35,68 +36,73 @@ const ProfileHome = () => {
     })
 
     //theme
-    const [currentTheme, setCurrentTheme] = useContext(ThemeContext);
+    // const [currentTheme, setCurrentTheme] = useContext(ThemeContext);
 
-    //setting global context for user
-    const [user, setUser] = useContext(UserContext);
+    //TODO: testing out new user flow 
+    const { user, needs } = useGetUser()
+    //  const user = useContext(UserContext);
+    //  const needs = useContext(NeedsContext)
+     console.log(user, needs)
+    // //setting global context for user
+    // const [user, setUser] = useContext(UserContext);
 
-    //setting global context for user needs
-    const [needs, setNeeds] = useContext(NeedsContext);
+    // //setting global context for user needs
+    // const [needs, setNeeds] = useContext(NeedsContext);
     //state for error messages
     const [errorMessage, setErrorMessage] = useState(null);
 
 
 
     //for theme
-    const handleClick = () => {
-        if (currentTheme === 'light') {
-            setCurrentTheme('dark')
-        } else {
-            setCurrentTheme('light')
-        }
-    }
-    const getUserAndNeeds = () => {
-        const token = Cookies.get('token')
-        const url = "/api/getUser"
-        // const url = "http://localhost:5000/getUser"
+    // const handleClick = () => {
+    //     if (currentTheme === 'light') {
+    //         setCurrentTheme('dark')
+    //     } else {
+    //         setCurrentTheme('light')
+    //     }
+    // }
+    // const getUserAndNeeds = () => {
+    //     const token = Cookies.get('token')
+    //     const url = "http://localhost:5000/getUser"
+    //     // const url = "http://localhost:5000/getUser"
 
-        //handle error messages
-        const handleErrors = (error) => {
-            if (error) {
-                setErrorMessage(error)
-            }
-            else return error
-        }
+    //     //handle error messages
+    //     const handleErrors = (error) => {
+    //         if (error) {
+    //             setErrorMessage(error)
+    //         }
+    //         else return error
+    //     }
 
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
-            }
-        })
-            .then(res => res.json()) //response is
-            .then(response => {
-                if (!errorMessage) {
-                    // console.log(response);
-                    setUser(response);
-                    setNeeds(response.neededList);
-                }
+    //     fetch(url, {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Authorization": token
+    //         }
+    //     })
+    //         .then(res => res.json()) //response is
+    //         .then(response => {
+    //             if (!errorMessage) {
+    //                 // console.log(response);
+    //                 setUser(response);
+    //                 setNeeds(response.neededList);
+    //             }
 
-            })
-            .then(handleErrors)
-            .catch(error => {
-                if (error) {
-                    console.log(error)
-                }
-            })
+    //         })
+    //         .then(handleErrors)
+    //         .catch(error => {
+    //             if (error) {
+    //                 console.log(error)
+    //             }
+    //         })
 
-    }
+    // }
 
     //fetch User's needs
-    useEffect(() => {
-        getUserAndNeeds();
-    }, [])
+    // useEffect(() => {
+    //     getUserAndNeeds();
+    // }, [])
 
     return (
    

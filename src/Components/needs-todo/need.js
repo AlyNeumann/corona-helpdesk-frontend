@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
     },
+    thirdHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary,
+        left: "35%",
+        marginRight: "-65%",
+        position: "absolute"
+    }
 }));
 
 
@@ -78,7 +85,7 @@ const Need = ({ need, needs }) => {
         const id = {
             _id: need._id
         }
-        const url = "/api/deleteNeed";
+        const url = "http://localhost:5000/deleteNeed";
         const token = Cookies.get("token");
 
         const handleErrors = (error) => {
@@ -137,10 +144,10 @@ const Need = ({ need, needs }) => {
                             </Typography>
                             </div>
                             <div className="need-phoneview">
-                            <Typography className={`${classes.heading} typetext`}>
+                            <Typography className={`${classes.heading} typetexttwo`}>
                                 Exchange:
                             </Typography>
-                            <Typography className={classes.secondaryHeading}>
+                            <Typography className={classes.thirdHeading}>
                                 {exchangeType}
                             </Typography>
                             </div>

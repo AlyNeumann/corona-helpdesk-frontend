@@ -28,3 +28,9 @@
         height: 10%;
     }
   }
+
+  h5 {
+    font-family: 'RobotoCondensedR' !important;
+    /* font-family: 'RobotoMonoB' !important; */
+    color: #494331;
+  }

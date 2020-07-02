@@ -20,7 +20,17 @@ const useStyles = makeStyles((theme) => ({
     secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
         color: theme.palette.text.secondary,
+        left: "20%",
+        marginRight: "-80%",
+        position: "absolute"
     },
+    thirdHeading: {
+        fontSize: theme.typography.pxToRem(15),
+        color: theme.palette.text.secondary,
+        left: "65%",
+        marginRight: "-35%",
+        position: "absolute"
+    }
 }));
 
 
@@ -84,7 +94,7 @@ const UserNeed = ({ need }) => {
                         <Typography className={`${classes.heading} typetext`}>
                            Exchange: 
                         </Typography>
-                        <Typography className={classes.secondaryHeading}>
+                        <Typography className={classes.thirdHeading}>
                             {exchangeType}
                                </Typography>
                     </ExpansionPanelSummary>

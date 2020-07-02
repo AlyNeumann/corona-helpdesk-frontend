@@ -67,7 +67,7 @@ const ProfileUpdate = (props) => {
 
     //TODO: help me!!! formdata not working
     function submit() {
-        const url = "/api/updateProfile"
+        const url = "http://localhost:5000/updateProfile"
         console.log('values before form')
         console.log(values)
         let token = Cookies.get("token")

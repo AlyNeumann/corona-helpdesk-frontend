@@ -13,6 +13,7 @@
     width: 40px;
     border-radius: 50%;
     background-color: #ffffff00;
+    filter: sepia(40%);
 }
 .btn-image {
     border: 1px solid black;
@@ -20,6 +21,7 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
+    filter: sepia(30%);
 }
 .needsfeedlist-container {
     width: 100%;
@@ -47,6 +49,11 @@
     padding-bottom: 10px;
     left: 0;
 }
+.needsfeed-text {
+    font-family: 'RobotoMonoL' !important;
+    /* font-family: 'RobotoMonoB' !important; */
+    color: #3e351a;
+}
 .exchangetitletext {
     padding-bottom: 100px;
 }
@@ -60,6 +67,11 @@
 .needsfeed-subtitle {
     padding: 10px 0 10px 0;
 }
+h6 {
+    font-family: 'RobotoMonoB' !important;
+    /* font-family: 'RobotoMonoB' !important; */
+    color: #3e351a;
+  }
 
 @media only screen and (max-device-width: 480px) {
     .needslist-container {

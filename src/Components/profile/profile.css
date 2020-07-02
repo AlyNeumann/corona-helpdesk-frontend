@@ -22,14 +22,17 @@
     height:100px;
     border: 2.5px solid rgb(89, 85, 85);
     border-radius: 50%;
+    filter: sepia(30%);
 }
 
  h2 {
     font-family: 'RobotoCondensedB' !important;
     /* font-family: 'RobotoMonoB' !important; */
+    color: #494331;
  }
  h4 {
     font-family: 'RobotoCondensedR' !important;
+    color: #494331;
  }
  .drag-drop {
     font-family: 'RobotoCondensedR' !important;
@@ -72,4 +75,9 @@
   
   .card:hover {
     box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
+  }
+
+  .buttonclass {
+    color: #ae9d9d !important;
+    background-color: #673535 !important;
   }

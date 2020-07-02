@@ -12,18 +12,21 @@
 .MuiList-padding {
   padding: 0 !important;
 }
-
-.chat-outerContainer {
+.chat-form {
+  padding: 0;
+  margin: 0;
+}
+/* .chat-outerContainer {
     width: 90vw;
     display: flex;
     flex-direction: row;
-    /* justify-content: center !important; */
+    justify-content: center !important;
     align-items: flex-start;
     justify-content: space-between;
     height: 100vh;
-  }
+  } */
   
-  .chat-container {
+  /* .chat-container {
     box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
     transition: all .3s;
     display: flex;
@@ -40,27 +43,32 @@
     position: absolute;
     flex-grow: 2;
     
-  }
+  } */
   
   .input {
     border: 1px solid black;
     border-radius: 0 0 8px 8px;
-    width: 55.02%;
+    width: 100%;
     font-size: 1.2em;
-    height: 80px;
+    height: 90px;
     -ms-grid-row:auto ;
     resize: none;
-    bottom: 90px;
-    position: fixed;
-    margin-left: -1px;
-    margin-bottom: 2px;
+    /* bottom: 90px; */
+    position: relative;
+    /* margin-left: -1px; */
+    /* margin-bottom: 2px; */
     font-family: 'RobotoCondensedR' !important;
     flex-grow: 2;
+    background-color: #abb5a0;
   }
   
   input:focus, textarea:focus, select:focus{
     outline: none;
   }
+  /* .fixed-input {
+    padding: 0;
+    margin: 0;
+  } */
  
   .messages {
     /* padding: 5% 0; */
@@ -93,33 +101,33 @@
     width: 20%;
     white-space: nowrap;
   }
-  .chat-title {
+  /* .chat-title {
     position: relative;
     height: 83%;
     text-align: center;
     font-family: 'RobotoCondensedB';
     flex-grow: 1;
     padding-top:10px;
-  }
+  } */
 
 .MuiDivider-inset {
     margin-left: 0 !important;
 }
 .all-messages {
   position: relative;
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 
 }
 .pastchats-container {
   position: relative;
-  align-self: flex-start;
+  /* align-self: flex-start;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  justify-content: flex-end;
-  padding-left: 50%;
+  justify-content: flex-end; */
+  /* padding-left: 50%; */
   text-align: center;
-  padding-top:10px;
+  /* padding-top:10px; */
 } 
 .pastchat-btn {
 
@@ -138,19 +146,19 @@ text-align: center;
     justify-content: center;
   }
 
-  .chat-container {
+  /* .chat-container {
     width: 80%;
     height: 70%;
-  }
+  } */
   .input {
-    width: 80%;
-    top: 75%;
+    width: 100%;
+    top: 95%;
   }
   .all-messages {
    padding-bottom: 45px;
  }
  .pastchats-container {
-  padding-top: 20px;
+  /* padding-top: 550px; */
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
@@ -158,8 +166,6 @@ text-align: center;
 } 
 }
 
-@media (min-width: 480px) and (max-width: 1200px) {
-  .pastchats-container {
-    padding-left: 50%;
-  } 
+.chat-pic {
+  filter: sepia(40%);
 }
