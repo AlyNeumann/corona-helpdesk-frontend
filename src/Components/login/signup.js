@@ -4,6 +4,7 @@ import useSignUp from '../../Hooks/useSignupForm';
 import useMiniMap from '../../Hooks/useMiniMap';
 import validate from './validate';
 import EmailModal from './emailModal';
+import WhyModal from './whyModal';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -39,8 +40,10 @@ const Signup = () => {
 
     //open modal for email confirmation
     const [modal, setModal] = useState(false)
+    const [modalTwo, setModalTwo] = useState(false)
     //open or close modal
     const [open, setOpen] = React.useState(false);
+    const [openTwo, setOpenTwo] = React.useState(false)
     const [errorMessage, setErrorMessage] = useState(null);
 
     //hook for signup submit & validate 
@@ -60,6 +63,16 @@ const Signup = () => {
     const handleClick = () => {
         setOpen(false);
         history.push('/');
+    }
+    //close why modal
+    const handleClickTwo = () => {
+        setOpenTwo(false);
+        setModalTwo(false)
+    }
+
+    //open why modal
+    const handleModalTwo = () => {
+        setModalTwo(true);
     }
 
 
@@ -209,6 +222,13 @@ const Signup = () => {
                 <div>
                     <Link className="modal-button" to="/">Already have an account?</Link>
                 </div>
+                <div>
+                    <button 
+                    className="modal-button" 
+                    onClick={handleModalTwo}
+                    >Why am I being asked for this info?</button>
+                </div>
+                        <div>{modalTwo ? <WhyModal handleClickTwo={handleClickTwo} openTwo={[openTwo, setOpenTwo]}/> : null}</div>
                 </animated.div>
             </div>
         </div>)

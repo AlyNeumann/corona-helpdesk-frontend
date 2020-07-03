@@ -167,3 +167,10 @@
   border-radius: 50%;
   border: 1px solid black;
 }
+.mapbox-form-label {
+  background-color: rgb(96, 35, 35) !important;
+}
+.directions-control .directions-control-directions {
+  font-family: 'RobotoMonoL';
+}
+

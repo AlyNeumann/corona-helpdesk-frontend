@@ -6,6 +6,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 import { useHistory } from 'react-router-dom'
 import { Button } from '../../global';
+import './modal.css';
 
 const useStyles = makeStyles(theme => ({
     modal: {
@@ -135,8 +136,8 @@ export default function EmailModal(props) {
             >
                 <Fade in={props.open}>
                     {props.email ? <div className={classes.paper}>
-                        <h2 id="spring-modal-title">Thank you!</h2>
-                        <p id="spring-modal-description">An email has been sent to {props.email}. Please check your spam folders, we are not fancy yet! </p>
+                        <h2 id="spring-modal-title" className="modal-title">Thank you!</h2>
+                        <p id="spring-modal-description" className="modal-title">An email has been sent to {props.email}. Please check your spam folders, we are not fancy yet! </p>
                         <div>
                             <button onClick={props.handleClick}>Ok!</button>
                         </div>
@@ -145,7 +146,7 @@ export default function EmailModal(props) {
                             <h2 id="spring-modal-title">Password Retrieval</h2>
                             <p id="spring-modal-description">Please enter a valid email</p>
                             <form onSubmit={handleSubmit} noValidate>
-                                <div>
+                                <div className="modal-text">
                                     <input
                                         className="form-control"
                                         type="email"

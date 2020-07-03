@@ -117,6 +117,7 @@ font-family: 'Nunito-Regular', sans-serif;
      padding: 5%;
      width: 90%;
      filter: sepia(20%);
+     filter: brightness(65%)
  }
  .MuiInputBase-input {
     font-family: 'RobotoMonoB';
