@@ -148,7 +148,7 @@ const StyledDropzone = (props) => {
                 <input {...getInputProps()} />
                 <p>Drag 'n' drop your avatar photo here</p>
                 <p>If image preview does not appear below, file is too large!</p>
-                <Button type="button" onClick={open}>
+                <Button className="fancy-btn-text" type="button" onClick={open}>
                     Open File Dialog
         </Button>
             </div>

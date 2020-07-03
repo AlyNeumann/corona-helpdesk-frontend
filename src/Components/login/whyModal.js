@@ -79,25 +79,26 @@ export default function WhyModal(props) {
                 }}
             >
                 <Fade in={props.openTwo}>
-                
-                        <div className={classes.paper}>
-                            <h2 id="spring-modal-title" className="modal-title">Why????</h2>
-                            <p id="spring-modal-description" className="modal-title">Why am I being asked to enter so many details?</p>
-                
-                                <div className="modal-text">
-                                    So, as far as entering info for your profile, the only actually
-                                    important part is your email address. The rest you can make up if you feel shy!
-                                    I am asking your health status and address only so I can color code your approximate location on a map. Feel free to enter
-                                    a location near you if you prefer. 
-                                    I am asking for your emergency contacts because I plan to add an emergency system, but it is not finished quite yet.
-                                    Everything entered on this page is fully secure and confidential.
-                                    Hope that clears things up! 
+
+                    <div className={classes.paper}>
+                        <h2 id="spring-modal-title" className="modal-title">Why????</h2>
+                        <p id="spring-modal-description" className="modal-title">Why am I being asked to enter so many details?</p>
+
+                        <div className="modal-text">
+                            So, as far as entering info for your profile, the only actually
+                            important part is your email address. The rest you can make up if you feel shy!
+                            I am asking your health status and address only so I can color code your approximate location on a map. Feel free to enter
+                            a location near you if you prefer.
+                            I am asking for your emergency contacts because I plan to add an emergency system, but it is not finished quite yet.
+                            Everything entered on this page is fully secure and confidential.
+                            Hope that clears things up!
                                 </div>
-                                <Button
-                                    onClick={props.handleClickTwo}
-                                >cool beans</Button>
- 
-                        </div>
+                        <Button
+                            className="fancy-btn-text"
+                            onClick={props.handleClickTwo}
+                        >cool beans</Button>
+
+                    </div>
 
                 </Fade>
             </Modal>

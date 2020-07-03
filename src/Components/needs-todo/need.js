@@ -190,34 +190,11 @@ const Need = ({ need, needs }) => {
 
 
             </div>
-            {/* <div className="paired-need-text">
-                    <div className="need-text">Exchange Type: {need.exchangeType}</div>
-                    <div className="need-text">Exchange Description: {need.exchangeDescription}</div>
-                </div> */}
-            {/* <div className="paired-need-text">
-                    <Link to={{
-                        pathname: '/updateneeds',
-                        state: {
-                            "functionType": "update",
-                            need,
-                            needs
-                        }
-                    }} >
-                        <button
-                            className="btn-needs btn-secondary btn-text">
-                            <EditIcon />
-                        </button>
-                    </Link>
-                    <button
-                        className="btn-needs btn-secondary btn-text"
-                        onClick={handleRemove}>
-                        <DeleteForeverIcon />
-                    </button>
-                </div> */}
+  
             {errorMessage && <div>{errorMessage}</div>}
         </div>
 
-        // </div>
+      
     )
 }
 

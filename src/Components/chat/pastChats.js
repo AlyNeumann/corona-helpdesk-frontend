@@ -11,6 +11,8 @@ const PastChats = (props) => {
 
     const username = props.user.name
     const chats = props.pastChats
+    // console.log(props.pastChats)
+
     const [names, setNames] = useState(null)
 
 
@@ -31,7 +33,7 @@ const PastChats = (props) => {
             let id = chat.id
             // console.log(allnames)
              const namesArr = allnames.filter(name => {
-               return name !== username
+               return name !== username 
             })
            viewedNames.push({name: namesArr, id: id})
         })
@@ -42,6 +44,7 @@ const PastChats = (props) => {
         filterChats(chats)
     }, [chats])
 // console.log(names)
+console.log(names)
     return (
         <div className="pastchats-container">
             <h6 className="pastchats-title">Chat History</h6>
@@ -50,10 +53,10 @@ const PastChats = (props) => {
                     return (
                         <div key={name.id}>
                             <Button
-                                className="pastchats-btn"
+                                className="pastchats-btn fancy-btn-text"
                                 value={name.id}
                                 onClick={handleClick}>
-                                {name.name[0]}
+                               {name.name[0] !== undefined ? name.name[0] : "Myself"}
                             </Button>
                         </div>
                     )

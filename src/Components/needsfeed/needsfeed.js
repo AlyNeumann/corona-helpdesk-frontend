@@ -114,7 +114,7 @@ const NeedsFeed = () => {
             {needsFeed? needsFeed.map(user => {
                 return <NeedsList user={user} key={user._id}/>
             }): 'No needs right now!'}
-              <Button onClick={handleClick}>Click here to expand your search area</Button>
+              <Button className="fancy-btn-text" onClick={handleClick}>Click here to expand your search area</Button>
         </animated.div>
       
         </div>

@@ -143,8 +143,8 @@ export default function EmailModal(props) {
                         </div>
                     </div> :
                         <div className={classes.paper}>
-                            <h2 id="spring-modal-title">Password Retrieval</h2>
-                            <p id="spring-modal-description">Please enter a valid email</p>
+                            <h2 id="spring-modal-title" className="modal-title">Password Retrieval</h2>
+                            <p id="spring-modal-description" className="modal-text">Please enter a valid email</p>
                             <form onSubmit={handleSubmit} noValidate>
                                 <div className="modal-text">
                                     <input
@@ -156,15 +156,17 @@ export default function EmailModal(props) {
                                 </div>
                                 <Button
                                     type="submit"
+                                    className="fancy-btn-text"
                                 >Retrieve password</Button>
                                 <Button
+                                    className="fancy-btn-text"
                                     onClick={props.handleClick}
                                 >cancel</Button>
                             </form>
                             {errorMessage ? <div>{errorMessage}</div> : null}
                             {message ? <div>{message}
                                 <div>
-                                    <Button onClick={props.handleClick}>Ok!</Button>
+                                    <Button className="fancy-btn-text" onClick={props.handleClick}>Ok!</Button>
                                 </div>
                             </div> : null}
                         </div>}

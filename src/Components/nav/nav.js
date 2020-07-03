@@ -321,7 +321,7 @@ function Navbar(props) {
 
                           </main>
                         </ThemeProvider>
-                    </div> :  <Button onClick={handleRedirect}>Please Login to view content</Button> 
+                    </div> :  <Button className="fancy-btn-text" onClick={handleRedirect}>Please Login to view content</Button> 
                     // :
                     // <p>Loading...If this doesn't stop after like 5 seconds, please refresh the page! It happens sometimes...:)</p>
                 }

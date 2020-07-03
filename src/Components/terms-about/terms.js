@@ -18,7 +18,7 @@ const Terms = () => {
     return (
         <div className="terms-container">
             {openDetails ? (<div>
-                <h5>Project Details</h5>
+                <h5 className="terms-title">Project Details</h5>
                 <div>
                     <p className="terms-text">
                         Welcome to Covid 19 Commuty Help!
@@ -39,6 +39,7 @@ const Terms = () => {
             </p>
             <Button
                 onClick={handleClick}
+                className="fancy-btn-text"
                 >Close</Button>
                 </div>
             </div>) :

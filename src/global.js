@@ -6,7 +6,7 @@ export const Button = styled.button`
   cursor: pointer;
   background: transparent;
   font-size: 16px;
-  font-family: 'RobotoMonoB'
+  font-family: 'RobotoMonoB !important'
   border-radius: 5px;
   color: black;
   color: ${props => (props.primary ? '#718751' : '#783b37')};

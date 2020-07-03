@@ -111,6 +111,7 @@
 }
 .pastchats-container {
   position: relative;
+  padding-top: 20px;
   /* align-self: flex-start;
   display: flex;
   flex-direction: column;
@@ -149,14 +150,16 @@ text-align: center;
    padding-bottom: 45px;
  }
  .pastchats-container {
-  /* padding-top: 550px; */
+  padding-top: 20px;
   flex-direction: column;
   flex-grow: 1;
   justify-content: flex-end;
-  padding-left: 20px;
 } 
 }
 
 .chat-pic {
   filter: sepia(40%);
+}
+.fancy-btn-text {
+  font-family: 'RobotoMonoB';
 }

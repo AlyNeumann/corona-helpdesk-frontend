@@ -28,7 +28,7 @@ const useMap = (id) => {
       // style: "mapbox://styles/alymarguerite/ck8qb354p01z01iqvhdqg9b5l",
       // style: "mapbox://styles/alymarguerite/ck88s2fvx0hx21jlndc2ekfws",
       center: [-73.567253, 45.501690],
-      zoom: 15,
+      zoom: 12.5,
       bearing: -12,
       antialias: true,
       // pitch: 60

@@ -87,7 +87,7 @@ const Chat = (props) => {
                         //className="chat-messages-container"
                         <animated.div style={props1} className="all-messages">
 
-                            <Button onClick={handlePagination}>click to see more...</Button>
+                            <Button  className="fancy-btn-text" onClick={handlePagination}>click to see more...</Button>
 
                             <div>
                                 <PastMessages pastMessages={pastMessages} user={user} viewedUser={viewedUser} newChatUser={newChatUser} />
@@ -108,13 +108,13 @@ const Chat = (props) => {
                             <Link to={{
                                 pathname: '/needsfeed',
                             }}>
-                                <Button>Needs Feed</Button>
+                                <Button className="fancy-btn-text">Needs Feed</Button>
                             </Link>
 
                             <Link to={{
                                 pathname: '/map',
                             }}>
-                                <Button>Map</Button>
+                                <Button className="fancy-btn-text">Map</Button>
                             </Link>
                         </div>
 
