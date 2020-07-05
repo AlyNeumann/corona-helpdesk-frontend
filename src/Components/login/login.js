@@ -10,14 +10,14 @@ import { useSpring, animated } from 'react-spring';
 import Covid_title from '../../Assets/images/Covid_title.png';
 //needs error handling & error messages displayed
 
-const Login = () => {
+const Login = (props) => {
 
     //react spring styles
     const props2 = useSpring({
         opacity: 1,
         from: { opacity: 0 }
     })
-    const props = useSpring({
+    const props4 = useSpring({
         opacity: 1,
         from: { opacity: 0 },
         delay: 1000
@@ -55,6 +55,7 @@ const Login = () => {
         setModal(true);
     }
 
+
     function submit() {
 
         //check values before submit
@@ -91,6 +92,7 @@ const Login = () => {
                     console.log('cookie storage is next yo');
                     console.log(response)
                     Cookies.set("token", response.token, { expires: 1 });
+                    props.loginCallBack()
                     history.push('/profile')
                 }
 
@@ -117,7 +119,7 @@ const Login = () => {
 
             {/* <h6 className="smaller-title">Please login to your account</h6> */}
             <div>
-                <animated.div style={props}>
+                <animated.div style={props4}>
                     <div className="login-inner">
                         <form onSubmit={handleSubmit} noValidate >
                             <h3 className="title">Login</h3>

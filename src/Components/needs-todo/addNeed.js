@@ -122,6 +122,7 @@ const AddNeeds = () => {
                             className="form-control"
                             onChange={handleChange}
                             value={values.needDescription}
+                            maxLength="60"
                         />
                     </div>
                     <div className={classes.formControl}>
@@ -160,6 +161,7 @@ const AddNeeds = () => {
                             className="form-control"
                             onChange={handleChange}
                             value={values.exchangeDescription}
+                            maxLength="60"
                         />
                     </div>
 
@@ -178,7 +180,7 @@ const AddNeeds = () => {
                         <CheckBoxIcon className="buttonclass"/>
                     </button>
                     {errorMessage && <div>{errorMessage}</div>}
-
+                    <div className="warning-text">Make sure to fill in all fields!</div>
                 </form>
             </div>
         </div>

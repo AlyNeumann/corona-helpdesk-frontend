@@ -47,20 +47,8 @@ const NeedsTodo = ({ user, needs }) => {
                         className="btn btn-secondary btn-text add-btn">
                         <AddBoxIcon className="buttonclass" />
                     </button>
-                </Link> : "Please delete a need to add another!"}
-                {/* <Link to={{
-                    pathname: '/addneeds',
-                    state: {
-                        "functionType": "add",
-                        need: { need: "" },
-                        needs
-                    }
-                }} >
-                    <button
-                        className="btn btn-secondary btn-text add-btn">
-                        <AddBoxIcon className="buttonclass" />
-                    </button>
-                </Link> */}
+                </Link> : <p className="needs-label">Please delete a need to add another!</p>}
+     
                 </animated.div>
             </div>
         </div>)

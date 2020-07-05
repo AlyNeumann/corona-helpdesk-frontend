@@ -160,15 +160,20 @@ function Navbar(props) {
     //     }
     // }, [user])
 
-    //TODO: make secure by pulling cookie
-    useEffect(() => {
-        if (Cookies.get("token")) {
-            setTokenExists(true)
-            // getUser();
-            console.log('getUserBeingCalled')
-        }
+    //make secure by pulling cookie
+    // useEffect(() => {
+    //     if (Cookies.get("token")) {
+    //         setTokenExists(true)
+    //         // getUser();
+    //         console.log('setting token')
+    //     }
 
-    }, [tokenExists])
+    // }, [user])
+
+    const loginCallBack = () => {
+        setTokenExists(true)
+        console.log('I have been called from Login')
+    }
 
 
     const handleRedirect = () => {
@@ -216,9 +221,10 @@ function Navbar(props) {
         <React.Fragment>
 
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
-                {user ?
-                    <div className={classes.root}>
+                {tokenExists?
+                    <div className={classes.root}>          
                         <CssBaseline />
+                        {/* { tokenExists ? */}
                         <AppBar
                             position="fixed"
                             color="inherit"
@@ -255,6 +261,8 @@ function Navbar(props) {
 
                             </Toolbar>
                         </AppBar>
+                        {/* : <div></div> }
+                        { tokenExists ? */}
                         <Drawer
                             variant="permanent"
                             className={clsx(classes.drawer, {
@@ -312,6 +320,7 @@ function Navbar(props) {
                                 <Divider />
                             </List>
                         </Drawer>
+                         {/* : <div></div> } */}
                         <ThemeProvider theme={theme}>
                             <main className={classes.content}>
 
@@ -327,7 +336,7 @@ function Navbar(props) {
                 }
 
             </div>
-            {(history.location.pathname === "/") && <Login />}
+            {(history.location.pathname === "/") && <Login loginCallBack={loginCallBack}/>}
             {(history.location.pathname === "/signup") && <Signup />}
 
         </React.Fragment>

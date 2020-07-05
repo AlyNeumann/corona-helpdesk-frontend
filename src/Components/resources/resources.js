@@ -102,7 +102,9 @@ const Resources = () => {
                         Grocery store wait times</Button>
                 </div>
             </div>
+          
         </div>
+        <div className="bug-find">Find a bug or have a resource to add? Send an email to neumannbooking@gmail.com!</div>
         </animated.div>)
 }
 
