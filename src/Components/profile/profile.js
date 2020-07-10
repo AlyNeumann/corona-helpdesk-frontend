@@ -40,15 +40,15 @@ const Profile = ({ user, needs }) => {
 
     //react spring
     const props1 = useSpring({
-        opacity: 1, 
-        from: {opacity: 0},
+        opacity: 1,
+        from: { opacity: 0 },
         delay: 100
-    }) 
+    })
     const props2 = useSpring({
-        opacity: 1, 
-        from: {opacity: 0},
+        opacity: 1,
+        from: { opacity: 0 },
         delay: 1750
-    }) 
+    })
 
     const data = user.img;
 
@@ -109,64 +109,71 @@ const Profile = ({ user, needs }) => {
             <div className="profile-inner">
                 <h2>Your Profile</h2>
                 <animated.div style={props2}>
-                <div className="profile-image-container" >
-                    {data ? <img className="profile-image" src={`data:image/jpeg;base64,${data}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
-                </div>
-               </animated.div>
-               <animated.div style={props1}>
-                <h4>{user.name}</h4>
-                <List
-                    component="nav"
-                    aria-labelledby="nested-list-subheader"
-                    className={classes.root}
-                >
-                    <ListItem button onClick={handleChat}>
-                        <ListItemIcon>
-                            <ChatIcon className="iconclass" />
-                        </ListItemIcon>
+                    <div className="profile-image-container" >
+                        <Link to={{
+                            pathname: '/profileupdate',
+                            state: {
+                                user
+                            }
+                        }}>
+                            {data ? <img className="profile-image" src={`data:image/jpeg;base64,${data}`} /> : <img className="profile-image" src={PortraitPlaceholder} />}
+                        </Link>
+                    </div>
+                </animated.div>
+                <animated.div style={props1}>
+                    <h4>{user.name}</h4>
+                    <List
+                        component="nav"
+                        aria-labelledby="nested-list-subheader"
+                        className={classes.root}
+                    >
+                        <ListItem button onClick={handleChat}>
+                            <ListItemIcon>
+                                <ChatIcon className="iconclass" />
+                            </ListItemIcon>
 
-                        <ListItemText primary="Chat" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <FavoriteBorderIcon className="iconclass" />
-                        </ListItemIcon>
-                        <ListItemText primary={user ? `Health Status: ${user.healthStatus}` : "Health Status: Unknown"} />
-                    </ListItem>
-                    <ListItem button onClick={handleClick}>
-                        <ListItemIcon>
-                            <ContactMailIcon className="iconclass" />
-                        </ListItemIcon>
-                        <ListItemText primary={user ? `Contact Info : ${user.email}` : "Contact Info: Unknown"} />
-                        {open ? <ExpandLess /> : <ExpandMore />}
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <ContactPhoneIcon className="iconclass" />
-                                </ListItemIcon>
-                                <ListItemText primary={user ? `Phone: ${user.phoneNumber}` : "Phone: Unknown"} />
-                            </ListItem>
-                            <ListItem button className={classes.nested}>
-                                <ListItemIcon>
-                                    <ContactPhoneIcon className="iconclass" />
-                                </ListItemIcon>
-                                <ListItemText primary={user ? `Emergency Contact: ${user.emergencyContacts}` : "Emergency: Unknown"} />
-                            </ListItem>
-                        </List>
-                    </Collapse>
-                </List>
-                <Link to={{
-                    pathname: '/profileupdate',
-                    state: {
-                        user
-                    }
-                }}>
-                    <button className="btn btn-secondary btn-text"
-                    >Update Profile
+                            <ListItemText primary="Chat" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemIcon>
+                                <FavoriteBorderIcon className="iconclass" />
+                            </ListItemIcon>
+                            <ListItemText primary={user ? `Health Status: ${user.healthStatus}` : "Health Status: Unknown"} />
+                        </ListItem>
+                        <ListItem button onClick={handleClick}>
+                            <ListItemIcon>
+                                <ContactMailIcon className="iconclass" />
+                            </ListItemIcon>
+                            <ListItemText primary={user ? `Contact Info : ${user.email}` : "Contact Info: Unknown"} />
+                            {open ? <ExpandLess /> : <ExpandMore />}
+                        </ListItem>
+                        <Collapse in={open} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <ContactPhoneIcon className="iconclass" />
+                                    </ListItemIcon>
+                                    <ListItemText primary={user ? `Phone: ${user.phoneNumber}` : "Phone: Unknown"} />
+                                </ListItem>
+                                <ListItem button className={classes.nested}>
+                                    <ListItemIcon>
+                                        <ContactPhoneIcon className="iconclass" />
+                                    </ListItemIcon>
+                                    <ListItemText primary={user ? `Emergency Contact: ${user.emergencyContacts}` : "Emergency: Unknown"} />
+                                </ListItem>
+                            </List>
+                        </Collapse>
+                    </List>
+                    <Link to={{
+                        pathname: '/profileupdate',
+                        state: {
+                            user
+                        }
+                    }}>
+                        <button className="btn btn-secondary btn-text"
+                        >Update Profile
                     </button>
-                </Link>
+                    </Link>
                 </animated.div>
             </div>
         </div>

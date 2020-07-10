@@ -8,12 +8,12 @@ const useProfileUpdate = (callback, user) => {
     const [values, setValues] = useState({
         id: user._id || '',
         name: user.name || '',
-        location: user.location || '',
+        location: user.city || '',
         healthStatus: 1,
         phoneNumber: user.phoneNumber || '',
-        emergencyContacts: [],
+        emergencyContacts: [user.emergencyContacts[0], user.emergencyContacts[1]] || [],
         img: "",
-        coords: user.coords || ''
+        coords: ''
     });
 
     // //state for errors
@@ -38,9 +38,22 @@ const useProfileUpdate = (callback, user) => {
     }
     //location chosen from mini map
     const handleLocation = place => {
+
+        // console.log(user.houseLocation.coordinates)
+        // console.log( user.houseLocation.coordinates[0] , user.houseLocation.coordinates[1] )
+        const sameCoords = { lat: user.houseLocation.coordinates[0], lng: user.houseLocation.coordinates[1] }
         console.log(place)
-        setValues({ ...values, coords: place })
+        console.log(sameCoords)
+
+        if (place.lat == "" || place.lng == "") {
+            console.log('does it ever get here?')
+            setValues({ ...values, coords: sameCoords })
+        } else if(place.lat != ""){
+            setValues({ ...values, coords: place })
+        }
+
     }
+
     //push emergency contacts into array
     const handleEmergency = e => {
         const newEmergencyContact = values.emergencyContacts;

@@ -139,7 +139,7 @@ export default function EmailModal(props) {
                         <h2 id="spring-modal-title" className="modal-title">Thank you!</h2>
                         <p id="spring-modal-description" className="modal-title">An email has been sent to {props.email}. Please check your spam folders, we are not fancy yet! </p>
                         <div>
-                            <button onClick={props.handleClick}>Ok!</button>
+                            <Button onClick={props.handleClick}>Ok!</Button>
                         </div>
                     </div> :
                         <div className={classes.paper}>

@@ -31,6 +31,7 @@ const Map = (props) => {
 
   //api call here for all user data
   const { needsFeed } = useNeedsFeed(userInfo)
+  console.log(needsFeed)
 
   //to link to user's profile view from popup
   const handlePopupClick = (e) => {

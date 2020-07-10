@@ -16,7 +16,8 @@ import { Button } from '../../global';
 
 //this component is the parent of Profile, Needs list, and Update Needs
 
-
+//TODO: make function to check current chats to past chats
+//send notification if there are new chats
 
 const ProfileHome = () => {
 

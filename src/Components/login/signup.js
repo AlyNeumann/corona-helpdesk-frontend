@@ -93,7 +93,10 @@ const Signup = () => {
         console.log(values);
         // handling error messages
         const handleErrors = (response) => {
-            if (response.error) {
+            console.log(response)
+            if (response.errors) {
+                setErrorMessage("please fill in all fields!")
+            }else if(response.error){
                 setErrorMessage(response.error)
             }
             return response;
@@ -106,19 +109,23 @@ const Signup = () => {
                 'Content-Type': 'application/json',
             }
         })
-            .then(res => res.json)
-            .catch(error => {
-                if (error) {
-                    console.log(error);
+            .then(res => res.json())
+            .catch(err => {
+                if (err) {
+                    console.log(err);
+                    setErrorMessage(err)
                 }
             })
             .then(response => {
-                console.log(response)
-                if (response.error) {
-                    handleErrors(response)
-                } else {
-                    console.log(response);
+                // console.log(response)
+                console.log(JSON.stringify(response))
+                if (!response.errors) {
+                    // console.log(JSON.stringify(response));
                     setModal(true)
+                }else if(response.err){
+                    setErrorMessage(response.err)
+                } else {
+                    handleErrors(response)
                 }
 
 
@@ -217,7 +224,7 @@ const Signup = () => {
                     >Sign Up</button>
                     <div>{modal ? <EmailModal email={values.email} handleClick={handleClick} open={[open, setOpen]}/> : null}</div>
 
-                    {errorMessage ? <div>{errorMessage.error}</div> : null}
+                    {errorMessage ? <div className="error">{errorMessage}</div> : null}
                 </form>
                 <div>
                     <Link className="modal-button" to="/">Already have an account?</Link>

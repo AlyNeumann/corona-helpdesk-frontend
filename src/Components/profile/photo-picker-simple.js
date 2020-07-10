@@ -76,7 +76,7 @@ const StyledDropzone = (props) => {
     const [files, setFiles] = useState([]);
     const [image, setImage] = useState(null);
     const [crop, setCrop] = useState({
-        aspect: 1/1
+        aspect: 1 / 1
     })
 
 
@@ -114,11 +114,12 @@ const StyledDropzone = (props) => {
         }),
         [isDragActive, isDragReject]
     );
-//preview of image 
+    //preview of image 
     const thumbs = files.map(file => (
         <div style={thumb} key={file.name}>
             <div style={thumbInner}>
-                <img src={file.preview} style={img} />
+                {file !== [] ? <img src={file.preview} style={img} /> : <div>"please choose a smaller photo!"</div>}
+
                 {/* <ReactCrop src={file.preview} crop={crop}/> */}
             </div>
         </div>
@@ -126,20 +127,20 @@ const StyledDropzone = (props) => {
 
     useEffect(() => {
         console.log(files)
-            // Make sure to revoke the data uris to avoid memory leaks
-            files.forEach(file => {
-                URL.revokeObjectURL(file.preview)
-                props.handleIt(file);
-            });
-        
-        },
+        // Make sure to revoke the data uris to avoid memory leaks
+        files.forEach(file => {
+            URL.revokeObjectURL(file.preview)
+            props.handleIt(file);
+        });
+
+    },
         [files, image]
     );
 
     const filepath = acceptedFiles.map(file => (
         <li key={file.path}>
             {file.path} - {file.size} bytes
-    </li>
+        </li>
     ));
 
     return (

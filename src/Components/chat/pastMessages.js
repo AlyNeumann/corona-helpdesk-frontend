@@ -123,29 +123,3 @@ const PastMessages = ({ pastMessages, user, viewedUser, newChatUser }) => {
 }
 
 export default PastMessages;
-
-// <List className={classes.root}> 
-// {messages.flatMap((message, index) => {
-//     console.log(message.created)
-//     return [(
-//         <ListItem alignItems="flex-start" key={index}>
-//             <ListItemAvatar>
-//                 <Avatar
-//                     alt="Remy Sharp"
-//                     src={PortraitPlaceholder} />
-//             </ListItemAvatar>
-//             <ListItemText
-//                 primary={message.to}
-//             />
-//             <ListItemText
-//                 primary={message.text}
-//             />
-//             {/* <ListItemText
-//             primary={message.time}
-//         /> */}
-//         </ListItem>)
-//         ,
-//     <Divider variant="inset" component="li" key={'divider-' + index} />]
-// }).slice(0, -1)}
-
-// </List>

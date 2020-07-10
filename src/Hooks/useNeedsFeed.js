@@ -23,6 +23,7 @@ const useNeedsFeed = () => {
         const radius = 100
         // const url = `/api/needFeed/${lat}/${lng}/${radius}`
         const url = `http://localhost:5000/needFeed/${lat}/${lng}/${radius}`
+        console.log(url)
 
         //handle error messages
         const handleErrors = (response) => {

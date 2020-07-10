@@ -114,7 +114,7 @@ const UsersProfile = (props) => {
                                 <ListItemIcon>
                                     <ContactPhoneIcon className="iconclass" />
                                 </ListItemIcon>
-                                <ListItemText primary={viewedUser ? `Phone: ${viewedUser.phoneNumber}` : "Phone: Unknown"} />
+                                <ListItemText primary={"Chat with this user to connect!"} />
                             </ListItem>
                             {/* <ListItem button className={classes.nested}>
                                 <ListItemIcon>

@@ -11,7 +11,7 @@ const PastChats = (props) => {
 
     const username = props.user.name
     const chats = props.pastChats
-    // console.log(props.pastChats)
+    console.log(props.pastChats)
 
     const [names, setNames] = useState(null)
 
