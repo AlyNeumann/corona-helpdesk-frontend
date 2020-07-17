@@ -11,7 +11,7 @@ const useProfileUpdate = (callback, user) => {
         location: user.city || '',
         healthStatus: 1,
         phoneNumber: user.phoneNumber || '',
-        emergencyContacts: [user.emergencyContacts[0], user.emergencyContacts[1]] || [],
+        emergencyContacts: [],
         img: "",
         coords: ''
     });
@@ -42,11 +42,11 @@ const useProfileUpdate = (callback, user) => {
         // console.log(user.houseLocation.coordinates)
         // console.log( user.houseLocation.coordinates[0] , user.houseLocation.coordinates[1] )
         const sameCoords = { lat: user.houseLocation.coordinates[0], lng: user.houseLocation.coordinates[1] }
-        console.log(place)
-        console.log(sameCoords)
+        // console.log(place)
+        // console.log(sameCoords)
 
         if (place.lat == "" || place.lng == "") {
-            console.log('does it ever get here?')
+            // console.log('does it ever get here?')
             setValues({ ...values, coords: sameCoords })
         } else if(place.lat != ""){
             setValues({ ...values, coords: place })

@@ -53,7 +53,8 @@ const Chat = (props) => {
 
     //function to send message to socket io
     const handleSendMessage = ({ message }) => {
-        sendMessage({ message, user })
+        const chatIdsArr = [ user._id, viewedUser._id]
+        sendMessage({ message, user, chatIdsArr })
     }
 
     //pagination

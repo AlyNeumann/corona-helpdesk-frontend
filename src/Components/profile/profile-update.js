@@ -35,7 +35,7 @@ const ProfileUpdate = (props) => {
     //bring in map for location picking
     const [map, address, coords] = useMiniMap("map")
     //image file
-    const [img, setImg] = useState(null);
+    // const [img, setImg] = useState(null);
     //hook for signup submit & validate 
     const {
         handleChange,
@@ -73,9 +73,9 @@ const ProfileUpdate = (props) => {
         let token = Cookies.get("token")
 
         let formData = new FormData();
-
+        //TODO: this is what messes up the emergency contacts by stringifying
         for (let key in values) {
-            console.log(key)
+            // console.log(key)
             if (key === 'coords') {
                 formData.append(key, JSON.stringify(values[key]))
             } else {
@@ -108,7 +108,7 @@ const ProfileUpdate = (props) => {
                 }
             })
             .then(response => {
-                console.log(JSON.stringify(response));
+                // console.log(JSON.stringify(response));
                 //push back to profile here
                 history.push('/profile');
             })

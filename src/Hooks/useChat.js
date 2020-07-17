@@ -58,7 +58,7 @@ const useChat = ({ user, viewedUser, page }) => {
         //TODO: this is not working, this url I think
 
         socketRef.current = socketIOClient('http://localhost:3001');
-          // console.log(socketRef.current)
+        // console.log(socketRef.current)
 
         //join room
         socketRef.current.emit('joinRoom', { username, roomId, chatIds, names }, ({ error }) => {
@@ -277,7 +277,7 @@ const useChat = ({ user, viewedUser, page }) => {
 
             fetch(url, {
                 method: "POST",
-                body: JSON.stringify({chatuserId: viewedUserId}),
+                body: JSON.stringify({ chatuserId: viewedUserId }),
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": token
@@ -310,10 +310,13 @@ const useChat = ({ user, viewedUser, page }) => {
 
     }, [viewedUserId])
 
+
     //if there are more than messages, destructure here
-    const sendMessage = ({ message, user }) => {
+    const sendMessage = ({ message, user, chatIdsArr }) => {
+        //TODO: this was the change
         console.log('message sending now')
-        socketRef.current.emit('chatmessage', { message, user, roomId, to })
+        console.log(chatIdsArr)
+        socketRef.current.emit('chatmessage', { message, user, roomId, to, chatIdsArr })
     }
     // console.log(messages)
     return { messages, sendMessage, pastMessages, roomId, allChats, handleChatSwitch, newChat, newChatUser };

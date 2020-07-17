@@ -21,66 +21,8 @@ import UserContextStore, { UserContext,NeedsContext } from './Components/user-co
 
 
 function App() {
-  //setting global context for user
-  // const [user, setUser] = useContext(UserContext);
 
-  // //setting global context for user needs
-  // const [needs, setNeeds] = useContext(NeedsContext);
 
-  // //handle errors
-  // const [errorMessage, setErrorMessage] = useState(null)
-
-  // console.log('from app.js')
-  // console.log(user, needs)
-
-    // const getUserAndNeeds = () => {
-    //     const token = Cookies.get('token')
-    //     const url = "http://localhost:5000/getUser"
-    //     // const url = "http://localhost:5000/getUser"
-
-    //     //handle error messages
-    //     const handleErrors = (error) => {
-    //         if (error) {
-    //           // console.log(error)
-    //             setErrorMessage(error)
-    //         }
-    //         else return error
-    //     }
-
-    //     fetch(url, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": token
-    //         }
-    //     })
-    //         .then(res => res.json()) //response is
-    //         .then(response => {
-    //             if (!errorMessage) {
-    //                 // console.log(response);
-    //                 setUser(response);
-    //                 setNeeds(response.neededList);
-    //             }
-
-    //         })
-    //         .then(handleErrors)
-    //         .catch(error => {
-    //             if (error) {
-    //                 console.log(error)
-    //             }
-    //         })
-
-    // }
-
-    //fetch User's needs
-  //   useEffect(() => {
-  //     if (Cookies.get("token")) {
-  //       // setTokenExists(true)
-  //       getUserAndNeeds();
-  //       console.log('getUserBeingCalled')
-  //   }
-     
-  // }, [])
 
   return (
     <Router>

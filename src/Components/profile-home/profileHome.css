@@ -11,3 +11,11 @@
         flex-wrap: wrap;
     }
   }
+
+  /* .MuiSnackbarContent-action {
+      background-color: azure !important;
+  } */
+
+  .MuiSnackbarContent{
+    background-color: azure !important;
+  }
