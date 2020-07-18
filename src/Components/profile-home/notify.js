@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '../../global';
 import './profileHome.css'
 
+//TODO: this will be for new messages & needs for when user logs in to their profile
+
 const Notify = (props) => {
     const vertical = 'bottom';
     const horizontal = 'left';
