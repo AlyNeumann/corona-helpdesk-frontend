@@ -9,8 +9,8 @@ import Cookies from 'js-cookie';
 import './profileHome.css';
 import Notify from './notify';
 import { ThemeContext } from '../user-context/userContext';
+import { subscribeUser } from '../../subscription';
 // import { lightTheme, darkTheme } from '../../theme';
-// import { Button } from '../../global'
 import { useSpring, animated } from 'react-spring';
 import { Button } from '../../global';
 
@@ -138,6 +138,10 @@ const ProfileHome = () => {
     useEffect(() => {
         newMessages()
     }, [user]) 
+    //subscribes user to service worker push notifications
+    useEffect(() => {
+        subscribeUser();
+    }, [user])
 
 
     return (

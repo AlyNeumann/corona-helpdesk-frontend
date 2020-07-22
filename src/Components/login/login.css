@@ -116,8 +116,8 @@ font-family: 'Nunito-Regular', sans-serif;
  .covid-title-image {
      padding: 5%;
      width: 90%;
-     filter: sepia(20%);
-     filter: brightness(65%)
+     filter: sepia(35%);
+     /* filter: brightness(85%) */
  }
  .MuiInputBase-input {
     font-family: 'RobotoMonoB';
