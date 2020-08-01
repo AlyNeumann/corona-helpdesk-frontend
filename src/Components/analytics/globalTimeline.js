@@ -122,7 +122,7 @@ const GlobalTimeLine = () => {
             method: 'GET'
         }).then(res => res.json())
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 setData(response.data)
             })
     }

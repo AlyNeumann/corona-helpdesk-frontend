@@ -164,10 +164,11 @@ const ProfileHome = () => {
                         <NeedsTodo user={user} needs={needs} />
                     </animated.div>
 
-                </div> : <p>Loading.....</p>
-                // <Link to="/">
-                //     <Button className="fancy-btn-text" >Please Login to view content</Button>
-                // </Link>
+                </div> : 
+                // <p>Loading.....</p>
+                <Link to="/">
+                    <Button className="fancy-btn-text" >Please Login to view content</Button>
+                </Link>
             }
         </div>
 

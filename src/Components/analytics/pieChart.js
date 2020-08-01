@@ -74,8 +74,8 @@ const PieChart = () => {
     useEffect(() => {
         getData()
     }, [])
-    console.log(data)
-    console.log(data.deaths)
+    // console.log(data)
+    // console.log(data.deaths)
 
     //resize viewport 
     useEffect(() => {

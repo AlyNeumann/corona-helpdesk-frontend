@@ -27,7 +27,7 @@ const ScoreBoard = () => {
             method: 'GET'
         }).then(res => res.json())
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 setData(response.data.latest_data)
             })
     }

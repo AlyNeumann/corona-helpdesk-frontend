@@ -9,14 +9,14 @@ import './profileHome.css'
 
 const Notify = (props) => {
     const vertical = 'bottom';
-    const horizontal = 'left';
+    const horizontal = 'right';
 
     const useStyles = makeStyles((theme) => ({
         root: {
-          maxWidth: 600,
+          maxWidth: 550,
           '& > * + *': {
             marginTop: theme.spacing(2),
-            marginLeft: '100px'
+            paddingLeft: '150px'
           },
         },
         content: {
@@ -26,8 +26,8 @@ const Notify = (props) => {
       }));
 
     const action = (
-        <Button color="primary" size="small">
-            <Link to='/chat'>
+        <Button className="notify-btn" color="default" size="small">
+            <Link to='/chat' className="notify-btn" >
             take me to chat
             </Link>
       </Button>

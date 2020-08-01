@@ -140,7 +140,7 @@ function Navbar(props) {
 
    
 
-    //TODO: are we using local storage for this?
+    //remove cookie on logout
     const handleLogout = () => {
         Cookies.remove("token")
         history.push('/')
@@ -153,22 +153,7 @@ function Navbar(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    //for when user logs in 
-    // useEffect(() => {
-    //     if(user){
-    //         setUserInfo(user[0])
-    //     }
-    // }, [user])
-
-    //make secure by pulling cookie
-    // useEffect(() => {
-    //     if (Cookies.get("token")) {
-    //         setTokenExists(true)
-    //         // getUser();
-    //         console.log('setting token')
-    //     }
-
-    // }, [user])
+ 
 
     const loginCallBack = () => {
         setTokenExists(true)
@@ -179,42 +164,13 @@ function Navbar(props) {
     const handleRedirect = () => {
         history.push('/')
     }
-    // const getUser = () => {
-    //     const token = Cookies.get('token')
-    //     // const url = "/api/getUser"
-    //     const url = "http://localhost:5000/getUser"
 
-    //     //handle error messages
-    //     const handleErrors = (error) => {
-    //         if (error) {
-    //             setErrorMessage(error)
-    //         }
-    //         else return error
-    //     }
-
-    //     fetch(url, {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Authorization": token
-    //         }
-    //     })
-    //         .then(res => res.json()) //response is
-    //         .then(response => {
-    //             if (!errorMessage) {
-    //                 // console.log(response);
-    //                 setUser(response);
-    //             }
-
-    //         })
-    //         .then(handleErrors)
-    //         .catch(error => {
-    //             if (error) {
-    //                 console.log(error)
-    //             }
-    //         })
-
-    // }
+    //on reload, check if cookie exists 
+    useEffect(() => {
+        if (Cookies.get("token")){
+            setTokenExists(true) 
+        }
+    }, [])
 
 
     return (
@@ -325,7 +281,8 @@ function Navbar(props) {
                             <main className={classes.content}>
 
                                 <div className={classes.toolbar} />
-                                {(history.location.pathname !== "/" || history.location.pathname !== "/signup") && props.children}
+                                {/* {(history.location.pathname !== "/" || history.location.pathname !== "/signup") &&  */}
+                                {props.children}
 
 
                           </main>

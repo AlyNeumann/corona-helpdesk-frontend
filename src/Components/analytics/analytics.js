@@ -4,6 +4,7 @@ import GlobalTimeLine from './globalTimeline';
 import CurrentCases from './currentCases';
 import PieChart from './pieChart';
 import ScoreBoard from './scoreBoard';
+import WhoYoutube from '../who-youtube/whoYoutube';
 import { useSpring, animated } from 'react-spring';
 import './analytics.css';
 
@@ -29,6 +30,14 @@ const Analytics = () => {
         from: { marginTop: 1000 },
         delay: 1500
     });
+    const props3 = useSpring({
+        opacity: 1,
+        from: { opacity: 0 },
+        delay: 2500,
+        marginTop: 1,
+        from: { marginTop: 1000 },
+        delay: 2500
+    });
 
 
 
@@ -37,6 +46,7 @@ const Analytics = () => {
         <div className="anatylics-container">
             <div>
                 <h2>Analytics</h2>
+                <h6>Data from the World Health Organization Situation Reports & Johns Hopkins CSSE</h6>
             </div>
             <animated.div style={props1}>
             <ScoreBoard/>
@@ -48,6 +58,9 @@ const Analytics = () => {
             <PieChart/>
             <GlobalTimeLine/>
             {/* <CurrentCases/> */}
+            </animated.div>
+            <animated.div style={props3}>
+                <WhoYoutube/>
             </animated.div>
             </div>
         </div>

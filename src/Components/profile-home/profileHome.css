@@ -19,3 +19,7 @@
   .MuiSnackbarContent{
     background-color: azure !important;
   }
+  .notify-btn {
+      /* background-color: rgb(126, 126, 126) !important; */
+      color: rgb(232, 194, 194) !important;
+  }
