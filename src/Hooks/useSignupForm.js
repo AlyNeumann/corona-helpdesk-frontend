@@ -57,7 +57,7 @@ const useSignUp = (callback, validate) => {
 
     //lat and lng + address
     const handleLocation = (address, coords) => {
-        console.log(address,coords)
+        // console.log(address,coords)
             setValues({
                 ...values,
                 homeLocation: coords

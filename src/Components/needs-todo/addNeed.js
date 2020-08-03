@@ -44,8 +44,17 @@ const AddNeeds = () => {
     //useHistory to push back to profile after updates are submitted
     let history = useHistory()
 
+    // if user hits enter instead 
+    // const onKeyPress = (e) => {
+    //     console.log(e)
+    //     e.preventDefault();
+    //     if(e.key === 'Enter') {
+    //         handleSubmit();
+    //     }
+    //   }
+
     function submit() {
-        console.log(values)
+        // console.log(values)
         const token = Cookies.get("token");
 
 
@@ -68,21 +77,27 @@ const AddNeeds = () => {
                 'Authorization': token
             }
         })
-            .then(res => res.json)
-            .then(response => {
-                console.log(response);
-                //push to login here 
-                history.push('/profile')
-            })
+            .then(res => res.json())
             .then(handleErrors)
-            .catch(error => {
-                if (error) {
-                    console.log(error);
+            .then(response => {
+                // console.log(response);
+                if (response.error) {
+                    setErrorMessage(response.error);
+                } else {
+                    //push to profile here 
+                    history.push('/profile')
                 }
+
+            })
+            .catch(error => {
+
+                console.log(error);
+                // console.log(error.error)
+
             })
     }
 
-
+    // console.log(errorMessage)
     return (
         <div className="updateneed-container">
             <div className="updateneed-inner">
@@ -170,17 +185,18 @@ const AddNeeds = () => {
                     }}>
                         <button
                             className="btn btn-secondary btn-text">
-                            <CancelPresentationIcon className="buttonclass"/>
+                            <CancelPresentationIcon className="buttonclass" />
                         </button>
                     </Link>
 
                     <button
                         className="btn btn-secondary btn-text"
-                        type="submit">
-                        <CheckBoxIcon className="buttonclass"/>
+                        type="submit"
+                        // onKeyDown={onKeyPress}
+                        >
+                        <CheckBoxIcon className="buttonclass" />
                     </button>
-                    {errorMessage && <div>{errorMessage}</div>}
-                    <div className="warning-text">Make sure to fill in all fields!</div>
+                <div>{errorMessage && <div className="warning-text">Make sure to fill in all fields!</div>}</div>
                 </form>
             </div>
         </div>

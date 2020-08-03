@@ -52,6 +52,7 @@ const ProfileHome = () => {
 
     //get user hook
     const { user, needs } = useGetUser()
+    //if offline and can't fetch user 
 
 
 
@@ -62,71 +63,71 @@ const ProfileHome = () => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [serverError, setServerError] = useState(null);
     //TODO: use recent messages to show the user names of unread messages to the user
-    const [recentMessages, setRecentMessages] = useState(null);
-    const [notify, setNotify] = useState(false);
+    // const [recentMessages, setRecentMessages] = useState(null);
+    // const [notify, setNotify] = useState(false);
 
-    console.log(notify)
+    // console.log(notify)
 
-    const newMessages = () => {
+    // const newMessages = () => {
     
     
-        //users last login date 
-        const last_login = user.last_login;
-        const userName = user.name;
-        console.log(last_login)
-        console.log(userName)
-        const id = user._id;
-        const url = "http://localhost:3001/recentMessages"
-        //fetch most recent messages with user's id 
-        //use the "result.from" to show user who their new message is from
-        //then update last login
-        //TODO: customize this
-        const handleErrors = (error) => {
-            console.log(error)
-            if (error) {
-                setErrorMessage(error.error)
-            } else if (error instanceof TypeError) {
-                setServerError(true)
-            } else return error;
-        }
-        //fetch past chat
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify({ id }),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then(res => res.json()) //response is
+    //     //users last login date 
+    //     const last_login = user.last_login;
+    //     const userName = user.name;
+    //     console.log(last_login)
+    //     console.log(userName)
+    //     const id = user._id;
+    //     const url = "http://localhost:3001/recentMessages"
+    //     //fetch most recent messages with user's id 
+    //     //use the "result.from" to show user who their new message is from
+    //     //then update last login
+    //     //TODO: customize this
+    //     const handleErrors = (error) => {
+    //         console.log(error)
+    //         if (error) {
+    //             setErrorMessage(error.error)
+    //         } else if (error instanceof TypeError) {
+    //             setServerError(true)
+    //         } else return error;
+    //     }
+    //     //fetch past chat
+    //     fetch(url, {
+    //         method: 'POST',
+    //         body: JSON.stringify({ id }),
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         }
+    //     })
+    //         .then(res => res.json()) //response is
     
-            .then(response => {
-                // console.log(response)
-                if (response.error || response == undefined) {
-                    handleErrors(response)
-                } else {
-                    setRecentMessages(response)
-                    console.log('I am looping, I suck')
-                    setNotify(true)
-                    // console.log(response)
-                }
+    //         .then(response => {
+    //             // console.log(response)
+    //             if (response.error || response == undefined) {
+    //                 handleErrors(response)
+    //             } else {
+    //                 setRecentMessages(response)
+    //                 console.log('I am looping, I suck')
+    //                 setNotify(true)
+    //                 // console.log(response)
+    //             }
     
-            })
-            .catch(error => {
-                if (error) {
-                    console.log(error)
-                    handleErrors(error)
-                } else if (error instanceof TypeError) {
-                    setServerError(true)
-                }
-            })
+    //         })
+    //         .catch(error => {
+    //             if (error) {
+    //                 console.log(error)
+    //                 handleErrors(error)
+    //             } else if (error instanceof TypeError) {
+    //                 setServerError(true)
+    //             }
+    //         })
     
-            console.log(recentMessages)
-            console.log(last_login)
-    }
+    //         console.log(recentMessages)
+    //         console.log(last_login)
+    // }
 
-    const closeNotify = () => {
-        setNotify(false)
-    }
+    // const closeNotify = () => {
+    //     setNotify(false)
+    // }
 
 
     useEffect(() => {
@@ -135,13 +136,20 @@ const ProfileHome = () => {
         }
     }, [])
 
-    useEffect(() => {
-        newMessages()
-    }, [user]) 
+    // useEffect(() => {
+    //     newMessages()
+    // }, [user]) 
     //subscribes user to service worker push notifications
     useEffect(() => {
         subscribeUser();
     }, [user])
+
+    // useEffect(() => {
+    //     if(!user && tokenExists){
+    //         localStorage.getItem('currentUser', response);
+    //         setUser()
+    //     }
+    // },[])
 
 
     return (
@@ -149,7 +157,7 @@ const ProfileHome = () => {
         <div>
              <animated.div style={propsNotify}>
             {/* { notify && <Notify callback={closeNotify}/>} */}
-            <Notify callback={closeNotify} open={notify}/>
+            {/* <Notify callback={closeNotify} open={notify}/> */}
             </animated.div>
             {tokenExists ?
                 <div className="profile-home-container">
@@ -165,10 +173,10 @@ const ProfileHome = () => {
                     </animated.div>
 
                 </div> : 
-                // <p>Loading.....</p>
-                <Link to="/">
-                    <Button className="fancy-btn-text" >Please Login to view content</Button>
-                </Link>
+                <p>Loading.....</p>
+                // <Link to="/">
+                //     <Button className="fancy-btn-text" >Please Login to view content</Button>
+                // </Link>
             }
         </div>
 

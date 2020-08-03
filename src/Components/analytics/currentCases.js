@@ -1,113 +1,163 @@
 import React, { useEffect, useState } from 'react';
-import ReactEcharts from 'echarts-for-react';
 import 'echarts-gl';
 import ReactEchartsCore from 'echarts-for-react/lib/core';
 import echarts from 'echarts/lib/echarts';
+import './analytics.css';
 
-//TODO: GL echarts working, just not sure what to do with it....
+//TODO: add data from api call
 const CurrentCases = () => {
 
-    // const [data, setData] = useState(null);
+    //window resizing attempt
+    const [viewport, setViewport] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    })
 
-    var hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
-        '7a', '8a', '9a', '10a', '11a',
-        '12p', '1p', '2p', '3p', '4p', '5p',
-        '6p', '7p', '8p', '9p', '10p', '11p'];
-    var days = ['Saturday', 'Friday', 'Thursday',
-        'Wednesday', 'Tuesday', 'Monday', 'Sunday'];
+    // //data from all provinces
+    const [data, setData] = useState();
+    // console.log(data)
 
-    var data = [[0, 0, 5], [0, 1, 1], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 2], [0, 12, 4], [0, 13, 1], [0, 14, 1], [0, 15, 3], [0, 16, 4], [0, 17, 6], [0, 18, 4], [0, 19, 4], [0, 20, 3], [0, 21, 3], [0, 22, 2], [0, 23, 5], [1, 0, 7], [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 5], [1, 11, 2], [1, 12, 2], [1, 13, 6], [1, 14, 9], [1, 15, 11], [1, 16, 6], [1, 17, 7], [1, 18, 8], [1, 19, 12], [1, 20, 5], [1, 21, 5], [1, 22, 7], [1, 23, 2], [2, 0, 1], [2, 1, 1], [2, 2, 0], [2, 3, 0], [2, 4, 0], [2, 5, 0], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, 0], [2, 10, 3], [2, 11, 2], [2, 12, 1], [2, 13, 9], [2, 14, 8], [2, 15, 10], [2, 16, 6], [2, 17, 5], [2, 18, 5], [2, 19, 5], [2, 20, 7], [2, 21, 4], [2, 22, 2], [2, 23, 4], [3, 0, 7], [3, 1, 3], [3, 2, 0], [3, 3, 0], [3, 4, 0], [3, 5, 0], [3, 6, 0], [3, 7, 0], [3, 8, 1], [3, 9, 0], [3, 10, 5], [3, 11, 4], [3, 12, 7], [3, 13, 14], [3, 14, 13], [3, 15, 12], [3, 16, 9], [3, 17, 5], [3, 18, 5], [3, 19, 10], [3, 20, 6], [3, 21, 4], [3, 22, 4], [3, 23, 1], [4, 0, 1], [4, 1, 3], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 1], [4, 6, 0], [4, 7, 0], [4, 8, 0], [4, 9, 2], [4, 10, 4], [4, 11, 4], [4, 12, 2], [4, 13, 4], [4, 14, 4], [4, 15, 14], [4, 16, 12], [4, 17, 1], [4, 18, 8], [4, 19, 5], [4, 20, 3], [4, 21, 7], [4, 22, 3], [4, 23, 0], [5, 0, 2], [5, 1, 1], [5, 2, 0], [5, 3, 3], [5, 4, 0], [5, 5, 0], [5, 6, 0], [5, 7, 0], [5, 8, 2], [5, 9, 0], [5, 10, 4], [5, 11, 1], [5, 12, 5], [5, 13, 10], [5, 14, 5], [5, 15, 7], [5, 16, 11], [5, 17, 6], [5, 18, 0], [5, 19, 5], [5, 20, 3], [5, 21, 4], [5, 22, 2], [5, 23, 0], [6, 0, 1], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 1], [6, 11, 0], [6, 12, 2], [6, 13, 1], [6, 14, 3], [6, 15, 4], [6, 16, 0], [6, 17, 0], [6, 18, 0], [6, 19, 0], [6, 20, 1], [6, 21, 2], [6, 22, 2], [6, 23, 6]];
-    const GL_OPTION = {
-        tooltip: {},
-        visualMap: {
-            max: 20,
-            inRange: {
-                color: ['#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-            }
-        },
-        xAxis3D: {
-            type: 'category',
-            data: hours
-        },
-        yAxis3D: {
-            type: 'category',
-            data: days
-        },
-        zAxis3D: {
-            type: 'value'
-        },
-        grid3D: {
-            boxWidth: 200,
-            boxDepth: 80,
-            light: {
-                main: {
-                    intensity: 1.2
-                },
-                ambient: {
-                    intensity: 0.3
-                }
-            }
-        },
-        series: [{
-            type: 'bar3D',
-            data: data.map(function (item) {
-                return {
-                    value: [item[1], item[0], item[2]]
-                }
-            }),
-            shading: 'color',
+    const [ontario, setOntario] = useState();
+    // const ontario = data[0];
+    const [quebec, setQuebec] = useState();
+    // const quebec = data[1];
+    const [novascotia, setNovascotia] = useState();
+    // const novascotia = data[2];
+    const [newbrunswick, setNewbrunswick] = useState();
+    // const newbrunswick = data[3];
+    const [manitoba, setManitoba] = useState();
+    // const manitoba = data[4];
+    const [britishcolumbia, setBritishcolumbia] = useState()
+    // const britishcolumbia = data[5];
+    const [pei, setPei] = useState();
+    // const pei = data[6];
+    const [sask, setSask] = useState();
+    // const sask = data[7];
+    const [alberta, setAlberta] = useState();
+    // const alberta = data[8];
+    const [newfoundland, setNewfoundland] = useState();
+    // const newfoundland = data[9];
+    const [nwterritories, setNwterritories] = useState();
+    // const nwterritories = data[10];
+    const [yukon, setYukon] = useState();
+    // const yukon = data[11];
+    const [nunavit, setNunavit] = useState();
+    // const nunavit = data[12];
 
-            label: {
-                show: false,
-                textStyle: {
-                    fontSize: 16,
-                    borderWidth: 1
-                }
-            },
+    const [option, setOption] = useState();
 
-            itemStyle: {
-                opacity: 0.4
-            },
-
-            emphasis: {
-                label: {
-                    textStyle: {
-                        fontSize: 20,
-                        color: '#900'
-                    }
-                },
-                itemStyle: {
-                    color: '#900'
-                }
-            }
-        }]
-    }
 
     const getData = async () => {
 
-        //TODO: make component for each end point
-        //for canada
-        const url = 'https://api.covid19tracker.ca/provinces';
+        //TODO: AHHHH BEING BLOCKED BY CORS!!!!
+        const cors = 'https://cors-anywhere.herokuapp.com/'
+        const url = `${cors}https://api.covid19tracker.ca/summary/split`
 
         await fetch(url, {
             method: 'GET'
         }).then(res => res.json())
             .then(response => {
                 console.log(response)
-                // setData(response.data.latest_data)
+                //only use most recent object with info in it
+                //feilds: total_cases, total_fatalities, total_tests
+                //total_hospitalizations, total_criticals, total_recoveries
+                setData(response.data)
+        
             })
     }
     useEffect(() => {
         getData()
     }, [])
-    console.log(data)
+
+    //resize viewport 
+    useEffect(() => {
+        const handleResize = () => {
+            setViewport({
+                ...viewport,
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    })
+
+    useEffect(() => {
+        if (data) {
+                    setOntario(data[0]);
+                    setQuebec(data[1]);
+                    setNovascotia(data[2]);
+                    setNewbrunswick(data[3]);
+                    setManitoba(data[4]);
+                    setBritishcolumbia(data[5]);
+                    setPei(data[6]);
+                    setSask(data[7]);
+                    setAlberta(data[8]);
+                    setNewfoundland(data[9]);
+                    setNwterritories(data[10]);
+                    setYukon(data[11]);
+                    setNunavit(data[12]);
+                }
+    }, [data])
+
+    useEffect(() => {
+        if(nunavit){
+            setOption({
+                    legend: {},
+                    tooltip: {},
+                    dataset: {
+                        dimensions: ['province', 'ON', 'QC', 'NS', 'NB', 'MB', 'BC', 'PE', 'SK', 'AB', 'NL', 'NT', 'YT', 'NU'],
+                        source: [
+                            { province: 'total cases', 'ON': ontario.total_cases, 'QC': quebec.total_cases, 'NS': novascotia.total_cases, 'NB': newbrunswick.total_cases, 'MB': manitoba.total_cases, 'BC': britishcolumbia.total_cases, 'PE': pei.total_cases, 'SK': sask.total_cases, 'AB': alberta.total_cases, 'NL': newfoundland.total_cases, 'NT': nwterritories.total_cases, 'YT': yukon.total_cases, 'NU': nunavit.total_cases },
+                            { province: 'total fatalities', 'ON': ontario.total_fatalities, 'QC': quebec.total_fatalities, 'NS': novascotia.total_fatalities, 'NB': newbrunswick.total_fatalities, 'MB': manitoba.total_fatalities, 'BC': britishcolumbia.total_fatalities, 'PE': pei.total_fatalities, 'SK': sask.total_fatalities, 'AB': alberta.total_fatalities, 'NL': newfoundland.total_fatalities, 'NT': nwterritories.total_fatalities, 'YT': yukon.total_fatalities, 'NU': nunavit.total_fatalities },
+                            // { province: 'total tests', 'ON': ontario.total_tests, 'QC': quebec.total_tests, 'NS': novascotia.total_tests, 'NB': newbrunswick.total_tests, 'MB': manitoba.total_tests, 'BC': britishcolumbia.total_tests, 'PE': pei.total_tests, 'SK': sask.total_tests, 'AB': alberta.total_tests, 'NL': newfoundland.total_tests, 'NT': nwterritories.total_tests, 'YT': yukon.total_tests, 'NU': nunavit.total_tests },
+                            // { province: 'total hospitilizations', 'ON': ontario.total_hospitalizations, 'QC': quebec.total_hospitalizations, 'NS': novascotia.total_hospitalizations, 'NB': newbrunswick.total_hospitalizations, 'MB': manitoba.total_hospitalizations, 'BC': britishcolumbia.total_hospitalizations, 'PE': pei.total_hospitalizations, 'SK': sask.total_hospitalizations, 'AB': alberta.total_hospitalizations, 'NL': newfoundland.total_hospitalizations, 'NT': nwterritories.total_hospitalizations, 'YT': yukon.total_hospitalizations, 'NU': nunavit.total_hospitalizations},
+                            // { province: 'total criticals', 'ON': ontario.total_criticals, 'QC': quebec.total_criticals, 'NS': novascotia.total_criticals, 'NB': newbrunswick.total_criticals, 'MB': manitoba.total_criticals, 'BC': britishcolumbia.total_criticals, 'PE': pei.total_criticals, 'SK': sask.total_criticals, 'AB': alberta.total_criticals, 'NL': newfoundland.total_criticals, 'NT': nwterritories.total_criticals, 'YT': yukon.total_criticals, 'NU': nunavit.total_criticals },
+                            { province: 'total recoveries', 'ON': ontario.total_recoveries, 'QC': quebec.total_recoveries, 'NS': novascotia.total_recoveries, 'NB': newbrunswick.total_recoveries, 'MB': manitoba.total_recoveries, 'BC': britishcolumbia.total_recoveries, 'PE': pei.total_recoveries, 'SK': sask.total_recoveries, 'AB': alberta.total_recoveries, 'NL': newfoundland.total_recoveries, 'NT': nwterritories.total_recoveries, 'YT': yukon.total_recoveries, 'NU': nunavit.total_recoveries },
+                        ]
+                    },
+                    xAxis: { type: 'category' },
+                    yAxis: {},
+                    // Declare several bar series, each will be mapped
+                    // to a column of dataset.source by default.
+                    series: [
+                        { type: 'bar' },
+                        // { type: 'bar' },
+                        // { type: 'bar' },
+                        // { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' },
+                        { type: 'bar' }
+                    ]
+                })
+        }
+
+    }, [nunavit])
+
     return (
         <div>
-            {/* current cases */}
-            <ReactEcharts
-                option={GL_OPTION}
-            />
-    </div>
+            <h5>Reports by Province</h5>
+            <h6 className="provinces">Click on the province initals to filter</h6>
+            { option && 
+             <ReactEchartsCore
+             echarts={echarts}
+             option={option}
+             className="chart"
+             style={{ width: viewport.width, maxHeight: "300px", paddingRight: "15%" }}
+         /> 
+        // : <p>Loading...</p>}
+}
+           
+
+        </div>
     )
 }
 

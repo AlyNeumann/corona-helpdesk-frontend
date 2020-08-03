@@ -10,6 +10,7 @@ const useGetUser = () => {
     const [needs, setNeeds] = useContext(NeedsContext);
     // state for error messages
     const [errorMessage, setErrorMessage] = useState(null);
+    console.log('get user hook being called')
 
 
     const getUserAndNeeds = () => {
@@ -19,6 +20,7 @@ const useGetUser = () => {
 
         //handle error messages
         const handleErrors = (error) => {
+            console.log('get user returns error')
             if (error) {
                 setErrorMessage(error)
             }
@@ -38,13 +40,17 @@ const useGetUser = () => {
                     // console.log(response);
                     setUser(response);
                     setNeeds(response.neededList);
+                    //TODO: not sure if needed but for storing user profile in offline mode
+                    // localStorage.setItem('currentUser', response);
+                    // console.log('get user response working')
                 }
 
             })
             .then(handleErrors)
             .catch(error => {
                 if (error) {
-                    console.log(error)
+                    // console.log(error)
+                    setErrorMessage(error)
                 }
             })
 
@@ -53,6 +59,16 @@ const useGetUser = () => {
     useEffect(() => {
         getUserAndNeeds();
     }, [])
+    //TODO: not fully working yet, trying to store user for offline mode
+    // useEffect(() => {
+    //     if(!user){
+    //         const pastUserInfo = localStorage.getItem('currentUser');
+    //         console.log(pastUserInfo)
+    //         setUser(pastUserInfo);
+    //         setNeeds(pastUserInfo.neededList);
+    //     }
+       
+    // }, [errorMessage])
     return { user, needs }
 
 }

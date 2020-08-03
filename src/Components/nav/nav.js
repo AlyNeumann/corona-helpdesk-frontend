@@ -36,20 +36,16 @@ import { Button } from '../../global';
 
 
 
-
-
-
-
 function Navbar(props) {
 
- 
+
 
 
     const drawerWidth = 240;
     const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex'
-           
+
         },
         appBar: {
             zIndex: theme.zIndex.drawer + 1,
@@ -78,7 +74,7 @@ function Navbar(props) {
             width: drawerWidth,
             flexShrink: 0,
             whiteSpace: 'nowrap',
-           
+
         },
         drawerOpen: {
             width: drawerWidth,
@@ -130,15 +126,15 @@ function Navbar(props) {
     // const [user, setUser] = useState("")
     const userInfo = useContext(UserContext)
     const user = userInfo[0]
-    console.log('from nav')
-    console.log(props)
-    console.log(user)
+    // console.log('from nav')
+    // console.log(props)
+    // console.log(user)
 
     // console.log(user)
     const [tokenExists, setTokenExists] = useState(false)
-  
 
-   
+
+
 
     //remove cookie on logout
     const handleLogout = () => {
@@ -153,11 +149,11 @@ function Navbar(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
- 
+
 
     const loginCallBack = () => {
         setTokenExists(true)
-        console.log('I have been called from Login')
+        // console.log('I have been called from Login')
     }
 
 
@@ -167,8 +163,8 @@ function Navbar(props) {
 
     //on reload, check if cookie exists 
     useEffect(() => {
-        if (Cookies.get("token")){
-            setTokenExists(true) 
+        if (Cookies.get("token")) {
+            setTokenExists(true)
         }
     }, [])
 
@@ -177,8 +173,8 @@ function Navbar(props) {
         <React.Fragment>
 
             <div className={(history.location.pathname !== "/" && history.location.pathname !== "/signup") ? "" : "d-none"}>
-                {tokenExists?
-                    <div className={classes.root}>          
+                {tokenExists ?
+                    <div className={classes.root}>
                         <CssBaseline />
                         {/* { tokenExists ? */}
                         <AppBar
@@ -276,7 +272,7 @@ function Navbar(props) {
                                 <Divider />
                             </List>
                         </Drawer>
-                         {/* : <div></div> } */}
+                        {/* : <div></div> } */}
                         <ThemeProvider theme={theme}>
                             <main className={classes.content}>
 
@@ -285,15 +281,15 @@ function Navbar(props) {
                                 {props.children}
 
 
-                          </main>
+                            </main>
                         </ThemeProvider>
-                    </div> :  <Button className="fancy-btn-text" onClick={handleRedirect}>Please Login to view content</Button> 
+                    </div> : <Button className="fancy-btn-text" onClick={handleRedirect}>Please Login to view content</Button>
                     // :
                     // <p>Loading...If this doesn't stop after like 5 seconds, please refresh the page! It happens sometimes...:)</p>
                 }
 
             </div>
-            {(history.location.pathname === "/") && <Login loginCallBack={loginCallBack}/>}
+            {(history.location.pathname === "/") && <Login loginCallBack={loginCallBack} />}
             {(history.location.pathname === "/signup") && <Signup />}
 
         </React.Fragment>

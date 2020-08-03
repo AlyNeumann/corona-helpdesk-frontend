@@ -32,7 +32,7 @@ const UpdateNeeds = (props) => {
     const need = props.location.state.need;
     const _id = props.location.state.need._id
     const [errorMessage, setErrorMessage] = useState(null);
-    console.log(_id)
+    // console.log(_id)
 
 
     const {
@@ -51,7 +51,7 @@ const UpdateNeeds = (props) => {
     //TODO: only need one call here, all needs will be updated 
     // Cookies.get('token') for authorization
     function submit() {
-        console.log(values)
+        // console.log(values)
         const token = Cookies.get("token");
 
         //TODO: add _id to the request body!! 

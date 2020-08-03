@@ -5,26 +5,26 @@ import React, { useEffect } from 'react';
 
 const WhoYoutube = () => {
 
-    const getChannel = () => {
-        //WHO url - https://www.youtube.com/channel/UC07-dOwgza1IguKA86jqxNA
+    // const getChannel = () => {
+    //     //WHO url - https://www.youtube.com/channel/UC07-dOwgza1IguKA86jqxNA
 
-        //TODO: make this dynamic if you start wanting more than one channel
-        const url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&forUsername=who&key=AIzaSyCAIVPD6SUujzBADPAbfPs8PsD0g-ovFK4'
-        fetch(url, {
-            method: 'GET',
-            redirect: 'follow'
-        })
-            .then(res => res.json())
-            .then(response => {
-                // console.log(response)
-            })
-            .catch(err => console.log(err))
+    //     //TODO: make this dynamic if you start wanting more than one channel
+    //     const url = 'https://www.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&forUsername=who&key=AIzaSyCAIVPD6SUujzBADPAbfPs8PsD0g-ovFK4'
+    //     fetch(url, {
+    //         method: 'GET',
+    //         redirect: 'follow'
+    //     })
+    //         .then(res => res.json())
+    //         .then(response => {
+    //             // console.log(response)
+    //         })
+    //         .catch(err => console.log(err))
 
-    }
+    // }
 
-    useEffect(() => {
-        getChannel();
-    }, [])
+    // useEffect(() => {
+    //     getChannel();
+    // }, [])
 
     return (
         <div>

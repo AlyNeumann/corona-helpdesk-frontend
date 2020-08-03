@@ -79,7 +79,7 @@ export default function EmailModal(props) {
             email: e.target.value
         })
     }
-    console.log(values)
+    // console.log(values)
 
     //call submit function from button
     const handleSubmit = () => {
@@ -111,7 +111,7 @@ export default function EmailModal(props) {
                 }
             })
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 if (response.message) {
                     setErrorMessage(response.message)
                 }

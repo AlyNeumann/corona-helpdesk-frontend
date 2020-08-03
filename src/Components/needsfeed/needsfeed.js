@@ -87,7 +87,7 @@ const NeedsFeed = () => {
             .then(response => {
                 if (!errorMessage) {
                     setNeedsFeed(response);
-                    console.log(response)
+                    // console.log(response)
                 }
 
             })

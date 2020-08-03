@@ -60,7 +60,7 @@ const Analytics = () => {
             {/* <CurrentCases/> */}
             </animated.div>
             <animated.div style={props3}>
-                <WhoYoutube/>
+                <CurrentCases/>
             </animated.div>
             </div>
         </div>

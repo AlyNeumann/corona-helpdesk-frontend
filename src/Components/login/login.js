@@ -84,13 +84,13 @@ const Login = (props) => {
             .then(res => res.json()) //response is
 
             .then(response => {
-                console.log(response)
+                // console.log(response)
                 if (response.error || response == undefined) {
                     handleErrors(response)
                 } else {
                     //store auth in cookies response.token
-                    console.log('cookie storage is next yo');
-                    console.log(response)
+                    // console.log('cookie storage is next yo');
+                    // console.log(response)
                     Cookies.set("token", response.token, { expires: 1 });
                     props.loginCallBack()
                     history.push('/profile')

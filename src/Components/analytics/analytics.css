@@ -51,3 +51,7 @@ h5 {
 .echart-for-react .chart {
     font-family: 'RobotoMonoL' !important;
 }
+
+.provinces {
+    padding-left: 5%;
+}

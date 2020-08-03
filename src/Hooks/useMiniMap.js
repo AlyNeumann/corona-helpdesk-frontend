@@ -50,8 +50,8 @@ const useMiniMap = (id) => {
 
         //address chosen for input result
         geocoder.on('result', function (result) {
-            console.log(result.result.place_name)
-            console.log(result.result.geometry.coordinates[0] + " " + result.result.geometry.coordinates[1])
+            // console.log(result.result.place_name)
+            // console.log(result.result.geometry.coordinates[0] + " " + result.result.geometry.coordinates[1])
             setAddress(result.result.place_name)
             setCoords({ ...coords, 
                 lat: result.result.geometry.coordinates[1],

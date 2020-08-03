@@ -110,7 +110,7 @@ const Need = ({ need, needs }) => {
         })
             .then(res => res.json)
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 setDeleted(true);
                 refreshPage();
             })

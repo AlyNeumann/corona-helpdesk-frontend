@@ -86,11 +86,11 @@ const Signup = () => {
 
     //submit signup form to backend
     function submit() {
-        console.log(values)
+        // console.log(values)
         const url = "http://localhost:5000/signup"
 
         //check values before submitting
-        console.log(values);
+        // console.log(values);
         // handling error messages
         const handleErrors = (response) => {
             console.log(response)
