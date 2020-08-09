@@ -14,6 +14,7 @@ import { subscribeUser } from '../../subscription';
 // import { lightTheme, darkTheme } from '../../theme';
 import { useSpring, animated } from 'react-spring';
 import { Button } from '../../global';
+import FirstTimeModal from './firstTime';
 
 //this component is the parent of Profile, Needs list, and Update Needs
 
@@ -64,6 +65,10 @@ const ProfileHome = () => {
     const [serverError, setServerError] = useState(null);
     //TODO: use recent messages to show the user names of unread messages to the user
     const [recentMessages, setRecentMessages] = useState(null);
+    // //for first time login
+    // const [firstTime, setFirstTime] = useState(false)
+    //firsttime modal open
+    const [open, setOpen] = useState(false)
 
     // const [notify, setNotify] = useState(false);
     //check for new messages for user
@@ -102,12 +107,18 @@ const ProfileHome = () => {
                 console.log(response)
                 if (response.error || response == undefined) {
                     handleErrors(response)
-                } else if(response.msg){
+                } else if (response.msg) {
                     setNewMessageAlert(false)
-                }else {
-                    setRecentMessages(response)
-                    // setNotify(true)
-                    setNewMessageAlert(true)
+                } else {
+                    //TODO: check if user is sender or not
+                    const newMessage = response[0]
+                    console.log(newMessage.from)
+                    if (newMessage.from !== user.name) {
+                        setRecentMessages(newMessage.from)
+                        // setNotify(true)
+                        setNewMessageAlert(true)
+                    }
+
                     // console.log(response)
                     //TODO: call for push notification here with the name of other person!
                     //use context to tell nav to trigger the flashing inbox!
@@ -129,10 +140,9 @@ const ProfileHome = () => {
 
         const url = 'http://localhost:5000/updateLastLogin';
         const _id = user._id;
-        //TODO: format this date for the ISO that mongo db uses!!!
         const token = Cookies.get("token");
-         //fetch past chat
-         fetch(url, {
+        //fetch past chat
+        fetch(url, {
             method: 'PUT',
             body: JSON.stringify({ _id }),
             headers: {
@@ -149,7 +159,7 @@ const ProfileHome = () => {
                 // } else {
                 //     setRecentMessages(response)
                 //     // setNotify(true)
-                    // setNewMessageAlert(false)
+                // setNewMessageAlert(false)
                 //     // console.log(response)
                 //     //TODO: call for push notification here with the name of other person!
                 //     //use context to tell nav to trigger the flashing inbox!
@@ -158,12 +168,24 @@ const ProfileHome = () => {
             })
             .catch(error => {
                 // if (error) {
-                    console.log(error)
-                    // handleErrors(error)
+                console.log(error)
+                // handleErrors(error)
                 // } else if (error instanceof TypeError) {
                 //     setServerError(true)
                 // }
             })
+    }
+    console.log(recentMessages)
+    // const closeNotify = () => {
+    //     setNotify(false);
+    // }
+    //set modal open second time for details
+    const handleOpenModal = () => {
+        setOpen(true);
+    }
+    //open modal for first time
+    const handleClick = () => {
+        setOpen(false);
     }
 
     //check if auth token exists in browser already
@@ -184,20 +206,25 @@ const ProfileHome = () => {
     //updates last_login field 
     useEffect(() => {
         updateLastLogin();
-    },[newMessageAlert])
+    }, [newMessageAlert])
+    //see if user is first time login, trigger modal if so 
+    //TODO: add button for this modal as well in case 
+    useEffect(() => {
+        if (user.isFirstTime) {
+            // setFirstTime(true);
+            setOpen(true)
+        }
+    }, [user])
 
 
 
     return (
 
         <div>
-            <animated.div style={propsNotify}>
-                {/* { notify && <Notify callback={closeNotify}/>} */}
-                {/* <Notify callback={closeNotify} open={notify}/> */}
-            </animated.div>
+
             {tokenExists ?
                 <div className="profile-home-container">
-                    {/* { notify && <Notify callback={closeNotify}/>} */}
+                    {/* { notify && <Notify callback={closeNotify} name={recentMessages}/>} */}
                     <animated.div style={props}>
                         <Profile user={user} />
                     </animated.div>
@@ -207,13 +234,16 @@ const ProfileHome = () => {
                     <animated.div style={props3}>
                         <NeedsTodo user={user} needs={needs} />
                     </animated.div>
-
+                    <animated.div style={propsNotify}>
+                        {!open ? <Button onClick={handleOpenModal}>How to use this app</Button> : <FirstTimeModal open={[open, setOpen]} handleClose={handleClick} user={user}/>}
+                    </animated.div>
                 </div> :
                 <p>Loading.....</p>
                 // <Link to="/">
                 //     <Button className="fancy-btn-text" >Please Login to view content</Button>
                 // </Link>
             }
+
         </div>
 
     )

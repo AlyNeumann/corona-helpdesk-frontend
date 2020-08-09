@@ -42,9 +42,8 @@ const Notify = (props) => {
                 open={props.open}
                 onClose={props.callback}
                 message={
-                    'You have some new messages! \
-                    Click here to see them.'
-                }
+                    `You have new messages from ${props.name}! \
+                    Click here to see them. `             }
                 action={action}
                 key={vertical + horizontal}
             />
