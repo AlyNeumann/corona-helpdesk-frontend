@@ -45,13 +45,13 @@ const AddNeeds = () => {
     let history = useHistory()
 
     // if user hits enter instead 
-    // const onKeyPress = (e) => {
-    //     console.log(e)
-    //     e.preventDefault();
-    //     if(e.key === 'Enter') {
-    //         handleSubmit();
-    //     }
-    //   }
+    const onKeyPress = (e) => {
+        console.log(e)
+        e.preventDefault();
+        if(e.keyCode === 'Enter') {
+            handleSubmit();
+        }
+      }
 
     function submit() {
         // console.log(values)
@@ -192,7 +192,7 @@ const AddNeeds = () => {
                     <button
                         className="btn btn-secondary btn-text"
                         type="submit"
-                        // onKeyDown={onKeyPress}
+                        onKeyDown={onKeyPress}
                         >
                         <CheckBoxIcon className="buttonclass" />
                     </button>

@@ -119,7 +119,7 @@ const Signup = () => {
             .then(response => {
                 // console.log(response)
                 console.log(JSON.stringify(response))
-                if (!response.errors) {
+                if (response.errors === undefined) {
                     // console.log(JSON.stringify(response));
                     setModal(true)
                 }else if(response.err){

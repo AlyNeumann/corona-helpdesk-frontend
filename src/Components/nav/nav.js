@@ -30,8 +30,7 @@ import Login from '../login/login';
 import Signup from '../login/signup';
 import Cookies from 'js-cookie';
 import PortraitPlaceholder from '../../Assets/images/Portrait_Placeholder.png'
-import { UserContext } from '../../Components/user-context/userContext';
-import { ThemeContext } from '../../Components/user-context/userContext';
+import { UserContext, ThemeContext, NewMessageContext } from '../../Components/user-context/userContext';
 import { Button } from '../../global';
 
 
@@ -115,6 +114,7 @@ function Navbar(props) {
     //toggle the light and dark mode
 
     const currentTheme = useContext(ThemeContext);
+    const newMessageAlert = useContext(NewMessageContext);
     // console.log(currentTheme[0])
 
     const history = useHistory();
@@ -126,6 +126,8 @@ function Navbar(props) {
     // const [user, setUser] = useState("")
     const userInfo = useContext(UserContext)
     const user = userInfo[0]
+    console.log(newMessageAlert)
+    const messageFlash = newMessageAlert[0]
     // console.log('from nav')
     // console.log(props)
     // console.log(user)
@@ -198,7 +200,7 @@ function Navbar(props) {
                                 </IconButton>
                                 <Typography variant="h6" className="typography-title" noWrap>
                                     {(history.location.pathname === "/profile") && "User Profile"}
-                                    {(history.location.pathname === "/map") && "Map"}
+                                    {(history.location.pathname === "/map") && "Map - click arrow button for directions"}
                                     {(history.location.pathname === "/needsfeed") && "List of Needs"}
                                     {(history.location.pathname === "/analytics") && "Covid 19 Analytics"}
                                     {(history.location.pathname === "/chat") && "Chat"}
@@ -257,7 +259,10 @@ function Navbar(props) {
                                     <ListItemText primary={"Analytics"} />
                                 </ListItem>
                                 <ListItem button key="chat" onClick={() => { history.push("/chat") }}>
-                                    <ListItemIcon><ChatIcon className="iconclass" /></ListItemIcon>
+                                    <ListItemIcon><ChatIcon className={`${
+                                        messageFlash ? "iconclass new-message"
+                                            : "iconclass"
+                                        }`} /></ListItemIcon>
                                     <ListItemText primary={"Chat"} />
                                 </ListItem>
                                 <ListItem button key="aboutus" onClick={() => { history.push("/aboutus") }}>

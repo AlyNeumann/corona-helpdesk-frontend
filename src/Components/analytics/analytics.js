@@ -46,7 +46,7 @@ const Analytics = () => {
         <div className="anatylics-container">
             <div>
                 <h2>Analytics</h2>
-                <h6>Data from the World Health Organization Situation Reports & Johns Hopkins CSSE</h6>
+                <h6 className="analytics-data">Data from the World Health Organization Situation Reports & Johns Hopkins CSSE</h6>
             </div>
             <animated.div style={props1}>
             <ScoreBoard/>
@@ -57,11 +57,11 @@ const Analytics = () => {
 
             <PieChart/>
             <GlobalTimeLine/>
-            {/* <CurrentCases/> */}
+            <CurrentCases/>
             </animated.div>
-            <animated.div style={props3}>
+            {/* <animated.div style={props3}>
                 <CurrentCases/>
-            </animated.div>
+            </animated.div> */}
             </div>
         </div>
     )

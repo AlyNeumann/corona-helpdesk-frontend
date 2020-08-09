@@ -143,7 +143,7 @@ const CurrentCases = () => {
     }, [nunavit])
 
     return (
-        <div>
+        <div className="province-container chart-container">
             <h5>Reports by Province</h5>
             <h6 className="provinces">Click on the province initals to filter</h6>
             { option && 
@@ -151,7 +151,7 @@ const CurrentCases = () => {
              echarts={echarts}
              option={option}
              className="chart"
-             style={{ width: viewport.width, maxHeight: "300px", paddingRight: "15%" }}
+             style={{ width: viewport.width, maxHeight: "300px", paddingRight: "15%", marginLeft: "5%"  }}
          /> 
         // : <p>Loading...</p>}
 }

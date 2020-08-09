@@ -5,7 +5,7 @@ import MessageBox from './messageBox';
 import Messages from './messages';
 import PastMessages from './pastMessages';
 import PastChats from './pastChats';
-import { UserContext } from '../user-context/userContext';
+import { UserContext, NewMessageContext } from '../user-context/userContext';
 import { Button } from '../../global';
 import { useSpring, animated } from 'react-spring'
 import './chat.css';
@@ -34,6 +34,8 @@ const Chat = (props) => {
     const [page, setPage] = useState(1);
     // //switch chat if user clicks on another user on the side of the page
     // const [newChat, setNewChat] = useState(null);
+    //context for flashing chat icon
+    const [newMessageAlert, setNewMessageAlert] = useContext(NewMessageContext);
 
 
 
@@ -74,6 +76,10 @@ const Chat = (props) => {
             setViewedUser(props.location.state.viewedUser)
         }
     }, [pastMessages, newChatUser])
+
+    useEffect(() => {
+        setNewMessageAlert(false)
+    },[])
 
 
     return (

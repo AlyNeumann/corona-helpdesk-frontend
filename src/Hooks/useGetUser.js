@@ -10,7 +10,7 @@ const useGetUser = () => {
     const [needs, setNeeds] = useContext(NeedsContext);
     // state for error messages
     const [errorMessage, setErrorMessage] = useState(null);
-    console.log('get user hook being called')
+    // console.log('get user hook being called')
 
 
     const getUserAndNeeds = () => {
@@ -20,7 +20,7 @@ const useGetUser = () => {
 
         //handle error messages
         const handleErrors = (error) => {
-            console.log('get user returns error')
+            // console.log('get user returns error')
             if (error) {
                 setErrorMessage(error)
             }

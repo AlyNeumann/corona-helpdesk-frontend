@@ -44,4 +44,28 @@
 }
 .profile-pic-small {
     filter: sepia(30%);
+} 
+.new-message {
+    color: rgb(140, 43, 43) !important;
+    -webkit-animation: fadeinAnimation 2s;
+    -moz-animation: fadeinAnimation 2s;
+    -o-animation: fadeinAnimation 2s;
+     animation: blink 1s infinite;
 }
+
+@keyframes blink {
+	0% {opacity: 0.6}
+	49%{opacity: 0.85}
+	50% {opacity: 1}
+}
+
+/* .fadein {
+    -webkit-animation: fadeinAnimation 2s;
+     -moz-animation: fadeinAnimation 2s;
+     -o-animation: fadeinAnimation 2s;
+      animation: blink 2s;
+  } */
+
+/* blink{
+    animation: blink 1s infinite;
+} */

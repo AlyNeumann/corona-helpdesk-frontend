@@ -90,7 +90,7 @@ const Login = (props) => {
                 } else {
                     //store auth in cookies response.token
                     // console.log('cookie storage is next yo');
-                    // console.log(response)
+                    console.log(response)
                     Cookies.set("token", response.token, { expires: 1 });
                     props.loginCallBack()
                     history.push('/profile')
