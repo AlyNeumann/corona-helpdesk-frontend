@@ -18,22 +18,26 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray
 }
 
-function sendSubscription(subscription, user) {
-  //TODO: find a way to send the FREAKING USER ID AHHHH!
-  //attach user to request url?
-  // if(user){
-  //   const userId = user._id;
-  //   console.log(userId)
-    console.log('do we get here in subscription with user?')
-    console.log(subscription)
-    console.log(user)
-    return fetch(`${process.env.REACT_APP_API_URL}/notifications/subscribe`, {
-      method: 'POST',
-      body: JSON.stringify(subscription),
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Userid': userId
-      }
+function sendSubscription(subscription, userId) {
+
+  console.log('do we get here in subscription with user?')
+  console.log(subscription)
+  console.log(token)
+  console.log(userId)
+
+  // const body = { subscription, userId: userId }
+  //${userId}
+  // const userId = user._id
+  return fetch(`${process.env.REACT_APP_API_URL}/notifications/subscribe`, {
+    method: 'POST',
+    body: JSON.stringify({ subscription, userId }),
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Userid': userId
+    }
+  }).then(res => res.json())
+    .then(response => {
+      console.log(response)
     })
   // }
 
@@ -43,12 +47,16 @@ function sendSubscription(subscription, user) {
 console.log(token)
 
 export function subscribeUser({ user }) {
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(function (registration) {
       if (!registration.pushManager) {
         console.log('Push manager unavailable.')
+        console.log('user from subscription')
+        console.log(user)
         return
       }
+      const userId = user._id
       console.log('user from subscription')
       console.log(user)
       registration.pushManager.getSubscription().then(function (existedSubscription) {
@@ -57,11 +65,15 @@ export function subscribeUser({ user }) {
           registration.pushManager.subscribe({
             applicationServerKey: convertedVapidKey,
             userVisibleOnly: true,
+            // userId: user._id
           }).then(function (newSubscription) {
             //TODO: add json token here to get user to backend?
             // const object = newSubscription + token
             console.log('New subscription added.')
-            sendSubscription(newSubscription, user)
+      
+            console.log('userId from subscription')
+            console.log(userId)
+            sendSubscription(newSubscription, userId)
           }).catch(function (e) {
             if (Notification.permission !== 'granted') {
               console.log('Permission was not granted.')
@@ -71,7 +83,9 @@ export function subscribeUser({ user }) {
           })
         } else {
           console.log('Existed subscription detected.')
-          sendSubscription(existedSubscription)
+          console.log('userId from existing subscription')
+          console.log(userId)
+          sendSubscription(existedSubscription, userId)
         }
       })
     })
