@@ -5,7 +5,8 @@ import { useSpring, animated } from 'react-spring';
 import { UserContext } from '../../Components/user-context/userContext';
 import { Button } from '../../global';
 
-//TODO: make a radius slide for user to choose their radius!
+
+//TODO: order returned users by upvote!
 
 const NeedsFeed = () => {
     //bring in user for their position
@@ -108,7 +109,9 @@ const NeedsFeed = () => {
             <h6 className="needsfeed-subtitle">Here are the users nearest to you who need stuff!</h6>
             </animated.div>
             <animated.div style={props3}>
-            <div className="needsfeed-text">Click on their icon to see their profile & start a chat, or scroll down and click the button at the bottom to expand your search area!</div>
+            <div className="needsfeed-text">Click on their icon to see their profile & start a chat, or scroll down and click the button at the bottom to expand your search area!
+                If you see users in the feed who you cannot help, you can upvote their needs using the star button under their user avatar so the post will get more attention from other users. 
+            </div>
             </animated.div>
             <animated.div style={props}>
             {needsFeed? needsFeed.map(user => {

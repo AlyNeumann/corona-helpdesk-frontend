@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { useSpring, animated } from 'react-spring'
 import Need from './need';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 
 import './needstodo.css';
 
@@ -43,10 +45,12 @@ const NeedsTodo = ({ user, needs }) => {
                         needs
                     }
                 }} >
+                    <Tooltip TransitionComponent={Zoom} title="Add">
                     <button
                         className="btn btn-secondary btn-text add-btn">
                         <AddBoxIcon className="buttonclass" />
                     </button>
+                    </Tooltip>
                 </Link> : <p className="needs-label">Please delete a need to add another!</p>}
      
                 </animated.div>

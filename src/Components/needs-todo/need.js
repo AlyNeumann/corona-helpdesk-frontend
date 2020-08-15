@@ -9,6 +9,8 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 import './need.css';
 
 //material ui
@@ -160,16 +162,20 @@ const Need = ({ need, needs }) => {
                                         needs
                                     }
                                 }} >
+                                    <Tooltip TransitionComponent={Zoom} title="Edit">
                                     <button
                                         className="btn-needs btn-secondary btn-text">
                                         <EditIcon className="buttonclass" />
                                     </button>
+                                    </Tooltip>
                                 </Link>
+                                <Tooltip TransitionComponent={Zoom} title="Delete">
                                 <button
                                     className="btn-needs btn-secondary btn-text"
                                     onClick={handleRemove}>
                                     <DeleteForeverIcon className="buttonclass" />
                                 </button>
+                                </Tooltip>
                             </div>
                         </ExpansionPanelSummary>
                         <ExpansionPanelDetails>

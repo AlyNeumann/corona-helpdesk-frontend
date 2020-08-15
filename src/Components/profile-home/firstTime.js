@@ -144,7 +144,7 @@ export default function FirstTimeModal(props) {
                             You can see who needs things nearest you on the Map <Place className="iconclass" />, or in the Needs Feed <ListIcon className="iconclass" />.
                             Once you find a user that you can help or that can help you, you can open a chat with them!
                             Check out the Analyticsfor<AssessmentIcon className="iconclass" /> the latest info, and check out the Resources<HelpIcon className="iconclass" />  for 
-                            details on financial assistance, wait times at grocery stores, and help for artists.
+                            details on financial assistance, wait times at grocery stores, and help for artists. We will ask for your permission to use notifications in the chat, these will be used to tell you if you have a new message from another user!
                             This is a small community run project, we will keep the data you share secret and safe!
                         </p>
                         <div>
