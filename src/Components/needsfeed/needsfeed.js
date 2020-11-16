@@ -110,12 +110,11 @@ const NeedsFeed = () => {
             </animated.div>
             <animated.div style={props3}>
             <div className="needsfeed-text">Click on their icon to see their profile & start a chat, or scroll down and click the button at the bottom to expand your search area!
-                If you see users in the feed who you cannot help, you can upvote their needs using the star button under their user avatar so the post will get more attention from other users. 
             </div>
             </animated.div>
             <animated.div style={props}>
             {needsFeed? needsFeed.map(user => {
-                return <NeedsList user={user} key={user._id}/>
+                return <NeedsList user={user} userid={userObj._id} key={user._id} ogUser={userObj}/>
             }): 'No needs right now!'}
               <Button className="fancy-btn-text" onClick={handleClick}>Click here to expand your search area</Button>
         </animated.div>

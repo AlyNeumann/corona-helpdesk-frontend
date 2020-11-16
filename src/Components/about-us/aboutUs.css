@@ -1,9 +1,10 @@
 .aboutus-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     margin-bottom: 150px;
+    padding: 20px;
 }
 
 h4 {
@@ -15,4 +16,24 @@ h4 {
     font-family: 'RobotoMonoB' !important;
     color: #ae9d9d;
     background-color: #652020c8;
+}
+.ticket {
+    padding-top:20px;
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+    .aboutus-container {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;
+    flex-wrap: wrap; */
+    /* margin-bottom: 150px; */
+    padding: 20px;
+}
+.ticket {
+    text-align: center;
+    bottom: 0;
+    width:100%;
+}
 }

@@ -110,12 +110,6 @@ const Signup = () => {
             }
         })
             .then(res => res.json())
-            .catch(err => {
-                if (err) {
-                    console.log(err);
-                    setErrorMessage(err)
-                }
-            })
             .then(response => {
                 // console.log(response)
                 console.log(JSON.stringify(response))
@@ -127,8 +121,12 @@ const Signup = () => {
                 } else {
                     handleErrors(response)
                 }
-
-
+            })     
+             .catch(err => {
+                if (err) {
+                    console.log(err);
+                    setErrorMessage(err)
+                }
             })
     }
 

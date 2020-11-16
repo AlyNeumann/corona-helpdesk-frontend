@@ -7,7 +7,7 @@
     text-align: center;
     width: 100%;
     height: 100%;
-    padding-bottom:300px;
+    padding-bottom: 100%;
 }
 .resources-inner {
     justify-content: center;
@@ -47,3 +47,19 @@
     /* font-family: 'RobotoMonoB' !important; */
     color: #494331;
   }
+.ticket {
+      text-align: center;
+  }
+@media (min-width: 320px) and (max-width: 480px){
+      .ticket {
+      padding-top:50%;
+      text-align: center;
+  }
+}
+@media (min-width: 200px) and (max-width: 320px){
+      .ticket {
+      /* padding-top:130%; */
+      text-align: center;
+  }
+}
+

@@ -23,3 +23,13 @@
       /* background-color: rgb(126, 126, 126) !important; */
       color: rgb(232, 194, 194) !important;
   }
+  @media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  { 
+
+.ticket {
+    text-align: center;
+    bottom: 0;
+    width:100%;
+}
+}

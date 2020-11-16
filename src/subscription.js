@@ -1,4 +1,4 @@
-//TODO: gonna try grabbing JWT for user id
+
 import Cookies from 'js-cookie';
 
 const token = Cookies.get("token");

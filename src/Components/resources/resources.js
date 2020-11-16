@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from '../../global';
 import { useSpring, animated } from 'react-spring';
 import './resources.css'
+import Ticket from '../ticket/ticket';
 
 
 
@@ -52,9 +53,9 @@ const Resources = () => {
                 <div className="resource">
                     <Button
                         className="btn btn-seconday btn-text fancy-btn-text"
-                        value="https://www.canada.ca/en/services/benefits/ei/cerb-application.html"
+                        value="https://www.canada.ca/en/revenue-agency/services/benefits/recovery-benefit.html"
                         onClick={handleUrl}>
-                        Info on the CERB</Button>
+                        Info on the CRB</Button>
                 </div>
                 <h5>Resources for Artists</h5>
                 <div className="resource">
@@ -69,7 +70,7 @@ const Resources = () => {
                         className="btn btn-seconday btn-text fancy-btn-text"
                         value="https://docs.google.com/document/d/1YlE5KbmM8VP6bHlKQ5YvuMtxKQPwFfXL3DMuz0wdguU/edit?fbclid=IwAR1KDNY4dQkoIjnVbYvmloGf30L37lqyfJhI6h2N-3303NdHoQYXm4foFmg"
                         onClick={handleUrl}>
-                        CERB and Live Streaming</Button>
+                        Live Streaming</Button>
                 </div>
                 <h5>Find your local representative</h5>
                 <div className="resource">
@@ -102,9 +103,10 @@ const Resources = () => {
                         Grocery store wait times</Button>
                 </div>
             </div>
-          
         </div>
-        <div className="bug-find">Find a bug or have a resource to add? Send an email to neumannbooking@gmail.com!</div>
+        <div className="ticket">
+        <Ticket/>
+        </div>
         </animated.div>)
 }
 

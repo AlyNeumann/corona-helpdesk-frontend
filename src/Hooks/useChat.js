@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import Cookies from 'js-cookie';
 import socketIOClient from 'socket.io-client';
 
-//TODO: rebuild & test
+
 
 const useChat = ({ user, viewedUser, page }) => {
 
@@ -311,9 +311,8 @@ const useChat = ({ user, viewedUser, page }) => {
     }, [viewedUserId])
 
 
-    //if there are more than messages, destructure here
+    //destructuring
     const sendMessage = ({ message, user, chatIdsArr }) => {
-        //TODO: this was the change
         console.log('message sending now')
         console.log(chatIdsArr)
         socketRef.current.emit('chatmessage', { message, user, roomId, to, chatIdsArr })

@@ -64,12 +64,6 @@ export default function FirstTimeModal(props) {
     const token = Cookies.get("token");
 
     const classes = useStyles();
-    // //open or close modal
-    // const [open, setOpen] = React.useState(false);
-    //value for email for forgot password
-    // const [values, setValues] = useState({
-    //     email: ""
-    // });
     //error messages
     const [errorMessage, setErrorMessage] = useState(null);
     // const [message, setMessage] = useState(null);
@@ -80,8 +74,16 @@ export default function FirstTimeModal(props) {
 
     //call submit function from button
     const handleClick = () => {
-        updateFirstTime()
-        props.handleClose()
+        const userProps = props.user;
+        if(userProps.isFirstTime === false){
+            console.log(props.user)
+            props.handleClose()
+        }else{
+            updateFirstTime()
+            console.log(props.user)
+            props.handleClose()
+        }
+        
     }
 
     //submit email 

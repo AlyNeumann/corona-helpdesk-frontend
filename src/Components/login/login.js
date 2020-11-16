@@ -8,6 +8,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './login.css';
 import { useSpring, animated } from 'react-spring';
 import Covid_title from '../../Assets/images/Covid_title.png';
+import { Button } from '../../global';
 //needs error handling & error messages displayed
 
 const Login = (props) => {
@@ -40,7 +41,11 @@ const Login = (props) => {
     //for forgot password modal
     const [modal, setModal] = useState(false);
     //open or close modal
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+      //details modal
+      const [modalTwo, setModalTwo] = useState(false);
+      //open or close details modal
+      const [openTwo, setOpenTwo] = useState(false);
 
     //history to push to next page once submitted
     let history = useHistory()
@@ -49,7 +54,16 @@ const Login = (props) => {
     const handleClick = () => {
         setOpen(false);
     }
-
+    const handleClickTwo = () => {
+        setOpenTwo(false);
+        setModalTwo(false);
+    }
+    const handleModalTwo = () => {
+        setOpenTwo(true);
+        setModalTwo(true);
+        console.log('why isnt this working')
+    }
+    
     //handle button click for forgot password
     const handlePassword = () => {
         setModal(true);
@@ -174,7 +188,8 @@ const Login = (props) => {
                     </div>
                 </animated.div>
                 <animated.div style={props3}>
-                    <Terms />
+                    <Button onClick={handleModalTwo}>Project Details</Button>
+                    {modalTwo ? <Terms openTwo={[openTwo, setOpenTwo]} handleClickTwo={handleClickTwo}/> : null}
                 </animated.div>
             </div>
 

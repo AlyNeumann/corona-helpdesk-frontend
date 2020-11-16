@@ -1,6 +1,6 @@
 
 
-const cacheName = 'v2'
+const cacheName = 'covid-cache'
 const CACHE = 'cache-update-and-refresh';
 
 const cacheAssests = [
@@ -40,7 +40,7 @@ self.addEventListener('activate', e => {
     )
 })
 
-//call fetch event - this is for caching only specific files
+//call fetch event - load the cached files offline
 self.addEventListener('fetch', e => {
     console.log('service worker fetching')
     e.respondWith(
@@ -49,7 +49,7 @@ self.addEventListener('fetch', e => {
 })
 
 //TODO: decide - this is for caching ALL, in which case, you don't need to define cache assests above
-//if using this, remove other fetch & cache assests & caching from install functions
+// if using this, remove other fetch & cache assests & caching from install functions
 self.addEventListener('fetch', e => {
     e.respondWith(
         fetch(e.request)
@@ -108,12 +108,13 @@ if('servicWorker' in navigator) {
 
 self.addEventListener('push', event => {
 
-    '../src/Assets/CCH_white_textlogo.png'
+    './Assets/CCH_white_textlogo.png'
    
     const data = event.data.json()
     console.log(JSON.stringify(data))
-    const notifIcon = './covid_icon.png'
-    const notifImg = './CCH_white_textlogo.png'
+    console.log('do we get to the push notification in custom-sw?')
+    const notifIcon = './Assets/covid_icon.png'
+    const notifImg = './Assets/CCH_white_textlogo.png'
   
     console.log('New notification', data)
     const options = {

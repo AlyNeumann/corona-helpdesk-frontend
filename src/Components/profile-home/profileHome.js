@@ -11,10 +11,10 @@ import './profileHome.css';
 import Notify from './notify';
 import { ThemeContext } from '../user-context/userContext';
 import { subscribeUser } from '../../subscription';
-// import { lightTheme, darkTheme } from '../../theme';
 import { useSpring, animated } from 'react-spring';
 import { Button } from '../../global';
 import FirstTimeModal from './firstTime';
+import Ticket from '../ticket/ticket';
 
 //this component is the parent of Profile, Needs list, and Update Needs
 
@@ -49,17 +49,11 @@ const ProfileHome = () => {
         delay: 2000
     })
 
-    //theme
-    // const [currentTheme, setCurrentTheme] = useContext(ThemeContext);
 
     //get user hook
     const { user, needs } = useGetUser()
-    //if offline and can't fetch user 
 
     const [newMessageAlert, setNewMessageAlert] = useContext(NewMessageContext)
-
-    // console.log(user, needs)
-    //check for token, else show button
     const [tokenExists, setTokenExists] = useState(false)
     const [errorMessage, setErrorMessage] = useState(null);
     const [serverError, setServerError] = useState(null);
@@ -110,7 +104,7 @@ const ProfileHome = () => {
                 } else if (response.msg) {
                     setNewMessageAlert(false)
                 } else {
-                    //TODO: check if user is sender or not
+                    //check if user is sender or not
                     const newMessage = response[0]
                     console.log(newMessage.from)
                     if (newMessage.from !== user.name) {
@@ -175,10 +169,7 @@ const ProfileHome = () => {
                 // }
             })
     }
-    console.log(recentMessages)
-    // const closeNotify = () => {
-    //     setNotify(false);
-    // }
+
     //set modal open second time for details
     const handleOpenModal = () => {
         setOpen(true);
@@ -208,13 +199,17 @@ const ProfileHome = () => {
         updateLastLogin();
     }, [newMessageAlert])
     //see if user is first time login, trigger modal if so 
-    //TODO: add button for this modal as well in case 
     useEffect(() => {
         if (user.isFirstTime) {
             // setFirstTime(true);
             setOpen(true)
         }
     }, [user])
+    useEffect(() => {
+        if(newMessageAlert){
+            //call the service worker push notif with user name
+        }
+    })
 
 
 
@@ -223,6 +218,7 @@ const ProfileHome = () => {
         <div>
 
             {tokenExists ?
+            <div>
                 <div className="profile-home-container">
                     {/* { notify && <Notify callback={closeNotify} name={recentMessages}/>} */}
                     <animated.div style={props}>
@@ -234,8 +230,12 @@ const ProfileHome = () => {
                     <animated.div style={props3}>
                         <NeedsTodo user={user} needs={needs} />
                     </animated.div>
-                    <animated.div style={propsNotify}>
+                    {/* <animated.div style={propsNotify}>
                         {!open ? <Button onClick={handleOpenModal}>How to use this app</Button> : <FirstTimeModal open={[open, setOpen]} handleClose={handleClick} user={user}/>}
+                    </animated.div> */}
+                </div>
+                <animated.div className="ticket" style={propsNotify}>
+                        {!open ? <Button  onClick={handleOpenModal}>How to use this app</Button> : <FirstTimeModal open={[open, setOpen]} handleClose={handleClick} user={user}/>}
                     </animated.div>
                 </div> :
                 <p>Loading.....</p>
@@ -243,7 +243,9 @@ const ProfileHome = () => {
                 //     <Button className="fancy-btn-text" >Please Login to view content</Button>
                 // </Link>
             }
-
+             <animated.div className="ticket" style={propsNotify}>
+            <Ticket/>
+            </animated.div>
         </div>
 
     )

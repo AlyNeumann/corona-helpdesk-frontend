@@ -28,9 +28,10 @@
   visibility: hidden;
 }
 /* directions button */
-/* .direction-button-container {
-  margin-bottom:45px !important;
-} */
+.direction-button-container {
+  margin:15px !important;
+  
+}
 /* .mapboxgl-ctrl-attrib-inner {
   padding-bottom: 100px;
 } */

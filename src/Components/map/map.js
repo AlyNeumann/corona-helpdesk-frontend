@@ -157,6 +157,7 @@ const Map = (props) => {
 
   const handleDirections = () => {
     console.log('i am being called')
+    console.log('handle directions being clicked')
     if (directions && map && coordinates) {
       map.addControl(directions, 'top-right');
       setDirectionsOpen(true)
